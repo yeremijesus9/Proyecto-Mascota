@@ -9,7 +9,7 @@
 
 body {
     background-color: #f9f9f9;
-    min-height: 100hv;
+    min-height: 100vh;
     overflow: hidden;
 }
 
@@ -18,7 +18,7 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 30px 100px;
+    padding: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -28,11 +28,56 @@ header {
 .logo {
     width: 10rem;
     color: #682D1E;
-    pointer-events: none;
+    margin: 0 2rem;
+}
+
+.navigation-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
 }
 
 .navigation-top a {
-    margin: 0 10px;
+    text-decoration: none;
 }
 
-.navigation-down
+#search {
+    width: 35rem;
+    padding: 0.5rem;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+}
+
+#search::placeholder {
+    color: #682D1E;
+}
+
+.iconify {
+    color: #682D1E;
+    width: 2rem;
+    height: 2rem;
+    margin: 0 2rem;
+}
+
+.navigation-down {
+    position: fixed;
+    left: 0;
+    margin-top: 7rem;
+    width: 100%;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #682D1E;
+}
+
+.navigation-down a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    padding: 0 2rem;
+    font-size: 1.1rem;
+}
