@@ -1,0 +1,21 @@
+/* -------------------- */
+/* 1. RESET Y VARIABLES */
+/* -------------------- */
+
+:root {
+    --color-titulo-marca: #9B612E; 
+    --color-principal: #333;
+    --color-fondo-caja: #f5efe8; 
+    --color-btn-primario: #e38d4a; 
+    --color-btn-secundario: #8B572A; 
+    --color-fondo: #ffffff;
+    --font-titulo: 'Poppins', sans-serif;
+    --font-nombre: 'Poppins', sans-serif;
+    --font-texto: 'Poppins', sans-serif;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
