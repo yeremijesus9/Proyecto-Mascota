@@ -8,14 +8,13 @@ header {
     padding: 2.5rem;
     display: flex;
     justify-content: center;
-    gap: 2rem;  
+    gap: 2rem;
     align-items: center;
     z-index: 100;
 }
 
 .logo {
     width: 10rem;
-    color: #682D1E;
     margin: 0 2rem;
 }
 
@@ -33,10 +32,12 @@ header {
 #search {
     width: 35rem;
     padding: 0.5rem;
-    border-radius: 15px;
-    border: none;
+    border-radius: 35px;
+    border: 1px solid #682D1E;
     outline: none;
     font-size: 1rem;
+    color: #682D1E;
+    background-color: #fff;
 }
 
 #search::placeholder {
@@ -47,7 +48,7 @@ header {
     color: #682D1E;
     width: 1.5rem;
     height: 1.5rem;
-    margin: 0 1rem;
+    margin: 0 0.3rem;
 }
 
 .navigation-down {
@@ -59,7 +60,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #682D1E;
+    background-color: #D37C39;
 }
 
 .navigation-down a {
@@ -68,4 +69,99 @@ header {
     font-weight: 500;
     padding: 0 2rem;
     font-size: 1rem;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 4rem;
+    display: flex;
+    justify-content: center;
+    gap: 5rem;
+    align-items: center;
+    background-color: #A15C25;
+    color: #fff;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+footer ul {
+    list-style: none;
+}
+
+footer ul li {
+    margin-bottom: 0.5rem;
+}
+
+footer ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+footer ul li a:hover {
+    transition: 0.5s ease-in-out;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: underline;
+}
+
+.follow {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.follow h3 {
+    margin-bottom: 0.5rem;
+}
+
+.follow ul {
+    display: flex;
+    gap: 1rem;
+}
+
+.iconifyF {
+    color: #fff;
+}
+
+.payment {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.payment h3 {
+    margin-bottom: 0.5rem;
+}
+
+.payment ul {
+    display: flex;
+    gap: 1rem;
+}
+
+.iconifyP {
+    color: #fff;
+}
+
+.endfooter {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 0.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 0.9rem;
+    margin-top: 5rem;
 }
