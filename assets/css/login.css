@@ -1,8 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .wrapper {
@@ -14,6 +22,23 @@
     border-radius: 20px;
     backdrop-filter: blur(10px);
     box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 200px auto 250px auto;
+    z-index: 50;
+    /* overflow: hidden; */
+}
+
+.wrapper .icon-close {
+    position: absolute;
+    right: 1px;
+    top: 4px;
+    width: 25px;
+    height: 25px;
+    color: #fff;
+    border-radius: 50%;
+    background: #162938;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -75,5 +100,55 @@
     line-height: 57px;
 }
 
+.remember-forget {
+    font-size: .9rem;
+    color: #162938;
+    font-weight: 500;
+    margin: -15px 0 15px;
+    display: flex;
+    justify-content: space-between;
+}
 
+.remember-forget label input {
+    accent-color: #162938;
+    margin-right: 3px;
+}
 
+.remember-forget a {
+    color: #162938;
+    text-decoration: none;
+}
+
+.remember-forget a:hover {
+    text-decoration: underline;
+}
+
+.btn {
+    width: 100%;
+    height: 45px;
+    background: #162938;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.login-register {
+    font-size: .9rem;
+    color: #162938;
+    font-weight: 500;
+    margin: 25px 0 10px;
+    text-align: center;
+}
+
+.register-link {
+    color: #162938;
+    text-decoration: none;
+}
+
+.register-link:hover {
+    text-decoration: underline;
+}
