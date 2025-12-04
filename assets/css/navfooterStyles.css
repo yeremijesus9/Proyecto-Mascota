@@ -19,14 +19,23 @@ header {
 }
 
 .navigation-top {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
+    text-decoration: none;
+    color: #fff;
+    padding: 6px 15px;
+    border-radius: 30px;
+    margin: 0 10px;
+    font-weight: 600;
+    border-radius: 30px;
+    ;
+
 }
 
-.navigation-top a {
-    text-decoration: none;
+.navigation-top a:hover {
+    background: #ffffff;
+    color: #682D1E;
+    transition: 0.5s ease-in-out;
+    cursor: pointer;
+    border-radius: 30px;
 }
 
 #search {
