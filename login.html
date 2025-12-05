@@ -25,7 +25,7 @@
             <a href="#">
                 <span class="iconify" data-icon="mdi:location" data-width="32" data-height="32"></span>
             </a>
-            <a href="#">
+            <a href="#" id="btnPopUp">
                 <span class="iconify" data-icon="mdi:user-plus" data-width="32" data-height="32"></span>
             </a>
             <a href="#">
@@ -48,17 +48,18 @@
     </header>
 
     <div class="wrapper">
+        <span id="iconClose" class="iconify icon-close" data-icon="mdi:close" data-width="32" data-height="32"></span>
         <div class="form-box login">
             <h2>Iniciar Sesión</h2>
             <form action="#">
                 <div class="input-box">
                     <span class="iconify icon" data-icon="mdi:email" data-width="32" data-height="32"></span>
-                    <input type="email" required>
+                    <input type="email" placeholder="" required>
                     <label>Correo Electronico</label>
                 </div>
                 <div class="input-box">
                     <span class="iconify icon" data-icon="mdi:password" data-width="32" data-height="32"></span>
-                    <input type="password" required>
+                    <input type="password" placeholder="" required>
                     <label>Contraseña</label>
                 </div>
                 <div class="remember-forget">
@@ -71,7 +72,38 @@
                 <button type="submit" class="btn">Iniciar Sesion</button>
                 <div class="login-register">
                     <p>No tienes una cuenta? <a href="#" class="register-link">Registrate</a></p>
-                </div>  
+                </div>
+            </form>
+        </div>
+
+        <div class="form-box register">
+            <h2>Registrarse</h2>
+            <form action="#">
+                <div class="input-box">
+                    <span class="iconify icon" data-icon="mdi:account" data-width="32" data-height="32"></span>
+                    <input type="text" placeholder="" required>
+                    <label>Usuario</label>
+                </div>
+                <div class="input-box">
+                    <span class="iconify icon" data-icon="mdi:email" data-width="32" data-height="32"></span>
+                    <input type="email" placeholder="" required>
+                    <label>Correo Electrónico</label>
+                </div>
+                <div class="input-box">
+                    <span class="iconify icon" data-icon="mdi:password" data-width="32" data-height="32"></span>
+                    <input type="password" placeholder="" required>
+                    <label>Contraseña</label>
+                </div>
+                <div class="remember-forget">
+                    <label>
+                        <input type="checkbox" required>
+                        Acepto los <a href="#">términos y condiciones</a>
+                    </label>
+                </div>
+                <button type="submit" class="btn">Registrarse</button>
+                <div class="login-register">
+                    <p>¿Ya tienes una cuenta? <a href="#" class="login-link">Iniciar Sesión</a></p>
+                </div>
             </form>
         </div>
     </div>
@@ -156,6 +188,8 @@
     <div class="endfooter">
         <p>&copy; 2025 Miwuff. | Todos los derechos reservados | Proyecto estudiantil | Penascalf5.</p>
     </div>
+
+    <script src="/assets/js/login.js"></script>
 </body>
 
 </html>

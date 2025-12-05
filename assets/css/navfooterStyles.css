@@ -1,12 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
 
 header {
     left: 0;
     width: 100%;
-    padding: 2.5rem;
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 7rem;
     align-items: center;
     z-index: 100;
 }
@@ -59,9 +64,9 @@ header {
 }
 
 .navigation-down {
-    position: fixed;
+    position: absolute;
     left: 0;
-    margin-top: 9rem;
+    margin-top: 7em;
     width: 100%;
     padding: 0.3rem;
     display: flex;
@@ -79,7 +84,7 @@ header {
 }
 
 footer {
-    position: fixed;
+    position: relative;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -160,15 +165,14 @@ footer ul li a:hover {
 }
 
 .endfooter {
-    position: fixed;
+    position: relative;
     bottom: 0;
     left: 0;
     width: 100%;
-    padding: 0.3rem;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #fff;
     font-size: 0.9rem;
-    margin-top: 5rem;
+    background-color: #A15C25;
 }
