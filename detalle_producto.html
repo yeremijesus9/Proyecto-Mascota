@@ -3,11 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalle del Producto</title>
+    <title>Catálogo de Productos - Miwuff</title>
+
     <link rel="stylesheet" href="/assets/css/detalle_p.css"> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1iZ6QrtE76S6w7bZlS25yq0kG8x580T9w6Ea/uU2P9dC+h7J9Vw6d9j9f2x3A3N5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/assets/css/navfooterStyles.css"> 
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inspiration&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+
+    <style>
+        /* Estilos del catálogo copiados del segundo documento */
+        body { font-family: sans-serif; margin: 20px; background-color: #f4f4f4; }
+        #productos-contenedor { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 20px; 
+            justify-content: center;
+            padding: 20px; /* Añadido padding para que no se pegue al header/footer */
+        }
+        .tarjeta-producto {
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 15px;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .producto-nombre { color: #A15C25; margin-top: 0; font-size: 1.3em; }
+        .producto-marca { font-size: 0.9em; color: #555; }
+        .producto-detalle { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; padding-top: 10px; border-top: 1px dashed #eee; }
+        .precio { font-weight: bold; color: green; font-size: 1.2em; }
+        .puntuacion { font-size: 0.9em; }
+        .producto-descripcion { font-size: 0.95em; line-height: 1.4; height: 70px; overflow: hidden; }
+        button { background-color: #D37C39; color: white; border: none; padding: 8px; border-radius: 5px; cursor: pointer; margin-top: 10px; }
+    </style>
 </head>
-<body>
-   
+<body> 
+    <header>
+        </header>
+
+    <main>
+        <h1>Catálogo de Productos para Gatos</h1>
+        
+        <div id="productos-contenedor">
+            <p>Cargando productos...</p>
+        </div>
+    </main>
+
+    <footer>
+        </footer>
+    
+    <script src="/assets/javascript/detalle_p.js"></script>
+</body>
+</html>
