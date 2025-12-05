@@ -1,0 +1,251 @@
+[
+  {
+    "id": "CAT1",
+    "marca": "Grature",
+    "puntuacion": "4",
+    "opiniones": "20 opiniones",
+    "nombre_producto": "Grature Pienso de Pollo para Gatos Adultos Esterilizados",
+    "precio": 6.99,
+    "descripcion": "Pienso para gatos adultos esterilizados de pollo   Grature Pollo es una alimentación elaborada con ingredientes naturales para gatos adultos.",
+    "formato": "peso producto",
+    "descripcion_formato": "1.5 Kg",
+    "imagen_principal": "/assets/img/gato/CAT01_0.img",
+    "imagen_miniatura": [
+      "/assets/img/gato/CAT01_0.img",
+      "/assets/img/gato/CAT01_1.img"
+    ],
+    "comentarios": [
+      {
+        "usuario": "AnaG12",
+        "fecha": "2025-02-28",
+        "puntuacion": 4,
+        "texto": "Se lo comieron pero creo que no les gustaba mucho, el grano es muy pequeño parece pienso de junior"
+      },
+      {
+        "usuario": "FotografoJuan",
+        "fecha": "2025-02-20",
+        "puntuacion": 4,
+        "texto": "bien, aunque no todos mis gatos les gusta."
+      },
+      {
+        "usuario": "GatoFeliz",
+        "fecha": "2025-03-01",
+        "puntuacion": 5,
+        "texto": "¡Mi gato lo adora! Le sienta muy bien y mantiene un peso saludable después de la esterilización."
+      },
+      {
+        "usuario": "CompradoraHabitual",
+        "fecha": "2025-02-15",
+        "puntuacion": 5,
+        "texto": "Llevo meses comprándolo. El precio es bueno y la composición es excelente. ¡Lo recomiendo a otros dueños de gatos esterilizados!"
+      },
+      {
+        "usuario": "DudosoDueño",
+        "fecha": "2025-01-25",
+        "puntuacion": 3,
+        "texto": "Tardaron en hacer el cambio, pero después de una semana mi gata lo acepta. No he notado gran cambio en el pelo todavía."
+      }
+    ]
+  },
+  {
+    "id": "CAT2",
+    "marca": "Purina Felix",
+    "puntuacion": "5",
+    "opiniones": "16 opiniones",
+    "nombre_producto": "Purina Felix Snack Crispies de Salmón y Trucha para Gatos",
+    "precio": 1.34,
+    "descripcion": "¡Premia a tu gato más a menudo con estas chuches ligeras y comparte más momentos traviesos y tiernos con él! Felix Crispies Snacks están irresistiblemente aireados para tener una textura única, ligera y crujiente.",
+    "formato": "peso producto",
+    "descripcion_formato":"45 gr",
+    "imagen_principal": "/assets/img/gato/CAT02_0.img",
+    "imagen_miniatura": [
+      "/assets/img/gato/CAT02_0.img",
+      "/assets/img/gato/CAT02_1.img",
+      "/assets/img/gato/CAT02_2.img",
+      "/assets/img/gato/CAT02_3.img",
+      "/assets/img/gato/CAT02_4.img"
+    ],
+    "comentarios": [
+      {
+        "usuario": "AnaG12",
+        "fecha": "2025-02-28",
+        "puntuacion": 4,
+        "texto": "Se lo comieron pero creo que no les gustaba mucho, el grano es muy pequeño parece pienso de junior"
+      },
+      {
+        "usuario": "FotografoJuan",
+        "fecha": "2025-02-20",
+        "puntuacion": 4,
+        "texto": "bien, aunque no todos mis gatos les gusta."
+      },
+      {
+        "usuario": "GatoFeliz",
+        "fecha": "2025-03-01",
+        "puntuacion": 5,
+        "texto": "¡Mi gato lo adora! Le sienta muy bien y mantiene un peso saludable después de la esterilización."
+      },
+      {
+        "usuario": "CompradoraHabitual",
+        "fecha": "2025-02-15",
+        "puntuacion": 5,
+        "texto": "Llevo meses comprándolo. El precio es bueno y la composición es excelente. ¡Lo recomiendo a otros dueños de gatos esterilizados!"
+      },
+      {
+        "usuario": "DudosoDueño",
+        "fecha": "2025-01-25",
+        "puntuacion": 3,
+        "texto": "Tardaron en hacer el cambio, pero después de una semana mi gata lo acepta. No he notado gran cambio en el pelo todavía."
+      }
+    ]
+  },
+  {
+    "id": "CAT3",
+    "marca": "Gloria Pets",
+    "puntuacion": "5",
+    "opiniones": "60 opiniones",
+    "nombre_producto": "Gloria Pets Castillo Rascador Grande Nilo Azul para Gatos ",
+    "precio": 129.99,
+    "descripcion": "Centro de juego perfecto para varios gatos, varios pisos de altura, con rampa de acceso, túnel vertical y hamacas suaves. Varios lugares desde los que podrán descansar al mismo tiempo que vigilan su entorno.",
+    "formato": "Tamaño",
+    "descripcion_formato":"50x170x50 cm",
+    "imagen_principal": "/assets/img/gato/CAT3_0.img",
+    "imagen_miniatura": [
+      "/assets/img/gato/CAT3_0.img",
+      "/assets/img/gato/CAT3_1.img",
+      "/assets/img/gato/CAT3_2.img",
+      "/assets/img/gato/CAT3_3.img",
+      "/assets/img/gato/CAT03_4.img"
+    ],
+    "comentarios": [
+  {
+    "usuario": "FamiliaMultigatuna",
+    "fecha": "2025-11-20",
+    "puntuacion": 5,
+    "texto": "¡Impresionante! Tengo 3 gatos grandes y es súper estable, incluso cuando suben a toda velocidad. El color Nilo Azul es muy elegante y la base es robusta."
+  },
+  {
+    "usuario": "ElArquitectoFelino",
+    "fecha": "2025-12-01",
+    "puntuacion": 4,
+    "texto": "El diseño es excelente, la rampa de acceso es ideal para mi gato mayor. Tardo un poco en montarlo yo solo, pero las instrucciones eran claras. Las hamacas son un éxito total."
+  },
+  {
+    "usuario": "RascadorPro",
+    "fecha": "2025-10-15",
+    "puntuacion": 5,
+    "texto": "Lo mejor que he comprado en meses. La altura es perfecta para que vigilen la casa y el túnel vertical les da un extra de diversión. El sisal de los postes es de buena calidad."
+  },
+  {
+    "usuario": "DueñoDeMaineCoon",
+    "fecha": "2025-11-28",
+    "puntuacion": 4,
+    "texto": "Es un rascador realmente grande, tal como se describe. Mi Maine Coon puede estirarse completamente en la plataforma superior. Solo le pongo 4 estrellas porque la tela de las hamacas es un poco fina."
+  },
+  {
+    "usuario": "CompradoraFeliz",
+    "fecha": "2025-12-04",
+    "puntuacion": 5,
+    "texto": "Mis dos gatas se peleaban por el rascador viejo. Ahora cada una tiene su sitio. El centro de juego es un 24/7 y por el precio, es una inversión que vale la pena."
+  }
+]
+  },
+  {
+    "id": "CAT4",
+    "marca": "SUMSU",
+    "puntuacion": "4",
+    "opiniones": "10 opiniones",
+    "nombre_producto": "SUMSU Guante PRO Aseo para Perro y Gato",
+    "precio": 4.99,
+    "descripcion": "Guante de Cepillado para peinar Perros y Gatos El guante para peinar perros y gatos es una herramienta práctica y cómoda diseñada para eliminar el pelo suelto y los nudos del pelaje de nuestras mascotas durante el cepillado.",
+    "formato": "Tamaño",
+    "descripcion_formato":"23x17 cm",
+    "imagen_principal": "/assets/img/gato/CAT04_0.img",
+    "imagen_miniatura": [
+      "/assets/img/gato/CAT04_0.img",
+      "/assets/img/gato/CAT04_1.img",
+      "/assets/img/gato/CAT04_2.img",
+      "/assets/img/gato/CAT04_3.img"
+    ],
+    "comentarios": [
+  {
+    "usuario": "DueñaDePeludos",
+    "fecha": "2025-03-10",
+    "puntuacion": 5,
+    "texto": "¡Funciona de maravilla con mi Golden Retriever! Recoge muchísimo pelo suelto y, lo mejor de todo, a él le encanta que lo 'acaricie' con el guante, lo ve como un masaje."
+  },
+  {
+    "usuario": "GatoPersaMom",
+    "fecha": "2025-02-28",
+    "puntuacion": 4,
+    "texto": "Muy efectivo para el pelo corto de mi gato. Es fácil de limpiar y el pelo se quita de una sola pasada. No le doy 5 estrellas porque me hubiera gustado un ajuste más firme en la muñeca."
+  },
+  {
+    "usuario": "TrainerJuan",
+    "fecha": "2025-03-05",
+    "puntuacion": 5,
+    "texto": "El guante es muy cómodo de usar, no se me cansa la mano. Ideal para perros nerviosos o que odian los cepillos tradicionales, ya que el tacto es más suave y natural."
+  },
+  {
+    "usuario": "CompradorAhorrador",
+    "fecha": "2025-02-20",
+    "puntuacion": 4,
+    "texto": "Por el precio que tiene, es una solución excelente para el mantenimiento diario. No es tan profundo como un peine de muda, pero para quitar lo superficial y darle brillo al pelo, es perfecto."
+  },
+  {
+    "usuario": "PeloPorTodaLaCasa",
+    "fecha": "2025-03-01",
+    "puntuacion": 3,
+    "texto": "Recoge bastante pelo de mi perro de pelo duro, aunque no tanto como esperaba. Aún así, es mejor que nada y a mi perro le resulta menos invasivo que el cepillo metálico."
+  }
+]
+  },
+  {
+    "id": "CAT5",
+    "marca": "Sure Petcare",
+    "puntuacion": "5",
+    "opiniones": "20 opiniones",
+    "nombre_producto": "Sure Petcare Bebedero Inteligente Felaqua Connect",
+    "precio": 130.67,
+    "descripcion": "Diseñado especialmente junto con veterinarios expertos en comportamiento, Felaqua Connect anima a tu gato a beber más regularmente y te ofrece información sobre sus hábitos de consumo de agua, avisándote de cualquier cambio en su conducta que pudiera pasar desapercibido.",
+    "formato": "capacidad",
+    "descripcion_formato":"1L",
+    "imagen_principal": "/assets/img/gato/CAT05_0.img",
+    "imagen_miniatura": [
+      "/assets/img/gato/CAT05_0.img",
+      "/assets/img/gato/CAT05_1.img",
+      "/assets/img/gato/CAT05_2.img"
+    ],
+    "comentarios": [
+  {
+    "usuario": "TechieCatMom",
+    "fecha": "2025-03-15",
+    "puntuacion": 5,
+    "texto": "Una tranquilidad enorme. La app me notifica si mi gata bebe menos de lo habitual, lo cual es crucial para detectar problemas renales a tiempo. Además, el cuenco sin motor lo acepta sin problemas."
+  },
+  {
+    "usuario": "VeterinarioEnCasa",
+    "fecha": "2025-02-25",
+    "puntuacion": 4,
+    "texto": "El diseño es muy limpio y fácil de rellenar. Mi gato empezó a beber más a los pocos días. La integración con el Hub fue sencilla. Solo es un poco caro, pero vale la pena por la monitorización."
+  },
+  {
+    "usuario": "GatoDeshidratado",
+    "fecha": "2025-03-01",
+    "puntuacion": 5,
+    "texto": "Mi gato siempre bebía muy poco. Desde que tengo Felaqua, he visto un incremento claro en su consumo gracias a que el bebedero le resulta más atractivo. Los informes de la app son muy detallados."
+  },
+  {
+    "usuario": "DueñoDeVarios",
+    "fecha": "2025-02-18",
+    "puntuacion": 4,
+    "texto": "Funciona perfectamente para saber cuánto bebe cada uno de mis gatos (gracias a los microchips). Un producto excelente para hogares multigato. Me gustaría que el depósito tuviera algo más de capacidad."
+  },
+  {
+    "usuario": "InstalaciónFácil",
+    "fecha": "2025-01-30",
+    "puntuacion": 5,
+    "texto": "Montaje y configuración muy rápidos. No es una fuente, sino un cuenco inteligente, lo cual era importante para mí. Los avisos de cambio de patrón de bebida son muy útiles. ¡Lo recomiendo!"
+  }
+]
+  }
+]
