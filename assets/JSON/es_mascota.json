@@ -9,10 +9,10 @@
     "descripcion": "Pienso para gatos adultos esterilizados de pollo   Grature Pollo es una alimentación elaborada con ingredientes naturales para gatos adultos.",
     "formato": "peso producto",
     "descripcion_formato": "1.5 Kg",
-    "imagen_principal": "/assets/img/gato/CAT01_0.img",
+    "imagen_principal": "/assets/img/gato/CAT01_0.png",
     "imagen_miniatura": [
-      "/assets/img/gato/CAT01_0.img",
-      "/assets/img/gato/CAT01_1.img"
+      "/assets/img/gato/CAT01_0.png",
+      "/assets/img/gato/CAT01_1.png"
     ],
     "comentarios": [
       {
@@ -57,13 +57,13 @@
     "descripcion": "¡Premia a tu gato más a menudo con estas chuches ligeras y comparte más momentos traviesos y tiernos con él! Felix Crispies Snacks están irresistiblemente aireados para tener una textura única, ligera y crujiente.",
     "formato": "peso producto",
     "descripcion_formato":"45 gr",
-    "imagen_principal": "/assets/img/gato/CAT02_0.img",
+    "imagen_principal": "/assets/img/gato/CAT02_0.png",
     "imagen_miniatura": [
-      "/assets/img/gato/CAT02_0.img",
-      "/assets/img/gato/CAT02_1.img",
-      "/assets/img/gato/CAT02_2.img",
-      "/assets/img/gato/CAT02_3.img",
-      "/assets/img/gato/CAT02_4.img"
+      "/assets/img/gato/CAT02_0.png",
+      "/assets/img/gato/CAT02_1.png",
+      "/assets/img/gato/CAT02_2.png",
+      "/assets/img/gato/CAT02_3.png",
+      "/assets/img/gato/CAT02_4.png"
     ],
     "comentarios": [
       {
@@ -108,13 +108,13 @@
     "descripcion": "Centro de juego perfecto para varios gatos, varios pisos de altura, con rampa de acceso, túnel vertical y hamacas suaves. Varios lugares desde los que podrán descansar al mismo tiempo que vigilan su entorno.",
     "formato": "Tamaño",
     "descripcion_formato":"50x170x50 cm",
-    "imagen_principal": "/assets/img/gato/CAT3_0.img",
+    "imagen_principal": "/assets/img/gato/CAT03_0.png",
     "imagen_miniatura": [
-      "/assets/img/gato/CAT3_0.img",
-      "/assets/img/gato/CAT3_1.img",
-      "/assets/img/gato/CAT3_2.img",
-      "/assets/img/gato/CAT3_3.img",
-      "/assets/img/gato/CAT03_4.img"
+      "/assets/img/gato/CAT03_0.png",
+      "/assets/img/gato/CAT03_1.png",
+      "/assets/img/gato/CAT03_2.png",
+      "/assets/img/gato/CAT03_3.png",
+      "/assets/img/gato/CAT03_4.png"
     ],
     "comentarios": [
   {
@@ -159,12 +159,12 @@
     "descripcion": "Guante de Cepillado para peinar Perros y Gatos El guante para peinar perros y gatos es una herramienta práctica y cómoda diseñada para eliminar el pelo suelto y los nudos del pelaje de nuestras mascotas durante el cepillado.",
     "formato": "Tamaño",
     "descripcion_formato":"23x17 cm",
-    "imagen_principal": "/assets/img/gato/CAT04_0.img",
+    "imagen_principal": "/assets/img/gato/CAT04_0.png",
     "imagen_miniatura": [
-      "/assets/img/gato/CAT04_0.img",
-      "/assets/img/gato/CAT04_1.img",
-      "/assets/img/gato/CAT04_2.img",
-      "/assets/img/gato/CAT04_3.img"
+      "/assets/img/gato/CAT04_0.png",
+      "/assets/img/gato/CAT04_1.png",
+      "/assets/img/gato/CAT04_2.png",
+      "/assets/img/gato/CAT04_3.png"
     ],
     "comentarios": [
   {
@@ -209,11 +209,11 @@
     "descripcion": "Diseñado especialmente junto con veterinarios expertos en comportamiento, Felaqua Connect anima a tu gato a beber más regularmente y te ofrece información sobre sus hábitos de consumo de agua, avisándote de cualquier cambio en su conducta que pudiera pasar desapercibido.",
     "formato": "capacidad",
     "descripcion_formato":"1L",
-    "imagen_principal": "/assets/img/gato/CAT05_0.img",
+    "imagen_principal": "/assets/img/gato/CAT05_0.png",
     "imagen_miniatura": [
-      "/assets/img/gato/CAT05_0.img",
-      "/assets/img/gato/CAT05_1.img",
-      "/assets/img/gato/CAT05_2.img"
+      "/assets/img/gato/CAT05_0.png",
+      "/assets/img/gato/CAT05_1.png",
+      "/assets/img/gato/CAT05_2.png"
     ],
     "comentarios": [
   {

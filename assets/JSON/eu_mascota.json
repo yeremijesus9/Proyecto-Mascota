@@ -1,0 +1,251 @@
+[
+  {
+    "id": "CAT1",
+    "marca": "Grature",
+    "puntuacion": "4",
+    "opiniones": "20 iritzi",
+    "nombre_producto": "Grature Oilasko Pentsua Esterilizatutako Katu Helduentzat",
+    "precio": 6.99,
+    "descripcion": "Oilaskoz egindako pentsua esterilizatutako katu helduentzat. Grature Oilaskoa osagai naturalekin egindako elikadura da katu helduentzat.",
+    "formato": "produktuaren pisua",
+    "descripcion_formato": "1.5 Kg",
+    "imagen_principal": "/assets/img/gato/CAT01_0.png",
+    "imagen_miniatura": [
+      "/assets/img/gato/CAT01_0.png",
+      "/assets/img/gato/CAT01_1.png"
+    ],
+    "comentarios": [
+      {
+        "usuario": "AnaG12",
+        "fecha": "2025-02-28",
+        "puntuacion": 4,
+        "texto": "Jan egin zuten, baina ez zela asko gustatu uste dut. Alea oso txikia da, junior pentsua dirudi."
+      },
+      {
+        "usuario": "FotografoJuan",
+        "fecha": "2025-02-20",
+        "puntuacion": 4,
+        "texto": "Ondo, nahiz eta nire katu guztiei ez zaien gustatzen."
+      },
+      {
+        "usuario": "GatoFeliz",
+        "fecha": "2025-03-01",
+        "puntuacion": 5,
+        "texto": "Nire katuak maite du! Oso ondo sentitzen zaio eta pisu osasuntsua mantentzen du esterilizazioaren ondoren."
+      },
+      {
+        "usuario": "CompradoraHabitual",
+        "fecha": "2025-02-15",
+        "puntuacion": 5,
+        "texto": "Hilabeteak daramatzat erosten. Prezioa ona da eta konposizioa bikaina. Esterilizatutako beste katu-jabe batzuei gomendatzen diet!"
+      },
+      {
+        "usuario": "DudosoDueño",
+        "fecha": "2025-01-25",
+        "puntuacion": 3,
+        "texto": "Aldaketa egiteko denbora behar izan zuten, baina aste baten ondoren nire katuak onartu du. Oraindik ez dut aldaketa handirik nabaritu ilean."
+      }
+    ]
+  },
+  {
+    "id": "CAT2",
+    "marca": "Purina Felix",
+    "puntuacion": "5",
+    "opiniones": "16 iritzi",
+    "nombre_producto": "Purina Felix Snack Crispies Izokin eta Amuarrain Katuak",
+    "precio": 1.34,
+    "descripcion": "Saritu zure katua maizago askari arin hauekin eta partekatu berarekin momentu bihurri eta samurragoak! Felix Crispies Snacks-ak jasanezin aireztatuak daude, testura berezi, arin eta kurruskaria izateko.",
+    "formato": "produktuaren pisua",
+    "descripcion_formato":"45 gr",
+    "imagen_principal": "/assets/img/gato/CAT02_0.png",
+    "imagen_miniatura": [
+      "/assets/img/gato/CAT02_0.png",
+      "/assets/img/gato/CAT02_1.png",
+      "/assets/img/gato/CAT02_2.png",
+      "/assets/img/gato/CAT02_3.png",
+      "/assets/img/gato/CAT02_4.png"
+    ],
+    "comentarios": [
+      {
+        "usuario": "AnaG12",
+        "fecha": "2025-02-28",
+        "puntuacion": 4,
+        "texto": "Jan egin zuten, baina ez zela asko gustatu uste dut. Alea oso txikia da, junior pentsua dirudi."
+      },
+      {
+        "usuario": "FotografoJuan",
+        "fecha": "2025-02-20",
+        "puntuacion": 4,
+        "texto": "Ondo, nahiz eta nire katu guztiei ez zaien gustatzen."
+      },
+      {
+        "usuario": "GatoFeliz",
+        "fecha": "2025-03-01",
+        "puntuacion": 5,
+        "texto": "Nire katuak maite du! Oso ondo sentitzen zaio eta pisu osasuntsua mantentzen du esterilizazioaren ondoren."
+      },
+      {
+        "usuario": "CompradoraHabitual",
+        "fecha": "2025-02-15",
+        "puntuacion": 5,
+        "texto": "Hilabeteak daramatzat erosten. Prezioa ona da eta konposizioa bikaina. Esterilizatutako beste katu-jabe batzuei gomendatzen diet!"
+      },
+      {
+        "usuario": "DudosoDueño",
+        "fecha": "2025-01-25",
+        "puntuacion": 3,
+        "texto": "Aldaketa egiteko denbora behar izan zuten, baina aste baten ondoren nire katuak onartu du. Oraindik ez dut aldaketa handirik nabaritu ilean."
+      }
+    ]
+  },
+  {
+    "id": "CAT3",
+    "marca": "Gloria Pets",
+    "puntuacion": "5",
+    "opiniones": "60 iritzi",
+    "nombre_producto": "Gloria Pets Gaztelu Marrakagailu Handia Nilo Urdina Katuentzat",
+    "precio": 129.99,
+    "descripcion": "Jolas zentro ezin hobea hainbat katutarako, altuera anitzeko solairuekin, sarbide arrapalarekin, tunel bertikalarekin eta hamaka leunekin. Hainbat leku daude ingurua zaintzen duten bitartean atseden hartzeko.",
+    "formato": "Tamaina",
+    "descripcion_formato":"50x170x50 cm",
+    "imagen_principal": "/assets/img/gato/CAT3_0.png",
+    "imagen_miniatura": [
+      "/assets/img/gato/CAT3_0.png",
+      "/assets/img/gato/CAT3_1.png",
+      "/assets/img/gato/CAT3_2.png",
+      "/assets/img/gato/CAT3_3.png",
+      "/assets/img/gato/CAT03_4.png"
+    ],
+    "comentarios": [
+  {
+    "usuario": "FamiliaMultigatuna",
+    "fecha": "2025-11-20",
+    "puntuacion": 5,
+    "texto": "Izugarria! 3 katu handi ditut eta oso egonkorra da, abiadura bizian igotzen direnean ere. Nilo Urdina kolorea oso dotorea da eta oinarria sendoa da."
+  },
+  {
+    "usuario": "ElArquitectoFelino",
+    "fecha": "2025-12-01",
+    "puntuacion": 4,
+    "texto": "Diseinua bikaina da, sarbide arrapala aproposa da nire katu zaharrarentzat. Pixka bat kostatu zitzaidan bakarrik muntatzea, baina argibideak argiak ziren. Hamakak arrakasta osoa dira."
+  },
+  {
+    "usuario": "RascadorPro",
+    "fecha": "2025-10-15",
+    "puntuacion": 5,
+    "texto": "Hilabeteetan erosi dudan gauzarik onena. Altuera ezin hobea da etxea zaintzeko eta tunel bertikalak dibertsio gehigarria ematen die. Posteen sisala kalitate onekoa da."
+  },
+  {
+    "usuario": "DueñoDeMaineCoon",
+    "fecha": "2025-11-28",
+    "puntuacion": 4,
+    "texto": "Benetan marrakagailu handia da, deskribatzen den bezala. Nire Maine Coon erabat luzatu daiteke goiko plataforman. 4 izar bakarrik ematen dizkiot, hamaketako ehuna apur bat mehea delako."
+  },
+  {
+    "usuario": "CompradoraFeliz",
+    "fecha": "2025-12-04",
+    "puntuacion": 5,
+    "texto": "Nire bi katuak borrokan aritzen ziren marrakagailu zaharrarengatik. Orain bakoitzak bere lekua du. Jolas zentroa 24/7 da eta prezioagatik, merezi duen inbertsioa da."
+  }
+]
+  },
+  {
+    "id": "CAT4",
+    "marca": "SUMSU",
+    "puntuacion": "4",
+    "opiniones": "10 iritzi",
+    "nombre_producto": "SUMSU PRO Apainketa Eskularrua Txakur eta Katua",
+    "precio": 4.99,
+    "descripcion": "Apainketa Eskularrua Txakurrak eta Katuak orrazteko. Txakurrak eta katuak orrazteko eskularrua tresna praktiko eta erosoa da, gure maskoten ile soltea eta korapiloak kentzeko diseinatua, orraztean.",
+    "formato": "Tamaina",
+    "descripcion_formato":"23x17 cm",
+    "imagen_principal": "/assets/img/gato/CAT04_0.png",
+    "imagen_miniatura": [
+      "/assets/img/gato/CAT04_0.png",
+      "/assets/img/gato/CAT04_1.png",
+      "/assets/img/gato/CAT04_2.png",
+      "/assets/img/gato/CAT04_3.png"
+    ],
+    "comentarios": [
+  {
+    "usuario": "DueñaDePeludos",
+    "fecha": "2025-03-10",
+    "puntuacion": 5,
+    "texto": "Primeran funtzionatzen du nire Golden Retriever-ekin! Ilea solte asko biltzen du eta, onena, berari asko gustatzen zaio eskularruarekin 'lakaritzea', masaje bat bezala ikusten du."
+  },
+  {
+    "usuario": "GatoPersaMom",
+    "fecha": "2025-02-28",
+    "puntuacion": 4,
+    "texto": "Oso eraginkorra nire katuaren ile laburrerako. Garbitzeko erraza da eta ilea pasada batean kentzen da. Ez diot 5 izar ematen, eskumuturrean doikuntza sendoagoa gustatuko litzaidakeelako."
+  },
+  {
+    "usuario": "TrainerJuan",
+    "fecha": "2025-03-05",
+    "puntuacion": 5,
+    "texto": "Eskularrua oso erosoa da erabiltzeko, ez zait eskua nekatzen. Aproposa txakur urduri edo ohiko eskuilak gorrotatzen dituztenentzat, ukitua leunagoa eta naturalagoa baita."
+  },
+  {
+    "usuario": "CompradorAhorrador",
+    "fecha": "2025-02-20",
+    "puntuacion": 4,
+    "texto": "Prezioa kontuan hartuta, irtenbide bikaina da eguneroko mantentze-lanetarako. Ez da mutur-orrazi bat bezain sakona, baina gainazalekoa kentzeko eta ileari distira emateko, ezin hobea da."
+  },
+  {
+    "usuario": "PeloPorTodaLaCasa",
+    "fecha": "2025-03-01",
+    "puntuacion": 3,
+    "texto": "Ilea nahiko biltzen du nire txakur ile-gogorrarenak, nahiz eta ez nuen espero nuen bezainbeste. Hala ere, ezer baino hobea da eta nire txakurrarentzat eskuila metalikoa baino inbaditzaile gutxiagoa da."
+  }
+]
+  },
+  {
+    "id": "CAT5",
+    "marca": "Sure Petcare",
+    "puntuacion": "5",
+    "opiniones": "20 iritzi",
+    "nombre_producto": "Sure Petcare Felaqua Connect Edari-iturri Adimenduna",
+    "precio": 130.67,
+    "descripcion": "Albaitari aditu eta portaera-adituekin batera diseinatua, Felaqua Connect-ek zure katua ohikoago edatera animatzen du eta bere ur-kontsumo ohiturei buruzko informazioa eskaintzen dizu, oharkabean pasa daitekeen edozein portaera-aldaketaz ohartaraziz.",
+    "formato": "ahalmena",
+    "descripcion_formato":"1L",
+    "imagen_principal": "/assets/img/gato/CAT05_0.png",
+    "imagen_miniatura": [
+      "/assets/img/gato/CAT05_0.png",
+      "/assets/img/gato/CAT05_1.png",
+      "/assets/img/gato/CAT05_2.png"
+    ],
+    "comentarios": [
+  {
+    "usuario": "TechieCatMom",
+    "fecha": "2025-03-15",
+    "puntuacion": 5,
+    "texto": "Lasaitasun handia. Aplikazioak ohartarazten dit nire katuak ohikoa baino gutxiago edaten badu, eta hori funtsezkoa da giltzurrunetako arazoak garaiz detektatzeko. Gainera, ontzi motor gabekoa arazorik gabe onartzen du."
+  },
+  {
+    "usuario": "VeterinarioEnCasa",
+    "fecha": "2025-02-25",
+    "puntuacion": 4,
+    "texto": "Diseinua oso garbia da eta betetzeko erraza. Nire katua egun gutxiren buruan gehiago edaten hasi zen. Hub-arekin integratzea erraza izan zen. Garestia samarra da, baina merezi du monitorizazioagatik."
+  },
+  {
+    "usuario": "GatoDeshidratado",
+    "fecha": "2025-03-01",
+    "puntuacion": 5,
+    "texto": "Nire katuak beti edaten zuen oso gutxi. Felaqua daukadanetik, argi ikusi dut bere kontsumoa handitu dela, edari-iturria erakargarriagoa zaiolako. Aplikazioaren txostenak oso zehatzak dira."
+  },
+  {
+    "usuario": "DueñoDeVarios",
+    "fecha": "2025-02-18",
+    "puntuacion": 4,
+    "texto": "Primeran funtzionatzen du nire katu bakoitzak zenbat edaten duen jakiteko (mikrotxipen bidez). Produktu bikaina katu anitzeko etxeetarako. Gustatuko litzaidake biltegiak ahalmen apur bat gehiago izatea."
+  },
+  {
+    "usuario": "InstalaciónFácil",
+    "fecha": "2025-01-30",
+    "puntuacion": 5,
+    "texto": "Muntaketa eta konfigurazio oso azkarrak. Ez da iturri bat, baizik eta ontzi adimendun bat, eta hori garrantzitsua zen niretzat. Edari-eredu aldaketen abisuak oso erabilgarriak dira. Gomendatzen dut!"
+  }
+]
+  }
+]

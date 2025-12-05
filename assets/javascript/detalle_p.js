@@ -1,13 +1,18 @@
-const mascota = '/assets/JSON/mascota.json';
+let idiomaActual= "es"
+
+function rutaJson(){
+    return `/assets/JSON/${idiomaActual}_mascota.json`;
+}
 
 async function cargarYMostrarProductos() {
     const contenedor = document.getElementById('productos-contenedor');
     
     try {
-        const respuesta = await fetch(mascota); 
+        const _mascota =  rutaJson()
+        const respuesta = await fetch(_mascota); 
         
         if (!respuesta.ok) {
-            contenedor.innerHTML = '<p style="color: red;">¡Error! No se pudo acceder a mascota.json.</p>';
+            contenedor.innerHTML = `<p style="color: red;">¡Error! No se pudo acceder a ${_mascota}.</p>`;
             throw new Error(`Error HTTP: ${respuesta.status}`);
         }
         
@@ -25,8 +30,7 @@ async function cargarYMostrarProductos() {
                 precio, 
                 puntuacion, 
                 opiniones,
-                imagen_principal,
-                descripcion
+                imagen_principal
             } = producto;
 
             const tarjetaProducto = document.createElement('div');
@@ -34,11 +38,10 @@ async function cargarYMostrarProductos() {
 
             // Generar el HTML de la tarjeta
             tarjetaProducto.innerHTML = `
-                <img src "${imagen_principal}" alt=imagen de ${nombre_producto} class="producto-imagen">
-                <h3 class="producto-nombre">${nombre_producto}</h3>
-                <p class="producto-marca">Marca: <strong>${marca}</strong></p>
-                <p class="producto-descripcion">${descripcion.substring(0, 100)}...</p>
+                <img src="${imagen_principal}" alt="Imagen de ${nombre_producto}" class="producto-imagen">
                 
+                <h3 class="producto-nombre">${nombre_producto}</h3>
+                <p class="producto-marca">Marca: <strong>${marca}</strong></p>                
                 <div class="producto-detalle">
                     <span class="precio">${precio.toFixed(2)} €</span>
                     <span class="puntuacion">⭐ ${puntuacion} (${opiniones})</span>
