@@ -11,10 +11,9 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 2.5rem;
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 7rem;
     align-items: center;
     z-index: 100;
 }
@@ -58,9 +57,9 @@ header {
 }
 
 .navigation-down {
-    position: fixed;
+    position: absolute;
     left: 0;
-    margin-top: 9rem;
+    margin-top: 7em;
     width: 100%;
     padding: 0.3rem;
     display: flex;
@@ -78,7 +77,7 @@ header {
 }
 
 footer {
-    position: fixed;
+    position: relative;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -159,15 +158,14 @@ footer ul li a:hover {
 }
 
 .endfooter {
-    position: fixed;
+    position: relative;
     bottom: 0;
     left: 0;
     width: 100%;
-    padding: 0.3rem;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #fff;
     font-size: 0.9rem;
-    margin-top: 5rem;
+    background-color: #A15C25;
 }

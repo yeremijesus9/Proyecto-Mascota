@@ -27,26 +27,62 @@ body {
     align-items: center;
     margin: 200px auto 250px auto;
     z-index: 50;
-    /* overflow: hidden; */
+    transition: transform .5s ease, height .2s ease;
+    overflow: hidden;
+    transform: scale(0);
+    pointer-events: none;
+}
+
+.wrapper.active-popup {
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+.wrapper.active {
+    height: 520px;
 }
 
 .wrapper .icon-close {
     position: absolute;
-    right: 1px;
-    top: 4px;
-    width: 25px;
-    height: 25px;
+    right: 10px;
+    top: 10px;
+    width: 30px;
+    height: 30px;
     color: #fff;
     border-radius: 50%;
     background: #162938;
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    z-index: 100;
 }
 
 .wrapper .form-box {
     width: 100%;
     padding: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+.wrapper .form-box.login {
+    transition: transform .18s ease;
+    transform: translateX(0);
+}
+
+.wrapper.active .form-box.login {
+    transition: none;
+    transform: translateX(-400px);
+}
+
+.wrapper .form-box.register {
+    position: absolute;
+    transition: transform .18s ease;
+    transform: translateX(400px);
+}
+
+.wrapper.active .form-box.register {
+    transform: translateX(0);
 }
 
 .form-box h2 {
@@ -76,7 +112,7 @@ body {
 }
 
 .input-box input:focus~label,
-.input-box input:valid~label {
+.input-box input:not(:placeholder-shown)~label {
     top: -5px;
 }
 
