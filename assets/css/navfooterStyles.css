@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -34,19 +35,45 @@ header {
     text-decoration: none;
 }
 
-#search {
+.search-container {
+    display: flex;
+    align-items: center;
     width: 35rem;
-    padding: 0.5rem;
-    border-radius: 35px;
-    border: 1px solid #682D1E;
-    outline: none;
-    font-size: 1rem;
-    color: #682D1E;
-    background-color: #fff;
+    background-color: #ffffff;
+    border: 2px solid #682D1E;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
-#search::placeholder {
+/* Icono de búsqueda con fondo */
+.search-icon {
+    background-color: #682D1E;
+    color: #ffffff;
+    padding: 0.6rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-icon .iconify {
+    color: #ffffff;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+/* Input de búsqueda */
+.search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
     color: #682D1E;
+    background-color: #ffffff;
+}
+
+.search-input::placeholder {
+    color: #999;
 }
 
 .iconify {
