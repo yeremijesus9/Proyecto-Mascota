@@ -108,12 +108,12 @@
     "descripcion": "Perfect play center for several cats, multiple floors high, with an access ramp, vertical tunnel, and soft hammocks. Several places where they can rest while watching their surroundings.",
     "formato": "Size",
     "descripcion_formato":"50x170x50 cm",
-    "imagen_principal": "/assets/img/gato/CAT3_0.png",
+    "imagen_principal": "/assets/img/gato/CAT03_0.png",
     "imagen_miniatura": [
-      "/assets/img/gato/CAT3_0.png",
-      "/assets/img/gato/CAT3_1.png",
-      "/assets/img/gato/CAT3_2.png",
-      "/assets/img/gato/CAT3_3.png",
+      "/assets/img/gato/CAT03_0.png",
+      "/assets/img/gato/CAT03_1.png",
+      "/assets/img/gato/CAT03_2.png",
+      "/assets/img/gato/CAT03_3.png",
       "/assets/img/gato/CAT03_4.png"
     ],
     "comentarios": [

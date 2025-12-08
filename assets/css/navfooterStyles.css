@@ -1,10 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* --- REINICIO GENERAL Y CORRECCIÓN DE MÁRGENES GLOBALES --- */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
+
+/* **CORRECCIÓN:** Elimina los márgenes del body/html */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* --- ESTILOS DEL ENCABEZADO (HEADER) --- */
 
 header {
     left: 0;
@@ -29,8 +48,6 @@ header {
     margin: 0 10px;
     font-weight: 600;
     border-radius: 30px;
-    ;
-
 }
 
 .navigation-top a:hover {
@@ -40,6 +57,7 @@ header {
     cursor: pointer;
     border-radius: 30px;
 }
+
 
 #search {
     width: 35rem;
@@ -83,20 +101,18 @@ header {
     font-size: 1rem;
 }
 
+/* --- ESTILOS DEL FOOTER (PIE DE PÁGINA) --- */
+
 footer {
-    position: relative;
-    bottom: 0;
-    left: 0;
     width: 100%;
-    padding: 4rem;
+    margin: 0;
+    padding: 2rem;
+    background-color: #A15C25;
+    color: #fff;
     display: flex;
     justify-content: center;
     gap: 5rem;
-    align-items: center;
-    background-color: #A15C25;
-    color: #fff;
-    font-weight: 500;
-    font-size: 1rem;
+    align-items: flex-start;
 }
 
 footer ul {
@@ -175,4 +191,251 @@ footer ul li a:hover {
     color: #fff;
     font-size: 0.9rem;
     background-color: #A15C25;
+    padding: 1rem 0;
+}
+
+/* --- ESTILOS DEL POPUP (VENTANA EMERGENTE DE LOGIN/REGISTRO) --- */
+
+/* 1. Contenedor Overlay: cubre toda la pantalla y oscurece el fondo */
+.popup-contenedor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    opacity: 0; 
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Estado Activo para Mostrar el Overlay */
+.popup-contenedor.popup-activo {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 2. Contenedor Wrapper: El formulario en sí */
+.wrapper {
+    position: relative;
+    width: 400px;
+    height: 440px;
+    background: rgba(255, 255, 255, 0.5);
+    border: 2px solid rgba(255, 255, 255, .8);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+    transition: transform .5s ease, height .2s ease;
+    overflow: hidden;
+
+    /* Inicialmente oculto */
+    transform: scale(0);
+    pointer-events: none;
+}
+
+/* Estado Activo para Mostrar el Wrapper */
+.wrapper.active-popup {
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+.wrapper.active {
+    height: 520px;
+}
+
+.wrapper .icon-close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 30px;
+    height: 30px;
+    color: #fff;
+    border-radius: 50%;
+    background: #162938;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.wrapper .form-box {
+    width: 100%;
+    padding: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+.wrapper .form-box.login {
+    transition: transform .18s ease;
+    transform: translateX(0);
+}
+
+.wrapper.active .form-box.login {
+    transition: none;
+    transform: translateX(-400px);
+}
+
+.wrapper .form-box.register {
+    position: absolute;
+    transition: transform .18s ease;
+    transform: translateX(400px);
+}
+
+.wrapper.active .form-box.register {
+    transform: translateX(0);
+}
+
+.form-box h2 {
+    font-size: 2rem;
+    color: #162938;
+    text-align: center;
+}
+
+.input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid #162938;
+    margin: 30px 0;
+}
+
+.input-box label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: #162938;
+    font-weight: 500;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.input-box input:focus~label,
+.input-box input:not(:placeholder-shown)~label {
+    top: -5px;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
+    color: #162938;
+    font-weight: 600;
+    padding: 0 35px 0 5px;
+}
+
+.input-box .icon {
+    position: absolute;
+    right: 8px;
+    font-size: 1.2rem;
+    color: #162938;
+    line-height: 57px;
+}
+
+.remember-forget {
+    font-size: .9rem;
+    color: #162938;
+    font-weight: 500;
+    margin: -15px 0 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.remember-forget label input {
+    accent-color: #162938;
+    margin-right: 3px;
+}
+
+.remember-forget a {
+    color: #162938;
+    text-decoration: none;
+}
+
+.remember-forget a:hover {
+    text-decoration: underline;
+}
+
+.btn {
+    width: 100%;
+    height: 45px;
+    background: #162938;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.login-register {
+    font-size: .9rem;
+    color: #162938;
+    font-weight: 500;
+    margin: 25px 0 10px;
+    text-align: center;
+}
+
+.register-link {
+    color: #162938;
+    text-decoration: none;
+}
+
+.register-link:hover {
+    text-decoration: underline;
+}
+
+/* --- ESTILOS DEL MENÚ DESPLEGABLE DE IDIOMAS --- */
+
+/* Contenedor del enlace de idioma */
+.language-dropdown-container {
+    position: relative;
+    display: inline-block; /* Ocupa solo el espacio necesario para el botón */
+}
+
+/* El menú desplegable en sí */
+.dropdown-menu {
+    position: absolute;
+    top: 100%; /* Coloca el menú justo debajo del botón */
+    right: 0;
+    min-width: 120px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 5px 0;
+    z-index: 1000; /* Asegura que esté sobre otros elementos */
+    display: none; /* CLAVE: Oculto por defecto */
+}
+
+.dropdown-menu.visible {
+    display: block; /* CLAVE: Se muestra con JS */
+}
+
+.dropdown-menu a {
+    color: #682D1E;
+    padding: 8px 12px;
+    text-decoration: none;
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.dropdown-menu a:hover {
+    background-color: #D37C39;
+    color: #fff;
+    border-radius: 0;
 }
