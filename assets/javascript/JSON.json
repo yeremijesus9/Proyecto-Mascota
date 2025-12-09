@@ -1,0 +1,49 @@
+[
+  {
+    "id": "CAT1",
+    "marca": "Grature",
+    "puntuacion": "4",
+    "opiniones": "20 opiniones",
+    "nombre_producto": "Grature Pienso de Pollo para Gatos Adultos Esterilizados",
+    "precio": 6.99,
+    "descripcion": "Pienso para gatos adultos esterilizados de pollo   Grature Pollo es una alimentación elaborada con ingredientes naturales para gatos adultos.",
+    "formato": "peso producto",
+    "imagen_principal": "/assets/img/gato/CAT01_0.img",
+    "imagen_miniatura": [
+      "/assets/img/gato/CAT01_0.img",
+      "/assets/img/gato/CAT01_1.img"
+    ],
+    "comentarios": [
+      {
+        "usuario": "AnaG12",
+        "fecha": "2025-02-28",
+        "puntuacion": 4,
+        "texto": "Se lo comieron pero creo que no les gustaba mucho, el grano es muy pequeño parece pienso de junior"
+      },
+      {
+        "usuario": "FotografoJuan",
+        "fecha": "2025-02-20",
+        "puntuacion": 4,
+        "texto": "bien, aunque no todos mis gatos les gusta."
+      },
+      {
+        "usuario": "GatoFeliz",
+        "fecha": "2025-03-01",
+        "puntuacion": 5,
+        "texto": "¡Mi gato lo adora! Le sienta muy bien y mantiene un peso saludable después de la esterilización."
+      },
+      {
+        "usuario": "CompradoraHabitual",
+        "fecha": "2025-02-15",
+        "puntuacion": 5,
+        "texto": "Llevo meses comprándolo. El precio es bueno y la composición es excelente. ¡Lo recomiendo a otros dueños de gatos esterilizados!"
+      },
+      {
+        "usuario": "DudosoDueño",
+        "fecha": "2025-01-25",
+        "puntuacion": 3,
+        "texto": "Tardaron en hacer el cambio, pero después de una semana mi gata lo acepta. No he notado gran cambio en el pelo todavía."
+      }
+    ]
+  }
+]
