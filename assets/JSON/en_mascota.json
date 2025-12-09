@@ -1,0 +1,251 @@
+[
+  {
+    "id": "CAT1",
+    "marca": "Grature",
+    "puntuacion": "4",
+    "opiniones": "20 reviews",
+    "nombre_producto": "Grature Chicken Dry Food for Sterilized Adult Cats",
+    "precio": 6.99,
+    "descripcion": "Dry food for sterilized adult cats, made with chicken. Grature Chicken is a diet made with natural ingredients for adult cats.",
+    "formato": "product weight",
+    "descripcion_formato": "1.5 Kg",
+    "imagen_principal": "/assets/img/gato/CAT01_0.png",
+    "imagen_miniatura": [
+      "/assets/img/gato/CAT01_0.png",
+      "/assets/img/gato/CAT01_1.png"
+    ],
+    "comentarios": [
+      {
+        "usuario": "AnaG12",
+        "fecha": "2025-02-28",
+        "puntuacion": 4,
+        "texto": "They ate it but I don't think they liked it much, the kibble is very small, it looks like junior food."
+      },
+      {
+        "usuario": "FotografoJuan",
+        "fecha": "2025-02-20",
+        "puntuacion": 4,
+        "texto": "Good, although not all my cats like it."
+      },
+      {
+        "usuario": "GatoFeliz",
+        "fecha": "2025-03-01",
+        "puntuacion": 5,
+        "texto": "My cat loves it! It suits him very well and maintains a healthy weight after sterilization."
+      },
+      {
+        "usuario": "CompradoraHabitual",
+        "fecha": "2025-02-15",
+        "puntuacion": 5,
+        "texto": "I've been buying it for months. The price is good and the composition is excellent. I recommend it to other owners of sterilized cats!"
+      },
+      {
+        "usuario": "DudosoDueño",
+        "fecha": "2025-01-25",
+        "puntuacion": 3,
+        "texto": "It took a while to make the switch, but after a week my cat accepts it. I haven't noticed much change in the coat yet."
+      }
+    ]
+  },
+  {
+    "id": "CAT2",
+    "marca": "Purina Felix",
+    "puntuacion": "5",
+    "opiniones": "16 reviews",
+    "nombre_producto": "Purina Felix Crispies Salmon and Trout Snacks for Cats",
+    "precio": 1.34,
+    "descripcion": "Reward your cat more often with these light treats and share more mischievous and tender moments with him! Felix Crispies Snacks are irresistibly airy for a unique, light and crunchy texture.",
+    "formato": "product weight",
+    "descripcion_formato":"45 gr",
+    "imagen_principal": "/assets/img/gato/CAT02_0.png",
+    "imagen_miniatura": [
+      "/assets/img/gato/CAT02_0.png",
+      "/assets/img/gato/CAT02_1.png",
+      "/assets/img/gato/CAT02_2.png",
+      "/assets/img/gato/CAT02_3.png",
+      "/assets/img/gato/CAT02_4.png"
+    ],
+    "comentarios": [
+      {
+        "usuario": "AnaG12",
+        "fecha": "2025-02-28",
+        "puntuacion": 4,
+        "texto": "They ate it but I don't think they liked it much, the kibble is very small, it looks like junior food."
+      },
+      {
+        "usuario": "FotografoJuan",
+        "fecha": "2025-02-20",
+        "puntuacion": 4,
+        "texto": "Good, although not all my cats like it."
+      },
+      {
+        "usuario": "GatoFeliz",
+        "fecha": "2025-03-01",
+        "puntuacion": 5,
+        "texto": "My cat loves it! It suits him very well and maintains a healthy weight after sterilization."
+      },
+      {
+        "usuario": "CompradoraHabitual",
+        "fecha": "2025-02-15",
+        "puntuacion": 5,
+        "texto": "I've been buying it for months. The price is good and the composition is excellent. I recommend it to other owners of sterilized cats!"
+      },
+      {
+        "usuario": "DudosoDueño",
+        "fecha": "2025-01-25",
+        "puntuacion": 3,
+        "texto": "It took a while to make the switch, but after a week my cat accepts it. I haven't noticed much change in the coat yet."
+      }
+    ]
+  },
+  {
+    "id": "CAT3",
+    "marca": "Gloria Pets",
+    "puntuacion": "5",
+    "opiniones": "60 reviews",
+    "nombre_producto": "Gloria Pets Nilo Blue Large Scratching Castle for Cats",
+    "precio": 129.99,
+    "descripcion": "Perfect play center for several cats, multiple floors high, with an access ramp, vertical tunnel, and soft hammocks. Several places where they can rest while watching their surroundings.",
+    "formato": "Size",
+    "descripcion_formato":"50x170x50 cm",
+    "imagen_principal": "/assets/img/gato/CAT03_0.png",
+    "imagen_miniatura": [
+      "/assets/img/gato/CAT03_0.png",
+      "/assets/img/gato/CAT03_1.png",
+      "/assets/img/gato/CAT03_2.png",
+      "/assets/img/gato/CAT03_3.png",
+      "/assets/img/gato/CAT03_4.png"
+    ],
+    "comentarios": [
+  {
+    "usuario": "FamiliaMultigatuna",
+    "fecha": "2025-11-20",
+    "puntuacion": 5,
+    "texto": "Amazing! I have 3 large cats and it's super stable, even when they climb at full speed. The Nilo Blue color is very elegant and the base is sturdy."
+  },
+  {
+    "usuario": "ElArquitectoFelino",
+    "fecha": "2025-12-01",
+    "puntuacion": 4,
+    "texto": "The design is excellent, the access ramp is ideal for my older cat. It took me a while to assemble it alone, but the instructions were clear. The hammocks are a total hit."
+  },
+  {
+    "usuario": "RascadorPro",
+    "fecha": "2025-10-15",
+    "puntuacion": 5,
+    "texto": "The best thing I've bought in months. The height is perfect for them to monitor the house and the vertical tunnel gives them extra fun. The sisal on the posts is of good quality."
+  },
+  {
+    "usuario": "DueñoDeMaineCoon",
+    "fecha": "2025-11-28",
+    "puntuacion": 4,
+    "texto": "It is a truly large scratching post, just as described. My Maine Coon can stretch out completely on the top platform. I only give it 4 stars because the fabric of the hammocks is a bit thin."
+  },
+  {
+    "usuario": "CompradoraFeliz",
+    "fecha": "2025-12-04",
+    "puntuacion": 5,
+    "texto": "My two female cats used to fight over the old scratching post. Now each one has its place. The play center is 24/7 and for the price, it's a worthwhile investment."
+  }
+]
+  },
+  {
+    "id": "CAT4",
+    "marca": "SUMSU",
+    "puntuacion": "4",
+    "opiniones": "10 reviews",
+    "nombre_producto": "SUMSU PRO Grooming Glove for Dog and Cat",
+    "precio": 4.99,
+    "descripcion": "Grooming Brush Glove for dogs and cats. The grooming glove for dogs and cats is a practical and comfortable tool designed to remove loose hair and tangles from our pets' fur during brushing.",
+    "formato": "Size",
+    "descripcion_formato":"23x17 cm",
+    "imagen_principal": "/assets/img/gato/CAT04_0.png",
+    "imagen_miniatura": [
+      "/assets/img/gato/CAT04_0.png",
+      "/assets/img/gato/CAT04_1.png",
+      "/assets/img/gato/CAT04_2.png",
+      "/assets/img/gato/CAT04_3.png"
+    ],
+    "comentarios": [
+  {
+    "usuario": "DueñaDePeludos",
+    "fecha": "2025-03-10",
+    "puntuacion": 5,
+    "texto": "It works wonderfully with my Golden Retriever! It collects a lot of loose hair and, best of all, he loves it when I 'pet' him with the glove, he sees it as a massage."
+  },
+  {
+    "usuario": "GatoPersaMom",
+    "fecha": "2025-02-28",
+    "puntuacion": 4,
+    "texto": "Very effective for my cat's short hair. It's easy to clean and the hair comes off in one swipe. I don't give it 5 stars because I would have liked a firmer fit on the wrist."
+  },
+  {
+    "usuario": "TrainerJuan",
+    "fecha": "2025-03-05",
+    "puntuacion": 5,
+    "texto": "The glove is very comfortable to use, my hand doesn't get tired. Ideal for nervous dogs or those who hate traditional brushes, as the touch is softer and more natural."
+  },
+  {
+    "usuario": "CompradorAhorrador",
+    "fecha": "2025-02-20",
+    "puntuacion": 4,
+    "texto": "For the price, it's an excellent solution for daily maintenance. It's not as thorough as a shedding comb, but for removing surface hair and adding shine to the coat, it's perfect."
+  },
+  {
+    "usuario": "PeloPorTodaLaCasa",
+    "fecha": "2025-03-01",
+    "puntuacion": 3,
+    "texto": "It collects quite a bit of hair from my wire-haired dog, although not as much as I expected. Still, it's better than nothing and my dog finds it less invasive than the metal brush."
+  }
+]
+  },
+  {
+    "id": "CAT5",
+    "marca": "Sure Petcare",
+    "puntuacion": "5",
+    "opiniones": "20 reviews",
+    "nombre_producto": "Sure Petcare Felaqua Connect Smart Water Fountain",
+    "precio": 130.67,
+    "descripcion": "Specially designed with expert behavioral veterinarians, Felaqua Connect encourages your cat to drink more regularly and gives you insights into their water consumption habits, alerting you to any unnoticed changes in their behavior.",
+    "formato": "capacity",
+    "descripcion_formato":"1L",
+    "imagen_principal": "/assets/img/gato/CAT05_0.png",
+    "imagen_miniatura": [
+      "/assets/img/gato/CAT05_0.png",
+      "/assets/img/gato/CAT05_1.png",
+      "/assets/img/gato/CAT05_2.png"
+    ],
+    "comentarios": [
+  {
+    "usuario": "TechieCatMom",
+    "fecha": "2025-03-15",
+    "puntuacion": 5,
+    "texto": "Huge peace of mind. The app notifies me if my cat drinks less than usual, which is crucial for detecting kidney problems early. Plus, she accepts the motorless bowl without any problems."
+  },
+  {
+    "usuario": "VeterinarioEnCasa",
+    "fecha": "2025-02-25",
+    "puntuacion": 4,
+    "texto": "The design is very clean and easy to refill. My cat started drinking more within a few days. Integration with the Hub was simple. It's just a bit expensive, but it's worth it for the monitoring."
+  },
+  {
+    "usuario": "GatoDeshidratado",
+    "fecha": "2025-03-01",
+    "puntuacion": 5,
+    "texto": "My cat always drank very little. Since I got Felaqua, I've seen a clear increase in his consumption because the fountain is more appealing to him. The app reports are very detailed."
+  },
+  {
+    "usuario": "DueñoDeVarios",
+    "fecha": "2025-02-18",
+    "puntuacion": 4,
+    "texto": "It works perfectly to know how much each of my cats drinks (thanks to the microchips). An excellent product for multi-cat households. I would like the reservoir to have a bit more capacity."
+  },
+  {
+    "usuario": "InstalaciónFácil",
+    "fecha": "2025-01-30",
+    "puntuacion": 5,
+    "texto": "Very quick assembly and setup. It's not a fountain, but a smart bowl, which was important to me. The alerts for changes in drinking patterns are very useful. I recommend it!"
+  }
+]
+  }
+]
