@@ -5,158 +5,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HOME</title>
-    <link rel="stylesheet" href="/assets/css/login.css">
-    <link rel="stylesheet" href="/assets/css/navfooterStyles.css">
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/navfooterStyles.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/login.css">
+    <link rel="stylesheet" href="assets/css/productos.css">
     <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
 </head>
 
 <body>
-    <header>
-        <a href="#">
-            <img src="assets/img/miwuff.png" alt="icon-logo" class="logo">
-        </a>
-        <span class="iconify" data-icon="mdi:search" data-width="32" data-height="32"></span>
-        <input type="text" id="search" placeholder="Buscar...">
-        <nav class="navigation-top">
-            <a href="#">
-                <span class="iconify" data-icon="material-symbols:shopping-cart" data-width="32"
-                    data-height="32"></span>
-            </a>
-            <a href="#">
-                <span class="iconify" data-icon="mdi:location" data-width="32" data-height="32"></span>
-            </a>
-            <a href="#">
-                <span class="iconify" data-icon="mdi:user-plus" data-width="32" data-height="32"></span>
-            </a>
-            <a href="#">
-                <span class="iconify" data-icon="ic:baseline-g-translate" data-width="32" data-height="32"></span>
-            </a>
-            <a href="#">
-                <span class="iconify" data-icon="gg:dark-mode" data-width="32" data-height="32"></span>
-            </a>
-            <nav class="navigation-down">
-                <a href="#">Perros</a>
-                <a href="#">Gatos</a>
-                <a href="#">Roedores</a>
-                <a href="#">Peces</a>
-                <a href="#">Pajaros</a>
-                <a href="#">Otros animales</a>
-                <a href="#">% Ofertas</a>
-                <a href="#">Contáctanos</a>
-                <a href="#">Servicios</a>
-            </nav>
-    </header>
-    <div class="banner">
-        <!-- <img src="assets/img/home/sinfondo.png" alt="sinfondo">
-        <img src="assets/img/home/gato.png" alt="gato">
-        <img src="assets/img/home/perro.png" alt="perro">
-        <img src="assets/img/home/roedor.png" alt="Roedores">
-        <img src="assets/img/home/pez.png" alt="pez">
-        <img src="assets/img/home/pajaro.png" alt="pajaro"> -->
-        <img class="miwuff" src="assets/img/home/miwuff.png" alt="miwuff">
-    </div>
+    <div id="nav-container"></div>
+
+    <main>
+        <section class="portada">
+            <img src="assets/img/home/fondo.jpg" id="fondo" alt="Fondo">
+            <img src="assets/img/home/gato.png" id="gato" alt="Gato">
+            <img src="assets/img/home/perro.png" id="perro" alt="Perro">
+            <img src="assets/img/home/roedor.png" id="roedor" alt="Roedor">
+            <img src="assets/img/home/pez.png" id="pez" alt="Pez">
+            <img src="assets/img/home/pajaro.png" id="pajaro" alt="Pájaro">
+            <img src="assets/img/home/miwuff.png" id="miwuff-logo" alt="Miwuff Logo">
+        </section>
+        <section class="carrusel">
+            <ul>
+                <li><img src="assets/img/home/carrusel1.jpg" alt="Carrusel 1"></li>
+                <li><img src="assets/img/home/carrusel2.jpg" alt="Carrusel 2"></li>
+                <li><img src="assets/img/home/carrusel3.jpg" alt="Carrusel 3"></li>
+                <li><img src="assets/img/home/carrusel4.jpg" alt="Carrusel 4"></li>
+                <li><img src="assets/img/home/carrusel5.jpg" alt="Carrusel 5"></li>
+                <li><img src="assets/img/home/carrusel1.jpg" alt="Carrusel 6"></li>
+
+            </ul>
+
+        </section>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <script src="assets/javascript/script.js"></script>
-
+        <section class="sec-productos" id="productos">
+            <h2 style="text-align:center; color:#D37C39; margin-top:50px; font-size: 2.5em;">Productos  Destacados gatos</h2>
+            <div id="productos-contenedor">
+                <!-- Los productos se cargarán aquí dinámicamente -->
+            </div>
+        </section>
+        <section class="sec">
+            <h2>Bienvenido a Miwuff</h2>
+            <p>Tu tienda de mascotas favorita. Encuentra todo lo que necesitas para tus amigos peludos, emplumados y acuáticos.</p>
+            <p>En Miwuff nos preocupamos por el bienestar de tus mascotas. Ofrecemos productos de alta calidad, alimentos nutritivos y accesorios increíbles para que tus compañeros estén felices y saludables.</p>
+        </section>  
+    </main>
 
     <footer>
-        <div class="help">
-            <h3>Ayuda</h3>
-            <ul>
-                <li>
-                    <a href="#">Envios</a>
-                </li>
-                <li>
-                    <a href="#">Cambio y devoluciones</a>
-                </li>
-                <li>
-                    <a href="#">Preguntas frecuentes</a>
-                </li>
-            </ul>
-        </div>
-        <div class="conditions">
-            <h3>Condiciones</h3>
-            <ul>
-                <li>
-                    <a href="#">Aviso legal</a>
-                </li>
-                <li>
-                    <a href="#">Política de privacidad</a>
-                </li>
-                <li>
-                    <a href="#">Términos y condiciones</a>
-                </li>
-                <li>
-                    <a href="#">Política de cookies</a>
-                </li>
-            </ul>
-        </div>
-        <div class="follow">
-            <h3>Siguenos</h3>
-            <ul>
-                <li>
-                    <a href="#">
-                        <span class="iconify iconifyF" data-icon="mdi:facebook" data-width="32" data-height="32"></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="iconify iconifyF" data-icon="mdi:instagram" data-width="32"
-                            data-height="32"></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="iconify iconifyF" data-icon="pajamas:twitter" data-width="32"
-                            data-height="32"></span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="payment">
-            <h3>Métodos de pago</h3>
-            <ul>
-                <li>
-                    <a href="#">
-                        <span class="iconify iconifyP" data-icon="fa-brands:cc-mastercard" data-width="32"
-                            data-height="32"></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="iconify iconifyP" data-icon="fa-brands:cc-visa" data-width="32"
-                            data-height="32"></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="iconify iconifyP" data-icon="fa-brands:cc-paypal" data-width="32"
-                            data-height="32"></span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+        <div id="footer-container"></div>
     </footer>
-    <div class="endfooter">
-        <p>&copy; 2025 Miwuff. | Todos los derechos reservados | Proyecto estudiantil | Penascalf5.</p>
-    </div>
+
+    <script src="assets/javascript/script.js"></script>
+    <script src="assets/javascript/nav_footer.js"></script>
+    <script src="assets/javascript/login.js"></script>
+    <script src="assets/javascript/detalle_p.js"></script>
+
 </body>
 
 </html>

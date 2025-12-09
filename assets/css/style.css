@@ -1,14 +1,220 @@
-.banner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: F0AA51;
+/* Estilos generales */
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: #fff;
+    margin: 0;
+    padding: 0;
 }
 
-.miwuff {
-
+.portada {
+    position: relative;
+    width: 100%;
+    height: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    overflow: hidden;
+}
+
+/* Fondo */
+#fondo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+    z-index: 1;
+}
+
+/* Logo Miwuff - elemento con parallax */
+#miwuff-logo {
+    position: absolute;
+    width: 50%;
+    max-width: 800px;
+    top: 46%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+    z-index: 2;
+}
+
+/* Animales decorativos */
+.portada img:not(#fondo):not(#miwuff-logo) {
+    position: absolute;
+    pointer-events: none;
+    z-index: 3;
+}
+
+#perro {
+    width: 15%;
+    max-width: 320px;
+    top: 3%;
+    right: 45%;
+}
+
+#roedor {
+    width: 10%;
+    max-width: 140px;
+    top: 4%;
+    left: 22%;
+    rotate: 20deg;
+}
+
+#pajaro {
+    width: 12%;
+    max-width: 140px;
+    top: 5%;
+    left: 65%;
+    rotate: -30deg;
+}
+
+#gato {
+    width: 14%;
+    max-width: 140px;
+    top: 45%;
+    left: 20%;
+    rotate: 20deg;
+    transform: translateX(85%);
+}
+
+#pez {
+    width: 13%;
+    max-width: 150px;
+    top: 40%;
+    right: 25%;
+    rotate: -30deg;
+    transform: translateX(-75%);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #miwuff-logo {
+        width: 85%;
+    }
+
+    #perro {
+        width: 22%;
+        top: 38%;
+    }
+
+    #roedor {
+        width: 18%;
+        left: 15%;
+        top: 42%;
+    }
+
+    #pajaro {
+        width: 18%;
+        left: 70%;
+        top: 40%;
+    }
+
+    #gato {
+        width: 20%;
+        left: 65%;
+        top: 55%;
+    }
+
+    #pez {
+        width: 20%;
+        left: 15%;
+        top: 58%;
+    }
+}
+
+/* Sección de contenido */
+.sec {
+    position: relative;
+    background: #fff;
+    padding: 100px;
+    min-height: 100vh;
+    z-index: 20;
+}
+
+.sec h2 {
+    font-size: 3.5em;
+    color: #D37C39;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.sec p {
+    font-size: 1.2em;
+    color: #333;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: justify;
+}
+
+/* carrusel */
+.carrusel {
+    max-width: 100%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.carrusel ul {
+    display: flex;
+    width: 600%;
+    animation: carrusel 20s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    padding: 0;
+    margin: 0;
+}
+
+.carrusel li {
+    flex: 0 0 16.6666%;
+    list-style: none;
+    position: relative;
+    width: 16.6666%;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    overflow: hidden;
+}
+
+.carrusel img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+@keyframes carrusel {
+
+    0%,
+    15% {
+        transform: translateX(0);
+    }
+
+    20%,
+    35% {
+        transform: translateX(-16.6666%);
+    }
+
+    40%,
+    55% {
+        transform: translateX(-33.3333%);
+    }
+    60%,
+    75% {
+        transform: translateX(-50%);
+    }
+
+    80%,
+    95% {
+        transform: translateX(-66.6666%);
+    }
+
+    100% {
+        transform: translateX(-83.3333%);
+    }
 }
