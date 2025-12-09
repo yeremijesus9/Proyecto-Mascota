@@ -56,7 +56,7 @@
     "precio": 1.34,
     "descripcion": "¡Premia a tu gato más a menudo con estas chuches ligeras y comparte más momentos traviesos y tiernos con él! Felix Crispies Snacks están irresistiblemente aireados para tener una textura única, ligera y crujiente.",
     "formato": "peso producto",
-    "descripcion_formato":"45 gr",
+    "descripcion_formato": "45 gr",
     "imagen_principal": "/assets/img/gato/CAT02_0.png",
     "imagen_miniatura": [
       "/assets/img/gato/CAT02_0.png",
@@ -107,7 +107,7 @@
     "precio": 129.99,
     "descripcion": "Centro de juego perfecto para varios gatos, varios pisos de altura, con rampa de acceso, túnel vertical y hamacas suaves. Varios lugares desde los que podrán descansar al mismo tiempo que vigilan su entorno.",
     "formato": "Tamaño",
-    "descripcion_formato":"50x170x50 cm",
+    "descripcion_formato": "50x170x50 cm",
     "imagen_principal": "/assets/img/gato/CAT03_0.png",
     "imagen_miniatura": [
       "/assets/img/gato/CAT03_0.png",
@@ -117,37 +117,37 @@
       "/assets/img/gato/CAT03_4.png"
     ],
     "comentarios": [
-  {
-    "usuario": "FamiliaMultigatuna",
-    "fecha": "2025-11-20",
-    "puntuacion": 5,
-    "texto": "¡Impresionante! Tengo 3 gatos grandes y es súper estable, incluso cuando suben a toda velocidad. El color Nilo Azul es muy elegante y la base es robusta."
-  },
-  {
-    "usuario": "ElArquitectoFelino",
-    "fecha": "2025-12-01",
-    "puntuacion": 4,
-    "texto": "El diseño es excelente, la rampa de acceso es ideal para mi gato mayor. Tardo un poco en montarlo yo solo, pero las instrucciones eran claras. Las hamacas son un éxito total."
-  },
-  {
-    "usuario": "RascadorPro",
-    "fecha": "2025-10-15",
-    "puntuacion": 5,
-    "texto": "Lo mejor que he comprado en meses. La altura es perfecta para que vigilen la casa y el túnel vertical les da un extra de diversión. El sisal de los postes es de buena calidad."
-  },
-  {
-    "usuario": "DueñoDeMaineCoon",
-    "fecha": "2025-11-28",
-    "puntuacion": 4,
-    "texto": "Es un rascador realmente grande, tal como se describe. Mi Maine Coon puede estirarse completamente en la plataforma superior. Solo le pongo 4 estrellas porque la tela de las hamacas es un poco fina."
-  },
-  {
-    "usuario": "CompradoraFeliz",
-    "fecha": "2025-12-04",
-    "puntuacion": 5,
-    "texto": "Mis dos gatas se peleaban por el rascador viejo. Ahora cada una tiene su sitio. El centro de juego es un 24/7 y por el precio, es una inversión que vale la pena."
-  }
-]
+      {
+        "usuario": "FamiliaMultigatuna",
+        "fecha": "2025-11-20",
+        "puntuacion": 5,
+        "texto": "¡Impresionante! Tengo 3 gatos grandes y es súper estable, incluso cuando suben a toda velocidad. El color Nilo Azul es muy elegante y la base es robusta."
+      },
+      {
+        "usuario": "ElArquitectoFelino",
+        "fecha": "2025-12-01",
+        "puntuacion": 4,
+        "texto": "El diseño es excelente, la rampa de acceso es ideal para mi gato mayor. Tardo un poco en montarlo yo solo, pero las instrucciones eran claras. Las hamacas son un éxito total."
+      },
+      {
+        "usuario": "RascadorPro",
+        "fecha": "2025-10-15",
+        "puntuacion": 5,
+        "texto": "Lo mejor que he comprado en meses. La altura es perfecta para que vigilen la casa y el túnel vertical les da un extra de diversión. El sisal de los postes es de buena calidad."
+      },
+      {
+        "usuario": "DueñoDeMaineCoon",
+        "fecha": "2025-11-28",
+        "puntuacion": 4,
+        "texto": "Es un rascador realmente grande, tal como se describe. Mi Maine Coon puede estirarse completamente en la plataforma superior. Solo le pongo 4 estrellas porque la tela de las hamacas es un poco fina."
+      },
+      {
+        "usuario": "CompradoraFeliz",
+        "fecha": "2025-12-04",
+        "puntuacion": 5,
+        "texto": "Mis dos gatas se peleaban por el rascador viejo. Ahora cada una tiene su sitio. El centro de juego es un 24/7 y por el precio, es una inversión que vale la pena."
+      }
+    ]
   },
   {
     "id": "CAT4",
@@ -158,7 +158,7 @@
     "precio": 4.99,
     "descripcion": "Guante de Cepillado para peinar Perros y Gatos El guante para peinar perros y gatos es una herramienta práctica y cómoda diseñada para eliminar el pelo suelto y los nudos del pelaje de nuestras mascotas durante el cepillado.",
     "formato": "Tamaño",
-    "descripcion_formato":"23x17 cm",
+    "descripcion_formato": "23x17 cm",
     "imagen_principal": "/assets/img/gato/CAT04_0.png",
     "imagen_miniatura": [
       "/assets/img/gato/CAT04_0.png",
@@ -167,37 +167,37 @@
       "/assets/img/gato/CAT04_3.png"
     ],
     "comentarios": [
-  {
-    "usuario": "DueñaDePeludos",
-    "fecha": "2025-03-10",
-    "puntuacion": 5,
-    "texto": "¡Funciona de maravilla con mi Golden Retriever! Recoge muchísimo pelo suelto y, lo mejor de todo, a él le encanta que lo 'acaricie' con el guante, lo ve como un masaje."
-  },
-  {
-    "usuario": "GatoPersaMom",
-    "fecha": "2025-02-28",
-    "puntuacion": 4,
-    "texto": "Muy efectivo para el pelo corto de mi gato. Es fácil de limpiar y el pelo se quita de una sola pasada. No le doy 5 estrellas porque me hubiera gustado un ajuste más firme en la muñeca."
-  },
-  {
-    "usuario": "TrainerJuan",
-    "fecha": "2025-03-05",
-    "puntuacion": 5,
-    "texto": "El guante es muy cómodo de usar, no se me cansa la mano. Ideal para perros nerviosos o que odian los cepillos tradicionales, ya que el tacto es más suave y natural."
-  },
-  {
-    "usuario": "CompradorAhorrador",
-    "fecha": "2025-02-20",
-    "puntuacion": 4,
-    "texto": "Por el precio que tiene, es una solución excelente para el mantenimiento diario. No es tan profundo como un peine de muda, pero para quitar lo superficial y darle brillo al pelo, es perfecto."
-  },
-  {
-    "usuario": "PeloPorTodaLaCasa",
-    "fecha": "2025-03-01",
-    "puntuacion": 3,
-    "texto": "Recoge bastante pelo de mi perro de pelo duro, aunque no tanto como esperaba. Aún así, es mejor que nada y a mi perro le resulta menos invasivo que el cepillo metálico."
-  }
-]
+      {
+        "usuario": "DueñaDePeludos",
+        "fecha": "2025-03-10",
+        "puntuacion": 5,
+        "texto": "¡Funciona de maravilla con mi Golden Retriever! Recoge muchísimo pelo suelto y, lo mejor de todo, a él le encanta que lo 'acaricie' con el guante, lo ve como un masaje."
+      },
+      {
+        "usuario": "GatoPersaMom",
+        "fecha": "2025-02-28",
+        "puntuacion": 4,
+        "texto": "Muy efectivo para el pelo corto de mi gato. Es fácil de limpiar y el pelo se quita de una sola pasada. No le doy 5 estrellas porque me hubiera gustado un ajuste más firme en la muñeca."
+      },
+      {
+        "usuario": "TrainerJuan",
+        "fecha": "2025-03-05",
+        "puntuacion": 5,
+        "texto": "El guante es muy cómodo de usar, no se me cansa la mano. Ideal para perros nerviosos o que odian los cepillos tradicionales, ya que el tacto es más suave y natural."
+      },
+      {
+        "usuario": "CompradorAhorrador",
+        "fecha": "2025-02-20",
+        "puntuacion": 4,
+        "texto": "Por el precio que tiene, es una solución excelente para el mantenimiento diario. No es tan profundo como un peine de muda, pero para quitar lo superficial y darle brillo al pelo, es perfecto."
+      },
+      {
+        "usuario": "PeloPorTodaLaCasa",
+        "fecha": "2025-03-01",
+        "puntuacion": 3,
+        "texto": "Recoge bastante pelo de mi perro de pelo duro, aunque no tanto como esperaba. Aún así, es mejor que nada y a mi perro le resulta menos invasivo que el cepillo metálico."
+      }
+    ]
   },
   {
     "id": "CAT5",
@@ -208,7 +208,7 @@
     "precio": 130.67,
     "descripcion": "Diseñado especialmente junto con veterinarios expertos en comportamiento, Felaqua Connect anima a tu gato a beber más regularmente y te ofrece información sobre sus hábitos de consumo de agua, avisándote de cualquier cambio en su conducta que pudiera pasar desapercibido.",
     "formato": "capacidad",
-    "descripcion_formato":"1L",
+    "descripcion_formato": "1L",
     "imagen_principal": "/assets/img/gato/CAT05_0.png",
     "imagen_miniatura": [
       "/assets/img/gato/CAT05_0.png",
@@ -216,36 +216,276 @@
       "/assets/img/gato/CAT05_2.png"
     ],
     "comentarios": [
-  {
-    "usuario": "TechieCatMom",
-    "fecha": "2025-03-15",
-    "puntuacion": 5,
-    "texto": "Una tranquilidad enorme. La app me notifica si mi gata bebe menos de lo habitual, lo cual es crucial para detectar problemas renales a tiempo. Además, el cuenco sin motor lo acepta sin problemas."
+      {
+        "usuario": "TechieCatMom",
+        "fecha": "2025-03-15",
+        "puntuacion": 5,
+        "texto": "Una tranquilidad enorme. La app me notifica si mi gata bebe menos de lo habitual, lo cual es crucial para detectar problemas renales a tiempo. Además, el cuenco sin motor lo acepta sin problemas."
+      },
+      {
+        "usuario": "VeterinarioEnCasa",
+        "fecha": "2025-02-25",
+        "puntuacion": 4,
+        "texto": "El diseño es muy limpio y fácil de rellenar. Mi gato empezó a beber más a los pocos días. La integración con el Hub fue sencilla. Solo es un poco caro, pero vale la pena por la monitorización."
+      },
+      {
+        "usuario": "GatoDeshidratado",
+        "fecha": "2025-03-01",
+        "puntuacion": 5,
+        "texto": "Mi gato siempre bebía muy poco. Desde que tengo Felaqua, he visto un incremento claro en su consumo gracias a que el bebedero le resulta más atractivo. Los informes de la app son muy detallados."
+      },
+      {
+        "usuario": "DueñoDeVarios",
+        "fecha": "2025-02-18",
+        "puntuacion": 4,
+        "texto": "Funciona perfectamente para saber cuánto bebe cada uno de mis gatos (gracias a los microchips). Un producto excelente para hogares multigato. Me gustaría que el depósito tuviera algo más de capacidad."
+      },
+      {
+        "usuario": "InstalaciónFácil",
+        "fecha": "2025-01-30",
+        "puntuacion": 5,
+        "texto": "Montaje y configuración muy rápidos. No es una fuente, sino un cuenco inteligente, lo cual era importante para mí. Los avisos de cambio de patrón de bebida son muy útiles. ¡Lo recomiendo!"
+      }
+    ]
   },
   {
-    "usuario": "VeterinarioEnCasa",
-    "fecha": "2025-02-25",
-    "puntuacion": 4,
-    "texto": "El diseño es muy limpio y fácil de rellenar. Mi gato empezó a beber más a los pocos días. La integración con el Hub fue sencilla. Solo es un poco caro, pero vale la pena por la monitorización."
+    "id": "PEZ1",
+    "marca": "Tetra",
+    "puntuacion": "5",
+    "opiniones": "45 opiniones",
+    "nombre_producto": "Tetra Min Alimento en Copos para Peces Tropicales",
+    "precio": 8.99,
+    "descripcion": "Alimento completo en copos para todos los peces ornamentales. Con fórmula BioActive que fortalece el sistema inmunitario. Los copos flotan en la superficie antes de hundirse lentamente, lo que satisface los hábitos de alimentación de todos los tipos de peces.",
+    "formato": "peso producto",
+    "descripcion_formato": "250 gr",
+    "imagen_principal": "/assets/img/peces/PEZ01_0.png",
+    "imagen_miniatura": [
+      "/assets/img/peces/PEZ01_0.png",
+      "/assets/img/peces/PEZ01_1.png"
+    ],
+    "comentarios": [
+      {
+        "usuario": "AcuaristaExperto",
+        "fecha": "2025-11-15",
+        "puntuacion": 5,
+        "texto": "Llevo años usando Tetra Min y mis peces están saludables y con colores vibrantes. Los copos se dispersan bien y no ensucian el agua."
+      },
+      {
+        "usuario": "NeonesFelices",
+        "fecha": "2025-10-28",
+        "puntuacion": 5,
+        "texto": "Excelente relación calidad-precio. Mis neones y guppys lo devoran. El agua se mantiene limpia y los peces tienen mucha energía."
+      },
+      {
+        "usuario": "PrimerAcuario",
+        "fecha": "2025-11-01",
+        "puntuacion": 4,
+        "texto": "Como principiante no sabía qué comida elegir. Esta es perfecta ya que sirve para todos mis peces. Solo hay que tener cuidado de no sobrealimentar."
+      },
+      {
+        "usuario": "FanDePeces",
+        "fecha": "2025-10-20",
+        "puntuacion": 5,
+        "texto": "El envase dura bastante tiempo. Los copos mantienen bien su forma y no se deshacen inmediatamente. Muy recomendable para acuarios comunitarios."
+      },
+      {
+        "usuario": "CompradorHabitual",
+        "fecha": "2025-09-15",
+        "puntuacion": 4,
+        "texto": "Buen producto, aunque preferiría un envase más grande para no tener que comprar tan seguido. Los peces lo aceptan muy bien."
+      }
+    ]
   },
   {
-    "usuario": "GatoDeshidratado",
-    "fecha": "2025-03-01",
-    "puntuacion": 5,
-    "texto": "Mi gato siempre bebía muy poco. Desde que tengo Felaqua, he visto un incremento claro en su consumo gracias a que el bebedero le resulta más atractivo. Los informes de la app son muy detallados."
+    "id": "PEZ2",
+    "marca": "Eheim",
+    "puntuacion": "5",
+    "opiniones": "32 opiniones",
+    "nombre_producto": "Eheim Filtro Externo Profesional 4+ 250 para Acuarios",
+    "precio": 189.99,
+    "descripcion": "Filtro externo profesional de alto rendimiento con sistema de prefiltración. Motor de bajo consumo energético y funcionamiento silencioso. Incluye materiales filtrantes de calidad profesional. Ideal para acuarios de 150-250 litros.",
+    "formato": "capacidad",
+    "descripcion_formato": "hasta 250L",
+    "imagen_principal": "/assets/img/peces/PEZ02_0.png",
+    "imagen_miniatura": [
+      "/assets/img/peces/PEZ02_0.png",
+      "/assets/img/peces/PEZ02_1.png"
+    ],
+    "comentarios": [
+      {
+        "usuario": "AcuarioProfesional",
+        "fecha": "2025-11-25",
+        "puntuacion": 5,
+        "texto": "El mejor filtro que he tenido. Silencioso, eficiente y muy fácil de mantener. El agua de mi acuario está cristalina desde que lo instalé."
+      },
+      {
+        "usuario": "InversionSegura",
+        "fecha": "2025-10-30",
+        "puntuacion": 5,
+        "texto": "Caro pero vale cada euro. La calidad Eheim es insuperable. El sistema de cierre es genial y no hay fugas. Mis peces están más activos."
+      },
+      {
+        "usuario": "TecnologiaAcuatica",
+        "fecha": "2025-11-10",
+        "puntuacion": 4,
+        "texto": "Excelente filtración. El motor es muy silencioso, apenas se oye. La instalación fue sencilla siguiendo las instrucciones. Solo le falta un manómetro de presión."
+      },
+      {
+        "usuario": "AcuaristaVeterano",
+        "fecha": "2025-09-22",
+        "puntuacion": 5,
+        "texto": "Tengo la versión anterior desde hace 8 años sin problemas. Esta nueva versión es aún mejor. El consumo eléctrico es muy bajo para la potencia que tiene."
+      },
+      {
+        "usuario": "AguaCristalina",
+        "fecha": "2025-10-05",
+        "puntuacion": 5,
+        "texto": "La diferencia en la calidad del agua es notable. El sistema de prefiltración hace que los medios filtrantes duren más. Altamente recomendado."
+      }
+    ]
   },
   {
-    "usuario": "DueñoDeVarios",
-    "fecha": "2025-02-18",
-    "puntuacion": 4,
-    "texto": "Funciona perfectamente para saber cuánto bebe cada uno de mis gatos (gracias a los microchips). Un producto excelente para hogares multigato. Me gustaría que el depósito tuviera algo más de capacidad."
+    "id": "PEZ3",
+    "marca": "Aqua Ornaments",
+    "puntuacion": "4",
+    "opiniones": "28 opiniones",
+    "nombre_producto": "Aqua Ornaments Castillo Hundido con Plantas Decorativas para Acuario",
+    "precio": 24.99,
+    "descripcion": "Decoración realista de castillo hundido con acabado envejecido. Incluye plantas artificiales de seda que se mueven con la corriente. Proporciona refugio y zonas de descanso para los peces. Material seguro y no tóxico para todos los acuarios.",
+    "formato": "Tamaño",
+    "descripcion_formato": "25x18x15 cm",
+    "imagen_principal": "/assets/img/peces/PEZ03_0.png",
+    "imagen_miniatura": [
+      "/assets/img/peces/PEZ03_0.png",
+      "/assets/img/peces/PEZ03_1.png"
+    ],
+    "comentarios": [
+      {
+        "usuario": "AcuarioMagico",
+        "fecha": "2025-11-18",
+        "puntuacion": 5,
+        "texto": "¡Precioso! Transforma completamente el aspecto del acuario. Los peces pequeños se esconden entre las plantas y el castillo. Muy detallado."
+      },
+      {
+        "usuario": "BettaLover",
+        "fecha": "2025-10-25",
+        "puntuacion": 4,
+        "texto": "A mi Betta le encanta nadar entre las torres del castillo. Las plantas de seda son suaves y no dañan las aletas. El acabado es realista."
+      },
+      {
+        "usuario": "DecoradorAcuatico",
+        "fecha": "2025-11-05",
+        "puntuacion": 4,
+        "texto": "Bonita decoración por el precio. Se integra bien con grava oscura. Tuve que enjuagarlo bien antes de meterlo porque tenía algo de polvo."
+      },
+      {
+        "usuario": "FamiliaPececitos",
+        "fecha": "2025-09-30",
+        "puntuacion": 3,
+        "texto": "Queda bien pero esperaba que fuera un poco más grande. Aun así cumple su función y a los peces les gusta. Las plantas son de buena calidad."
+      },
+      {
+        "usuario": "NiñosContentos",
+        "fecha": "2025-10-12",
+        "puntuacion": 5,
+        "texto": "A mis hijos les fascina. Le da un toque de fantasía al acuario. Los guppys se refugian dentro cuando apago la luz. Muy satisfecho con la compra."
+      }
+    ]
   },
   {
-    "usuario": "InstalaciónFácil",
-    "fecha": "2025-01-30",
-    "puntuacion": 5,
-    "texto": "Montaje y configuración muy rápidos. No es una fuente, sino un cuenco inteligente, lo cual era importante para mí. Los avisos de cambio de patrón de bebida son muy útiles. ¡Lo recomiendo!"
-  }
-]
+    "id": "PEZ4",
+    "marca": "JBL",
+    "puntuacion": "5",
+    "opiniones": "52 opiniones",
+    "nombre_producto": "JBL NovoStick M Alimento en Palitos para Peces de Agua Dulce",
+    "precio": 5.49,
+    "descripcion": "Palitos alimenticios que flotan para peces de tamaño medio. Fórmula completa con proteínas de alta calidad, vitaminas y oligoelementos. Contiene espirulina para realzar los colores naturales. No enturbia el agua gracias a su baja solubilidad.",
+    "formato": "peso producto",
+    "descripcion_formato": "100 gr",
+    "imagen_principal": "/assets/img/peces/PEZ04_0.png",
+    "imagen_miniatura": [
+      "/assets/img/peces/PEZ04_0.png",
+      "/assets/img/peces/PEZ04_1.png"
+    ],
+    "comentarios": [
+      {
+        "usuario": "CiclidosFelices",
+        "fecha": "2025-11-20",
+        "puntuacion": 5,
+        "texto": "Perfecto para mis cíclidos. Los palitos flotan lo suficiente para que todos coman. Los colores de mis peces son más brillantes desde que uso este alimento."
+      },
+      {
+        "usuario": "AguaLimpia",
+        "fecha": "2025-10-15",
+        "puntuacion": 5,
+        "texto": "No ensucia el agua como otras marcas. Los palitos mantienen su forma y no se deshacen. Excelente digestibilidad, menos residuos en el filtro."
+      },
+      {
+        "usuario": "GoldfishGrandes",
+        "fecha": "2025-11-08",
+        "puntuacion": 4,
+        "texto": "Mis goldfish los comen con entusiasmo. El tamaño de los palitos es ideal para peces medianos. Buena relación calidad-precio."
+      },
+      {
+        "usuario": "VariedadNecesaria",
+        "fecha": "2025-09-28",
+        "puntuacion": 5,
+        "texto": "Alterno entre copos y estos palitos para dar variedad a la dieta. Los peces están muy sanos y activos. El bote dura bastante tiempo."
+      },
+      {
+        "usuario": "NuevoEnJBL",
+        "fecha": "2025-10-03",
+        "puntuacion": 5,
+        "texto": "Primera vez que pruebo JBL y estoy impresionado. La calidad se nota. Los peces tienen mejor aspecto y el agua se mantiene más clara."
+      }
+    ]
+  },
+  {
+    "id": "PEZ5",
+    "marca": "Sera",
+    "puntuacion": "5",
+    "opiniones": "38 opiniones",
+    "nombre_producto": "Sera Aquatan Acondicionador de Agua para Acuarios",
+    "precio": 12.99,
+    "descripcion": "Acondicionador de agua que elimina inmediatamente cloro, cloraminas y metales pesados del agua del grifo. Protege las mucosas de los peces con coloides naturales. Añade vitamina B para reducir el estrés. Idóneo para cambios de agua y nuevos acuarios.",
+    "formato": "capacidad",
+    "descripcion_formato": "500 ml",
+    "imagen_principal": "/assets/img/peces/PEZ05_0.png",
+    "imagen_miniatura": [
+      "/assets/img/peces/PEZ05_0.png",
+      "/assets/img/peces/PEZ05_1.png"
+    ],
+    "comentarios": [
+      {
+        "usuario": "AguaSegura",
+        "fecha": "2025-11-22",
+        "puntuacion": 5,
+        "texto": "Imprescindible para cada cambio de agua. Desde que lo uso no he perdido ningún pez por estrés. El bote rinde mucho, dura varios meses."
+      },
+      {
+        "usuario": "PecesDelicados",
+        "fecha": "2025-10-18",
+        "puntuacion": 5,
+        "texto": "Tengo peces disco que son muy sensibles. Este producto hace que el agua del grifo sea segura al instante. Los coloides protegen muy bien las mucosas."
+      },
+      {
+        "usuario": "CambiosSinMiedo",
+        "fecha": "2025-11-12",
+        "puntuacion": 5,
+        "texto": "Antes me daba miedo hacer cambios de agua grandes. Con Aquatan puedo cambiar hasta el 50% sin que los peces se estresen. Funciona de inmediato."
+      },
+      {
+        "usuario": "MarcaSera",
+        "fecha": "2025-09-25",
+        "puntuacion": 4,
+        "texto": "Producto de confianza de la marca Sera. Es un poco caro comparado con otros acondicionadores, pero la calidad justifica el precio."
+      },
+      {
+        "usuario": "NuevoAcuarista",
+        "fecha": "2025-10-08",
+        "puntuacion": 5,
+        "texto": "Como principiante es una tranquilidad saber que puedo preparar el agua correctamente. Las instrucciones son claras y el dosificador muy cómodo."
+      }
+    ]
   }
 ]
