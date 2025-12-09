@@ -1,20 +1,8 @@
 // ====================================================================
-// CONFIGURACIÓN GLOBAL DE IDIOMA Y RUTA
-// Estas variables se hacen globales para ser usadas en script.js
+// FUNCIÓN PRINCIPAL DE CARGA Y RENDERIZADO DE PRODUCTOS
 // ====================================================================
 
-/**
- * @type {string} idiomaActual - Código del idioma actual, inicia en español.
- */
-window.idiomaActual = "es";
-
-/**
- * Retorna la ruta del archivo JSON de productos para el idioma actual.
- * @returns {string} La ruta completa al archivo JSON.
- */
-window.rutaJson = function() {
-    return `/assets/JSON/${window.idiomaActual}_mascota.json`;
-};
+// CONFIGURACIÓN DE IDIOMA MOVIDA A assets/javascript/idioma.js
 
 
 // ====================================================================
@@ -25,10 +13,10 @@ window.rutaJson = function() {
  * Función asíncrona que carga el JSON de productos según el idioma actual
  * y renderiza las tarjetas de producto en el contenedor.
  */
-window.cargarYMostrarProductos = async function() {
+window.cargarYMostrarProductos = async function () {
     // Asegúrate de que este ID exista en tu HTML principal
     const contenedor = document.getElementById('productos-contenedor');
-    
+
     if (!contenedor) {
         console.warn("Contenedor 'productos-contenedor' no encontrado. Asegúrate de que el ID es correcto.");
         return;
@@ -37,29 +25,29 @@ window.cargarYMostrarProductos = async function() {
     try {
         const ruta = window.rutaJson();
         const respuesta = await fetch(ruta);
-        
+
         if (!respuesta.ok) {
             contenedor.innerHTML = `<p style="color: red;">¡Error! No se pudo acceder a ${ruta}.</p>`;
             throw new Error(`Error HTTP: ${respuesta.status}`);
         }
-        
-        const data = await respuesta.json(); 
-        
+
+        const data = await respuesta.json();
+
         // 🔑 NOTA: Ajusta esta línea si tus productos vienen anidados, 
         // por ejemplo: const productos = data.mascotas;
-        const productos = Array.isArray(data) ? data : data.mascotas; 
+        const productos = Array.isArray(data) ? data : data.mascotas;
 
-        contenedor.innerHTML = ''; 
+        contenedor.innerHTML = '';
 
         // 4. Iterar y generar HTML por cada producto
         productos.forEach(producto => {
             // Desestructuración para acceder fácilmente a las propiedades
-            const { 
-                id, 
-                nombre_producto, 
-                marca, 
-                precio, 
-                puntuacion, 
+            const {
+                id,
+                nombre_producto,
+                marca,
+                precio,
+                puntuacion,
                 opiniones,
                 imagen_principal
             } = producto;
@@ -96,10 +84,10 @@ window.cargarYMostrarProductos = async function() {
 };
 
 // Función de ejemplo para un botón de detalle (también debe ser global)
-window.mostrarDetalle = function(id, nombre) {
+window.mostrarDetalle = function (id, nombre) {
     alert(`Has hecho clic en: ${nombre} (ID: ${id})`);
 };
 
-// **IMPORTANTE**: QUITAMOS la llamada inicial aquí (`cargarYMostrarProductos();`). 
-// Ahora, la llamada inicial será manejada por `script.js` después de cargar el NAV, 
+// **IMPORTANTE**: QUITAMOS la llamada inicial aquí (`cargarYMostrarProductos();`).
+// Ahora, la llamada inicial será manejada por `script.js` después de cargar el NAV,
 // asegurando que las funciones globales ya existan y se ejecuten en el orden correcto.

@@ -1,4 +1,4 @@
-[ 
+﻿[
   {
     "id": "CAT1",
     "marca": "Grature",
@@ -40,7 +40,7 @@
         "texto": "I've been buying it for months. The price is good and the composition is excellent. I recommend it to other owners of sterilized cats!"
       },
       {
-        "usuario": "DudosoDueño",
+        "usuario": "DudosoDueÃ±o",
         "fecha": "2025-01-25",
         "puntuacion": 3,
         "texto": "It took a while to make the switch, but after a week my cat accepts it. I haven't noticed much change in the coat yet."
@@ -56,7 +56,7 @@
     "precio": 1.34,
     "descripcion": "Reward your cat more often with these light treats and share more mischievous and tender moments with him! Felix Crispies Snacks are irresistibly airy for a unique, light and crunchy texture.",
     "formato": "product weight",
-    "descripcion_formato":"45 gr",
+    "descripcion_formato": "45 gr",
     "imagen_principal": "/assets/img/gato/CAT02_0.png",
     "imagen_miniatura": [
       "/assets/img/gato/CAT02_0.png",
@@ -91,7 +91,7 @@
         "texto": "I've been buying it for months. The price is good and the composition is excellent. I recommend it to other owners of sterilized cats!"
       },
       {
-        "usuario": "DudosoDueño",
+        "usuario": "DudosoDueÃ±o",
         "fecha": "2025-01-25",
         "puntuacion": 3,
         "texto": "It took a while to make the switch, but after a week my cat accepts it. I haven't noticed much change in the coat yet."
@@ -107,7 +107,7 @@
     "precio": 129.99,
     "descripcion": "Perfect play center for several cats, multiple floors high, with an access ramp, vertical tunnel, and soft hammocks. Several places where they can rest while watching their surroundings.",
     "formato": "Size",
-    "descripcion_formato":"50x170x50 cm",
+    "descripcion_formato": "50x170x50 cm",
     "imagen_principal": "/assets/img/gato/CAT03_0.png",
     "imagen_miniatura": [
       "/assets/img/gato/CAT03_0.png",
@@ -117,37 +117,37 @@
       "/assets/img/gato/CAT03_4.png"
     ],
     "comentarios": [
-  {
-    "usuario": "FamiliaMultigatuna",
-    "fecha": "2025-11-20",
-    "puntuacion": 5,
-    "texto": "Amazing! I have 3 large cats and it's super stable, even when they climb at full speed. The Nilo Blue color is very elegant and the base is sturdy."
-  },
-  {
-    "usuario": "ElArquitectoFelino",
-    "fecha": "2025-12-01",
-    "puntuacion": 4,
-    "texto": "The design is excellent, the access ramp is ideal for my older cat. It took me a while to assemble it alone, but the instructions were clear. The hammocks are a total hit."
-  },
-  {
-    "usuario": "RascadorPro",
-    "fecha": "2025-10-15",
-    "puntuacion": 5,
-    "texto": "The best thing I've bought in months. The height is perfect for them to monitor the house and the vertical tunnel gives them extra fun. The sisal on the posts is of good quality."
-  },
-  {
-    "usuario": "DueñoDeMaineCoon",
-    "fecha": "2025-11-28",
-    "puntuacion": 4,
-    "texto": "It is a truly large scratching post, just as described. My Maine Coon can stretch out completely on the top platform. I only give it 4 stars because the fabric of the hammocks is a bit thin."
-  },
-  {
-    "usuario": "CompradoraFeliz",
-    "fecha": "2025-12-04",
-    "puntuacion": 5,
-    "texto": "My two female cats used to fight over the old scratching post. Now each one has its place. The play center is 24/7 and for the price, it's a worthwhile investment."
-  }
-]
+      {
+        "usuario": "FamiliaMultigatuna",
+        "fecha": "2025-11-20",
+        "puntuacion": 5,
+        "texto": "Amazing! I have 3 large cats and it's super stable, even when they climb at full speed. The Nilo Blue color is very elegant and the base is sturdy."
+      },
+      {
+        "usuario": "ElArquitectoFelino",
+        "fecha": "2025-12-01",
+        "puntuacion": 4,
+        "texto": "The design is excellent, the access ramp is ideal for my older cat. It took me a while to assemble it alone, but the instructions were clear. The hammocks are a total hit."
+      },
+      {
+        "usuario": "RascadorPro",
+        "fecha": "2025-10-15",
+        "puntuacion": 5,
+        "texto": "The best thing I've bought in months. The height is perfect for them to monitor the house and the vertical tunnel gives them extra fun. The sisal on the posts is of good quality."
+      },
+      {
+        "usuario": "DueÃ±oDeMaineCoon",
+        "fecha": "2025-11-28",
+        "puntuacion": 4,
+        "texto": "It is a truly large scratching post, just as described. My Maine Coon can stretch out completely on the top platform. I only give it 4 stars because the fabric of the hammocks is a bit thin."
+      },
+      {
+        "usuario": "CompradoraFeliz",
+        "fecha": "2025-12-04",
+        "puntuacion": 5,
+        "texto": "My two female cats used to fight over the old scratching post. Now each one has its place. The play center is 24/7 and for the price, it's a worthwhile investment."
+      }
+    ]
   },
   {
     "id": "CAT4",
@@ -158,7 +158,7 @@
     "precio": 4.99,
     "descripcion": "Grooming Brush Glove for dogs and cats. The grooming glove for dogs and cats is a practical and comfortable tool designed to remove loose hair and tangles from our pets' fur during brushing.",
     "formato": "Size",
-    "descripcion_formato":"23x17 cm",
+    "descripcion_formato": "23x17 cm",
     "imagen_principal": "/assets/img/gato/CAT04_0.png",
     "imagen_miniatura": [
       "/assets/img/gato/CAT04_0.png",
@@ -167,37 +167,37 @@
       "/assets/img/gato/CAT04_3.png"
     ],
     "comentarios": [
-  {
-    "usuario": "DueñaDePeludos",
-    "fecha": "2025-03-10",
-    "puntuacion": 5,
-    "texto": "It works wonderfully with my Golden Retriever! It collects a lot of loose hair and, best of all, he loves it when I 'pet' him with the glove, he sees it as a massage."
-  },
-  {
-    "usuario": "GatoPersaMom",
-    "fecha": "2025-02-28",
-    "puntuacion": 4,
-    "texto": "Very effective for my cat's short hair. It's easy to clean and the hair comes off in one swipe. I don't give it 5 stars because I would have liked a firmer fit on the wrist."
-  },
-  {
-    "usuario": "TrainerJuan",
-    "fecha": "2025-03-05",
-    "puntuacion": 5,
-    "texto": "The glove is very comfortable to use, my hand doesn't get tired. Ideal for nervous dogs or those who hate traditional brushes, as the touch is softer and more natural."
-  },
-  {
-    "usuario": "CompradorAhorrador",
-    "fecha": "2025-02-20",
-    "puntuacion": 4,
-    "texto": "For the price, it's an excellent solution for daily maintenance. It's not as thorough as a shedding comb, but for removing surface hair and adding shine to the coat, it's perfect."
-  },
-  {
-    "usuario": "PeloPorTodaLaCasa",
-    "fecha": "2025-03-01",
-    "puntuacion": 3,
-    "texto": "It collects quite a bit of hair from my wire-haired dog, although not as much as I expected. Still, it's better than nothing and my dog finds it less invasive than the metal brush."
-  }
-]
+      {
+        "usuario": "DueÃ±aDePeludos",
+        "fecha": "2025-03-10",
+        "puntuacion": 5,
+        "texto": "It works wonderfully with my Golden Retriever! It collects a lot of loose hair and, best of all, he loves it when I 'pet' him with the glove, he sees it as a massage."
+      },
+      {
+        "usuario": "GatoPersaMom",
+        "fecha": "2025-02-28",
+        "puntuacion": 4,
+        "texto": "Very effective for my cat's short hair. It's easy to clean and the hair comes off in one swipe. I don't give it 5 stars because I would have liked a firmer fit on the wrist."
+      },
+      {
+        "usuario": "TrainerJuan",
+        "fecha": "2025-03-05",
+        "puntuacion": 5,
+        "texto": "The glove is very comfortable to use, my hand doesn't get tired. Ideal for nervous dogs or those who hate traditional brushes, as the touch is softer and more natural."
+      },
+      {
+        "usuario": "CompradorAhorrador",
+        "fecha": "2025-02-20",
+        "puntuacion": 4,
+        "texto": "For the price, it's an excellent solution for daily maintenance. It's not as thorough as a shedding comb, but for removing surface hair and adding shine to the coat, it's perfect."
+      },
+      {
+        "usuario": "PeloPorTodaLaCasa",
+        "fecha": "2025-03-01",
+        "puntuacion": 3,
+        "texto": "It collects quite a bit of hair from my wire-haired dog, although not as much as I expected. Still, it's better than nothing and my dog finds it less invasive than the metal brush."
+      }
+    ]
   },
   {
     "id": "CAT5",
@@ -208,7 +208,7 @@
     "precio": 130.67,
     "descripcion": "Specially designed with expert behavioral veterinarians, Felaqua Connect encourages your cat to drink more regularly and gives you insights into their water consumption habits, alerting you to any unnoticed changes in their behavior.",
     "formato": "capacity",
-    "descripcion_formato":"1L",
+    "descripcion_formato": "1L",
     "imagen_principal": "/assets/img/gato/CAT05_0.png",
     "imagen_miniatura": [
       "/assets/img/gato/CAT05_0.png",
@@ -216,36 +216,276 @@
       "/assets/img/gato/CAT05_2.png"
     ],
     "comentarios": [
-  {
-    "usuario": "TechieCatMom",
-    "fecha": "2025-03-15",
-    "puntuacion": 5,
-    "texto": "Huge peace of mind. The app notifies me if my cat drinks less than usual, which is crucial for detecting kidney problems early. Plus, she accepts the motorless bowl without any problems."
+      {
+        "usuario": "TechieCatMom",
+        "fecha": "2025-03-15",
+        "puntuacion": 5,
+        "texto": "Huge peace of mind. The app notifies me if my cat drinks less than usual, which is crucial for detecting kidney problems early. Plus, she accepts the motorless bowl without any problems."
+      },
+      {
+        "usuario": "VeterinarioEnCasa",
+        "fecha": "2025-02-25",
+        "puntuacion": 4,
+        "texto": "The design is very clean and easy to refill. My cat started drinking more within a few days. Integration with the Hub was simple. It's just a bit expensive, but it's worth it for the monitoring."
+      },
+      {
+        "usuario": "GatoDeshidratado",
+        "fecha": "2025-03-01",
+        "puntuacion": 5,
+        "texto": "My cat always drank very little. Since I got Felaqua, I've seen a clear increase in his consumption because the fountain is more appealing to him. The app reports are very detailed."
+      },
+      {
+        "usuario": "DueÃ±oDeVarios",
+        "fecha": "2025-02-18",
+        "puntuacion": 4,
+        "texto": "It works perfectly to know how much each of my cats drinks (thanks to the microchips). An excellent product for multi-cat households. I would like the reservoir to have a bit more capacity."
+      },
+      {
+        "usuario": "InstalaciÃ³nFÃ¡cil",
+        "fecha": "2025-01-30",
+        "puntuacion": 5,
+        "texto": "Very quick assembly and setup. It's not a fountain, but a smart bowl, which was important to me. The alerts for changes in drinking patterns are very useful. I recommend it!"
+      }
+    ]
   },
   {
-    "usuario": "VeterinarioEnCasa",
-    "fecha": "2025-02-25",
-    "puntuacion": 4,
-    "texto": "The design is very clean and easy to refill. My cat started drinking more within a few days. Integration with the Hub was simple. It's just a bit expensive, but it's worth it for the monitoring."
+    "id": "PEZ1",
+    "marca": "Tetra",
+    "puntuacion": "5",
+    "opiniones": "45 reviews",
+    "nombre_producto": "Tetra Min Flake Food for Tropical Fish",
+    "precio": 8.99,
+    "descripcion": "Complete flake food for all ornamental fish. With BioActive formula that strengthens the immune system. The flakes float on the surface before sinking slowly, satisfying the feeding habits of all types of fish.",
+    "formato": "product weight",
+    "descripcion_formato": "250 gr",
+    "imagen_principal": "/assets/img/peces/PEZ01_0.png",
+    "imagen_miniatura": [
+      "/assets/img/peces/PEZ01_0.png",
+      "/assets/img/peces/PEZ01_1.png"
+    ],
+    "comentarios": [
+      {
+        "usuario": "AcuaristaExperto",
+        "fecha": "2025-11-15",
+        "puntuacion": 5,
+        "texto": "I've been using Tetra Min for years and my fish are healthy and have vibrant colors. The flakes disperse well and don't muddy the water."
+      },
+      {
+        "usuario": "NeonesFelices",
+        "fecha": "2025-10-28",
+        "puntuacion": 5,
+        "texto": "Excellent value for money. My neons and guppies devour it. The water stays clean and the fish have lots of energy."
+      },
+      {
+        "usuario": "PrimerAcuario",
+        "fecha": "2025-11-01",
+        "puntuacion": 4,
+        "texto": "As a beginner I didn't know which food to choose. This one is perfect as it works for all my fish. Just have to be careful not to overfeed."
+      },
+      {
+        "usuario": "FanDePeces",
+        "fecha": "2025-10-20",
+        "puntuacion": 5,
+        "texto": "The container lasts quite a long time. The flakes hold their shape well and don't fall apart immediately. Highly recommended for community aquariums."
+      },
+      {
+        "usuario": "CompradorHabitual",
+        "fecha": "2025-09-15",
+        "puntuacion": 4,
+        "texto": "Good product, though I would prefer a larger container so I don't have to buy so often. The fish accept it very well."
+      }
+    ]
   },
   {
-    "usuario": "GatoDeshidratado",
-    "fecha": "2025-03-01",
-    "puntuacion": 5,
-    "texto": "My cat always drank very little. Since I got Felaqua, I've seen a clear increase in his consumption because the fountain is more appealing to him. The app reports are very detailed."
+    "id": "PEZ2",
+    "marca": "Eheim",
+    "puntuacion": "5",
+    "opiniones": "32 reviews",
+    "nombre_producto": "Eheim Professional 4+ 250 External Filter for Aquariums",
+    "precio": 189.99,
+    "descripcion": "Professional high-performance external filter with pre-filtration system. Low energy consumption motor and quiet operation. Includes professional quality filter materials. Ideal for aquariums of 150-250 liters.",
+    "formato": "capacity",
+    "descripcion_formato": "up to 250L",
+    "imagen_principal": "/assets/img/peces/PEZ02_0.png",
+    "imagen_miniatura": [
+      "/assets/img/peces/PEZ02_0.png",
+      "/assets/img/peces/PEZ02_1.png"
+    ],
+    "comentarios": [
+      {
+        "usuario": "AcuarioProfesional",
+        "fecha": "2025-11-25",
+        "puntuacion": 5,
+        "texto": "The best filter I've ever had. Quiet, efficient, and very easy to maintain. My aquarium water is crystal clear since I installed it."
+      },
+      {
+        "usuario": "InversionSegura",
+        "fecha": "2025-10-30",
+        "puntuacion": 5,
+        "texto": "Expensive but worth every euro. Eheim quality is unbeatable. The locking system is great and there are no leaks. My fish are more active."
+      },
+      {
+        "usuario": "TecnologiaAcuatica",
+        "fecha": "2025-11-10",
+        "puntuacion": 4,
+        "texto": "Excellent filtration. The motor is very quiet, barely audible. Installation was simple following the instructions. Just missing a pressure gauge."
+      },
+      {
+        "usuario": "AcuaristaVeterano",
+        "fecha": "2025-09-22",
+        "puntuacion": 5,
+        "texto": "I've had the previous version for 8 years with no problems. This new version is even better. Power consumption is very low for the power it has."
+      },
+      {
+        "usuario": "AguaCristalina",
+        "fecha": "2025-10-05",
+        "puntuacion": 5,
+        "texto": "The difference in water quality is notable. The pre-filtration system makes the filter media last longer. Highly recommended."
+      }
+    ]
   },
   {
-    "usuario": "DueñoDeVarios",
-    "fecha": "2025-02-18",
-    "puntuacion": 4,
-    "texto": "It works perfectly to know how much each of my cats drinks (thanks to the microchips). An excellent product for multi-cat households. I would like the reservoir to have a bit more capacity."
+    "id": "PEZ3",
+    "marca": "Aqua Ornaments",
+    "puntuacion": "4",
+    "opiniones": "28 reviews",
+    "nombre_producto": "Aqua Ornaments Sunken Castle with Decorative Plants for Aquarium",
+    "precio": 24.99,
+    "descripcion": "Realistic sunken castle decoration with aged finish. Includes artificial silk plants that move with the current. Provides shelter and resting areas for fish. Safe and non-toxic material for all aquariums.",
+    "formato": "Size",
+    "descripcion_formato": "25x18x15 cm",
+    "imagen_principal": "/assets/img/peces/PEZ03_0.png",
+    "imagen_miniatura": [
+      "/assets/img/peces/PEZ03_0.png",
+      "/assets/img/peces/PEZ03_1.png"
+    ],
+    "comentarios": [
+      {
+        "usuario": "AcuarioMagico",
+        "fecha": "2025-11-18",
+        "puntuacion": 5,
+        "texto": "Beautiful! Completely transforms the look of the aquarium. Small fish hide between the plants and the castle. Very detailed."
+      },
+      {
+        "usuario": "BettaLover",
+        "fecha": "2025-10-25",
+        "puntuacion": 4,
+        "texto": "My Betta loves swimming between the castle towers. The silk plants are soft and don't damage fins. The finish is realistic."
+      },
+      {
+        "usuario": "DecoradorAcuatico",
+        "fecha": "2025-11-05",
+        "puntuacion": 4,
+        "texto": "Nice decoration for the price. Integrates well with dark gravel. I had to rinse it well before putting it in because it had some dust."
+      },
+      {
+        "usuario": "FamiliaPececitos",
+        "fecha": "2025-09-30",
+        "puntuacion": 3,
+        "texto": "Looks good but I expected it to be a bit bigger. Still serves its purpose and the fish like it. The plants are good quality."
+      },
+      {
+        "usuario": "NiÃ±osContentos",
+        "fecha": "2025-10-12",
+        "puntuacion": 5,
+        "texto": "My kids are fascinated by it. Adds a touch of fantasy to the aquarium. The guppies take shelter inside when I turn off the light. Very satisfied with the purchase."
+      }
+    ]
   },
   {
-    "usuario": "InstalaciónFácil",
-    "fecha": "2025-01-30",
-    "puntuacion": 5,
-    "texto": "Very quick assembly and setup. It's not a fountain, but a smart bowl, which was important to me. The alerts for changes in drinking patterns are very useful. I recommend it!"
-  }
-]
+    "id": "PEZ4",
+    "marca": "JBL",
+    "puntuacion": "5",
+    "opiniones": "52 reviews",
+    "nombre_producto": "JBL NovoStick M Stick Food for Freshwater Fish",
+    "precio": 5.49,
+    "descripcion": "Food sticks that float for medium-sized fish. Complete formula with high-quality proteins, vitamins, and trace elements. Contains spirulina to enhance natural colors. Does not cloud the water thanks to its low solubility.",
+    "formato": "product weight",
+    "descripcion_formato": "100 gr",
+    "imagen_principal": "/assets/img/peces/PEZ04_0.png",
+    "imagen_miniatura": [
+      "/assets/img/peces/PEZ04_0.png",
+      "/assets/img/peces/PEZ04_1.png"
+    ],
+    "comentarios": [
+      {
+        "usuario": "CiclidosFelices",
+        "fecha": "2025-11-20",
+        "puntuacion": 5,
+        "texto": "Perfect for my cichlids. The sticks float long enough for everyone to eat. My fish's colors are brighter since I use this food."
+      },
+      {
+        "usuario": "AguaLimpia",
+        "fecha": "2025-10-15",
+        "puntuacion": 5,
+        "texto": "Doesn't dirt the water like other brands. The sticks keep their shape and don't fall apart. Excellent digestibility, less waste in the filter."
+      },
+      {
+        "usuario": "GoldfishGrandes",
+        "fecha": "2025-11-08",
+        "puntuacion": 4,
+        "texto": "My goldfish eat them with enthusiasm. The size of the sticks is ideal for medium fish. Good value for money."
+      },
+      {
+        "usuario": "VariedadNecesaria",
+        "fecha": "2025-09-28",
+        "puntuacion": 5,
+        "texto": "I alternate between flakes and these sticks to give variety to the diet. The fish are very healthy and active. The canister lasts quite a while."
+      },
+      {
+        "usuario": "NuevoEnJBL",
+        "fecha": "2025-10-03",
+        "puntuacion": 5,
+        "texto": "First time trying JBL and I'm impressed. You can tell the quality. The fish look better and the water stays clearer."
+      }
+    ]
+  },
+  {
+    "id": "PEZ5",
+    "marca": "Sera",
+    "puntuacion": "5",
+    "opiniones": "38 reviews",
+    "nombre_producto": "Sera Aquatan Water Conditioner for Aquariums",
+    "precio": 12.99,
+    "descripcion": "Water conditioner that immediately removes chlorine, chloramines, and heavy metals from tap water. Protects fish mucous membranes with natural colloids. Adds vitamin B to reduce stress. Ideal for water changes and new aquariums.",
+    "formato": "capacity",
+    "descripcion_formato": "500 ml",
+    "imagen_principal": "/assets/img/peces/PEZ05_0.png",
+    "imagen_miniatura": [
+      "/assets/img/peces/PEZ05_0.png",
+      "/assets/img/peces/PEZ05_1.png"
+    ],
+    "comentarios": [
+      {
+        "usuario": "AguaSegura",
+        "fecha": "2025-11-22",
+        "puntuacion": 5,
+        "texto": "Essential for every water change. Since I've been using it I haven't lost any fish due to stress. The bottle goes a long way, lasts several months."
+      },
+      {
+        "usuario": "PecesDelicados",
+        "fecha": "2025-10-18",
+        "puntuacion": 5,
+        "texto": "I have discus fish that are very sensitive. This product makes tap water safe instantly. The colloids protect mucous membranes very well."
+      },
+      {
+        "usuario": "CambiosSinMiedo",
+        "fecha": "2025-11-12",
+        "puntuacion": 5,
+        "texto": "Before I was afraid to do large water changes. With Aquatan I can change up to 50% without the fish getting stressed. Works immediately."
+      },
+      {
+        "usuario": "MarcaSera",
+        "fecha": "2025-09-25",
+        "puntuacion": 4,
+        "texto": "Trusted product from the Sera brand. It's a bit expensive compared to other conditioners, but the quality justifies the price."
+      },
+      {
+        "usuario": "NuevoAcuarista",
+        "fecha": "2025-10-08",
+        "puntuacion": 5,
+        "texto": "As a beginner it gives me peace of mind knowing I can prepare the water correctly. Instructions are clear and the dosing cup very convenient."
+      }
+    ]
   }
 ]

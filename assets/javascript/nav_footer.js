@@ -8,20 +8,20 @@
  * * Requiere que detalle.js defina: window.idiomaActual, window.rutaJson, window.cargarYMostrarProductos.
  */
 function cambiarIdioma(nuevoIdioma) {
-    if (!window.idiomaActual || window.idiomaActual === nuevoIdioma) return; 
-    
+    if (!window.idiomaActual || window.idiomaActual === nuevoIdioma) return;
+
     // 1. Actualiza la variable global en detalle.js
     window.idiomaActual = nuevoIdioma;
     console.log(`Cambiando idioma a: ${nuevoIdioma}`);
-    
+
     // 2. Cargar las traducciones de la interfaz (nav, footer, textos fijos)
-    if (typeof window.rutaJson === 'function') {
-        loadTranslations(window.rutaJson()); 
+    if (typeof window.rutaInterfaceJson === 'function') {
+        loadTranslations(window.rutaInterfaceJson());
     }
-    
+
     // 3. RECARGAR LOS PRODUCTOS (Llamamos a la función de detalle.js)
     if (typeof window.cargarYMostrarProductos === 'function') {
-        window.cargarYMostrarProductos(); 
+        window.cargarYMostrarProductos();
     }
 }
 
@@ -49,7 +49,7 @@ function applyTranslations(translations) {
     document.querySelectorAll('[data-key]').forEach(element => {
         const key = element.getAttribute('data-key');
         if (translations[key]) {
-            element.textContent = translations[key];
+            element.innerHTML = translations[key];
         }
     });
 
@@ -86,16 +86,16 @@ function loadHTML(containerId, filePath) {
         .then(data => {
             const container = document.getElementById(containerId);
             if (container) {
-                 container.innerHTML = data;
+                container.innerHTML = data;
             }
-           
+
             // Si cargamos la navegación, inicializamos listeners y la traducción inicial
             if (containerId === "nav-container") {
                 initLoginListeners();
-                
+
                 // 💡 TRADUCCIÓN INICIAL: Aplicar el idioma por defecto y cargar productos al final de la carga del NAV
-                if (window.idiomaActual && window.rutaJson && window.cargarYMostrarProductos) {
-                    loadTranslations(window.rutaJson()); // Traduce la interfaz
+                if (window.idiomaActual && window.rutaInterfaceJson && window.cargarYMostrarProductos) {
+                    loadTranslations(window.rutaInterfaceJson()); // Traduce la interfaz
                     window.cargarYMostrarProductos(); // Carga los productos
                 }
             }
@@ -130,9 +130,9 @@ async function showLogin() {
         if (window.Iconify?.scan) Iconify.scan();
 
         initLoginComponent();
-        
+
         const wrapper = popup.querySelector(".wrapper");
-        
+
         popup.classList.add("popup-activo");
         wrapper?.classList.add("active-popup");
 
@@ -184,7 +184,7 @@ document.addEventListener("click", (e) => {
     if (btnLogin) {
         e.preventDefault();
         showLogin();
-        return; 
+        return;
     }
     // ----------------------------------------------------
 
@@ -203,11 +203,11 @@ document.addEventListener("click", (e) => {
         // Se ha hecho clic en una opción de idioma
         e.preventDefault();
         const lang = langOption.getAttribute('lang');
-        
+
         if (lang) {
             cambiarIdioma(lang); // 🔑 LLAMADA CLAVE para recargar todo
         }
-        
+
         // Ocultar el menú
         langMenu?.classList.remove("visible");
 
