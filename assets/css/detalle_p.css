@@ -1,0 +1,169 @@
+/* -------------------- */
+/* 1. RESET Y VARIABLES */
+/* -------------------- */
+
+:root {
+    --color-titulo-marca: #9B612E; 
+    --color-principal: #333;
+    --color-fondo-caja: #f5efe8; 
+    --color-btn-primario: #e38d4a; 
+    --color-btn-secundario: #8B572A; 
+    --color-fondo: #ffffff;
+    --font-titulo: 'Poppins', sans-serif;
+    --font-nombre: 'Poppins', sans-serif;
+    --font-texto: 'Poppins', sans-serif;
+    /* Base: 1rem = 16px */
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* ------------------------------------- */
+/* 2. ESTILOS BASE Y CONTENEDOR (GLOBAL) */
+/* ------------------------------------- */
+
+body { 
+    font-family: var(--font-texto); 
+    margin: 0; /* Corrección: Eliminado margen para que el Navbar ocupe todo el ancho */
+    background-color: #f4f4f4; 
+}
+
+#productos-contenedor { 
+    display: grid; 
+    /* minmax(200px -> 12.5rem, 1fr) */
+    grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); /* Pequeño ajuste para mejor visualización */
+    gap: 1.5rem; /* Aumentado el espacio entre tarjetas */
+    justify-content: center;
+    padding: 2rem; /* Añadido padding para reemplazar el margen del body */
+    max-width: 1200px; /* Limitar ancho máximo para pantallas muy grandes */
+    margin: 0 auto; /* Centrar el contenedor */
+}
+
+/* -------------------------------------- */
+/* 3. ESTILOS DE LA TARJETA (NUEVO FORMATO COMPACTO) */
+/* -------------------------------------- */
+
+.tarjeta-producto {
+    background: var(--color-fondo);
+    border: 1px solid #ccc;
+    /* 8px -> 0.5rem */
+    border-radius: 0.5rem; 
+    /* 10px -> 0.625rem */
+    padding: 0.625rem; 
+    /* 2px, 5px -> rem */
+    box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1); 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* 350px -> 21.875rem */
+    min-height: 21.875rem; 
+    text-align: center;
+}
+
+/* Imagen más pequeña */
+/* Clase utilizada en el JS: .producto-imagen */
+.producto-imagen { 
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    /* 5px -> 0.3125rem */
+    margin-bottom: 0.3125rem; 
+    /* 5px -> 0.3125rem */
+    border-radius: 0.3125rem; 
+    /* 120px -> 7.5rem */
+    max-height: 7.5rem; 
+}
+
+/* Título más compacto y pequeño (Clase utilizada en el JS) */
+.producto-nombre-compacto { 
+    font-family: var(--font-nombre);
+    color: var(--color-titulo-marca); 
+    font-size: 0.9em; 
+    /* 5px -> 0.3125rem */
+    margin: 0.3125rem 0; 
+    height: 3em; 
+    overflow: hidden;
+}
+
+/* Detalle (Precio, Marca, Puntuación) en una sola línea (Clase utilizada en el JS) */
+.producto-detalle-compacto { 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8em;
+    /* 8px -> 0.5rem */
+    margin: 0.5rem 0; 
+    /* 5px -> 0.3125rem */
+    padding: 0 0.3125rem; 
+    border-top: none; /* Se quita la línea divisoria del detalle original */
+}
+
+.precio { 
+    font-weight: bold; 
+    color: var(--color-btn-secundario); 
+    font-size: 1.1em; 
+}
+
+.puntuacion-compacta { 
+    font-size: 1em; 
+    color: var(--color-principal);
+}
+
+.producto-marca-compacta {
+    color: #888;
+    font-size: 1em;
+}
+
+/* Estilos para el botón (Clase utilizada en el JS) */
+button, .btn-compacto { 
+    width: 100%;
+    /* 8px, 5px -> rem */
+    padding: 0.5rem 0.3125rem; 
+    font-size: 0.9em; 
+    /* 10px -> 0.625rem */
+    margin-top: 0.625rem; 
+    background-color: var(--color-btn-primario); 
+    color: white; 
+    border: none; 
+    /* 4px -> 0.25rem */
+    border-radius: 0.25rem; 
+    cursor: pointer; 
+    transition: background-color 0.3s;
+}
+
+button:hover, .btn-compacto:hover {
+    background-color: #d8803d;
+}
+
+/* -------------------------------------- */
+/* 4. CLASES OBSOLETAS (DEL CÓDIGO VIEJO) */
+/* -------------------------------------- */
+
+/* Estas clases están aquí para anular cualquier estilo original 
+   si accidentalmente se dejan en el HTML o se heredan incorrectamente. */
+
+.producto-nombre { 
+    /* Anulamos estilos viejos para no interferir con .producto-nombre-compacto */
+    display: none; 
+}
+
+.producto-marca { 
+    display: none;
+}
+
+.producto-detalle { 
+    display: none;
+}
+
+.producto-descripcion { 
+    /* Esta clase ya no se usa, pero la ocultamos si aparece */
+    display: none; 
+}
+
+.puntuacion { 
+    /* Anulamos la clase vieja si no se usa la nueva */
+    display: none;
+}
