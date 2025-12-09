@@ -14,27 +14,28 @@ body {
 }
 
 .wrapper {
-    position: relative;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
     width: 400px;
     height: 440px;
-    background: transparent;
-    border: 2px solid rgba(255, 255, 255, .5);
+    background: rgba(250, 223, 203, 0.99);
+    border: 2px solid rgba(255, 255, 255, 0.904);
     border-radius: 20px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(5px);
     box-shadow: 0 0 30px rgba(0, 0, 0, .5);
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 200px auto 250px auto;
     z-index: 50;
     transition: transform .5s ease, height .2s ease;
     overflow: hidden;
-    transform: scale(0);
     pointer-events: none;
 }
 
 .wrapper.active-popup {
-    transform: scale(1);
+    transform: translate(-50%, -50%) scale(1);
     pointer-events: auto;
 }
 
