@@ -538,6 +538,40 @@
     ]
 
  },
+ {
+    "id": "ROE2",
+    "categoria": "Rodents",
+    "marca": "TIAKI",
+    "puntuacion": "4",
+    "opiniones": "2",
+    "nombre_producto": "TIAKI Tug & Find intelligence toy for rodents",
+    "precio": 38.49,
+    "descripcion": "Wooden puzzle for small animals and birds, develops intelligence, easy to fill with treats or feed, can prevent destructive behaviors, made of natural pine wood.",
+    "formato": "size",
+    "descripcion_formato":"20 x 5.5 x 7 cm (L x W x H)",
+    "imagen_principal": "/assets/img/roedores/juguete.png",
+    "imagen_miniatura": [
+      "/assets/img/roedores/juguete.png",
+      "/assets/img/roedores/juguete1.png",
+      "/assets/img/roedores/juguete2.png",
+      "/assets/img/roedores/juguete3.png"
+    ],
+     "comentarios": [
+      {
+        "usuario": "Rocío",
+        "fecha": "2025-04-04",
+        "puntuacion": 5,
+        "texto": "My hamster likes it a lot, he spends hours playing with it. I totally recommend it."
+      },
+      {
+        "usuario": "Jesús",
+        "fecha": "2023-07-08",
+        "puntuacion": 5,
+        "texto": "It is a very entertaining toy for my hamster. He loves searching for the treats I put inside."
+      }
+     
+    ]
+  },
     {
     "id": "ROE3",
     "categoria": "Rodents",

@@ -506,7 +506,7 @@
     "categoria": "Roedores",
     "marca": "JR Schmaus",
     "puntuacion": "4",
-    "opiniones": "5 opiniones",
+    "opiniones": "5",
     "nombre_producto": "JR Schmaus comida para cobayas",
     "precio": 8.99,
     "descripcion": "Alimento completo sin cereales para cobayas, contenido alto en fibra bruta, con hierbas y verduras como fuentes de vitaminas y minerales, sin colorantes ni conservantes artificiales",
@@ -549,12 +549,46 @@
     ]
 
  },
+ {
+    "id": "ROE2",
+    "categoria": "Roedores",
+    "marca": "TIAKI",
+    "puntuacion": "4",
+    "opiniones": "2",
+    "nombre_producto": "TIAKI Tug & Find juguete de inteligencia para roedores",
+    "precio": 38.49,
+    "descripcion": "Puzzle de madera para animales pequeños y pájaros, desarrolla la inteligencia, fácil de rellenar con golosinas o pienso, puede prevenir comportamientos destructivos, de madera de pino natural.",
+    "formato": "tamaño",
+    "descripcion_formato":"20 x 5,5 x 7 cm (L x An x Al)",
+    "imagen_principal": "/assets/img/roedores/juguete.png",
+    "imagen_miniatura": [
+      "/assets/img/roedores/juguete.png",
+      "/assets/img/roedores/juguete1.png",
+      "/assets/img/roedores/juguete2.png",
+      "/assets/img/roedores/juguete3.png"
+    ],
+     "comentarios": [
+      {
+        "usuario": "Rocío",
+        "fecha": "2025-04-04",
+        "puntuacion": 5,
+        "texto": "A mi hamster le gusta mucho, se pasa horas jugando con él. Lo recomiendo totalmente."
+      },
+      {
+        "usuario": "Jesús",
+        "fecha": "2023-07-08",
+        "puntuacion": 5,
+        "texto": "Es un juguete muy entretenido para mi hámster. Le encanta buscar las golosinas que le pongo dentro."
+      }
+     
+    ]
+  },
     {
     "id": "ROE3",
     "categoria": "Roedores",
     "marca": "TIAKI",
     "puntuacion": "4",
-    "opiniones": "1 opinión",
+    "opiniones": "1",
     "nombre_producto": "Villa TIAKI Jaula para animales pequeños",
     "precio": 146.99,
     "descripcion": "Jaula para animales pequeños, con 2 pisos y escaleras, incl. equipo básico como comedero y bebedero, base extraíble, ampliable con kit independiente, ruedas 360°, distancia entre rejillas: 23 mm",
@@ -582,13 +616,13 @@
     "categoria": "Roedores",
     "marca": "LUXE",
     "puntuacion": "1",
-    "opiniones": "3 opiniones",
+    "opiniones": "3",
     "nombre_producto": "Bebedero Classic de Luxe",
     "precio": 7.49,
     "descripcion": "Práctico bebedero para fijar en la jaula de conejos o pequeños roedores. Botella transparente de plástico con una boquilla reforzada de metal antioxidante y sistema antigoteo. Abrazadera incluida.",
     "formato": "Capacidad líquida",
     "descripcion_formato":"600 ml",
-    "imagen_principal": "/assets/img/roedores/bebedero.jpg",
+    "imagen_principal": "/assets/img/roedores/bebedero.png",
     "imagen_miniatura": [
     "/assets/img/roedores/bebedero.png"
     ],
@@ -618,24 +652,24 @@
     "categoria": "Roedores",
     "marca": "New Flag",
     "puntuacion": "3",
-    "opiniones": "1 opiniones",
+    "opiniones": "1",
     "nombre_producto": "Pet Teezer De-shedding cepillo para mascotas",
     "precio": 13.99,
     "descripcion": "Cepillo para perros, gatos y animales pequeños, ideal para retirar los pelos sueltos y para usar en zonas sensibles, con púas blandas para un cuidado delicado, indicado para pelo seco o mojado.",
     "formato": "Tamaño",
     "descripcion_formato":"aprox. 12,5 x 5,5 x 5,5 cm (L x An x Al)",
-    "imagen_principal": "/assets/img/roedores/cepillo.jpg",
+    "imagen_principal": "/assets/img/roedores/cepillo.png",
     "imagen_miniatura": [
     "/assets/img/roedores/cepillo.png",
-     "/assets/img/roedores/cepillo1.png",
-      "/assets/img/roedores/cepillo2.png"
+    "/assets/img/roedores/cepillo1.png",
+    "/assets/img/roedores/cepillo2.png"
     ],
      "comentarios": [
       {
         "usuario": "M. Elena",
         "fecha": "2023-07-23",
         "puntuacion": 4,
-        "texto": "Mi gata de pelo largo está encantada con este peine! Le quita los pelos finos interiores, la peino cada día y eso evita que se formen nudos en su pelaje. Le gusta que lo pase suavecito para no tirarle del pelo. Recomendado! "
+        "texto": "Mi capibara de pelo largo está encantada con este peine! Le quita los pelos finos interiores, la peino cada día y eso evita que se formen nudos en su pelaje. Le gusta que lo pase suavecito para no tirarle del pelo. Recomendado! "
       }
       
     ]
