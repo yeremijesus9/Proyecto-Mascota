@@ -488,4 +488,178 @@
       }
     ]
   }
+ 
+,
+{ 
+    "id": "ROE1",
+    "categoria": "Rodents",
+    "marca": "JR Schmaus",
+    "puntuacion": "4",
+    "opiniones": "5 opinions",
+    "nombre_producto": "JR Schmaus food for guinea pigs",
+    "precio": 8.99,
+    "descripcion": "Complete grain-free food for guinea pigs, high crude fiber content, with herbs and vegetables as sources of vitamins and minerals, without artificial colorings or preservatives",
+    "descripcion_formato": "2.5 kg",
+    "imagen_principal": "/assets/img/roedores/jr_schmaus.png",
+    "imagen_miniatura": [
+      "/assets/img/roedores/jr_schmaus.png",
+      "/assets/img/roedores/JR_schmaus_1.png"
+    ],
+    "commentarios": [
+        {"usuario": "Juan12",
+        "fecha": "2025-04-10",
+        "puntuacion": 2,
+        "texto": "My guinea pig doesn't quite like it, it eats one part but not even trying the green cylinders. Furthermore, it contains corn which I understand is not good for guinea pigs."
+        },
+        {
+        "usuario": "Paula",
+        "fecha": "2024-01-13",
+        "puntuacion": 4,
+        "texto": "As soon as it arrived I gave it a little at night and the truth is that it loved it, it didn't think twice about eating it, the truth is that I will buy it again."
+      },
+      {
+        "usuario": "Ainhoa",
+        "fecha": "2024-01-13",
+        "puntuacion": 4,
+        "texto": "I gave it to my guinea pig and she liked it a lot!!! she eats it all!! I give it along with the cuni complete feed and hay, oats.. and others.. so that it varies!! I would buy it again!"
+      },
+       {
+        "usuario": "Maite",
+        "fecha": "2024-06-09",
+        "puntuacion": 3,
+        "texto": "A few days ago I ordered this food for my guinea pig PIG and the truth is that she loves it, she goes crazy standing up in the cage every time I pass by her side so I can give her more and more..."
+      },
+       {
+        "usuario": "Rosa",
+        "fecha": "2024-06-13",
+        "puntuacion": 4,
+        "texto": "It is a very complete food, it smells very good, and complemented with fresh vegetables it is perfect"
+      }
+    ]
+
+ },
+ {
+    "id": "ROE2",
+    "categoria": "Rodents",
+    "marca": "TIAKI",
+    "puntuacion": "4",
+    "opiniones": "2",
+    "nombre_producto": "TIAKI Tug & Find intelligence toy for rodents",
+    "precio": 38.49,
+    "descripcion": "Wooden puzzle for small animals and birds, develops intelligence, easy to fill with treats or feed, can prevent destructive behaviors, made of natural pine wood.",
+    "formato": "size",
+    "descripcion_formato":"20 x 5.5 x 7 cm (L x W x H)",
+    "imagen_principal": "/assets/img/roedores/juguete.png",
+    "imagen_miniatura": [
+      "/assets/img/roedores/juguete.png",
+      "/assets/img/roedores/juguete1.png",
+      "/assets/img/roedores/juguete2.png"
+    ],
+     "comentarios": [
+      {
+        "usuario": "Rocío",
+        "fecha": "2025-04-04",
+        "puntuacion": 5,
+        "texto": "My hamster likes it a lot, he spends hours playing with it. I totally recommend it."
+      },
+      {
+        "usuario": "Jesús",
+        "fecha": "2023-07-08",
+        "puntuacion": 5,
+        "texto": "It is a very entertaining toy for my hamster. He loves searching for the treats I put inside."
+      }
+     
+    ]
+  },
+    {
+    "id": "ROE3",
+    "categoria": "Rodents",
+    "marca": "TIAKI",
+    "rpuntuacion": "4",
+    "opiniones": "1 opinion",
+    "nombre_producto": "TIAKI Villa Cage for small animals",
+    "precio": 146.99,
+    "descripcion": "Cage for small animals, with 2 floors and stairs, incl. basic equipment such as feeder and drinker, removable base, expandable with independent kit, 360° wheels, grid distance: 23 mm",
+    "formato": "size",
+    "descripcion_formato": "main cage + complement (79 x 52 x 142 cm, L x W x H)",
+    "imagen_principal": "/assets/img/roedores/jaula.png",
+    "imagen_miniatura": [
+      "/assets/img/roedores/jaula.png",
+      "/assets/img/roedores/jaula1.png",
+      "/assets/img/roedores/jaula2.png",
+      "/assets/img/roedores/jaula3.png"
+    ],
+     "comentarios": [
+      {
+        "usuario": "María Jesús",
+        "fecha": "2025-03-04",
+        "puntuacion": 5,
+        "texto": "It is easy to assemble and solid. Only the bottom grating is not suitable for chinchillas and needs to be modified so that it fits well. Useful in case you need to separate the cage in two at some point."
+      }
+
+    ]
+  },
+   {
+    "id": "ROE4",
+    "categoria": "Rodents",
+    "marca": "LUXE",
+    "puntuacion": "1",
+    "opiniones": "3 opinions",
+    "nombre_prodcuto": "Classic de Luxe Drinker",
+    "precio": 7.49,
+    "descripcion": "Practical drinker to attach to the cage of rabbits or small rodents. Transparent plastic bottle with a reinforced anti-rust metal nozzle and anti-drip system. Clamp included.",
+    "formato": "Liquid capacity",
+    "descripcion_formato": "600 ml",
+    "imagen_principal": "/assets/img/roedores/bebedero.jpg",
+    "imagen_miniatura": [
+    "/assets/img/roedores/bebedero.png"
+    ],
+     "comentarios": [
+      {
+        "usuario": "Debora",
+        "fecha": "2023-07-21",
+        "puntuacion": 1,
+        "texto": "It drips as soon as you put it on."
+      },
+      {
+        "usuario": "Vero",
+        "fecha": "2024-12-19",
+        "puntuacion": 2,
+        "texto": "It is not the best drinker, as it drips, gets a little stuck, mold is created inside, and it is difficult to attach. But otherwise, and considering the price, it is fine."
+      },
+      {
+        "usuario": "Laura",
+        "fecha": "2023-05-19",
+        "puntuacion": 1,
+        "texto": "The drinker drips and does not come with anything to hook it to the cage."
+      }
+    ]
+  },
+  {
+    "id": "ROE5",
+    "categoria": "Rodents",
+    "marca": "New Flag",
+    "puntuacion": "3",
+    "opiniones": "1 opinions",
+    "nombre_producto": "Pet Teezer De-shedding brush for pets",
+    "precio": 13.99,
+    "descripcion": "Brush for dogs, cats and small animals, ideal for removing loose hair and for use on sensitive areas, with soft bristles for gentle care, suitable for dry or wet hair.",
+    "formato": "Size",
+    "descripcion_formato": "approx. 12.5 x 5.5 x 5.5 cm (L x W x H)",
+    "imagen_principal": "/assets/img/roedores/cepillo.jpg",
+    "imagen_miniatura": [
+    "/assets/img/roedores/cepillo.png",
+     "/assets/img/roedores/cepillo1.png",
+      "/assets/img/roedores/cepillo2.png"
+    ],
+     "comentarios": [
+      {
+        "usuario": "M. Elena",
+        "fecha": "2023--07-23",
+        "puntuacion": 4,
+        "texto": "My long-haired cat is delighted with this comb! It removes the fine inner hairs, I brush her every day and that prevents tangles from forming in her coat. She likes me to pass it softly so as not to pull her hair. Recommended!"
+      }
+
+    ]
+  }
 ]
