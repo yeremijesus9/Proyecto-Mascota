@@ -182,3 +182,54 @@ body {
         transform: translateX(-83.3333%);
     }
 }
+
+.sec-productos {
+    position: relative;
+    background: #ffffff;
+    padding: 30px;
+    min-height: 20vh;
+    z-index: 20;
+}
+
+.sec-productos h2 {
+    font-size: 3.5em;
+    color: #D37C39;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Estilos para ambos contenedores de productos destacados */
+.sec-productos #destacados-1,
+.sec-productos #destacados-2 {
+    display: flex;
+    flex-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Responsive: 3 columnas en tablets */
+@media (max-width: 1024px) {
+    .sec-productos #destacados-1,
+    .sec-productos #destacados-2 {
+        flex-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Responsive: 2 columnas en móviles grandes */
+@media (max-width: 768px) {
+    .sec-productos #destacados-1,
+    .sec-productos #destacados-2 {
+        flex-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+}
+
+/* Responsive: 1 columna en móviles pequeños */
+@media (max-width: 480px) {
+    .sec-productos #destacados-1,
+    .sec-productos #destacados-2 {
+        flex-template-columns: 1fr;
+    }
+}
