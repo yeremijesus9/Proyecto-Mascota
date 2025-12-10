@@ -1,6 +1,7 @@
 [
   {
     "id": "CAT1",
+    "categoria": "gato",
     "marca": "Grature",
     "puntuacion": "4",
     "opiniones": "20 opiniones",
@@ -49,6 +50,7 @@
   },
   {
     "id": "CAT2",
+    "categoria": "gato",
     "marca": "Purina Felix",
     "puntuacion": "5",
     "opiniones": "16 opiniones",
@@ -100,6 +102,7 @@
   },
   {
     "id": "CAT3",
+    "categoria": "gato",
     "marca": "Gloria Pets",
     "puntuacion": "5",
     "opiniones": "60 opiniones",
@@ -151,6 +154,7 @@
   },
   {
     "id": "CAT4",
+    "categoria": "gato",
     "marca": "SUMSU",
     "puntuacion": "4",
     "opiniones": "10 opiniones",
@@ -201,6 +205,7 @@
   },
   {
     "id": "CAT5",
+    "categoria": "gato",
     "marca": "Sure Petcare",
     "puntuacion": "5",
     "opiniones": "20 opiniones",
@@ -250,6 +255,7 @@
   },
   {
     "id": "PEZ1",
+    "categoria": "pez",
     "marca": "Tetra",
     "puntuacion": "5",
     "opiniones": "45 opiniones",
@@ -298,6 +304,7 @@
   },
   {
     "id": "PEZ2",
+    "categoria": "pez",
     "marca": "Eheim",
     "puntuacion": "5",
     "opiniones": "32 opiniones",
@@ -346,6 +353,7 @@
   },
   {
     "id": "PEZ3",
+    "categoria": "pez",
     "marca": "Aqua Ornaments",
     "puntuacion": "4",
     "opiniones": "28 opiniones",
@@ -394,6 +402,7 @@
   },
   {
     "id": "PEZ4",
+    "categoria": "pez",
     "marca": "JBL",
     "puntuacion": "5",
     "opiniones": "52 opiniones",
@@ -442,6 +451,7 @@
   },
   {
     "id": "PEZ5",
+    "categoria": "pez",
     "marca": "Sera",
     "puntuacion": "5",
     "opiniones": "38 opiniones",

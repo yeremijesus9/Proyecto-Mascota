@@ -1,47 +1,43 @@
+const mascota = '/assets/JSON/es_mascota.json';
+
+// ====================================================================
+// FUNCIÓN AUXILIAR PARA CREAR ESTRELLAS
+// ====================================================================
+function crearEstrellas(puntuacion) {
+    const p = Number(puntuacion) || 0;
+    let s = '';
+    for (let i = 1; i <= 5; i++) {
+        s += i <= p ? '★' : '☆';
+    }
+    return `<span class="stars">${s}</span>`;
+}
+
 // ====================================================================
 // FUNCIÓN PRINCIPAL DE CARGA Y RENDERIZADO DE PRODUCTOS
 // ====================================================================
-
-// CONFIGURACIÓN DE IDIOMA MOVIDA A assets/javascript/idioma.js
-
-
-// ====================================================================
-// FUNCIÓN PRINCIPAL DE CARGA Y RENDERIZADO DE PRODUCTOS
-// ====================================================================
-
-/**
- * Función asíncrona que carga el JSON de productos según el idioma actual
- * y renderiza las tarjetas de producto en el contenedor.
- */
-window.cargarYMostrarProductos = async function () {
-    // Asegúrate de que este ID exista en tu HTML principal
+async function cargarYMostrarProductos() {
     const contenedor = document.getElementById('productos-contenedor');
 
     if (!contenedor) {
-        console.warn("Contenedor 'productos-contenedor' no encontrado. Asegúrate de que el ID es correcto.");
+        console.warn("Contenedor 'productos-contenedor' no encontrado.");
         return;
     }
 
     try {
-        const ruta = window.rutaJson();
-        const respuesta = await fetch(ruta);
+        const respuesta = await fetch(mascota);
 
         if (!respuesta.ok) {
-            contenedor.innerHTML = `<p style="color: red;">¡Error! No se pudo acceder a ${ruta}.</p>`;
+            contenedor.innerHTML = '<p style="color: red;">¡Error! No se pudo acceder a mascota.json.</p>';
             throw new Error(`Error HTTP: ${respuesta.status}`);
         }
 
-        const data = await respuesta.json();
-
-        // 🔑 NOTA: Ajusta esta línea si tus productos vienen anidados, 
-        // por ejemplo: const productos = data.mascotas;
-        const productos = Array.isArray(data) ? data : data.mascotas;
+        const productos = await respuesta.json();
 
         contenedor.innerHTML = '';
 
-        // 4. Iterar y generar HTML por cada producto
+        // Generar tarjetas de productos
         productos.forEach(producto => {
-            // Desestructuración para acceder fácilmente a las propiedades
+
             const {
                 id,
                 nombre_producto,
@@ -55,39 +51,38 @@ window.cargarYMostrarProductos = async function () {
             const tarjetaProducto = document.createElement('div');
             tarjetaProducto.className = 'tarjeta-producto';
 
-            // Generar el HTML de la tarjeta
-            // USAMOS data-key en los textos fijos para que script.js los traduzca.
             tarjetaProducto.innerHTML = `
                 <img src="${imagen_principal}" alt="Imagen de ${nombre_producto}" class="producto-imagen">
+
+                <h3 class="producto-nombre">${nombre_producto}</h3>
+
+                <p class="producto-marca">Marca: <strong>${marca}</strong></p>
                 
-                <h3 class="producto-nombre-compacto">${nombre_producto}</h3>
-                <p class="producto-marca-compacta"><span data-key="card_marca">Marca:</span> <strong>${marca}</strong></p> 
-                
-                <div class="producto-detalle-compacto">
+                <div class="producto-detalle">
+                    <div class="puntuacion">
+                        ${crearEstrellas(puntuacion)}
+                        <span class="opiniones">(${opiniones})</span>
+                    </div>
                     <span class="precio">${precio.toFixed(2)} €</span>
-                    <span class="puntuacion-compacta">⭐ ${puntuacion} (<span data-key="card_opiniones">${opiniones}</span>)</span>
                 </div>
                 
-                <button onclick="mostrarDetalle('${id}', '${nombre_producto}')" data-key="card_btn_detalle">Ver Detalles</button>
+                <button onclick="mostrarDetalle('${id}')">Ver Detalles</button>
             `;
 
             contenedor.appendChild(tarjetaProducto);
         });
 
     } catch (error) {
-        console.error("No se pudo cargar o procesar el JSON de productos:", error);
-        // Si hay un error, puedes mostrar un mensaje genérico al usuario si el contenedor no está vacío
-        if (contenedor.innerHTML === '') {
-            contenedor.innerHTML = `<p style="color: red;" data-key="load_error">Error al cargar los productos. Inténtalo de nuevo más tarde.</p>`;
-        }
+        console.error("No se pudo cargar o procesar el JSON:", error);
     }
-};
+}
 
-// Función de ejemplo para un botón de detalle (también debe ser global)
-window.mostrarDetalle = function (id, nombre) {
-    alert(`Has hecho clic en: ${nombre} (ID: ${id})`);
-};
+// ====================================================================
+// FUNCIÓN DE REDIRECCIÓN AL DETALLE DEL PRODUCTO
+// ====================================================================
+function mostrarDetalle(id) {
+    window.location.href = `detalle_producto.html?id=${id}`;
+}
 
-// **IMPORTANTE**: QUITAMOS la llamada inicial aquí (`cargarYMostrarProductos();`).
-// Ahora, la llamada inicial será manejada por `script.js` después de cargar el NAV,
-// asegurando que las funciones globales ya existan y se ejecuten en el orden correcto.
+// Ejecutar al cargar
+cargarYMostrarProductos();

@@ -1,11 +1,10 @@
 // ====================================================================
-// LÓGICA DE TRADUCCIÓN (Añadida)
+// LÓGICA DE TRADUCCIÓN
 // ====================================================================
 
 /**
  * Función principal para cambiar el idioma y recargar todos los contenidos dinámicos.
  * @param {string} nuevoIdioma - El código del nuevo idioma ('es', 'en').
- * * Requiere que detalle.js defina: window.idiomaActual, window.rutaJson, window.cargarYMostrarProductos.
  */
 function cambiarIdioma(nuevoIdioma) {
     if (!window.idiomaActual || window.idiomaActual === nuevoIdioma) return;
@@ -64,7 +63,7 @@ function applyTranslations(translations) {
 }
 
 // ====================================================================
-// LÓGICA DE CARGA DE HTML (nav_footer.js) - MODIFICADA
+// LÓGICA DE CARGA DE HTML (nav_footer.js)
 // ====================================================================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -104,7 +103,7 @@ function loadHTML(containerId, filePath) {
 }
 
 // ====================================================================
-// LÓGICA DEL POPUP DE LOGIN (login.js) - SIN CAMBIOS
+// LÓGICA DEL POPUP DE LOGIN
 // ====================================================================
 async function showLogin() {
     let popup = document.getElementById("dynamicLoginPopup");
@@ -174,7 +173,7 @@ function initLoginListeners() {
 
 
 // ====================================================================
-// LÓGICA DEL DROPDOWN DE IDIOMAS (MODIFICADA) y LOGIN DELEGADO
+// LÓGICA DEL DROPDOWN DE IDIOMAS y LOGIN DELEGADO
 // ====================================================================
 
 document.addEventListener("click", (e) => {

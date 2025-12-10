@@ -6,13 +6,16 @@
     --color-titulo-marca: #9B612E; 
     --color-principal: #333;
     --color-fondo-caja: #f5efe8; 
-    --color-btn-primario: #e38d4a; 
     --color-btn-secundario: #8B572A; 
-    --color-fondo: #ffffff;
+
+    /* Colores del diseño de la imagen */
+    --color-compra-btn-add: #E2A15D; /* Naranja/Marrón claro para Añadir al carrito */
+    --color-compra-btn-buy: #9C5E35; /* Marrón oscuro para Comprar ahora */
+    --color-barra-review: #36a569; /* Verde oscuro para las barras de progreso y bordes activos */
+
     --font-titulo: 'Poppins', sans-serif;
     --font-nombre: 'Poppins', sans-serif;
     --font-texto: 'Poppins', sans-serif;
-    /* Base: 1rem = 16px */
 }
 
 * {
@@ -27,143 +30,357 @@
 
 body { 
     font-family: var(--font-texto); 
-    margin: 0; /* Corrección: Eliminado margen para que el Navbar ocupe todo el ancho */
+    margin: 0; 
     background-color: #f4f4f4; 
+    color: #333;
+}
+
+main {
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 1200px;
 }
 
 #productos-contenedor { 
-    display: grid; 
-    /* minmax(200px -> 12.5rem, 1fr) */
-    grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); /* Pequeño ajuste para mejor visualización */
-    gap: 1.5rem; /* Aumentado el espacio entre tarjetas */
-    justify-content: center;
-    padding: 2rem; /* Añadido padding para reemplazar el margen del body */
-    max-width: 1200px; /* Limitar ancho máximo para pantallas muy grandes */
-    margin: 0 auto; /* Centrar el contenedor */
+    padding: 0.625rem;
 }
 
-/* -------------------------------------- */
-/* 3. ESTILOS DE LA TARJETA (NUEVO FORMATO COMPACTO) */
-/* -------------------------------------- */
+/* ---------------------------------------------------- */
+/* 3. ESTILOS DE LA VISTA DE DETALLE (CLASES CORREGIDAS) */
+/* ---------------------------------------------------- */
 
-.tarjeta-producto {
-    background: var(--color-fondo);
-    border: 1px solid #ccc;
-    /* 8px -> 0.5rem */
-    border-radius: 0.5rem; 
-    /* 10px -> 0.625rem */
-    padding: 0.625rem; 
-    /* 2px, 5px -> rem */
-    box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1); 
+/* La clase principal generada por JS: .detalle-producto */
+.detalle-producto {
+    display: grid;
+    /* Divide en 3 columnas: Imagen (350px), Info (1fr), Compra (250px) */
+    grid-template-columns: 350px 1fr 250px;
+    gap: 30px;
+    border: 1px solid #eee;
+    border-radius: 15px;
+    padding: 30px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Columna de Imagen (galeria) */
+.galeria {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    /* 350px -> 21.875rem */
-    min-height: 21.875rem; 
-    text-align: center;
-}
-
-/* Imagen más pequeña */
-/* Clase utilizada en el JS: .producto-imagen */
-.producto-imagen { 
-    max-width: 100%;
-    height: auto;
-    object-fit: contain;
-    /* 5px -> 0.3125rem */
-    margin-bottom: 0.3125rem; 
-    /* 5px -> 0.3125rem */
-    border-radius: 0.3125rem; 
-    /* 120px -> 7.5rem */
-    max-height: 7.5rem; 
-}
-
-/* Título más compacto y pequeño (Clase utilizada en el JS) */
-.producto-nombre-compacto { 
-    font-family: var(--font-nombre);
-    color: var(--color-titulo-marca); 
-    font-size: 0.9em; 
-    /* 5px -> 0.3125rem */
-    margin: 0.3125rem 0; 
-    height: 3em; 
-    overflow: hidden;
-}
-
-/* Detalle (Precio, Marca, Puntuación) en una sola línea (Clase utilizada en el JS) */
-.producto-detalle-compacto { 
-    display: flex;
-    justify-content: space-between;
     align-items: center;
-    font-size: 0.8em;
-    /* 8px -> 0.5rem */
-    margin: 0.5rem 0; 
-    /* 5px -> 0.3125rem */
-    padding: 0 0.3125rem; 
-    border-top: none; /* Se quita la línea divisoria del detalle original */
 }
 
-.precio { 
-    font-weight: bold; 
-    color: var(--color-btn-secundario); 
-    font-size: 1.1em; 
+.principal img#main-img {
+    width: 100%;
+    height: auto;
+    max-height: 350px;
+    object-fit: contain;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #eee;
 }
 
-.puntuacion-compacta { 
-    font-size: 1em; 
+.miniaturas {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.miniaturas img.thumb {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.miniaturas img.thumb.active,
+.miniaturas img.thumb:hover {
+    border-color: var(--color-barra-review); /* Borde verde para la miniatura activa */
+}
+
+/* Columna de Información (info) */
+.info {
+    grid-column: 2 / 3;
+}
+
+.marca {
+    font-weight: bold;
+    color: var(--color-compra-btn-buy);
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.producto-nombre {
+    font-size: 2.2em;
+    color: var(--color-principal);
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.rating {
+    margin-bottom: 20px;
+}
+
+.stars {
+    color: gold;
+    letter-spacing: 2px;
+}
+
+.opiniones {
+    font-size: 0.9em;
+    color: #666;
+    margin-left: 5px;
+}
+
+.descripcion {
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* Sección Formato (Añadida y Dinámica) */
+.formato-box {
+    margin-bottom: 30px;
+}
+
+.format-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-transform: uppercase;
     color: var(--color-principal);
 }
 
-.producto-marca-compacta {
+.format-options {
+    display: flex;
+    gap: 15px;
+}
+
+.formato-opcion {
+    border: 2px solid #ccc;
+    padding: 15px 25px;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+    min-width: 100px;
+    transition: border-color 0.2s;
+}
+
+.formato-opcion.formato-activo,
+.formato-opcion:hover {
+    border-color: var(--color-barra-review); 
+    border-width: 3px;
+}
+
+/* Columna de Compra (compra-box) */
+.compra-box {
+    grid-column: 3 / 4;
+}
+
+.price-box {
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.price-label {
+    font-size: 1em;
+    font-weight: bold;
+    color: #555;
+}
+
+.product-price {
+    display: block;
+    font-size: 2.5em;
+    font-weight: bold;
+    color: var(--color-principal);
+    margin-bottom: 10px;
+}
+
+.vat-info, .delivery-info {
+    font-size: 0.9em;
     color: #888;
+    margin-bottom: 5px;
+}
+
+.stock-info {
+    color: green;
+    font-weight: bold;
+    margin-bottom: 20px;
     font-size: 1em;
 }
 
-/* Estilos para el botón (Clase utilizada en el JS) */
-button, .btn-compacto { 
+/* Selector de Cantidad (.cantidad generado por JS) */
+.cantidad.quantity-selector { 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     width: 100%;
-    /* 8px, 5px -> rem */
-    padding: 0.5rem 0.3125rem; 
-    font-size: 0.9em; 
-    /* 10px -> 0.625rem */
-    margin-top: 0.625rem; 
-    background-color: var(--color-btn-primario); 
-    color: white; 
-    border: none; 
-    /* 4px -> 0.25rem */
-    border-radius: 0.25rem; 
-    cursor: pointer; 
-    transition: background-color 0.3s;
 }
 
-button:hover, .btn-compacto:hover {
-    background-color: #d8803d;
+.cantidad.quantity-selector button {
+    background: none;
+    border: none;
+    padding: 5px 15px;
+    cursor: pointer;
+    font-size: 1.5em;
+    color: #555;
 }
 
-/* -------------------------------------- */
-/* 4. CLASES OBSOLETAS (DEL CÓDIGO VIEJO) */
-/* -------------------------------------- */
-
-/* Estas clases están aquí para anular cualquier estilo original 
-   si accidentalmente se dejan en el HTML o se heredan incorrectamente. */
-
-.producto-nombre { 
-    /* Anulamos estilos viejos para no interferir con .producto-nombre-compacto */
-    display: none; 
+.cantidad.quantity-selector input {
+    width: 40px;
+    text-align: center;
+    border: none;
+    outline: none;
+    font-size: 1.1em;
 }
 
-.producto-marca { 
-    display: none;
+/* Estilos de Botones de Compra (Clases de la imagen) */
+.acciones button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    transition: opacity 0.2s;
+}
+.acciones button:hover {
+    opacity: 0.9;
 }
 
-.producto-detalle { 
-    display: none;
+.add-to-cart-btn {
+    background-color: var(--color-compra-btn-add);
+    color: white;
 }
 
-.producto-descripcion { 
-    /* Esta clase ya no se usa, pero la ocultamos si aparece */
-    display: none; 
+.buy-now-btn {
+    background-color: var(--color-compra-btn-buy);
+    color: white;
 }
 
-.puntuacion { 
-    /* Anulamos la clase vieja si no se usa la nueva */
-    display: none;
+/* --- SECCIÓN RELACIONADOS --- */
+.related {
+    margin-top: 40px;
+}
+.related h3 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: var(--color-principal);
+}
+.related-list {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+}
+.related-card {
+    flex: 0 0 200px;
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+}
+.related-card img {
+    max-width: 100%;
+    height: 100px;
+    object-fit: contain;
+    margin-bottom: 5px;
+}
+.related-card h4 {
+    font-size: 1em;
+    height: 2.4em;
+    overflow: hidden;
+    margin: 5px 0;
+}
+.related-card .r-price {
+    font-weight: bold;
+    color: var(--color-compra-btn-buy);
+    margin-bottom: 10px;
+}
+
+/* --- SECCIÓN RESEÑAS --- */
+.reviews {
+    margin-top: 40px;
+}
+
+.reviews h3 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: var(--color-principal);
+}
+
+.reviews-summary {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+}
+
+.stars-big {
+    font-size: 1.5em;
+}
+.stars-big span {
+    display: block;
+    font-size: 0.8em;
+    color: #666;
+    margin-top: 5px;
+}
+
+.reviews-summary .bars {
+    flex-grow: 1;
+    max-width: 400px;
+}
+.reviews-summary .bars > div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+.reviews-summary .bars .bar {
+    flex-grow: 1;
+    background-color: #e0e0e0;
+    height: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+/* Color de barra que coincide con el diseño de la imagen */
+.reviews-summary .bars .bar div {
+    background-color: var(--color-barra-review);
+    height: 100%;
+}
+
+.comentario {
+    border: 1px solid #f0f0f0;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    background: #fff;
+}
+.comentario .meta {
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    color: #555;
+}
+.comentario .p {
+    margin-left: 10px;
+    font-size: 1em;
 }
