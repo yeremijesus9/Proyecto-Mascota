@@ -498,4 +498,146 @@
       }
     ]
   }
+
+
+,
+ {
+    "id": "ROE1",
+    "categoria": "Roedores",
+    "marca": "JR Schmaus",
+    "puntuacion": "4",
+    "opiniones": "5 opiniones",
+    "nombre_producto": "JR Schmaus comida para cobayas",
+    "precio": 8.99,
+    "descripcion": "Alimento completo sin cereales para cobayas, contenido alto en fibra bruta, con hierbas y verduras como fuentes de vitaminas y minerales, sin colorantes ni conservantes artificiales",
+    "descripcion_formato": "2.5 kg",
+    "imagen_principal":"/assets/img/roedores/jr_schmaus.png" ,
+    "imagen_miniatura": [
+      "/assets/img/roedores/jr_schmaus.png",
+      "/assets/img/roedores/JR_schmaus_1.png"
+    ],
+    "comentarios": [
+        {"usuario": "Juan12",
+        "fecha": "2025-04-10",
+        "puntuacion": 2,
+        "texto": "A mi cobaya no le termina de gustar se come una parte pero los cilindros verdes ni probarlos. Además trae maiz que tengo entendido que no les va bien a las cobayas."
+        },
+        {
+        "usuario": "Paula",
+        "fecha": "2024-01-13",
+        "puntuacion": 4,
+        "texto": "En cuanto llegó por la noche le di un poco y la verdad que le encantó, no se lo pensó ni un momento en comérselo, la verdad que lo volveré a comprar. "
+      },
+      {
+        "usuario": "Ainhoa",
+        "fecha": "2024-01-13",
+        "puntuacion": 4,
+        "texto": "Se lo he dado a mi cobaya y le ha gustado mucho!!! se lo come todo!! se lo doy junto a el pienso de cuni complete y al heno, avena.. y otros.. para que vaya variando!! lo volvería a comprar!"
+      },
+       {
+        "usuario": "Maite",
+        "fecha": "2024-06-09",
+        "puntuacion": 3,
+        "texto": "Hace unos días pedí esta comida para mi cobaya PIG y la verdad es que le encanta, se pone como loco de pie en la jaula cada vez que paso por su lado para que le eche más y más..."
+      },
+       {
+        "usuario": "Rosa",
+        "fecha": "2024-06-13",
+        "puntuacion": 4,
+        "texto": "Es un alimento muy completo, huele muy bien, y complementado con verduras frescas es perfecto"
+      }
+    ]
+
+ },
+    {
+    "id": "ROE3",
+    "categoria": "Roedores",
+    "marca": "TIAKI",
+    "puntuacion": "4",
+    "opiniones": "1 opinión",
+    "nombre_producto": "Villa TIAKI Jaula para animales pequeños",
+    "precio": 146.99,
+    "descripcion": "Jaula para animales pequeños, con 2 pisos y escaleras, incl. equipo básico como comedero y bebedero, base extraíble, ampliable con kit independiente, ruedas 360°, distancia entre rejillas: 23 mm",
+    "formato": "tamaño",
+    "descripcion_formato":"jaula principal + complemento (79 x 52 x 142 cm, L x An x Al)",
+    "imagen_principal": "/assets/img/roedores/jaula.png",
+    "imagen_miniatura": [
+      "/assets/img/roedores/jaula.png",
+      "/assets/img/roedores/jaula1.png",
+      "/assets/img/roedores/jaula2.png",
+      "/assets/img/roedores/jaula3.png"
+    ],
+     "comentarios": [
+      {
+        "usuario": "María Jesús",
+        "fecha": "2025-03-04",
+        "puntuacion": 5,
+        "texto": "Es fácil de montar y sólida. Únicamente reja del fondo no es apta para chinchillas y hay que modificar para que quede bien. Útil por si necesitas en algún momento separar la jaula en dos. "
+      }
+      
+    ]
+  },
+   {
+    "id": "ROE4",
+    "categoria": "Roedores",
+    "marca": "LUXE",
+    "puntuacion": "1",
+    "opiniones": "3 opiniones",
+    "nombre_producto": "Bebedero Classic de Luxe",
+    "precio": 7.49,
+    "descripcion": "Práctico bebedero para fijar en la jaula de conejos o pequeños roedores. Botella transparente de plástico con una boquilla reforzada de metal antioxidante y sistema antigoteo. Abrazadera incluida.",
+    "formato": "Capacidad líquida",
+    "descripcion_formato":"600 ml",
+    "imagen_principal": "/assets/img/roedores/bebedero.jpg",
+    "imagen_miniatura": [
+    "/assets/img/roedores/bebedero.png"
+    ],
+     "comentarios": [
+      {
+        "usuario": "Debora",
+        "fecha": "2023-07-21",
+        "puntuacion": 1,
+        "texto": "Nada más ponerlo gotea. "
+      },
+      {
+        "usuario": "Vero",
+        "fecha": "2024-12-19",
+        "puntuacion": 2,
+        "texto": "No es el mejor bebedero, ya que gotea, se atasca un poco, se crea moho dentro, y es difícil de sujetar. Pero del resto, y teniendo en cuenta el precio, está bien."
+      },
+      {
+        "usuario": "Laura",
+        "fecha": "2023-05-19",
+        "puntuacion": 1,
+        "texto": "El bebedero gotea y no trae nada para engancharlo a la jaula."
+      }
+    ]
+  },
+  {
+    "id": "ROE5",
+    "categoria": "Roedores",
+    "marca": "New Flag",
+    "puntuacion": "3",
+    "opiniones": "1 opiniones",
+    "nombre_producto": "Pet Teezer De-shedding cepillo para mascotas",
+    "precio": 13.99,
+    "descripcion": "Cepillo para perros, gatos y animales pequeños, ideal para retirar los pelos sueltos y para usar en zonas sensibles, con púas blandas para un cuidado delicado, indicado para pelo seco o mojado.",
+    "formato": "Tamaño",
+    "descripcion_formato":"aprox. 12,5 x 5,5 x 5,5 cm (L x An x Al)",
+    "imagen_principal": "/assets/img/roedores/cepillo.jpg",
+    "imagen_miniatura": [
+    "/assets/img/roedores/cepillo.png",
+     "/assets/img/roedores/cepillo1.png",
+      "/assets/img/roedores/cepillo2.png"
+    ],
+     "comentarios": [
+      {
+        "usuario": "M. Elena",
+        "fecha": "2023-07-23",
+        "puntuacion": 4,
+        "texto": "Mi gata de pelo largo está encantada con este peine! Le quita los pelos finos interiores, la peino cada día y eso evita que se formen nudos en su pelaje. Le gusta que lo pase suavecito para no tirarle del pelo. Recomendado! "
+      }
+      
+    ]
+  }
 ]
