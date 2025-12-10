@@ -1,18 +1,11 @@
-/* -------------------- */
-/* 1. RESET Y VARIABLES */
-/* -------------------- */
-
 :root {
     --color-titulo-marca: #9B612E; 
     --color-principal: #333;
     --color-fondo-caja: #f5efe8; 
     --color-btn-secundario: #8B572A; 
-
-    /* Colores del diseño de la imagen */
-    --color-compra-btn-add: #E2A15D; /* Naranja/Marrón claro para Añadir al carrito */
-    --color-compra-btn-buy: #9C5E35; /* Marrón oscuro para Comprar ahora */
-    --color-barra-review: #36a569; /* Verde oscuro para las barras de progreso y bordes activos */
-
+    --color-compra-btn-add: #E2A15D; 
+    --color-compra-btn-buy: #9C5E35; 
+    --color-barra-review: #36a569; 
     --font-titulo: 'Poppins', sans-serif;
     --font-nombre: 'Poppins', sans-serif;
     --font-texto: 'Poppins', sans-serif;
@@ -24,45 +17,34 @@
     box-sizing: border-box;
 }
 
-/* ------------------------------------- */
-/* 2. ESTILOS BASE Y CONTENEDOR (GLOBAL) */
-/* ------------------------------------- */
-
 body { 
     font-family: var(--font-texto); 
     margin: 0; 
     background-color: #f4f4f4; 
-    color: #333;
+    color: var(--color-principal);
 }
 
 main {
-    padding: 20px;
-    margin: 20px auto;
-    max-width: 1200px;
+    padding: 1.25rem;
+    margin: 1.25rem auto;
+    max-width: 75rem;
 }
 
 #productos-contenedor { 
     padding: 0.625rem;
 }
 
-/* ---------------------------------------------------- */
-/* 3. ESTILOS DE LA VISTA DE DETALLE (CLASES CORREGIDAS) */
-/* ---------------------------------------------------- */
-
-/* La clase principal generada por JS: .detalle-producto */
 .detalle-producto {
     display: grid;
-    /* Divide en 3 columnas: Imagen (350px), Info (1fr), Compra (250px) */
-    grid-template-columns: 350px 1fr 250px;
-    gap: 30px;
-    border: 1px solid #eee;
-    border-radius: 15px;
-    padding: 30px;
+    grid-template-columns: 22rem 1fr 16rem;
+    gap: 1.875rem;
+    border: 0.0625rem solid #eee;
+    border-radius: 0.9375rem;
+    padding: 1.875rem;
     background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.05);
 }
 
-/* Columna de Imagen (galeria) */
 .galeria {
     display: flex;
     flex-direction: column;
@@ -72,35 +54,34 @@ main {
 .principal img#main-img {
     width: 100%;
     height: auto;
-    max-height: 350px;
+    max-height: 22rem;
     object-fit: contain;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #eee;
+    border-radius: 0.625rem;
+    margin-bottom: 0.9375rem;
+    border: 0.0625rem solid #eee;
 }
 
 .miniaturas {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0.625rem;
 }
 
 .miniaturas img.thumb {
-    width: 50px;
-    height: 50px;
+    width: 3.125rem;
+    height: 3.125rem;
     object-fit: cover;
-    border: 2px solid transparent;
-    border-radius: 5px;
+    border: 0.125rem solid transparent;
+    border-radius: 0.3125rem;
     cursor: pointer;
     transition: border-color 0.2s;
 }
 
 .miniaturas img.thumb.active,
 .miniaturas img.thumb:hover {
-    border-color: var(--color-barra-review); /* Borde verde para la miniatura activa */
+    border-color: var(--color-barra-review);
 }
 
-/* Columna de Información (info) */
 .info {
     grid-column: 2 / 3;
 }
@@ -108,157 +89,152 @@ main {
 .marca {
     font-weight: bold;
     color: var(--color-compra-btn-buy);
-    font-size: 1.2em;
-    margin-bottom: 5px;
+    font-size: 1.2rem;
+    margin-bottom: 0.3125rem;
 }
 
 .producto-nombre {
-    font-size: 2.2em;
+    font-size: 2.2rem;
     color: var(--color-principal);
-    margin-top: 0;
-    margin-bottom: 10px;
+    margin: 0 0 0.625rem 0;
 }
 
 .rating {
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
 }
 
 .stars {
     color: gold;
-    letter-spacing: 2px;
+    letter-spacing: 0.125rem;
 }
 
 .opiniones {
-    font-size: 0.9em;
+    font-size: 0.9rem;
     color: #666;
-    margin-left: 5px;
+    margin-left: 0.3125rem;
 }
 
 .descripcion {
     line-height: 1.6;
     color: #666;
-    margin-bottom: 30px;
+    margin-bottom: 1.875rem;
 }
 
-/* Sección Formato (Añadida y Dinámica) */
 .formato-box {
-    margin-bottom: 30px;
+    margin-bottom: 1.875rem;
 }
 
 .format-title {
-    font-size: 1.2em;
+    font-size: 1.2rem;
     font-weight: bold;
-    margin-bottom: 15px;
+    margin-bottom: 0.9375rem;
     text-transform: uppercase;
     color: var(--color-principal);
 }
 
 .format-options {
     display: flex;
-    gap: 15px;
+    gap: 0.9375rem;
 }
 
 .formato-opcion {
-    border: 2px solid #ccc;
-    padding: 15px 25px;
-    border-radius: 10px;
+    border: 0.125rem solid #ccc;
+    padding: 0.9375rem 1.5625rem;
+    border-radius: 0.625rem;
     cursor: pointer;
     text-align: center;
-    min-width: 100px;
+    min-width: 6.25rem;
     transition: border-color 0.2s;
 }
 
 .formato-opcion.formato-activo,
 .formato-opcion:hover {
     border-color: var(--color-barra-review); 
-    border-width: 3px;
+    border-width: 0.1875rem;
 }
 
-/* Columna de Compra (compra-box) */
 .compra-box {
     grid-column: 3 / 4;
 }
 
 .price-box {
-    border: 1px solid #ddd;
-    border-radius: 15px;
-    padding: 20px;
+    border: 0.0625rem solid #ddd;
+    border-radius: 0.9375rem;
+    padding: 1.25rem;
     background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.05);
 }
 
 .price-label {
-    font-size: 1em;
+    font-size: 1rem;
     font-weight: bold;
     color: #555;
 }
 
 .product-price {
     display: block;
-    font-size: 2.5em;
+    font-size: 2.5rem;
     font-weight: bold;
     color: var(--color-principal);
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem;
 }
 
 .vat-info, .delivery-info {
-    font-size: 0.9em;
+    font-size: 0.9rem;
     color: #888;
-    margin-bottom: 5px;
+    margin-bottom: 0.3125rem;
 }
 
 .stock-info {
     color: green;
     font-weight: bold;
-    margin-bottom: 20px;
-    font-size: 1em;
+    margin-bottom: 1.25rem;
+    font-size: 1rem;
 }
 
-/* Selector de Cantidad (.cantidad generado por JS) */
 .cantidad.quantity-selector { 
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    margin-bottom: 1.25rem;
+    border: 0.0625rem solid #ccc;
+    border-radius: 0.3125rem;
     width: 100%;
 }
 
 .cantidad.quantity-selector button {
     background: none;
     border: none;
-    padding: 5px 15px;
+    padding: 0.3125rem 0.9375rem;
     cursor: pointer;
-    font-size: 1.5em;
+    font-size: 1.5rem;
     color: #555;
 }
 
 .cantidad.quantity-selector input {
-    width: 40px;
+    width: 2.5rem;
     text-align: center;
     border: none;
     outline: none;
-    font-size: 1.1em;
+    font-size: 1.1rem;
 }
 
-/* Estilos de Botones de Compra (Clases de la imagen) */
 .acciones button {
     width: 100%;
-    padding: 15px;
+    padding: 0.9375rem;
     border: none;
-    border-radius: 8px;
-    font-size: 1em;
+    border-radius: 0.5rem;
+    font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
-    margin-bottom: 10px;
-    text-align: center;
+    margin-bottom: 0.625rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 8px;
+    gap: 0.5rem;
     transition: opacity 0.2s;
 }
+
 .acciones button:hover {
     opacity: 0.9;
 }
@@ -273,114 +249,170 @@ main {
     color: white;
 }
 
-/* --- SECCIÓN RELACIONADOS --- */
 .related {
-    margin-top: 40px;
-}
-.related h3 {
-    font-size: 1.5em;
-    margin-bottom: 20px;
-    color: var(--color-principal);
-}
-.related-list {
-    display: flex;
-    gap: 20px;
-    overflow-x: auto;
-    padding-bottom: 10px;
-}
-.related-card {
-    flex: 0 0 200px;
-    background: white;
-    border: 1px solid #eee;
-    border-radius: 8px;
-    padding: 10px;
+    margin-top: 2.5rem;
     text-align: center;
 }
+
+.related h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.25rem;
+    color: var(--color-compra-btn-buy);
+    font-family: var(--font-nombre);
+}
+
+.related-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.25rem;
+    padding-bottom: 0.625rem;
+}
+
+.related-card {
+    flex: 0 0 14rem;
+    background: white;
+    border: 0.0625rem solid #eee;
+    border-radius: 0.5rem;
+    padding: 0.9375rem;
+    text-align: center;
+    font-family: var(--font-nombre);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.related-card:hover {
+    transform: translateY(-0.3125rem);
+    box-shadow: 0 0.375rem 0.75rem rgba(0,0,0,0.1);
+}
+
 .related-card img {
     max-width: 100%;
-    height: 100px;
+    height: 7.5rem;
     object-fit: contain;
-    margin-bottom: 5px;
+    margin-bottom: 0.625rem;
 }
+
 .related-card h4 {
-    font-size: 1em;
-    height: 2.4em;
-    overflow: hidden;
-    margin: 5px 0;
+    font-size: 1.1rem;
+    margin: 0.3125rem 0;
+    color: var(--color-principal);
 }
+
 .related-card .r-price {
     font-weight: bold;
     color: var(--color-compra-btn-buy);
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem;
 }
 
-/* --- SECCIÓN RESEÑAS --- */
+.related-card .btn-small {
+    display: inline-block;
+    padding: 0.375rem 0.75rem;
+    background-color: var(--color-compra-btn-add);
+    color: white;
+    border-radius: 0.3125rem;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+}
+
+.related-card .btn-small:hover {
+    background-color: var(--color-compra-btn-buy);
+}
+
 .reviews {
-    margin-top: 40px;
+    margin-top: 2.5rem;
 }
 
 .reviews h3 {
-    font-size: 1.5em;
-    margin-bottom: 20px;
+    font-size: 1.5rem;
+    margin-bottom: 1.25rem;
     color: var(--color-principal);
 }
 
 .reviews-summary {
     display: flex;
-    gap: 50px;
+    flex-direction: column; 
+    gap: 1rem;
+    padding: 1.25rem;
+    border-bottom: 0.0625rem solid #eee;
+    margin-bottom: 1.25rem;
+}
+.reviews-summary > .total-rating {
+    display: flex;
     align-items: center;
-    padding: 20px;
-    border-bottom: 1px solid #eee;
-    margin-bottom: 20px;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
 }
 
 .stars-big {
-    font-size: 1.5em;
+    font-size: 1.75rem;
+    color: gold;
 }
+
 .stars-big span {
     display: block;
-    font-size: 0.8em;
+    font-size: 0.875rem;
     color: #666;
-    margin-top: 5px;
+    margin-top: 0.25rem;
 }
 
 .reviews-summary .bars {
-    flex-grow: 1;
-    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
+
 .reviews-summary .bars > div {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 5px;
-}
-.reviews-summary .bars .bar {
-    flex-grow: 1;
-    background-color: #e0e0e0;
-    height: 10px;
-    border-radius: 5px;
-    overflow: hidden;
+    gap: 0.5rem;
 }
 
-/* Color de barra que coincide con el diseño de la imagen */
+.reviews-summary .bars .label {
+    width: 4rem;
+    font-size: 0.875rem;
+    color: #666;
+    text-align: right;
+}
+
+.reviews-summary .bars .bar {
+    flex-grow: 1;
+    height: 0.75rem;
+    background-color: #e0e0e0;
+    border-radius: 0.375rem;
+    overflow: hidden;
+    position: relative;
+}
+
+
 .reviews-summary .bars .bar div {
-    background-color: var(--color-barra-review);
     height: 100%;
+    background: linear-gradient(90deg, var(--color-barra-review) 0%, #4caf80 100%);
+    width: 0%; /* animación de llenado */
+    border-radius: 0.375rem;
+    transition: width 0.8s ease-in-out;
 }
 
 .comentario {
-    border: 1px solid #f0f0f0;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 15px;
+    border: 0.0625rem solid #f0f0f0;
+    padding: 0.9375rem;
+    border-radius: 0.5rem;
+    margin-bottom: 0.9375rem;
     background: #fff;
 }
+
 .comentario .meta {
-    margin-bottom: 5px;
-    font-size: 0.9em;
+    margin-bottom: 0.3125rem;
+    font-size: 0.9rem;
     color: #555;
 }
+
 .comentario .p {
-    margin-left: 10px;
-    font-size: 1em;
+    margin-left: 0.625rem;
+    font-size: 1rem;
+}
+.comentario .stars {
+    color: gold;
+    letter-spacing: 0.125rem;
+    font-size: 1rem;
 }
