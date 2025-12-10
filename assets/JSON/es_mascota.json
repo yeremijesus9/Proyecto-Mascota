@@ -503,7 +503,7 @@
 ,
  {
     "id": "ROE1",
-    "categoria": "Roedores",
+    "categoria": "roedores",
     "marca": "JR Schmaus",
     "puntuacion": "4",
     "opiniones": "5 ",
@@ -551,7 +551,7 @@
  },
     {
     "id": "ROE3",
-    "categoria": "Roedores",
+    "categoria": "roedores",
     "marca": "TIAKI",
     "puntuacion": "4",
     "opiniones": "1 ",
@@ -579,7 +579,7 @@
   },
    {
     "id": "ROE4",
-    "categoria": "Roedores",
+    "categoria": "roedores",
     "marca": "LUXE",
     "puntuacion": "1",
     "opiniones": "3 ",
@@ -615,7 +615,7 @@
   },
   {
     "id": "ROE5",
-    "categoria": "Roedores",
+    "categoria": "roedores",
     "marca": "New Flag",
     "puntuacion": "3",
     "opiniones": "1 ",
