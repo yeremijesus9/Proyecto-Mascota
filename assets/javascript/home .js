@@ -1,15 +1,12 @@
 const mascota = '/assets/JSON/es_mascota.json';
 
-// ====================================================================
-// FUNCIÓN AUXILIAR PARA CREAR ESTRELLAS
-// ====================================================================
 function crearEstrellas(puntuacion) {
     const p = Number(puntuacion) || 0;
     let s = '';
     for (let i = 1; i <= 5; i++) {
         s += i <= p ? '★' : '☆';
     }
-    return `<span class="stars">${s}</span>`;
+    return `<span class="stars" style="color: #ff0000ff; font-size: 1.2rem;">${s}</span>`;
 }
 
 // ====================================================================

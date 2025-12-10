@@ -1,7 +1,3 @@
-// ====================================================================
-// CONFIGURACIÓN GLOBAL DE IDIOMA Y RUTA
-// Estas variables se hacen globales para ser usadas en script.js
-// ====================================================================
 
 /**
  * @type {string} idiomaActual - Código del idioma actual, inicia en español.

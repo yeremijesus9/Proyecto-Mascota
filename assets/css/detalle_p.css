@@ -1,6 +1,4 @@
-/* -------------------- */
-/* 1. RESET Y VARIABLES */
-/* -------------------- */
+
 
 :root {
     --color-titulo-marca: #9B612E; 
@@ -24,9 +22,6 @@
     box-sizing: border-box;
 }
 
-/* ------------------------------------- */
-/* 2. ESTILOS BASE Y CONTENEDOR (GLOBAL) */
-/* ------------------------------------- */
 
 body { 
     font-family: var(--font-texto); 
@@ -45,14 +40,10 @@ main {
     padding: 0.625rem;
 }
 
-/* ---------------------------------------------------- */
-/* 3. ESTILOS DE LA VISTA DE DETALLE (CLASES CORREGIDAS) */
-/* ---------------------------------------------------- */
 
-/* La clase principal generada por JS: .detalle-producto */
+
 .detalle-producto {
     display: grid;
-    /* Divide en 3 columnas: Imagen (350px), Info (1fr), Compra (250px) */
     grid-template-columns: 350px 1fr 250px;
     gap: 30px;
     border: 1px solid #eee;
@@ -62,7 +53,7 @@ main {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
-/* Columna de Imagen (galeria) */
+
 .galeria {
     display: flex;
     flex-direction: column;
@@ -97,10 +88,10 @@ main {
 
 .miniaturas img.thumb.active,
 .miniaturas img.thumb:hover {
-    border-color: var(--color-barra-review); /* Borde verde para la miniatura activa */
+    border-color: var(--color-barra-review); 
 }
 
-/* Columna de Información (info) */
+
 .info {
     grid-column: 2 / 3;
 }
@@ -174,7 +165,7 @@ main {
     border-width: 3px;
 }
 
-/* Columna de Compra (compra-box) */
+
 .compra-box {
     grid-column: 3 / 4;
 }
@@ -214,7 +205,7 @@ main {
     font-size: 1em;
 }
 
-/* Selector de Cantidad (.cantidad generado por JS) */
+
 .cantidad.quantity-selector { 
     display: flex;
     justify-content: space-between;
@@ -242,7 +233,6 @@ main {
     font-size: 1.1em;
 }
 
-/* Estilos de Botones de Compra (Clases de la imagen) */
 .acciones button {
     width: 100%;
     padding: 15px;
@@ -273,7 +263,7 @@ main {
     color: white;
 }
 
-/* --- SECCIÓN RELACIONADOS --- */
+
 .related {
     margin-top: 40px;
 }
@@ -314,7 +304,7 @@ main {
     margin-bottom: 10px;
 }
 
-/* --- SECCIÓN RESEÑAS --- */
+
 .reviews {
     margin-top: 40px;
 }
@@ -362,7 +352,6 @@ main {
     overflow: hidden;
 }
 
-/* Color de barra que coincide con el diseño de la imagen */
 .reviews-summary .bars .bar div {
     background-color: var(--color-barra-review);
     height: 100%;
