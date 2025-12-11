@@ -19,4 +19,19 @@ window.rutaJson = function () {
 window.rutaInterfaceJson = function () {
     return `/assets/JSON/${window.idiomaActual}_interface.json`;
 };
+window.cambiarIdioma = async function(nuevoIdioma) {
+    if (window.idiomaActual === nuevoIdioma) return;
 
+    window.idiomaActual = nuevoIdioma;
+    localStorage.setItem('idiomaSeleccionado', nuevoIdioma);
+
+
+    if (typeof window.rutaInterfaceJson === 'function') {
+        loadTranslations(window.rutaInterfaceJson());
+    }
+
+
+    if (typeof window.cargarDetalleYRelacionados === "function") {
+        await window.cargarDetalleYRelacionados();
+    }
+};
