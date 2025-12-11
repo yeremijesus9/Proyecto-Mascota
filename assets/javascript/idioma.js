@@ -30,7 +30,7 @@ window.cambiarIdioma = async function(nuevoIdioma) {
     if (window.idiomaActual === nuevoIdioma) return;
 
     window.idiomaActual = nuevoIdioma;
-    localStorage.setItem('idiomaSeleccionado', nuevoIdioma);
+                localStorage.setItem('idiomaSeleccionado', nuevoIdioma);
 
     if (typeof window.rutaInterfaceJson === 'function') {
         loadTranslations(window.rutaInterfaceJson());
