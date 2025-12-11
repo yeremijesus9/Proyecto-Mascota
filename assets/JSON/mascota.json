@@ -1,6 +1,6 @@
 [
   {
-    "id": "CAT1",
+    "id": "TXO1",
     "marca": "Grature",
     "puntuacion": "4",
     "opiniones": "20 opiniones",
@@ -48,7 +48,7 @@
     ]
   },
   {
-    "id": "CAT2",
+    "id": "TXO2",
     "marca": "Purina Felix",
     "puntuacion": "5",
     "opiniones": "16 opiniones",
@@ -99,7 +99,7 @@
     ]
   },
   {
-    "id": "CAT3",
+    "id": "TXO3",
     "marca": "Gloria Pets",
     "puntuacion": "5",
     "opiniones": "60 opiniones",
@@ -150,7 +150,7 @@
 ]
   },
   {
-    "id": "CAT4",
+    "id": "TXO4",
     "marca": "SUMSU",
     "puntuacion": "4",
     "opiniones": "10 opiniones",
@@ -200,7 +200,7 @@
 ]
   },
   {
-    "id": "CAT5",
+    "id": "TXO5",
     "marca": "Sure Petcare",
     "puntuacion": "5",
     "opiniones": "20 opiniones",
