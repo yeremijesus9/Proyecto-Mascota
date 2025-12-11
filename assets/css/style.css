@@ -202,7 +202,7 @@ body {
 .sec-productos #destacados-1,
 .sec-productos #destacados-2 {
     display: flex;
-    flex-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 20px;
     max-width: 1400px;
     margin: 0 auto;
@@ -260,7 +260,7 @@ body {
 @media (max-width: 1024px) {
     .sec-productos #destacados-1,
     .sec-productos #destacados-2 {
-        flex-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
@@ -268,7 +268,7 @@ body {
 @media (max-width: 768px) {
     .sec-productos #destacados-1,
     .sec-productos #destacados-2 {
-        flex-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         gap: 15px;
     }
 }
@@ -277,6 +277,6 @@ body {
 @media (max-width: 480px) {
     .sec-productos #destacados-1,
     .sec-productos #destacados-2 {
-        flex-template-columns: 1fr;
+        grid-template-columns: 1fr;
     }
 }
