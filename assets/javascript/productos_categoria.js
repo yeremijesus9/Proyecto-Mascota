@@ -15,7 +15,7 @@ async function mostrarProductosCategoria() {
     const titulo = document.getElementById('titulo-categoria');
 
     // Actualizar título
-    titulo.textContent = `Productos de ${categoria}s`;
+    titulo.textContent = `Productos de ${categoria}`;
 
     try {
         // Cargar productos del JSON

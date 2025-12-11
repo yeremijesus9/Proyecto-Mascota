@@ -19,3 +19,4 @@ window.rutaJson = function () {
 window.rutaInterfaceJson = function () {
     return `/assets/JSON/${window.idiomaActual}_interface.json`;
 };
+
