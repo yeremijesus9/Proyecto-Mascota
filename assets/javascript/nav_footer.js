@@ -1,24 +1,21 @@
-// ====================================================================
-// LÓGICA DE TRADUCCIÓN
-// ====================================================================
 
 /**
  * Función principal para cambiar el idioma y recargar todos los contenidos dinámicos.
- * @param {string} nuevoIdioma - El código del nuevo idioma ('es', 'en').
+ * @param {string} nuevoIdioma 
  */
 function cambiarIdioma(nuevoIdioma) {
     if (!window.idiomaActual || window.idiomaActual === nuevoIdioma) return;
 
-    // 1. Actualiza la variable global en detalle.js
+
     window.idiomaActual = nuevoIdioma;
     console.log(`Cambiando idioma a: ${nuevoIdioma}`);
 
-    // 2. Cargar las traducciones de la interfaz (nav, footer, textos fijos)
+
     if (typeof window.rutaInterfaceJson === 'function') {
         loadTranslations(window.rutaInterfaceJson());
     }
 
-    // 3. RECARGAR LOS PRODUCTOS (Llamamos a la función de detalle.js)
+   
     if (typeof window.cargarYMostrarProductos === 'function') {
         window.cargarYMostrarProductos();
     }
@@ -40,11 +37,9 @@ function loadTranslations(filePath) {
 }
 
 
-/**
- * Aplica las traducciones a los elementos de la página usando data-key.
- */
+
 function applyTranslations(translations) {
-    // Traducir textos
+   
     document.querySelectorAll('[data-key]').forEach(element => {
         const key = element.getAttribute('data-key');
         if (translations[key]) {
@@ -52,7 +47,7 @@ function applyTranslations(translations) {
         }
     });
 
-    // Traducir placeholders
+    
     document.querySelectorAll('[data-placeholder-key]').forEach(element => {
         const key = element.getAttribute('data-placeholder-key');
         if (translations[key]) {
@@ -62,18 +57,13 @@ function applyTranslations(translations) {
     console.log("Traducciones de interfaz aplicadas.");
 }
 
-// ====================================================================
-// LÓGICA DE CARGA DE HTML (nav_footer.js)
-// ====================================================================
 
 document.addEventListener("DOMContentLoaded", () => {
     loadHTML("nav-container", "/nav.html");
     loadHTML("footer-container", "/footer.html");
 });
 
-/**
- * Carga el contenido de un archivo HTML en un contenedor específico.
- */
+
 function loadHTML(containerId, filePath) {
     fetch(filePath)
         .then(response => {
@@ -88,23 +78,20 @@ function loadHTML(containerId, filePath) {
                 container.innerHTML = data;
             }
 
-            // Si cargamos la navegación, inicializamos listeners y la traducción inicial
+    
             if (containerId === "nav-container") {
                 initLoginListeners();
 
-                // 💡 TRADUCCIÓN INICIAL: Aplicar el idioma por defecto y cargar productos al final de la carga del NAV
                 if (window.idiomaActual && window.rutaInterfaceJson && window.cargarYMostrarProductos) {
-                    loadTranslations(window.rutaInterfaceJson()); // Traduce la interfaz
-                    window.cargarYMostrarProductos(); // Carga los productos
+                    loadTranslations(window.rutaInterfaceJson()); 
+                    window.cargarYMostrarProductos(); 
                 }
             }
         })
         .catch(err => console.error(err));
 }
 
-// ====================================================================
-// LÓGICA DEL POPUP DE LOGIN
-// ====================================================================
+
 async function showLogin() {
     let popup = document.getElementById("dynamicLoginPopup");
 
@@ -167,18 +154,14 @@ function initLoginComponent() {
 }
 
 function initLoginListeners() {
-    // El listener del login ahora está delegado en el listener principal de click
-    // para evitar duplicar escuchadores en el mismo DOM.
+
 }
 
 
-// ====================================================================
-// LÓGICA DEL DROPDOWN DE IDIOMAS y LOGIN DELEGADO
-// ====================================================================
 
 document.addEventListener("click", (e) => {
     // ----------------------------------------------------
-    // Lógica del BOTÓN DE LOGIN (Trasladada aquí)
+   
     const btnLogin = e.target.closest("#btnOpenLogin");
     if (btnLogin) {
         e.preventDefault();
@@ -187,8 +170,7 @@ document.addEventListener("click", (e) => {
     }
     // ----------------------------------------------------
 
-    // ----------------------------------------------------
-    // Lógica del MENÚ DE IDIOMAS (Con conexión a cambiarIdioma)
+
     const langButton = e.target.closest("#btnOpenLanguage");
     const langMenu = document.getElementById("languageMenu");
     const langOption = e.target.closest(".dropdown-menu a"); // Nueva: captura las opciones
@@ -204,10 +186,10 @@ document.addEventListener("click", (e) => {
         const lang = langOption.getAttribute('lang');
 
         if (lang) {
-            cambiarIdioma(lang); // 🔑 LLAMADA CLAVE para recargar todo
+            cambiarIdioma(lang); 
         }
 
-        // Ocultar el menú
+        
         langMenu?.classList.remove("visible");
 
     } else if (langMenu && langMenu.classList.contains("visible") && !e.target.closest(".dropdown-menu")) {
