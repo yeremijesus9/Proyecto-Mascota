@@ -22,11 +22,19 @@ async function mostrarProductosCategoria() {
         const respuesta = await fetch('/assets/JSON/es_mascota.json');
         const productos = await respuesta.json();
 
-        // Filtrar por categoría
-        const productosFiltrados = productos.filter(p => p.categoria === categoria);
+        // Filtrar por categoría (sin importar mayúsculas/minúsculas)
+        const productosFiltrados = productos.filter(p =>
+            p.categoria && p.categoria.toLowerCase() === categoria.toLowerCase()
+        );
 
         // Limpiar contenedor
         contenedor.innerHTML = '';
+
+        // Si no hay productos, mostrar mensaje
+        if (productosFiltrados.length === 0) {
+            contenedor.innerHTML = '<p style="text-align: center; color: #666;">No hay productos en esta categoría</p>';
+            return;
+        }
 
         // Mostrar cada producto
         productosFiltrados.forEach(producto => {

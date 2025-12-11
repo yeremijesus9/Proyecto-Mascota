@@ -1,6 +1,3 @@
-// ====================================================================
-// CONFIGURACIÓN GLOBAL DE IDIOMA Y RUTA (Asegura que existen al inicio)
-// ====================================================================
 
 // Inicialización: Lee el idioma del localStorage o usa 'es' por defecto.
 window.idiomaActual = localStorage.getItem('idiomaSeleccionado') || "es";

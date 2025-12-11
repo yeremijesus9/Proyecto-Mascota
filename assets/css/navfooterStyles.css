@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-/* fuente global */
+
 * {
   margin: 0;
   padding: 0;
@@ -8,7 +8,7 @@
   font-family: "Poppins", sans-serif;
 }
 
-/* barra de anuncios arriba */
+
 .barra-superior {
     background-color: #682d1e; /* marron oscuro */
     color: #fff;
@@ -25,10 +25,9 @@
 }
 
 .barra-superior strong {
-    color: #D37C39; /* naranja */
+    color: #D37C39; 
 }
 
-/* encabezado principal */
 header {
   position: relative;
   width: 100%;
@@ -68,34 +67,34 @@ header {
   font-size: 0.8rem;
 }
 
-/* efecto al pasar el mouse por los iconos de arriba */
+
 .navegacion-arriba a:hover .iconify {
     color: #D37C39;
     transform: scale(1.1);
     transition: all 0.3s ease;
 }
 
-/* contenedor del buscador */
+
 .contenedor-busqueda {
   display: flex;
   align-items: center;
   width: 35rem;
-  background-color: #ffffff; /* blanco */
+  background-color: #ffffff; 
   border: 2px solid transparent;
-  border-radius: 50px; /* bordes redondos */
+  border-radius: 50px;
   overflow: hidden;
   padding: 4px;
   box-shadow: 0 4px 10px rgba(104, 45, 30, 0.1);
   transition: all 0.3s ease;
 }
 
-/* cuando escribes en el buscador */
+
 .contenedor-busqueda:focus-within {
     border-color: #D37C39;
     box-shadow: 0 4px 15px rgba(211, 124, 57, 0.2);
 }
 
-/* boton de la lupa */
+
 .icono-busqueda {
   background-color: #682d1e;
   color: #ffffff;
@@ -123,7 +122,7 @@ header {
   margin: 0;
 }
 
-/* campo de texto para buscar */
+
 .input-busqueda {
   flex: 1;
   border: none;
@@ -148,7 +147,7 @@ header {
   margin: 0 0.3rem;
 }
 
-/* barra de navegacion de abajo */
+
 .navegacion-abajo {
     position: relative;
     width: 100%;
@@ -241,7 +240,7 @@ header {
 .dropdown-menu a:hover {
     background-color: #fcece4;
     color: #D37C39;
-    transform: none; /* sobrescribir el transform del nav general */
+    transform: none;
 }
 
 footer {

@@ -25,7 +25,7 @@ function iniciarEfectoPortada() {
 document.addEventListener('DOMContentLoaded', () => {
     iniciarEfectoPortada();
 
-    // Iniciar carga de productos si la función existe (desde detalle_p.js)
+
     if (typeof window.cargarYMostrarProductos === 'function') {
         window.cargarYMostrarProductos();
     }
