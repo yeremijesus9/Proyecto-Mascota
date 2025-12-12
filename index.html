@@ -77,26 +77,6 @@
     <footer>
         <div id="footer-container"></div>
     </footer>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    const popup = document.getElementById("popup-oferta");
-    const btnCerrar = document.getElementById("popup-cerrar");
-
-    // Aparece de inmediato
-    popup.classList.add("activo");
-
-    // Se cierra automáticamente después de 7 segundos
-    setTimeout(() => {
-        popup.classList.remove("activo");
-    }, 7000);
-
-    // También puede cerrarse manualmente
-    btnCerrar.addEventListener("click", () => {
-        popup.classList.remove("activo");
-    });
-});
-</script>
-
 
     <script src="assets/javascript/script.js"></script>
     <script src="assets/javascript/idioma.js"></script>
