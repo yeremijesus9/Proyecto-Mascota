@@ -1,7 +1,7 @@
 [ 
   {
     "id": "CAT1",
-    "categoria": "Cat",
+    "categoria": "cat",
     "marca": "Grature",
     "puntuacion": "4",
     "opiniones": "20 reviews",
@@ -50,7 +50,7 @@
   },
   {
     "id": "CAT2",
-    "categoria": "Cat",
+    "categoria": "cat",
     "marca": "Purina Felix",
     "puntuacion": "5",
     "opiniones": "16 reviews",
@@ -102,7 +102,7 @@
   },
   {
     "id": "CAT3",
-    "categoria": "Cat",
+    "categoria": "cat",
     "marca": "Gloria Pets",
     "puntuacion": "5",
     "opiniones": "60 reviews",
@@ -154,7 +154,7 @@
   },
   {
     "id": "CAT4",
-    "categoria": "Cat",
+    "categoria": "cat",
     "marca": "SUMSU",
     "puntuacion": "4",
     "opiniones": "10 reviews",
@@ -205,7 +205,7 @@
   },
   {
     "id": "CAT5",
-    "categoria": "Cat",
+    "categoria": "cat",
     "marca": "Sure Petcare",
     "puntuacion": "5",
     "opiniones": "20 reviews",
@@ -255,7 +255,7 @@
   },
   {
     "id": "PEZ1",
-    "categoria": "Fish",
+    "categoria": "fish",
     "marca": "Tetra",
     "puntuacion": "5",
     "opiniones": "45 reviews",
@@ -304,7 +304,7 @@
   },
   {
     "id": "PEZ2",
-    "categoria": "Fish",
+    "categoria": "fish",
     "marca": "Eheim",
     "puntuacion": "5",
     "opiniones": "32 reviews",
@@ -353,7 +353,7 @@
   },
   {
     "id": "PEZ3",
-    "categoria": "Fish",
+    "categoria": "fish",
     "marca": "Aqua Ornaments",
     "puntuacion": "4",
     "opiniones": "28 reviews",
@@ -402,7 +402,7 @@
   },
   {
     "id": "PEZ4",
-    "categoria": "Fish",
+    "categoria": "fish",
     "marca": "JBL",
     "puntuacion": "5",
     "opiniones": "52 reviews",
@@ -451,7 +451,7 @@
   },
   {
     "id": "PEZ5",
-    "categoria": "Fish",
+    "categoria": "fish",
     "marca": "Sera",
     "puntuacion": "5",
     "opiniones": "38 reviews",
@@ -502,7 +502,7 @@
 ,
 { 
     "id": "ROE1",
-    "categoria": "Rodents",
+    "categoria": "rodents",
     "marca": "JR Schmaus",
     "puntuacion": "4",
     "opiniones": "5 opinions",
@@ -550,7 +550,7 @@
  },
  {
     "id": "ROE2",
-    "categoria": "Rodents",
+    "categoria": "rodents",
     "marca": "TIAKI",
     "puntuacion": "4",
     "opiniones": "2",
@@ -583,7 +583,7 @@
   },
     {
     "id": "ROE3",
-    "categoria": "Rodents",
+    "categoria": "rodents",
     "marca": "TIAKI",
     "rpuntuacion": "4",
     "opiniones": "1 opinion",
@@ -611,7 +611,7 @@
   },
    {
     "id": "ROE4",
-    "categoria": "Rodents",
+    "categoria": "rodents",
     "marca": "LUXE",
     "puntuacion": "1",
     "opiniones": "3 opinions",
@@ -647,7 +647,7 @@
   },
   {
     "id": "ROE5",
-    "categoria": "Rodents",
+    "categoria": "rodents",
     "marca": "New Flag",
     "puntuacion": "3",
     "opiniones": "1 opinions",
@@ -656,7 +656,7 @@
     "descripcion": "Brush for dogs, cats and small animals, ideal for removing loose hair and for use on sensitive areas, with soft bristles for gentle care, suitable for dry or wet hair.",
     "formato": "Size",
     "descripcion_formato": "approx. 12.5 x 5.5 x 5.5 cm (L x W x H)",
-    "imagen_principal": "/assets/img/roedores/cepillo.jpg",
+    "imagen_principal": "/assets/img/roedores/cepillo.png",
     "imagen_miniatura": [
     "/assets/img/roedores/cepillo.png",
      "/assets/img/roedores/cepillo1.png",
@@ -907,6 +907,7 @@
   },
   {
     "id": "TXO1",
+    "categoria": "bird",
     "marca": "Versele-Laga",
     "puntuacion": "5",
     "opiniones": "20",
@@ -954,6 +955,7 @@
   },
   {
     "id": "TXO2",
+    "categoria": "bird",
     "marca": "Montana",
     "puntuacion": "3",
     "opiniones": "2",
@@ -987,6 +989,7 @@
   },
   {
     "id": "TXO3",
+    "categoria": "bird",
     "marca": "Kerbl Hobbyfarming Riederstein",
     "puntuacion": "4",
     "opiniones": "0",
@@ -1005,6 +1008,7 @@
   },
   {
     "id": "TXO4",
+    "categoria": "bird",
     "marca": "TIAKI",
     "puntuacion": "4",
     "opiniones": "2",
@@ -1036,6 +1040,7 @@
   },
   {
     "id": "TXO5",
+    "categoria": "bird",
     "marca": "Verm-x",
     "puntuacion": "5",
     "opiniones": "1",

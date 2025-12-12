@@ -1,7 +1,16 @@
-// 1. Obtener la categoría desde la URL
+// Inicializar idioma actual desde localStorage o por defecto
+window.idiomaActual = localStorage.getItem('idiomaSeleccionado') || 'es';
+
+const categoriasMap = {
+    es: { perro: "perro", gato: "gato", roedores: "roedores", pez: "pez", pajaro: "pajaro", otro: "otro" },
+    en: { perro: "dog", gato: "cat", roedores: "rodents", pez: "fish", pajaro: "bird", otro: "other" }
+};
+
+// 1. Obtener la categoría desde la URL y mapear según el idioma
 function getCategoria() {
-    const categoria = new URLSearchParams(location.search).get('categoria');
-    return categoria ? categoria.toLowerCase() : 'gato';
+    const lang = window.idiomaActual; // ahora ya está inicializado correctamente
+    const categoriaUrl = new URLSearchParams(location.search).get('categoria')?.toLowerCase() || 'gato';
+    return categoriasMap[lang][categoriaUrl] || categoriaUrl;
 }
 
 // 2. Cargar productos del JSON (soporta cambio de idioma)
@@ -42,9 +51,8 @@ async function mostrarProductos() {
 
     try {
         const productos = await cargarProductos();
-        const filtrados = productos.filter(p => p.categoria?.toLowerCase() === categoria);
+        const filtrados = productos.filter(p => p.categoria?.toLowerCase() === categoria.toLowerCase());
 
-        // Si no hay productos
         if (!filtrados.length) {
             contenedor.innerHTML = `<p style="text-align:center; color:#666;">
                 No hay productos en esta categoría
@@ -52,7 +60,6 @@ async function mostrarProductos() {
             return;
         }
 
-        // Insertar tarjetas en el DOM
         contenedor.innerHTML = filtrados.map(crearTarjeta).join('');
 
     } catch (error) {
@@ -66,3 +73,4 @@ document.addEventListener('DOMContentLoaded', mostrarProductos);
 
 // Exponer globalmente (necesario para cambio de idioma)
 window.cargarYMostrarProductos = mostrarProductos;
+window.getCategoria = getCategoria;
