@@ -900,6 +900,160 @@
         "texto": "Me gusta la tranquilidad que me da. Mi perro está asegurado en todo momento. El material es muy resistente."
       }
     ]
+  },
+  {
+    "id": "TXO1",
+    "categoria": "pajaro",
+    "marca": "Versele-Laga",
+    "puntuacion": "5",
+    "opiniones": "20",
+    "nombre_producto": "Versele-Laga Prestige comida para cotorras y ninfas",
+    "precio": 10.29,
+    "descripcion": "Alimento especialmente adaptado a las cotorras y ninfas, mezcla equilibrada de granos para una alimentación óptima, potencia el colorido de las plumas y promueve una vida larga y sana.",
+    "formato": "peso producto",
+    "descripcion_formato": "4 Kg",
+    "imagen_principal": "/assets/img/pajaros/comida.png",
+    "imagen_miniatura": [
+      "/assets/img/pajaros/comida.png"
+    ],
+    "comentarios": [
+      {
+        "usuario": "Ángela Labian",
+        "fecha": "2025-03-24",
+        "puntuacion": 5,
+        "texto": "Es una buena bolsa .El precio excelente. Y ellos encantados."
+      },
+      {
+        "usuario": "KOA",
+        "fecha": "2023-11-20",
+        "puntuacion": 5,
+        "texto": "A mis ninfas les encanta …lo único negativo por decir algo es que vienen demasiadas pipas de girasol pero por lo demás fabuloso …el paquete de 4 kilos dura muchísimo para dos."
+      },
+      {
+        "usuario": "Raquel",
+        "fecha": "2024-12-12",
+        "puntuacion": 5,
+        "texto": "He estado alimentando a mi pareja de agapornis varios años con otras marcas y siempre comían y tiraban para afuera pero con Prestige lo comen todo sin tirar."
+      },
+      {
+        "usuario": "Sonya",
+        "fecha": "2025-07-20",
+        "puntuacion": 3,
+        "texto": "Semillas de calidad pero faltan vitaminas para que se pueda considerar una alimentación completa y necesaria para las ninfas"
+      },
+      {
+        "usuario": "José Manuel",
+        "fecha": "2023-0-18",
+        "puntuacion": 4,
+        "texto": "Es bastante completa y a mis agapornis les gusta bastante, excepto los cacahuetes. El precio no puede ser mejor."
+      }
+    ]
+  },
+  {
+    "id": "TXO2",
+    "categoria": "pajaro",
+    "marca": "Montana",
+    "puntuacion": "3",
+    "opiniones": "2",
+    "nombre_producto": "Jaula Montana Finca Play para pájaros",
+    "precio": 207.99,
+    "descripcion": "Jaula para loros pequeños, cotorras y ninfas, con 2 perchas en 2 niveles y comederos, parte frontal para recoger la comida, con ruedas 360°, 18 mm entre rejillas.",
+    "formato": "Tamaño",
+    "descripcion_formato": "77 x 71 x 165 cm (L x An x Al) - (*envío en 2 paquetes)",
+    "imagen_principal": "/assets/img/pajaros/jaulatx.png",
+    "imagen_miniatura": [
+      "/assets/img/pajaros/jaulatx.png",
+      "/assets/img/pajaros/jaulatx1.png",
+      "/assets/img/pajaros/jaulatx2.png",
+      "/assets/img/pajaros/jaulatx3.png"
+    ],
+    "comentarios": [
+      {
+        "usuario": "Fernando",
+        "fecha": "2025-02-18",
+        "puntuacion": 5,
+        "texto": "Muy grande y espaciosa, a mi Amazonas Lolita y a mi nos ha encantado. Tiene una pintura muy buena y fácil de limpiar. El montaje tambien ha sido bastante fácil. Y como comentario a los pestillos, tengo loros desde hace más de 40 años, y no hay pestillo que se les resista, son súper listos y terminan abriendo la jaula. Yo cuando ya logran abrirlo, le paso una cadenita para asegurarme de que no escapen en mi ausencia. En general, muy contenta con la calidad y el precio."
+      },
+      {
+        "usuario": "Eva",
+        "fecha": "2024-04-23",
+        "puntuacion": 1,
+        "texto": "Hola !!! Súper enfadada con la compra de esta jaula y mirando cómo hacer una reclamación, mi Yaco a través de los comederos empujando un hierrito lo saca y sale por ahí, encuentro que no es para nada una jaula acta para este tipo de animales. De 4 comederos dos rotos y esto en 4 meses desde que la compramos. Posibilidad de que se escapen por ahí y bye bye loro, lo dicho PÉSIMA."
+      }
+    ]
+  },
+  {
+    "id": "TXO3",
+    "categoria": "pajaro",
+    "marca": "Kerbl Hobbyfarming Riederstein",
+    "puntuacion": "4",
+    "opiniones": "0",
+    "nombre_producto": "Comedero Kerbl Hobbyfarming Riederstein para pájaros",
+    "precio": 11.29,
+    "descripcion": "Comedero de madera para aves silvestres, perfecto para el jardín, balcón o patio, con ventanas transparentes de cristal acrílico, techo abatible y percha, materiales resistentes a la intemperie",
+    "formato": "Tamaño",
+    "descripcion_formato": "23,8 x 17 x 20,7 cm (L x An x Al)",
+    "imagen_principal": "/assets/img/pajaros/comedero.png",
+    "imagen_miniatura": [
+      "/assets/img/pajaros/comedero.png"
+    ],
+    "comentarios": []
+  },
+  {
+    "id": "TXO4",
+    "categoria": "pajaro",
+    "marca": "TIAKI",
+    "puntuacion": "4",
+    "opiniones": "2",
+    "nombre_producto": "Piñata TIAKI Lama juguete para pájaros",
+    "precio": 3.99,
+    "descripcion": "Colorida piñata de juguete para pájaros pequeños y medianos, con tiras de papel para desplumar, se puede rellenar con golosinas o juguetes, con gancho metálico para sujetarla a la pajarera",
+    "formato": "Tamaño",
+    "descripcion_formato": "aprox. 14 x 6 x 23 cm (L x An x Al)",
+    "imagen_principal": "/assets/img/pajaros/piñata.png",
+    "imagen_miniatura": [
+      "/assets/img/pajaros/piñata.png",
+      "/assets/img/pajaros/piñata2.png"
+    ],
+    "comentarios": [
+      {
+        "usuario": "Urko",
+        "fecha": "2024-02-18",
+        "puntuacion": 4,
+        "texto": "Mi loro se entretiene mucho con esta piñata, le encanta arrancar las tiras de papel. Es un buen juguete para mantenerlo ocupado y estimular su mente."
+      },
+      {
+        "usuario": "Jose",
+        "fecha": "2025-05-28",
+        "puntuacion": 4,
+        "texto": "A mi loro le gusta mucho, aunque creo que podría ser un poco más grande para pájaros medianos. Aun así, es una buena compra por el precio."
+      }
+    ]
+  },
+  {
+    "id": "TXO5",
+    "categoria": "pajaro",
+    "marca": "Verm-x",
+    "puntuacion": "5",
+    "opiniones": "1",
+    "nombre_producto": "Verm-x pellets para pájaros",
+    "precio": 34.99,
+    "descripcion": "Alimento complementario natural para pollos, patos y otras aves desde los 2 meses, también para polluelos y animales sensibles, favorece la función digestiva natural, con hierbas, sin aditivos químicos",
+    "formato": "Peso",
+    "descripcion_formato": "750 g",
+    "imagen_principal": "/assets/img/pajaros/pellets.png",
+    "imagen_miniatura": [
+      "/assets/img/pajaros/pellets.png",
+      "/assets/img/pajaros/pellets1.png",
+      "/assets/img/pajaros/pellets2.png"
+    ],
+    "comentarios": [
+      {
+        "usuario": "Raúl",
+        "fecha": "2025-02-17",
+        "puntuacion": 5,
+        "texto": "A mis gallinas les encanta este complemento. He notado una mejora en su digestión y en la calidad de sus huevos desde que empecé a dárselos. Además, es natural y sin químicos, lo cual es un gran plus."
+      }
+    ]
   }
-   
 ]

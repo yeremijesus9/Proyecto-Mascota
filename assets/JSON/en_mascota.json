@@ -661,5 +661,159 @@
       }
 
     ]
+  },
+  {
+    "id": "TXO1",
+    "marca": "Versele-Laga",
+    "puntuacion": "5",
+    "opiniones": "20",
+    "nombre_producto": "Versele-Laga Prestige food for cockatiels and nymphs",
+    "precio": 10.29,
+    "descripcion": "Food specially adapted for cockatiels and nymphs, balanced blend of grains for optimal nutrition, enhances the color of feathers and promotes a long and healthy life.",
+    "formato": "product weight",
+    "descripcion_formato": "4 Kg",
+    "imagen_principal": "/assets/img/pajaros/comida.png",
+    "imagen_miniatura": [
+      "/assets/img/pajaros/comida.png"
+    ],
+    "comentarios": [
+      {
+        "usuario": "Ángela Labian",
+        "fecha": "2025-03-24",
+        "puntuacion": 5,
+        "texto": "It is a good bag. The price is excellent. And they are delighted."
+      },
+      {
+        "usuario": "KOA",
+        "fecha": "2023-11-20",
+        "puntuacion": 5,
+        "texto": "My nymphs love it... the only negative thing to say is that there are too many sunflower seeds, but otherwise fabulous... the 4 kilo package lasts a long time for two."
+      },
+      {
+        "usuario": "Raquel",
+        "fecha": "2024-12-12",
+        "puntuacion": 5,
+        "texto": "I have been feeding my pair of lovebirds with other brands for several years and they always ate and threw food out, but with Prestige they eat everything without throwing it away."
+      },
+      {
+        "usuario": "Sonya",
+        "fecha": "2025-07-20",
+        "puntuacion": 3,
+        "texto": "Quality seeds but lacking vitamins to be considered a complete and necessary food for nymphs"
+      },
+      {
+        "usuario": "José Manuel",
+        "fecha": "2023-0-18",
+        "puntuacion": 4,
+        "texto": "It is quite complete and my lovebirds like it quite a bit, except for the peanuts. The price couldn't be better."
+      }
+    ]
+  },
+  {
+    "id": "TXO2",
+    "marca": "Montana",
+    "puntuacion": "3",
+    "opiniones": "2",
+    "nombre_producto": "Montana Finca Play Cage for birds",
+    "precio": 207.99,
+    "descripcion": "Cage for small parrots, cockatiels and nymphs, with 2 perches on 2 levels and feeders, front part to collect food, with 360° wheels, 18 mm between bars.",
+    "formato": "Size",
+    "descripcion_formato": "77 x 71 x 165 cm (L x W x H) - (*shipping in 2 packages)",
+    "imagen_principal": "/assets/img/pajaros/jaulatx.png",
+    "imagen_miniatura": [
+      "/assets/img/pajaros/jaulatx.png",
+      "/assets/img/pajaros/jaulatx1.png",
+      "/assets/img/pajaros/jaulatx2.png",
+      "/assets/img/pajaros/jaulatx3.png"
+    ],
+    "comentarios": [
+      {
+        "usuario": "Fernando",
+        "fecha": "2025-02-18",
+        "puntuacion": 5,
+        "texto": "Very large and spacious, my Amazon Lolita and I loved it. It has very good paint and is easy to clean. Assembly was also quite easy. And as a comment on the latches, I have had parrots for more than 40 years, and there is no latch that can resist them, they are super smart and end up opening the cage. When they manage to open it, I pass a small chain through it to ensure they don't escape in my absence. Overall, very happy with the quality and the price."
+      },
+      {
+        "usuario": "Eva",
+        "fecha": "2024-04-23",
+        "puntuacion": 1,
+        "texto": "Hello !!! Super angry with the purchase of this cage and looking into how to file a complaint, my Yaco pushes a little wire through the feeders and gets out there, I find that it is not at all a suitable cage for this type of animal. Of 4 feeders, two broken and this in 4 months since we bought it. Possibility of them escaping there and bye bye parrot, as I said AWFUL."
+      }
+
+    ]
+  },
+  {
+    "id": "TXO3",
+    "marca": "Kerbl Hobbyfarming Riederstein",
+    "puntuacion": "4",
+    "opiniones": "0",
+    "nombre_producto": "Kerbl Hobbyfarming Riederstein Feeder for birds",
+    "precio": 11.29,
+    "descripcion": "Wooden feeder for wild birds, perfect for the garden, balcony or patio, with transparent acrylic glass windows, hinged roof and perch, weather-resistant materials",
+    "formato": "Size",
+    "descripcion_formato": "23.8 x 17 x 20.7 cm (L x W x H)",
+    "imagen_principal": "/assets/img/pajaros/comedero.png",
+    "imagen_miniatura": [
+      "/assets/img/pajaros/comedero.png"
+
+    ],
+    "comentarios": [
+    ]
+  },
+  {
+    "id": "TXO4",
+    "marca": "TIAKI",
+    "puntuacion": "4",
+    "opiniones": "2",
+    "nombre_producto": "TIAKI Llama Piñata toy for birds",
+    "precio": 3.99,
+    "descripcion": "Colorful piñata toy for small and medium birds, with paper strips for shredding, can be filled with treats or toys, with metal hook to attach it to the aviary",
+    "formato": "Size",
+    "descripcion_formato": "approx. 14 x 6 x 23 cm (L x W x H)",
+    "imagen_principal": "/assets/img/pajaros/piñata.png",
+    "imagen_miniatura": [
+      "/assets/img/pajaros/piñata.png",
+      "/assets/img/pajaros/piñata2.png"
+
+    ],
+    "comentarios": [
+      {
+        "usuario": "Urko",
+        "fecha": "2024-02-18",
+        "puntuacion": 4,
+        "texto": "My parrot is very entertained with this piñata, he loves tearing off the paper strips. It is a good toy to keep him occupied and stimulate his mind."
+      },
+      {
+        "usuario": "Jose",
+        "fecha": "2025-05-28",
+        "puntuacion": 4,
+        "texto": "My parrot likes it a lot, although I think it could be a little bigger for medium birds. Even so, it's a good purchase for the price."
+      }
+    ]
+  },
+  {
+    "id": "TXO5",
+    "marca": "Verm-x",
+    "puntuacion": "5",
+    "opiniones": "1",
+    "nombre_producto": "Verm-x pellets for birds",
+    "precio": 34.99,
+    "descripcion": "Natural complementary food for chickens, ducks and other birds from 2 months, also for chicks and sensitive animals, promotes natural digestive function, with herbs, without chemical additives",
+    "formato": "Weight",
+    "descripcion_formato": "750 g",
+    "imagen_principal": "/assets/img/pajaros/pellets.png",
+    "imagen_miniatura": [
+      "/assets/img/pajaros/pellets.png",
+      "/assets/img/pajaros/pellets1.png",
+      "/assets/img/pajaros/pellets2.png"
+    ],
+    "comentarios": [
+      {
+        "usuario": "Raúl",
+        "fecha": "2025-02-17",
+        "puntuacion": 5,
+        "texto": "My chickens love this supplement. I have noticed an improvement in their digestion and in the quality of their eggs since I started giving it to them. Furthermore, it is natural and chemical-free, which is a big plus."
+      }
+    ]
   }
 ]
