@@ -30,3 +30,20 @@ document.addEventListener('DOMContentLoaded', () => {
         window.cargarYMostrarProductos();
     }
 });
+document.addEventListener("DOMContentLoaded", () => {
+    const popup = document.getElementById("popup-oferta");
+    const btnCerrar = document.getElementById("popup-cerrar");
+
+    // Aparece de inmediato
+    popup.classList.add("activo");
+
+    // Se cierra automáticamente después de 7 segundos
+    setTimeout(() => {
+        popup.classList.remove("activo");
+    }, 7000);
+
+    // También puede cerrarse manualmente
+    btnCerrar.addEventListener("click", () => {
+        popup.classList.remove("activo");
+    });
+});
