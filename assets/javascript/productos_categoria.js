@@ -1,4 +1,3 @@
-// Inicializar idioma actual desde localStorage o por defecto
 window.idiomaActual = localStorage.getItem('idiomaSeleccionado') || 'es';
 
 const categoriasMap = {
@@ -6,9 +5,19 @@ const categoriasMap = {
     en: { perro: "dog", gato: "cat", roedores: "rodents", pez: "fish", pajaro: "bird", otro: "other" }
 };
 
+//  Función para cambiar idioma
+window.cambiarIdioma = async function(nuevoIdioma) {
+    if (window.idiomaActual === nuevoIdioma) return;
+
+    window.idiomaActual = nuevoIdioma;
+    localStorage.setItem('idiomaSeleccionado', nuevoIdioma);
+    await mostrarProductos(); // recarga productos con nuevo idioma
+};
+
+
 // 1. Obtener la categoría desde la URL y mapear según el idioma
 function getCategoria() {
-    const lang = window.idiomaActual; // ahora ya está inicializado correctamente
+    const lang = window.idiomaActual || 'es'; 
     const categoriaUrl = new URLSearchParams(location.search).get('categoria')?.toLowerCase() || 'gato';
     return categoriasMap[lang][categoriaUrl] || categoriaUrl;
 }
