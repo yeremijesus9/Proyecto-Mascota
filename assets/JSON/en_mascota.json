@@ -1,6 +1,7 @@
 [ 
   {
     "id": "CAT1",
+    "categoria": "Cat",
     "marca": "Grature",
     "puntuacion": "4",
     "opiniones": "20 reviews",
@@ -49,6 +50,7 @@
   },
   {
     "id": "CAT2",
+    "categoria": "Cat",
     "marca": "Purina Felix",
     "puntuacion": "5",
     "opiniones": "16 reviews",
@@ -100,6 +102,7 @@
   },
   {
     "id": "CAT3",
+    "categoria": "Cat",
     "marca": "Gloria Pets",
     "puntuacion": "5",
     "opiniones": "60 reviews",
@@ -151,6 +154,7 @@
   },
   {
     "id": "CAT4",
+    "categoria": "Cat",
     "marca": "SUMSU",
     "puntuacion": "4",
     "opiniones": "10 reviews",
@@ -201,6 +205,7 @@
   },
   {
     "id": "CAT5",
+    "categoria": "Cat",
     "marca": "Sure Petcare",
     "puntuacion": "5",
     "opiniones": "20 reviews",
@@ -250,6 +255,7 @@
   },
   {
     "id": "PEZ1",
+    "categoria": "Fish",
     "marca": "Tetra",
     "puntuacion": "5",
     "opiniones": "45 reviews",
@@ -298,6 +304,7 @@
   },
   {
     "id": "PEZ2",
+    "categoria": "Fish",
     "marca": "Eheim",
     "puntuacion": "5",
     "opiniones": "32 reviews",
@@ -346,6 +353,7 @@
   },
   {
     "id": "PEZ3",
+    "categoria": "Fish",
     "marca": "Aqua Ornaments",
     "puntuacion": "4",
     "opiniones": "28 reviews",
@@ -394,6 +402,7 @@
   },
   {
     "id": "PEZ4",
+    "categoria": "Fish",
     "marca": "JBL",
     "puntuacion": "5",
     "opiniones": "52 reviews",
@@ -442,6 +451,7 @@
   },
   {
     "id": "PEZ5",
+    "categoria": "Fish",
     "marca": "Sera",
     "puntuacion": "5",
     "opiniones": "38 reviews",
@@ -660,6 +670,239 @@
         "texto": "My long-haired cat is delighted with this comb! It removes the fine inner hairs, I brush her every day and that prevents tangles from forming in her coat. She likes me to pass it softly so as not to pull her hair. Recommended!"
       }
 
+    ]
+  },
+  {
+    "id": "DOG1",
+    "categoria": "dog",
+    "marca": "TK-Pet Tindaya dog house with door",
+    "puntuacion": "4",
+    "opiniones": "18",
+    "nombre_producto": "dog house",
+    "precio": 89.95,
+    "descripcion": "Dog house with a door for greater comfort and safety.",
+    "formato": "size",
+    "descripcion_formato": "Medium",
+    "imagen_principal": "/assets/img/perros/casetaperro.png",
+    "imagen_miniatura": [
+      "/assets/img/perros/casetaperro2.png",
+      "/assets/img/perros/casetaperro3.png"
+    ],
+    "comentarios": [
+      {
+        "usuario": "HappyDog",
+        "fecha": "2025-03-05",
+        "puntuacion": 5,
+        "texto": "My dog has more energy since I switched to this food. You can really tell the quality and his coat is shinier than ever."
+      },
+      {
+        "usuario": "ExperiencedOwner",
+        "fecha": "2025-02-28",
+        "puntuacion": 5,
+        "texto": "I’ve been using Royal Canin for years and it has never disappointed me. It’s a premium food truly worth it."
+      },
+      {
+        "usuario": "VetRecommended",
+        "fecha": "2025-03-02",
+        "puntuacion": 5,
+        "texto": "My vet recommended it and I don’t regret it. Excellent value for money for this quality level."
+      },
+      {
+        "usuario": "OptimalCare",
+        "fecha": "2025-02-20",
+        "puntuacion": 4,
+        "texto": "Good food, though a bit pricey. My dog eats it eagerly and his digestion has improved noticeably."
+      },
+      {
+        "usuario": "HealthyDog",
+        "fecha": "2025-03-01",
+        "puntuacion": 5,
+        "texto": "Since I switched to this food, his weight stays stable and his coat has more shine. Highly recommended."
+      }
+    ]
+  },
+  {
+    "id": "DOG2",
+    "categoria": "dog",
+    "marca": "DC Batman rope toy for dogs",
+    "puntuacion": "5",
+    "opiniones": "22",
+    "nombre_producto": "rope toy",
+    "precio": 10.99,
+    "descripcion": "DC Batman rope toy for dogs, ideal to keep your pet entertained and active.",
+    "formato": "Size",
+    "descripcion_formato": "20 cm",
+    "imagen_principal": "/assets/img/perros/jugueteperro.png",
+    "imagen_miniatura": [
+      "/assets/img/perros/jugueteperro.png",
+      "/assets/img/perros/jugueteperro2.png"
+    ],
+    "comentarios": [
+      {
+        "usuario": "ChewerDog",
+        "fecha": "2025-03-04",
+        "puntuacion": 5,
+        "texto": "My dog destroys every toy and this Kong is still intact after months. Definitely the best purchase I’ve made."
+      },
+      {
+        "usuario": "GuaranteedEntertainment",
+        "fecha": "2025-02-25",
+        "puntuacion": 5,
+        "texto": "I fill it with frozen kibble and my dog is entertained for over an hour. Perfectly designed."
+      },
+      {
+        "usuario": "HappyDogPlaying",
+        "fecha": "2025-03-01",
+        "puntuacion": 5,
+        "texto": "It’s practically indestructible as they say. My dog has been playing with the same Kong for 6 months without damage."
+      },
+      {
+        "usuario": "VetApproved",
+        "fecha": "2025-02-18",
+        "puntuacion": 4,
+        "texto": "My vet recommended it for anxious dogs. It really helps calm my dog when he's left alone."
+      }
+    ]
+  },
+  {
+    "id": "DOG3",
+    "categoria": "dog",
+    "marca": "Sporty pet stroller for small pets",
+    "puntuacion": "4",
+    "opiniones": "15",
+    "nombre_producto": "pet stroller",
+    "precio": 66.99,
+    "descripcion": "Sporty pet stroller for small pets, ideal for walking your pet comfortably and safely.",
+    "formato": "color",
+    "descripcion_formato": "Light gray",
+    "imagen_principal": "/assets/img/perros/cochesitoperro.png",
+    "imagen_miniatura": [
+      "/assets/img/perros/cochesitoperro.png",
+      "/assets/img/perros/cochesitoperro2.png"
+    ],
+    "comentarios": [
+      {
+        "usuario": "EffectiveProtection",
+        "fecha": "2025-03-03",
+        "puntuacion": 5,
+        "texto": "I’ve used this collar for 3 months and my dog hasn’t had a single flea. Very effective."
+      },
+      {
+        "usuario": "CalmOwner",
+        "fecha": "2025-02-22",
+        "puntuacion": 4,
+        "texto": "Good protection and lasts a long time. No need to remember monthly pipettes. A bit expensive but worth it."
+      },
+      {
+        "usuario": "NoParasites",
+        "fecha": "2025-02-28",
+        "puntuacion": 4,
+        "texto": "My dog is very sensitive but this collar doesn’t cause allergic reactions and protects him perfectly."
+      },
+      {
+        "usuario": "SafeTrip",
+        "fecha": "2025-03-01",
+        "puntuacion": 5,
+        "texto": "Perfect for traveling because it lasts 8 months and you don’t have to worry. My dog is protected all summer."
+      }
+    ]
+  },
+  {
+    "id": "DOG4",
+    "categoria": "dog",
+    "marca": "Pedigree dentastix/dentastix fresh 120 units - value pack",
+    "puntuacion": "5",
+    "opiniones": "19",
+    "nombre_producto": "Pedigree dentastix",
+    "precio": 21.99,
+    "descripcion": "Pedigree dentastix for dental care in dogs.",
+    "formato": "Units",
+    "descripcion_formato": "120 units",
+    "imagen_principal": "/assets/img/perros/dientesperro.png",
+    "imagen_miniatura": [
+      "/assets/img/perros/dientesperro.png",
+      "/assets/img/perros/dientesperro2.png"
+    ],
+    "comentarios": [
+      {
+        "usuario": "TreatAddictedDog",
+        "fecha": "2025-03-05",
+        "puntuacion": 5,
+        "texto": "My dog goes crazy for these snacks. Great for training and work perfectly as motivation."
+      },
+      {
+        "usuario": "NaturalFeeding",
+        "fecha": "2025-02-27",
+        "puntuacion": 5,
+        "texto": "Since they are completely natural I feel much safer giving them to my dog. He loves them and they’re healthy."
+      },
+      {
+        "usuario": "TrainingMyDog",
+        "fecha": "2025-03-02",
+        "puntuacion": 5,
+        "texto": "Excellent for training. My dog works great with these rewards and has no digestion issues."
+      },
+      {
+        "usuario": "ComfortPet",
+        "fecha": "2025-02-19",
+        "puntuacion": 4,
+        "texto": "They are expensive but natural and high quality. My dog eats them enthusiastically. Fair price for the quality."
+      },
+      {
+        "usuario": "HealthyOption",
+        "fecha": "2025-03-01",
+        "puntuacion": 5,
+        "texto": "Perfectly healthy without chemicals. I’ve noticed his digestion is much better with these treats."
+      }
+    ]
+  },
+  {
+    "id": "DOG5",
+    "categoria": "dog",
+    "marca": "Hill's Prescription Diet food sensitives Z/D dog food",
+    "puntuacion": "5",
+    "opiniones": "21",
+    "nombre_producto": "Hill's Prescription",
+    "precio": 81.49,
+    "descripcion": "Hill's Prescription Diet food sensitives Z/D dog food.",
+    "formato": "product weight",
+    "descripcion_formato": "10Kg",
+    "imagen_principal": "/assets/img/perros/piensoperro.png",
+    "imagen_miniatura": [
+      "/assets/img/perros/piensoperros3.png",
+      "/assets/img/perros/piensoperro4.png"
+    ],
+    "comentarios": [
+      {
+        "usuario": "HikingWithDog",
+        "fecha": "2025-03-04",
+        "puntuacion": 5,
+        "texto": "Perfect for our mountain routes. My dog is safe and comfortable. The material is excellent quality and very durable."
+      },
+      {
+        "usuario": "AdventurousDog",
+        "fecha": "2025-02-26",
+        "puntuacion": 5,
+        "texto": "I can't believe the difference a good harness makes. My dog moves more freely and I have better control."
+      },
+      {
+        "usuario": "ActiveTripsWithPet",
+        "fecha": "2025-03-01",
+        "puntuacion": 5,
+        "texto": "We take it on every trip and hike. It’s truly resistant and comfortable for the dog. Worth the investment."
+      },
+      {
+        "usuario": "SportyDog",
+        "fecha": "2025-02-21",
+        "puntuacion": 4,
+        "texto": "Excellent quality but pricey. Worth it if your dog is active. Very resistant and well designed."
+      },
+      {
+        "usuario": "SafetyFirst",
+        "fecha": "2025-02-28",
+        "puntuacion": 5,
+        "texto": "I love the peace of mind it gives me. My dog is safe at all times. The material is very strong."
+      }
     ]
   }
 ]
