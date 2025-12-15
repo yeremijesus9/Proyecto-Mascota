@@ -183,6 +183,47 @@ body {
     }
 }
 
+.animales {
+    position: relative;
+    width: 80%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    z-index: 3;
+}
+
+.perro{
+    width: 100%;
+    max-width: 300px;
+}
+.gato{
+    width: 100%;
+    max-width: 300px;
+}
+.roedor{
+    width: 100%;
+    max-width: 300px;
+}
+.pez{
+    width: 100%;
+    max-width: 300px;
+}
+.pajaro{
+    width: 100%;
+    max-width: 300px;
+}
+.animales img {
+    transition: all 0.3s ease;
+}
+.animales img:hover {
+    transform: scale(1.1); 
+}
 .sec-productos {
     position: relative;
     background: #ffffff;

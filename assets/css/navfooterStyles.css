@@ -2,15 +2,16 @@
 
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
 
 
 .barra-superior {
-    background-color: #682d1e; /* marron oscuro */
+    background-color: #682d1e;
+    /* marron oscuro */
     color: #fff;
     text-align: center;
     padding: 0.5rem;
@@ -25,45 +26,45 @@
 }
 
 .barra-superior strong {
-    color: #D37C39; 
+    color: #D37C39;
 }
 
 header {
-  position: relative;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  background-color: #fadfcb;
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #fadfcb;
 }
 
 .encabezado-arriba {
-  display: flex;
-  justify-content: center;
-  gap: 7rem;
-  align-items: center;
-  padding: 1rem 0;
-  width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 7rem;
+    align-items: center;
+    padding: 1rem 0;
+    width: 100%;
 }
 
 .logo {
-  width: 10rem;
-  margin: 0 2rem;
+    width: 10rem;
+    margin: 0 2rem;
 }
 
 .navegacion-arriba {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
 }
 
 .navegacion-arriba a {
-  text-decoration: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: #682d1e;
-  font-size: 0.8rem;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #682d1e;
+    font-size: 0.8rem;
 }
 
 
@@ -75,16 +76,16 @@ header {
 
 
 .contenedor-busqueda {
-  display: flex;
-  align-items: center;
-  width: 35rem;
-  background-color: #ffffff; 
-  border: 2px solid transparent;
-  border-radius: 50px;
-  overflow: hidden;
-  padding: 4px;
-  box-shadow: 0 4px 10px rgba(104, 45, 30, 0.1);
-  transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    width: 35rem;
+    background-color: #ffffff;
+    border: 2px solid transparent;
+    border-radius: 50px;
+    overflow: hidden;
+    padding: 4px;
+    box-shadow: 0 4px 10px rgba(104, 45, 30, 0.1);
+    transition: all 0.3s ease;
 }
 
 
@@ -95,18 +96,20 @@ header {
 
 
 .icono-busqueda {
-  background-color: #682d1e;
-  color: #ffffff;
-  padding: 0;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%; /* circulo */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  order: 2; /* poner a la derecha */
-  transition: all 0.3s ease;
+    background-color: #682d1e;
+    color: #ffffff;
+    padding: 0;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    /* circulo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    order: 2;
+    /* poner a la derecha */
+    transition: all 0.3s ease;
 }
 
 .icono-busqueda:hover {
@@ -115,35 +118,35 @@ header {
 }
 
 .icono-busqueda .iconify {
-  color: #ffffff;
-  width: 1.2rem;
-  height: 1.2rem;
-  margin: 0;
+    color: #ffffff;
+    width: 1.2rem;
+    height: 1.2rem;
+    margin: 0;
 }
 
 
 .input-busqueda {
-  flex: 1;
-  border: none;
-  outline: none;
-  padding: 0.5rem 1.5rem;
-  font-size: 0.95rem;
-  color: #682d1e;
-  background-color: transparent;
-  font-weight: 500;
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 0.5rem 1.5rem;
+    font-size: 0.95rem;
+    color: #682d1e;
+    background-color: transparent;
+    font-weight: 500;
 }
 
 .input-busqueda::placeholder {
-  color: #9c847d;
-  font-weight: 400;
-  opacity: 0.8;
+    color: #9c847d;
+    font-weight: 400;
+    opacity: 0.8;
 }
 
 .iconify {
-  color: #682d1e;
-  width: 1.5rem;
-  height: 1.5rem;
-  margin: 0 0.3rem;
+    color: #682d1e;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 0 0.3rem;
 }
 
 
@@ -158,7 +161,7 @@ header {
     background-color: #D37C39;
     margin-top: -1rem;
     border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .navegacion-abajo a {
@@ -182,12 +185,12 @@ header {
 }
 
 .navegacion-abajo a:hover {
-  transition: 0.3s ease-in-out;
-  cursor: pointer;
-  background-color: #fff;
-  color: #d37c39;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+    background-color: #fff;
+    color: #d37c39;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .navegacion-abajo a:hover .iconify {
@@ -215,7 +218,7 @@ header {
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 0.5rem;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     z-index: 200;
     min-width: 100px;
     flex-direction: column;
@@ -334,4 +337,80 @@ footer ul li a:hover {
     color: #fff;
     font-size: 0.9rem;
     background-color: #A15C25;
+}
+
+/* ============================================
+   ESTILOS PARA DROPDOWN DE USUARIO
+   ============================================ */
+
+.user-dropdown-container {
+    position: relative;
+    display: inline-block;
+}
+
+.user-dropdown {
+    background-color: #fff;
+    border: 2px solid #D37C39;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.user-dropdown .user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px;
+    background-color: #fcece4;
+    border-radius: 6px;
+    margin-bottom: 8px;
+}
+
+.user-dropdown .user-info div {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.user-dropdown .user-info strong {
+    color: #682d1e;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.user-dropdown .user-info small {
+    color: #9c847d;
+    font-size: 0.75rem;
+    font-weight: 400;
+}
+
+.user-dropdown .user-info .iconify {
+    color: #D37C39;
+    flex-shrink: 0;
+}
+
+.user-dropdown a {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: #682d1e;
+    text-decoration: none;
+    padding: 10px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.user-dropdown a:hover {
+    background-color: #fcece4;
+    color: #D37C39;
+    transform: translateX(3px);
+}
+
+.user-dropdown a .iconify {
+    color: #682d1e;
+    transition: all 0.3s ease;
+}
+
+.user-dropdown a:hover .iconify {
+    color: #D37C39;
 }
