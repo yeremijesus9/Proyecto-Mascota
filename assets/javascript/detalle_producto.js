@@ -267,9 +267,33 @@ window.cambiarIdioma = async function(nuevoIdioma) {
             setTimeout(() => notif.remove(), 2000);
         });
 
-        // Comprar ahora
+        // Comprar ahora - Añade al carrito y va al checkout
         document.getElementById('buy-now').addEventListener('click', ()=>{
-            alert("Procediendo a comprar " + producto.nombre_producto);
+            const cantidad = Number(qtyEl.value) || 1;
+            const formato = document.querySelector('.formato-opcion.formato-activo')?.dataset.formato;
+
+            // Cargar carrito
+            const carrito = JSON.parse(localStorage.getItem('MiwuffCarrito') || '[]');
+            
+            // Buscar si ya existe
+            const existente = carrito.find(item => item.id === producto.id);
+            
+            if (existente) {
+                existente.cantidad += cantidad;
+            } else {
+                carrito.push({
+                    id: producto.id,
+                    nombre: producto.nombre_producto,
+                    precio: producto.precio,
+                    imagen: producto.imagen_principal,
+                    cantidad: cantidad,
+                    formato: formato
+                });
+            }
+            
+            // Guardar y redirigir al checkout
+            localStorage.setItem('MiwuffCarrito', JSON.stringify(carrito));
+            window.location.href = 'checkout.html';
         });
     }
 
