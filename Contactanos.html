@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contactanos</title>
+    <link rel="stylesheet" href="/assets/css/Contactanos.css"> 
+    <link rel="stylesheet" href="/assets/css/navfooterStyles.css">
+    <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+</head>
+<body>
+<!-- COMIENZO DEL NAV-->
+    <header>
+        <a href="#" class="logo-link">
+            <img src="/assets/img/miwuff.png" alt="icon-logo" class="logo">
+        </a>
+
+        <div class="header-controls">
+            <span class="iconify" data-icon="mdi:search" data-width="32" data-height="32"></span>
+            <input type="text" id="search" placeholder="Buscar...">
+
+            <nav class="navigation-top">
+                <a href="#">
+                    <span class="iconify" data-icon="material-symbols:shopping-cart" data-width="32" data-height="32"></span>
+                </a>
+                <a href="#">
+                    <span class="iconify" data-icon="mdi:location" data-width="32" data-height="32"></span>
+                </a>
+                <a href="#">
+                    <span class="iconify" data-icon="mdi:user-plus" data-width="32" data-height="32"></span>
+                </a>
+                <a href="#">
+                    <span class="iconify" data-icon="ic:baseline-g-translate" data-width="32" data-height="32"></span>
+                </a>
+                <a href="#">
+                    <span class="iconify" data-icon="gg:dark-mode" data-width="32" data-height="32"></span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Barra de navegación secundaria (debajo del header) -->
+    <nav class="navigation-down">
+        <div class="nav-center">
+            <a href="#">Perros</a>
+            <a href="#">Gatos</a>
+            <a href="#">Roedores</a>
+            <a href="#">Peces</a>
+            <a href="#">Pajaros</a>
+            <a href="#">Otros animales</a>
+            <a href="#">% Ofertas</a>
+            <a href="#">Contáctanos</a>
+            <a href="#">Servicios</a>
+        </div>
+    </nav>
+ <!-- FIN DEL NAV -->
+    <h1>Contactanos</h1>
+    <div class="QuienesSomos">
+    <p>Hola somos el grupo de jovenes programadores de (poner nombre) que hemos creado la pagina web de la tienda de Miwuff, en caso de cualquier 
+        duda o necesidad. No dudeis en contactar con nosotros usando el contacto que le facilitamos, un poco más abajo.</p></div>
+
+        <div class="elementos">
+
+<div class="formulario">
+        <!-- INICIO DEL FORMULARIO -->
+    <form action="/procesar-formulario" method="post">
+
+          <!-- Campo de Nombre -->
+            <div>
+                <label for="Nombre"><strong>Nombre y Apellidos:</strong></label>
+                <input type="text" id="Nombre" name="nombre" required>
+            </div>
+         <br>
+
+         <!-- Campo de Correo Electronico -->
+                    <div>
+                        <label for="email"><strong> Correo Electronico:</strong></label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+         <br>
+
+        <!-- Campo de Numero Telefono-->
+            <div>
+                <label for="number"><strong>Numero de Telefono:</strong></label>
+                <input type="tel" id="number" name="telefono" pattern="[0-9+\- ]{7,}" required>
+            </div>
+         <br>
+
+         <!-- Boton de Envio -->
+          <div>
+            <input type="submit" value="enviar">
+
+          </div>
+    </form>
+</div>
+        <!-- FIN DEL FORMULARIO-->
+
+        <!-- INFORMACION DE LA TIENDA FISICA (Contacto, Direccion, Mapa + marcador)-->
+
+        <!-- Contacto -->
+         <div class="contacto">
+        <div class="Informacion-Tienda-Fisica">
+
+        <strong><p>Telefono de contacto: </strong>829580627</p>
+        <strong><p>Direccion de la tienda: </strong>Calle Ficticia, 20</p>
+
+        </div>
+
+        <!-- Direccion de la Tienda-->
+  
+        <div class="Mapa-Informacion">
+            <div class="Mapa">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d4148.632296963349!2d-2.947276250493606!3d43.253929675770976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1ses!2ses!4v1764758426048!5m2!1ses!2ses"
+                     width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+        <!-- Marcador de la Direccion-->
+        <div class="marcador">
+          📍
+          <span class="tooltip">Aqui estamos!</span>
+        </div>  
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+
+
+    <!-- COMIENZO DEL FOOTER -->
+<footer>
+        <div class="help">
+            <h3>Ayuda</h3>
+            <ul>
+                <li>
+                    <a href="#">Envios</a>
+                </li>
+                <li>
+                    <a href="#">Cambio y devoluciones</a>
+                </li>
+                <li>
+                    <a href="#">Preguntas frecuentes</a>
+                </li>
+            </ul>
+        </div>
+        <div class="conditions">
+            <h3>Condiciones</h3>
+            <ul>
+                <li>
+                    <a href="#">Aviso legal</a>
+                </li>
+                <li>
+                    <a href="#">Política de privacidad</a>
+                </li>
+                <li>
+                    <a href="#">Términos y condiciones</a>
+                </li>
+                <li>
+                    <a href="#">Política de cookies</a>
+                </li>
+            </ul>
+        </div>
+        <div class="follow">
+            <h3>Siguenos</h3>
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="iconify iconifyF" data-icon="mdi:facebook" data-width="32" data-height="32"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="iconify iconifyF" data-icon="mdi:instagram" data-width="32"
+                            data-height="32"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="iconify iconifyF" data-icon="pajamas:twitter" data-width="32"
+                            data-height="32"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="payment">
+            <h3>Métodos de pago</h3>
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="iconify iconifyP" data-icon="fa-brands:cc-mastercard" data-width="32"
+                            data-height="32"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="iconify iconifyP" data-icon="fa-brands:cc-visa" data-width="32"
+                            data-height="32"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="iconify iconifyP" data-icon="fa-brands:cc-paypal" data-width="32"
+                            data-height="32"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+    <div class="endfooter">
+        <p>&copy; 2025 Miwuff. | Todos los derechos reservados | Proyecto estudiantil | Penascalf5.</p>
+    </div>
+
+    <!-- FIN DEL FOOTER -->
+</body>
+</html>
