@@ -1,140 +1,148 @@
-const mascota = '/assets/JSON/es_mascota.json';
-
-// Crea la representación de estrellas (0-5)
-function crearEstrellas(puntuacion) {
-    const p = Math.max(0, Math.min(5, Math.round(Number(puntuacion) || 0)));
-    let s = '';
-    for (let i = 1; i <= 5; i++) {
-        s += i <= p ? '★' : '☆';
-    }
-    return `<span class="stars" aria-hidden="true">${s}</span>`;
+// -------------------------
+// Inicialización de idioma
+// -------------------------
+const idiomasDisponibles = ['es', 'en'];
+let langGuardado = localStorage.getItem('lang');
+window.idiomaActual = idiomasDisponibles.includes(langGuardado) ? langGuardado : 'es';
+localStorage.setItem('lang', window.idiomaActual);
+// -------------------------
+// Funciones para obtener JSON según idioma
+// -------------------------
+function getMascotaJSON() {
+    return `/assets/JSON/${window.idiomaActual}_mascota.json?t=${Date.now()}`;
 }
 
-// Renderiza una tarjeta de producto dentro de un contenedor (DOM-safe)
-function renderProducto(producto, contenedor) {
-    const id = String(producto.id ?? '');
-    const nombre = producto.nombre_producto ?? 'Producto sin nombre';
-    const marca = producto.marca ?? 'Marca desconocida';
-    const precioRaw = producto.precio;
-    const precio = Number(typeof precioRaw === 'string' ? precioRaw.replace(',', '.') : precioRaw);
-    const precioValido = Number.isFinite(precio) ? precio : 0;
-    const puntuacion = producto.puntuacion ?? 0;
-    const opiniones = Number(producto.opiniones) || 0;
-    const imagen = producto.imagen_principal ?? '';
+function getInterfaceJSON() {
+    return `/assets/JSON/${window.idiomaActual}_interface.json?t=${Date.now()}`;
+}
 
+// -------------------------
+// Cargar traducciones de la interfaz
+// -------------------------
+async function cargarInterface() {
+    try {
+        const resp = await fetch(getInterfaceJSON(), { cache: 'no-cache' });
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const textos = await resp.json();
+
+        // Cambiar los textos en elementos con data-key
+        document.querySelectorAll('[data-key]').forEach(el => {
+            const key = el.getAttribute('data-key');
+            if (textos[key]) {
+                if ('placeholder' in el) {
+                    el.placeholder = textos[key];
+                } else {
+                    el.innerHTML = textos[key]; // Mantener HTML dentro del elemento
+                }
+            }
+        });
+    } catch (error) {
+        console.error('Error al cargar interfaz:', error);
+    }
+}
+
+// -------------------------
+// Crear representación de estrellas
+// -------------------------
+function crearEstrellas(puntuacion) {
+    const p = Math.max(0, Math.min(5, Math.round(Number(puntuacion) || 0)));
+    return `<span class="stars" aria-hidden="true">${'★'.repeat(p)}${'☆'.repeat(5 - p)}</span>`;
+}
+
+// -------------------------
+// Renderizar producto
+// -------------------------
+function renderProducto(producto, contenedor) {
     const tarjeta = document.createElement('div');
     tarjeta.className = 'tarjeta-producto';
 
-    const img = document.createElement('img');
-    img.className = 'producto-imagen';
-    img.alt = `Imagen de ${nombre}`;
-    img.loading = 'lazy';
-    img.decoding = 'async';
-    img.src = imagen;
-
-    const h3 = document.createElement('h3');
-    h3.className = 'producto-nombre';
-    h3.textContent = nombre;
-
-    const pMarca = document.createElement('p');
-    pMarca.className = 'producto-marca';
-    pMarca.textContent = 'Marca: ';
-    const strong = document.createElement('strong');
-    strong.textContent = marca;
-    pMarca.appendChild(strong);
-
-    const detalle = document.createElement('div');
-    detalle.className = 'producto-detalle';
-
-    const divPuntuacion = document.createElement('div');
-    divPuntuacion.className = 'puntuacion';
-    divPuntuacion.innerHTML = crearEstrellas(puntuacion);
-
-    const spanOpiniones = document.createElement('span');
-    spanOpiniones.className = 'opiniones';
-    spanOpiniones.textContent = ` (${opiniones})`;
-    divPuntuacion.appendChild(spanOpiniones);
-
-    const spanPrecio = document.createElement('span');
-    spanPrecio.className = 'precio';
-    spanPrecio.textContent = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(precioValido);
-
-    detalle.appendChild(divPuntuacion);
-    detalle.appendChild(spanPrecio);
-
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'ver-detalle';
-    btn.textContent = 'Ver Detalles';
-    btn.addEventListener('click', () => mostrarDetalle(id));
-
-    tarjeta.appendChild(img);
-    tarjeta.appendChild(h3);
-    tarjeta.appendChild(pMarca);
-    tarjeta.appendChild(detalle);
-    tarjeta.appendChild(btn);
-
+    tarjeta.innerHTML = `
+        <img class="producto-imagen" src="${producto.imagen_principal}" alt="Imagen de ${producto.nombre_producto}" loading="lazy" decoding="async">
+        <h3 class="producto-nombre">${producto.nombre_producto}</h3>
+        <p class="producto-marca">Marca: <strong>${producto.marca}</strong></p>
+        <div class="producto-detalle">
+            <div class="puntuacion">${crearEstrellas(producto.puntuacion)}<span class="opiniones"> (${producto.opiniones || 0})</span></div>
+            <span class="precio">${new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(Number(producto.precio || 0))}</span>
+        </div>
+        <button type="button" class="ver-detalle">Ver Detalles</button>
+    `;
+    tarjeta.querySelector('button').addEventListener('click', () => mostrarDetalle(producto.id));
     contenedor.appendChild(tarjeta);
 }
 
-// Carga productos y los reparte en dos contenedores, 4 en cada uno
+// -------------------------
+// Cargar productos destacados
+// -------------------------
 async function cargarYMostrarDestacados() {
     const cont1 = document.getElementById('destacados-1');
     const cont2 = document.getElementById('destacados-2');
+    if (!cont1 || !cont2) return;
 
-    if (!cont1 || !cont2) {
-        console.warn("Uno o ambos contenedores de destacados no existen (destacados-1, destacados-2).");
-        return;
-    }
-
-    // Mensaje de carga
+    // Mostrar loader
     cont1.innerHTML = '<p class="loading">Cargando...</p>';
     cont2.innerHTML = '';
 
     try {
-        const resp = await fetch(mascota, { cache: 'no-cache' });
-        if (!resp.ok) {
-            cont1.innerHTML = '<p style="color:red;">Error al cargar productos.</p>';
-            throw new Error(`HTTP ${resp.status}`);
-        }
-
+        const resp = await fetch(getMascotaJSON(), { cache: 'no-cache' });
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
         const productos = await resp.json();
-        // Aseguramos que es array
-        const lista = Array.isArray(productos) ? productos : [];
 
-        // Seleccionar bloques (si hay menos de 8, se mostrarán los disponibles)
-        const bloque1 = lista.slice(0, 5);
-        const bloque2 = lista.slice(5, 10);
+        const bloque1 = productos.slice(0, 5);
+        const bloque2 = productos.slice(5, 10);
 
-        // Limpiar contenedores
         cont1.innerHTML = '';
         cont2.innerHTML = '';
-
-        const frag1 = document.createDocumentFragment();
-        const frag2 = document.createDocumentFragment();
-
-        // Renderizar en fragmentos
-        bloque1.forEach(p => renderProducto(p, frag1));
-        bloque2.forEach(p => renderProducto(p, frag2));
-
-        // Si prefieres mostrar aleatorios en lugar de por índice, sustituye arriba por:
-        // const shuffled = lista.sort(() => Math.random() - 0.5);
-        // const bloque1 = shuffled.slice(0,4); const bloque2 = shuffled.slice(4,8);
-
-        cont1.appendChild(frag1);
-        cont2.appendChild(frag2);
+        bloque1.forEach(p => renderProducto(p, cont1));
+        bloque2.forEach(p => renderProducto(p, cont2));
 
     } catch (error) {
-        console.error('Error al procesar productos:', error);
-        cont1.innerHTML = `<p style="color:red;">Error: ${error.message}</p>`;
-        cont2.innerHTML = '';
+        cont1.innerHTML = `<p style="color:red;">Error al cargar productos</p>`;
+        console.error(error);
     }
 }
 
+// -------------------------
+// Mostrar detalle del producto
+// -------------------------
 function mostrarDetalle(id) {
     if (!id) return;
     window.location.href = `detalle_producto.html?id=${encodeURIComponent(id)}`;
 }
 
-// Ejecutar al cargar la página
-document.addEventListener('DOMContentLoaded', cargarYMostrarDestacados);
+// -------------------------
+// Cambiar idioma
+// -------------------------
+async function cambiarIdioma(nuevoIdioma) {
+    if (!nuevoIdioma || nuevoIdioma === window.idiomaActual) return;
+
+    window.idiomaActual = nuevoIdioma;
+    localStorage.setItem('lang', nuevoIdioma);
+
+    // Mostrar loader mientras se recargan
+    const cont1 = document.getElementById('destacados-1');
+    const cont2 = document.getElementById('destacados-2');
+    if (cont1 && cont2) {
+        cont1.innerHTML = '<p class="loading">Cargando...</p>';
+        cont2.innerHTML = '';
+    }
+
+    // Recargar productos y textos de interfaz simultáneamente
+    await Promise.all([cargarYMostrarDestacados(), cargarInterface()]);
+}
+
+// -------------------------
+// Inicialización al cargar página
+// -------------------------
+document.addEventListener('DOMContentLoaded', () => {
+    // Cargar productos y textos del idioma guardado o por defecto
+    cargarYMostrarDestacados();
+    cargarInterface();
+
+    // Manejar botones de cambio de idioma
+    document.querySelectorAll('#languageMenu a').forEach(btn => {
+        btn.addEventListener('click', e => {
+            e.preventDefault();
+            cambiarIdioma(btn.getAttribute('lang'));
+        });
+    });
+});
