@@ -116,6 +116,35 @@
     gap: 15px;
 }
 
-#titulo-categoria .iconify {
-    font-size: 1.2em;
+/* Estilos para botones de producto */
+.tarjeta-producto button {
+    width: 100%;
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    border: none;
+}
+
+.ver-detalle {
+    background: #D37C39;
+    color: white;
+}
+
+.ver-detalle:hover {
+    background: #b5652b;
+}
+
+.btn-añadir-carrito {
+    background: white;
+    color: #D37C39;
+    border: 2px solid #D37C39 !important;
+    font-weight: 600;
+}
+
+.btn-añadir-carrito:hover {
+    background: #D37C39;
+    color: white;
 }

@@ -64,7 +64,7 @@ async function showLogin() {
     }
 
     try {
-        const response = await fetch("/login.html");
+        const response = await fetch("login.html");
         popup.innerHTML = await response.text();
         if (window.Iconify?.scan) Iconify.scan();
         initLoginComponent();
@@ -197,6 +197,11 @@ function loadHTML(containerId, filePath) {
                 reloj = document.getElementById("reloj");
                 setInterval(actualizarReloj, 1000);
                 actualizarReloj();
+                
+                // Inicializar el carrito después de cargar el navbar
+                if (typeof window.configurarEventListeners === 'function') {
+                    window.configurarEventListeners();
+                }
 
                 if (window.idiomaActual && window.rutaInterfaceJson && window.cargarYMostrarProductos) {
                     loadTranslations(window.rutaInterfaceJson());
@@ -261,6 +266,6 @@ document.addEventListener("click", e => {
 // Inicialización
 // ==================================================
 document.addEventListener("DOMContentLoaded", () => {
-    loadHTML("nav-container", "/nav.html");
-    loadHTML("footer-container", "/footer.html");
+    loadHTML("nav-container", "nav.html");
+    loadHTML("footer-container", "footer.html");
 });

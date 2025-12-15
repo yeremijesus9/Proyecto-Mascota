@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Compra - Miwuff</title>
+    <link rel="stylesheet" href="assets/css/navfooterStyles.css">
+    <link rel="stylesheet" href="assets/css/checkout.css">
+    <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+</head>
+
+<body>
+    <div id="nav-container"></div>
+
+    <main class="checkout-main">
+        <h1>Finalizar Compra</h1>
+        
+        <div class="checkout-container">
+            <!-- Resumen del pedido -->
+            <div class="resumen-pedido">
+                <h2>Tu Pedido</h2>
+                <div id="productos-lista"></div>
+                
+                <div class="totales">
+                    <p>Subtotal: <span id="subtotal">€0.00</span></p>
+                    <p>Envío: <span id="envio">€4.99</span></p>
+                    <p class="total">TOTAL: <span id="total">€0.00</span></p>
+                </div>
+            </div>
+
+            <!-- Formulario simple -->
+            <div class="formulario-checkout">
+                <h2>Datos de Envío</h2>
+                <form id="form-checkout">
+                    <input type="text" id="nombre" placeholder="Nombre completo" required>
+                    <input type="email" id="email" placeholder="Email" required>
+                    <input type="tel" id="telefono" placeholder="Teléfono" required>
+                    <input type="text" id="direccion" placeholder="Dirección completa" required>
+                    <input type="text" id="ciudad" placeholder="Ciudad" required>
+                    <input type="text" id="codigo-postal" placeholder="Código Postal" required>
+                    
+                    <h3>Método de Pago</h3>
+                    <select id="metodo-pago" required>
+                        <option value="">Selecciona método de pago</option>
+                        <option value="tarjeta">Tarjeta de Crédito/Débito</option>
+                        <option value="paypal">PayPal</option>
+                        <option value="transferencia">Transferencia Bancaria</option>
+                    </select>
+
+                    <button type="submit" id="btn-finalizar">Realizar Pedido</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal de confirmación -->
+    <div id="modal-exito" class="modal" style="display: none;">
+        <div class="modal-contenido">
+            <h2>¡Pedido Realizado!</h2>
+            <p>Tu pedido <strong id="numero-pedido"></strong> ha sido procesado correctamente.</p>
+            <p>Recibirás un email de confirmación pronto.</p>
+            <button onclick="volverInicio()">Volver al Inicio</button>
+        </div>
+    </div>
+
+    <div id="footer-container"></div>
+
+    <script src="assets/javascript/nav_footer.js"></script>
+    <script src="assets/javascript/checkout.js"></script>
+</body>
+</html>

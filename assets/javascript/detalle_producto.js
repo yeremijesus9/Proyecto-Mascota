@@ -225,21 +225,46 @@ window.cambiarIdioma = async function(nuevoIdioma) {
         document.getElementById('qty-incr').addEventListener('click', ()=> qtyEl.value = Number(qtyEl.value)+1);
         document.getElementById('qty-decr').addEventListener('click', ()=> qtyEl.value = Math.max(1, Number(qtyEl.value)-1));
 
-        // Carrito
+        // Carrito - Usar sistema global
         document.getElementById('add-cart').addEventListener('click', ()=>{
-            const cantidad = Number(qtyEl.value);
+            const cantidad = Number(qtyEl.value) || 1;
             const formato = document.querySelector('.formato-opcion.formato-activo')?.dataset.formato;
 
-            const carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
-            carrito.push({
-                id: producto.id,
-                nombre: producto.nombre_producto,
-                precio: producto.precio,
-                cantidad,
-                formato
-            });
-            localStorage.setItem('carrito', JSON.stringify(carrito));
-            alert(`${cantidad} x ${producto.nombre_producto} añadido.`);
+            // Cargar carrito desde localStorage (clave correcta)
+            const carrito = JSON.parse(localStorage.getItem('MiwuffCarrito') || '[]');
+            
+            // Buscar si ya existe
+            const existente = carrito.find(item => item.id === producto.id);
+            
+            if (existente) {
+                existente.cantidad += cantidad;
+            } else {
+                carrito.push({
+                    id: producto.id,
+                    nombre: producto.nombre_producto,
+                    precio: producto.precio,
+                    imagen: producto.imagen_principal,
+                    cantidad: cantidad,
+                    formato: formato
+                });
+            }
+            
+            localStorage.setItem('MiwuffCarrito', JSON.stringify(carrito));
+            
+            // Actualizar contador si existe
+            const contador = document.querySelector('.carrito-contador');
+            if (contador) {
+                const total = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+                contador.textContent = total;
+                contador.style.display = total > 0 ? 'flex' : 'none';
+            }
+            
+            // Mostrar notificación
+            const notif = document.createElement('div');
+            notif.textContent = `✅ ${cantidad} x ${producto.nombre_producto} añadido al carrito`;
+            notif.style.cssText = "position:fixed; top:20px; right:20px; background:#28a745; color:white; padding:15px; border-radius:5px; z-index:10000; box-shadow: 0 4px 6px rgba(0,0,0,0.1);";
+            document.body.appendChild(notif);
+            setTimeout(() => notif.remove(), 2000);
         });
 
         // Comprar ahora
