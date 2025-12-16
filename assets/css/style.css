@@ -358,7 +358,7 @@ body.dark-mode main h3,
 body.dark-mode main h4,
 body.dark-mode main p,
 body.dark-mode main li,
-body.dark-mode main span:not(.iconify) {
+body.dark-mode main span:not(.iconify):not(.stars):not(.precio):not(.opiniones) {
     color: #ffffff;
 }
 
