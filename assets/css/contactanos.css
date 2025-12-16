@@ -24,6 +24,7 @@
     border-right: 2px solid black;
     border-left: 2px solid black;
     border-bottom: 2px solid black;
+    padding: 20px;
 }
 
 .contacto{
@@ -36,6 +37,5 @@
     border-right: 2px solid black;
     border-left: 2px solid black;
     border-bottom: 2px solid black;
-    text-align: left
-    
-} 
+    padding: 20px;
+}
