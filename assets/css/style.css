@@ -1,10 +1,10 @@
-
 body {
     min-height: 100vh;
     overflow-x: hidden;
     background: #fff;
     margin: 0;
     padding: 0;
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .portada {
@@ -168,6 +168,7 @@ body {
     55% {
         transform: translateX(-33.3333%);
     }
+
     60%,
     75% {
         transform: translateX(-50%);
@@ -198,32 +199,39 @@ body {
     z-index: 3;
 }
 
-.perro{
+.perro {
     width: 100%;
     max-width: 300px;
 }
-.gato{
+
+.gato {
     width: 100%;
     max-width: 300px;
 }
-.roedor{
+
+.roedor {
     width: 100%;
     max-width: 300px;
 }
-.pez{
+
+.pez {
     width: 100%;
     max-width: 300px;
 }
-.pajaro{
+
+.pajaro {
     width: 100%;
     max-width: 300px;
 }
+
 .animales img {
     transition: all 0.3s ease;
 }
+
 .animales img:hover {
-    transform: scale(1.1); 
+    transform: scale(1.1);
 }
+
 .sec-productos {
     position: relative;
     background: #ffffff;
@@ -257,7 +265,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -282,7 +290,7 @@ body {
     max-width: 350px;
     width: 90%;
     position: relative;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* Botón cerrar */
@@ -299,6 +307,7 @@ body {
 
 /* Responsive: 3 columnas en tablets */
 @media (max-width: 1024px) {
+
     .sec-productos #destacados-1,
     .sec-productos #destacados-2 {
         grid-template-columns: repeat(3, 1fr);
@@ -307,6 +316,7 @@ body {
 
 /* Responsive: 2 columnas en móviles grandes */
 @media (max-width: 768px) {
+
     .sec-productos #destacados-1,
     .sec-productos #destacados-2 {
         grid-template-columns: repeat(2, 1fr);
@@ -316,8 +326,56 @@ body {
 
 /* Responsive: 1 columna en móviles pequeños */
 @media (max-width: 480px) {
+
     .sec-productos #destacados-1,
     .sec-productos #destacados-2 {
         grid-template-columns: 1fr;
     }
+}
+
+/* =========================================
+   MODO OSCURO
+   ========================================= */
+body.dark-mode {
+    background-color: #222222 !important;
+    /* Negro no muy negro (gris oscuro) */
+}
+
+/* Change background of white sections within main to match dark body */
+body.dark-mode .sec,
+body.dark-mode .sec-productos {
+    background-color: #222222;
+    transition: background-color 0.8s ease;
+}
+
+/* Change text to white inside main */
+body.dark-mode main {
+    color: #ffffff;
+}
+
+body.dark-mode main h1,
+body.dark-mode main h3,
+body.dark-mode main h4,
+body.dark-mode main p,
+body.dark-mode main li,
+body.dark-mode main span:not(.iconify) {
+    color: #ffffff;
+}
+
+/* Keep accent colors for H2 */
+body.dark-mode main h2 {
+    color: #D37C39;
+}
+
+/* PROTECT CARD STYLES (Off-white for cards) */
+body.dark-mode .tarjeta-producto {
+    background-color: #e0e0e0;
+    /* Un poco grisoso, no blanco puro */
+}
+
+body.dark-mode .tarjeta-producto h3,
+body.dark-mode .tarjeta-producto p,
+body.dark-mode .tarjeta-producto span:not(.stars) {
+    color: #333333;
+    /* Restore dark text for cards */
 }

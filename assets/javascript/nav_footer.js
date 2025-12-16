@@ -104,7 +104,7 @@ function initLoginComponent() {
     if (typeof window.initFormHandlers === 'function') window.initFormHandlers();
 }
 
-function initLoginListeners() {}
+function initLoginListeners() { }
 
 // ==================================================
 // Icono y dropdown de usuario
@@ -197,7 +197,7 @@ function loadHTML(containerId, filePath) {
                 reloj = document.getElementById("reloj");
                 setInterval(actualizarReloj, 1000);
                 actualizarReloj();
-                
+
                 // Inicializar el carrito después de cargar el navbar
                 if (typeof window.configurarEventListeners === 'function') {
                     window.configurarEventListeners();
@@ -241,6 +241,14 @@ document.addEventListener("click", e => {
         e.preventDefault();
         const isLoggedIn = window.AuthSystem ? window.AuthSystem.isLoggedIn() : false;
         if (!isLoggedIn) showLogin();
+        return;
+    }
+
+    // Modo Oscuro
+    const btnDarkMode = e.target.closest("#btn-dark-mode");
+    if (btnDarkMode) {
+        e.preventDefault();
+        document.body.classList.toggle("dark-mode");
         return;
     }
 

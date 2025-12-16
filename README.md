@@ -2,7 +2,7 @@
 
 Bienvenido a **Miwuff**, una plataforma de comercio electrónico moderna y dinámica diseñada para los amantes de las mascotas. Este proyecto ofrece una experiencia de usuario completa para la compra de productos para perros, gatos, roedores, peces y pájaros, combinando un diseño atractivo con funcionalidades esenciales de e-commerce.
 
-![Miwuff Banner](assets/img/home/fondo.jpg)
+![Miwuff Banner](assets/img/home/backgroundreadme-miwuff.png)
 *(Imagen representativa del proyecto)*
 
 ## Descripción
@@ -103,8 +103,8 @@ Las contribuciones son bienvenidas. Si deseas mejorar este proyecto, por favor:
 
 Este proyecto ha sido desarrollado por el siguiente equipo:
 
-*   **Santiago Patiño**
-*   **Yeremi**
+*   **Santiago Patiño** 
+*   **Yeremi** 
 *   **Naia**
 *   **Eder**
 *   **Gabriel Hernández**
