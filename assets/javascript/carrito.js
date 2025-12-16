@@ -20,7 +20,7 @@ if (window.CARRITO_INICIALIZADO) {
     } else {
         initCarrito();
     }
-    
+
     // Función de inicio
     function initCarrito() {
         crearHTML();
@@ -30,21 +30,21 @@ if (window.CARRITO_INICIALIZADO) {
 
     // Configurar Listeners (UNA SOLA VEZ)
     function configurarListenersGlobales() {
-        
-        document.body.addEventListener('click', function(e) {
-            
+
+        document.body.addEventListener('click', function (e) {
+
             // 1. CLICK EN AÑADIR AL CARRITO
             const btnAñadir = e.target.closest('.btn-añadir-carrito');
             if (btnAñadir) {
                 e.preventDefault();
                 e.stopImmediatePropagation(); // Detener cualquier otro evento
-                
+
                 // Obtener datos
                 const id = btnAñadir.dataset.productoId;
-                
+
                 // Intentar obtener datos del objeto directo (si fue asignado en JS)
                 let producto = btnAñadir.productoData;
-                
+
                 // Si no hay objeto directo, intentar buscar en el DOM (fallback)
                 if (!producto && id) {
                     const tarjeta = btnAñadir.closest('.tarjeta-producto');
@@ -53,7 +53,7 @@ if (window.CARRITO_INICIALIZADO) {
                         const precio = parseFloat(precioTexto.replace(/[^\d.,]/g, '').replace(',', '.')) || 0;
                         const imagen = tarjeta.querySelector('img')?.src || 'assets/img/placeholder.jpg';
                         const nombre = tarjeta.querySelector('h3')?.textContent || "Producto";
-                        
+
                         producto = {
                             id: id,
                             nombre: nombre,
@@ -98,7 +98,7 @@ if (window.CARRITO_INICIALIZADO) {
                 return;
             }
 
-             // 6. CAMBIAR CANTIDAD (+ / -)
+            // 6. CAMBIAR CANTIDAD (+ / -)
             if (e.target.classList.contains('btn-cantidad')) {
                 const id = e.target.dataset.id;
                 const cambio = parseInt(e.target.dataset.cambio);
@@ -125,7 +125,7 @@ if (window.CARRITO_INICIALIZADO) {
     // Lógica del Carrito
     function plusProducto(producto) {
         const index = carrito.findIndex(p => p.id === producto.id);
-        
+
         if (index !== -1) {
             carrito[index].cantidad++;
         } else {
@@ -137,7 +137,7 @@ if (window.CARRITO_INICIALIZADO) {
                 cantidad: 1
             });
         }
-        
+
         guardarCarrito();
         renderizarCarrito(); // Actualizar panel visualmente
         mostrarNotificacion();
@@ -177,7 +177,7 @@ if (window.CARRITO_INICIALIZADO) {
     }
 
     function vaciarCarrito() {
-        if(confirm("¿Estás seguro de vaciar el carrito?")) {
+        if (confirm("¿Estás seguro de vaciar el carrito?")) {
             carrito = [];
             guardarCarrito();
             renderizarCarrito();
@@ -234,13 +234,13 @@ if (window.CARRITO_INICIALIZADO) {
                 `;
             });
         }
-        
+
         if (precioTotalEl) precioTotalEl.textContent = `€${totalPrecio.toFixed(2)}`;
     }
 
     function crearHTML() {
         if (document.getElementById('carrito-panel')) return;
-        
+
         const html = `
         <div id="carrito-overlay" class="carrito-overlay"></div>
         <div id="carrito-panel" class="carrito-panel">
