@@ -4,73 +4,81 @@ window.idiomaActual = localStorage.getItem('idiomaSeleccionado') || "es";
 
 window.rutaJson = function() {
     // La ruta ahora depende de window.idiomaActual (ej: /assets/JSON/es_mascota.json)
-    return `/assets/JSON/${window.idiomaActual}_mascota.json`;
+  return `/assets/JSON/${window.idiomaActual}_mascota.json`;
+};
+
+window.rutaInterfaceJson = function () {
+  return `/assets/JSON/${window.idiomaActual}_interface.json`;
 };
 
 // Variable global para almacenar todos los productos
-window.todosLosProductos = []; 
+window.todosLosProductos = [];
+window.textosInterface = {};
 
 // FUNCIÓN PARA CAMBIAR EL IDIOMA
-window.cambiarIdioma = async function(nuevoIdioma) {
-    if (window.idiomaActual === nuevoIdioma) {
-        console.log(`El idioma ya es ${nuevoIdioma}.`);
-        return;
-    }
-    window.idiomaActual = nuevoIdioma;
-    localStorage.setItem('idiomaSeleccionado', nuevoIdioma);
-    await window.cargarDetalleYRelacionados(); 
+window.cambiarIdioma = async function (nuevoIdioma) {
+  if (window.idiomaActual === nuevoIdioma) return;
+
+  window.idiomaActual = nuevoIdioma;
+  localStorage.setItem('idiomaSeleccionado', nuevoIdioma);
+
+  await window.cargarDetalleYRelacionados();
 };
 
 
-(async function() {
-    'use strict';
+(async function () {
+  'use strict';
 
-    // ====================================================================
-    // HELPERS Y FETCHING
-    // ====================================================================
+  const contenedor = document.getElementById('productos-contenedor');
+  if (!contenedor) return;
 
-    function getQueryParam(name) {
-        const url = new URL(window.location.href);
-        return url.searchParams.get(name);
-    }
+    // ===============================
+  // HELPERS
+  // ===============================
+  function getQueryParam(name) {
+    const url = new URL(window.location.href);
+    return url.searchParams.get(name);
+  }
 
-    function obtenerRutaJson() {
-        return typeof window.rutaJson === 'function'
-            ? window.rutaJson()
-            : `/assets/JSON/${window.idiomaActual || 'es'}_mascota.json`; 
-    }
+  function formatPrice(p) {
+    return typeof p === 'number' ? p.toFixed(2) + ' €' : p;
+  }
 
-    const contenedor = document.getElementById('productos-contenedor');
-    if (!contenedor) return;
+  function crearEstrellas(puntuacion) {
+    const p = Number(puntuacion) || 0;
+    let s = '';
+    for (let i = 1; i <= 5; i++) s += i <= p ? '★' : '☆';
+    return `<span class="stars">${s}</span>`;
+  }
 
-    async function fetchProductos() {
-        const ruta = obtenerRutaJson();
-        const res = await fetch(ruta);
+  // ===============================
+  // FETCH INTERFAZ
+  // ===============================
+async function fetchInterfaceTextos() {
+  const ruta = window.rutaInterfaceJson();
+  const res = await fetch(ruta);
 
-        if (!res.ok) {
-            throw new Error(`Error HTTP ${res.status} al cargar el JSON: ${ruta}`);
-        }
+  if (!res.ok) {
+    throw new Error(`Error cargando interfaz: ${ruta}`);
+  }
 
-        const data = await res.json();
-        const productos = Array.isArray(data) ? data : data.mascotas || [];
-        window.todosLosProductos = productos; 
-        return productos;
-    }
+  window.textosInterface = await res.json();
+}
 
-    function formatPrice(p) {
-        return p && typeof p === 'number' ? p.toFixed(2) + ' €' : p;
-    }
+  // ===============================
+  // FETCH PRODUCTOS
+  // ===============================
+  async function fetchProductos() {
+    const res = await fetch(window.rutaJson());
+    if (!res.ok) throw new Error("Error cargando productos");
 
-    function crearEstrellas(puntuacion) {
-        const p = Number(puntuacion) || 0;
-        let s = '';
-        for (let i = 1; i <= 5; i++) s += i <= p ? '★' : '☆';
-        return `<span class="stars">${s}</span>`;
-    }
+    const data = await res.json();
+    const productos = Array.isArray(data) ? data : data.mascotas || [];
+    window.todosLosProductos = productos;
+    return productos;
+  }
 
-    // ====================================================================
-    // RENDERIZAR PRODUCTO COMPLETO
-    // ====================================================================
+  // RENDERIZAR PRODUCTO COMPLETO
 
     function renderProducto(producto, productosAll) {
 
@@ -104,9 +112,7 @@ window.cambiarIdioma = async function(nuevoIdioma) {
             `;
         }
 
-        // ====================================================================
         // *** FILTRAR RELACIONADOS POR MISMA CATEGORÍA (TU SOLICITUD) ***
-        // ====================================================================
         const related = (productosAll || [])
             .filter(p => p.categoria === producto.categoria && p.id !== producto.id)
             .slice(0, 4);
@@ -116,13 +122,11 @@ window.cambiarIdioma = async function(nuevoIdioma) {
                 <img src="${r.imagen_principal}" alt="${r.nombre_producto}">
                 <h4>${r.nombre_producto}</h4>
                 <p class="r-price">${formatPrice(r.precio)}</p>
-                <a href="detalle_producto.html?id=${r.id}" class="btn-small">Ver Detalles</a>
+                <a href="detalle_producto.html?id=${r.id}" class="btn-small">${window.textosInterface.ver_detalle || 'Ver Detalle'}</a>
             </div>
         `).join('');
 
-        // ====================================================================
         // HTML COMPLETO DE PRODUCTO
-        // ====================================================================
         contenedor.innerHTML = `
             <section class="detalle-producto">
                 <div class="galeria">
@@ -161,21 +165,21 @@ window.cambiarIdioma = async function(nuevoIdioma) {
                         </div>
                         <div class="acciones">
                             <button id="add-cart" class="add-to-cart-btn">
-                                <i class="fas fa-shopping-cart"></i> Añadir al carrito
+                                <i class="fas fa-shopping-cart"></i>${window.textosInterface.detalle_agregar_carrito || 'Añadir al carrito'}
                             </button>
-                            <button id="buy-now" class="buy-now-btn">Comprar ahora!</button>
+                            <button id="buy-now" class="buy-now-btn">${window.textosInterface.detalle_comprar_ahora || 'Comprar ahora'}</button>
                         </div>
                     </div>
                 </div>
             </section>
 
             <section class="related">
-                <h3>Productos relacionados</h3>
+                <h3>${window.textosInterface.detalle_relacionados || 'Productos relacionados'}</h3>
                 <div class="related-list">${relatedHtml}</div>
             </section>
 
             <section class="reviews">
-                <h3>Reseñas de clientes</h3>
+                <h3>${window.textosInterface.detalle_resenas_clientes || 'Reseñas de clientes'}</h3>
                 <div class="reviews-summary">
                     <div class="stars-big">${crearEstrellas(producto.puntuacion)} <span>${producto.opiniones} opiniones</span></div>
                     <div class="bars">
@@ -198,9 +202,7 @@ window.cambiarIdioma = async function(nuevoIdioma) {
             </section>
         `;
 
-        // ====================================================================
         // LISTENERS
-        // ====================================================================
 
         // Miniaturas
         document.querySelectorAll('.miniaturas img.thumb').forEach(img => {
@@ -261,7 +263,7 @@ window.cambiarIdioma = async function(nuevoIdioma) {
             
             // Mostrar notificación
             const notif = document.createElement('div');
-            notif.textContent = `✅ ${cantidad} x ${producto.nombre_producto} añadido al carrito`;
+            notif.textContent = ` ${cantidad} x ${producto.nombre_producto} añadido al carrito`;
             notif.style.cssText = "position:fixed; top:20px; right:20px; background:#28a745; color:white; padding:15px; border-radius:5px; z-index:10000; box-shadow: 0 4px 6px rgba(0,0,0,0.1);";
             document.body.appendChild(notif);
             setTimeout(() => notif.remove(), 2000);
@@ -297,9 +299,7 @@ window.cambiarIdioma = async function(nuevoIdioma) {
         });
     }
 
-    // ====================================================================
     // CAMBIAR PRODUCTO PRINCIPAL
-    // ====================================================================
     window.cambiarProductoPrincipal = function(productId, productosList) {
         const producto = productosList.find(p => p.id == productId);
 
@@ -311,13 +311,12 @@ window.cambiarIdioma = async function(nuevoIdioma) {
         renderProducto(producto, productosList);
     }
 
-    // ====================================================================
     // FUNCIÓN PRINCIPAL
-    // ====================================================================
     window.cargarDetalleYRelacionados = async function() {
         contenedor.innerHTML = `<p>Cargando detalle (${window.idiomaActual})...</p>`;
 
         try {
+            await fetchInterfaceTextos();
             const productos = await fetchProductos();
             if (!productos.length) {
                 contenedor.innerHTML = `<p>No hay productos disponibles.</p>`;

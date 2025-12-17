@@ -16,6 +16,9 @@ function getInterfaceJSON() {
     return `assets/JSON/${window.idiomaActual}_interface.json?t=${Date.now()}`;
 }
 
+window.textosInterface = {};
+
+
 // -------------------------
 // Cargar traducciones de la interfaz
 // -------------------------
@@ -24,6 +27,7 @@ async function cargarInterface() {
         const resp = await fetch(getInterfaceJSON(), { cache: 'no-cache' });
         if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
         const textos = await resp.json();
+        window.textosInterface = textos;
 
         // Cambiar los textos en elementos con data-key
         document.querySelectorAll('[data-key]').forEach(el => {
@@ -64,10 +68,10 @@ function renderProducto(producto, contenedor) {
             <div class="puntuacion">${crearEstrellas(producto.puntuacion)}<span class="opiniones"> (${producto.opiniones || 0})</span></div>
             <span class="precio">${new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(Number(producto.precio || 0))}</span>
         </div>
-        <button type="button" class="ver-detalle">Ver Detalles</button>
+        <button type="button" class="ver-detalle">${window.textosInterface?.ver_detalle || 'Ver Detalle'}</button>
         <button type="button" class="btn-añadir-carrito" 
             data-producto-id="${producto.id}"
-        >Añadir al Carrito</button>
+        >${window.textosInterface?.detalle_agregar_carrito || 'Añadir al Carrito'}</button>
     `;
     
     // Guardar OBJETO COMPLETO para referencia directa (Método preferido)
@@ -92,6 +96,7 @@ async function cargarYMostrarDestacados() {
     cont2.innerHTML = '';
 
     try {
+        await cargarInterface();
         const resp = await fetch(getMascotaJSON(), { cache: 'no-cache' });
         if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
         const productos = await resp.json();
@@ -136,9 +141,9 @@ async function cambiarIdioma(nuevoIdioma) {
     }
 
     // Recargar productos y textos de interfaz simultáneamente
-    await Promise.all([cargarYMostrarDestacados(), cargarInterface()]);
+    await cargarInterface();
+    await cargarYMostrarDestacados();
 }
-
 // -------------------------
 // Inicialización al cargar página
 // -------------------------
