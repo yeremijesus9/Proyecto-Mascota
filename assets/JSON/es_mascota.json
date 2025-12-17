@@ -681,6 +681,7 @@
     "descripcion_formato": "Mediano",
     "imagen_principal": "/assets/img/perros/casetaperro.png",
     "imagen_miniatura": [
+      "/assets/img/perros/casetaperro.png",
       "/assets/img/perros/casetaperro2.png",
       "/assets/img/perros/casetaperro3.png"
     ],
@@ -865,6 +866,7 @@
     "descripcion_formato": "10Kg",
     "imagen_principal": "/assets/img/perros/piensoperro.png",
     "imagen_miniatura": [
+      "/assets/img/perros/piensoperro.png",
       "/assets/img/perros/piensoperros3.png",
       "/assets/img/perros/piensoperro4.png"
     ],
