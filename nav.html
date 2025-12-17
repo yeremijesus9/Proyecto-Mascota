@@ -1,15 +1,31 @@
 <div class="barra-superior">
-    <p data-key="nav_envio_gratis">🚚 <strong>Envío GRATIS</strong> en pedidos superiores a $50 | 🦴 Usa el código:
-        <strong>MIWUFF20</strong>
+    <p data-key="nav_envio_gratis">
+        🚚 <strong>Envío GRATIS</strong> en pedidos superiores a $50 | 🦴 Usa el código: <strong>MIWUFF20</strong>
     </p>
+    <p id="reloj"></p>
 </div>
+
+<!-- Checkbox para controlar el menú (sin JavaScript) -->
+<input type="checkbox" id="menu-toggle" class="menu-checkbox">
+
+<!-- Overlay oscuro cuando el menú está abierto -->
+<label for="menu-toggle" class="menu-overlay"></label>
 
 <header>
     <div class="encabezado-arriba">
-        <a href="index.html">
+        <!-- Hamburguesa a la izquierda -->
+        <label for="menu-toggle" class="hamburger-btn" aria-label="Abrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
+        <!-- Logo centrado -->
+        <a href="index.html" class="logo-link">
             <img src="assets/img/miwuff.png" alt="icon-logo" class="logo">
         </a>
 
+        <!-- Barra de búsqueda (solo desktop) -->
         <div class="contenedor-busqueda">
             <div class="icono-busqueda">
                 <span class="iconify" data-icon="mdi:search"></span>
@@ -18,24 +34,66 @@
                 data-placeholder-key="nav_placeholder_buscar">
         </div>
 
+        <!-- Iconos a la derecha -->
         <nav class="navegacion-arriba">
-            <a href="#"><span class="iconify" data-icon="material-symbols:shopping-cart"></span></a>
-            <a href="#"><span class="iconify" data-icon="mdi:location"></span></a>
-
+            <div class="carrito-icono" title="Ver carrito">
+                <span class="iconify" data-icon="material-symbols:shopping-cart"></span>
+                <span class="carrito-contador" style="display: none;">0</span>
+            </div>
             <a href="login.html" id="btnOpenLogin"><span class="iconify" data-icon="mdi:user-plus"></span></a>
+            <a href="#" class="desktop-only"><span class="iconify" data-icon="mdi:location"></span></a>
 
-            <div class="language-dropdown-container">
+            <div class="language-dropdown-container desktop-only">
                 <a href="#" id="btnOpenLanguage"><span class="iconify" data-icon="ic:baseline-g-translate"></span></a>
-                <!-- El menú dropdown debe tener estilos compatibles o ser ajustado si es necesario -->
                 <div id="languageMenu" class="dropdown-menu">
                     <a href="#" lang="es" data-key="nav_language_es">Español</a>
                     <a href="#" lang="en" data-key="nav_language_en">English</a>
                 </div>
             </div>
-            <a href="#"><span class="iconify" data-icon="gg:dark-mode"></span></a>
+            <a href="#" id="btn-dark-mode" class="desktop-only"><span class="iconify" data-icon="gg:dark-mode"></span></a>
         </nav>
     </div>
 
+    <!-- Menú lateral móvil -->
+    <nav class="menu-lateral">
+        <label for="menu-toggle" class="menu-overlay-inside"></label>
+        <div class="menu-links">
+            <a href="productos.html?categoria=perro">
+                <span data-key="nav_menu_perros">Perros</span>
+                <span class="iconify flecha" data-icon="mdi:chevron-right"></span>
+            </a>
+            <a href="productos.html?categoria=gato">
+                <span data-key="nav_menu_gatos">Gatos</span>
+                <span class="iconify flecha" data-icon="mdi:chevron-right"></span>
+            </a>
+            <a href="productos.html?categoria=roedores">
+                <span data-key="nav_menu_roedores">Conejos y Roedores</span>
+                <span class="iconify flecha" data-icon="mdi:chevron-right"></span>
+            </a>
+            <a href="productos.html?categoria=pez">
+                <span data-key="nav_menu_peces">Peces</span>
+                <span class="iconify flecha" data-icon="mdi:chevron-right"></span>
+            </a>
+            <a href="productos.html?categoria=pajaro">
+                <span data-key="nav_menu_pajaros">Pájaros</span>
+                <span class="iconify flecha" data-icon="mdi:chevron-right"></span>
+            </a>
+            <a href="productos.html?categoria=otro">
+                <span data-key="nav_menu_otros">Otros</span>
+                <span class="iconify flecha" data-icon="mdi:chevron-right"></span>
+            </a>
+            <a href="#" class="oferta-link">
+                <span data-key="nav_menu_ofertas">Ofertas</span>
+                <span class="iconify flecha" data-icon="mdi:chevron-right"></span>
+            </a>
+            <a href="Contactanos.html">
+                <span data-key="nav_menu_contacto">Contacto</span>
+                <span class="iconify flecha" data-icon="mdi:chevron-right"></span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Navegación horizontal (solo desktop) -->
     <nav class="navegacion-abajo">
         <a href="productos.html?categoria=perro"><span class="iconify" data-icon="mdi:dog"></span> <span
                 data-key="nav_menu_perros">Perros</span></a>
@@ -51,7 +109,7 @@
                 data-key="nav_menu_otros">Otros</span></a>
         <a href="#" class="oferta-nav"><span class="iconify" data-icon="mdi:tag"></span> <span
                 data-key="nav_menu_ofertas">Ofertas</span></a>
-        <a href="#footer-container"><span class="iconify" data-icon="mdi:phone"></span> <span
+        <a href="Contactanos.html"><span class="iconify" data-icon="mdi:phone"></span> <span
                 data-key="nav_menu_contacto">Contacto</span></a>
     </nav>
 </header>
