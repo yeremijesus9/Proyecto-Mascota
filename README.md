@@ -103,9 +103,9 @@ Las contribuciones son bienvenidas. Si deseas mejorar este proyecto, por favor:
 
 Este proyecto ha sido desarrollado por el siguiente equipo:
 
-*   **Santiago Patiño** 
+*   **Naia** 
 *   **Yeremi** 
-*   **Naia**
+*   **Santiago Patiño**
 *   **Eder**
 *   **Gabriel Hernández**
 
