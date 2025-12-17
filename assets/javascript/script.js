@@ -5,7 +5,16 @@ function iniciarEfectoPortada() {
     if (!miwuffLogo) return;
 
     let procesando = false;
+    
 
+       function actualizarPortada() {
+        // Desactivar efecto en móvil/tablet
+        if (window.innerWidth <= 820) {
+            miwuffLogo.style.marginTop = '0px';
+            procesando = false;
+            return;
+        }
+    }
     function actualizarPortada() {
         const valorScroll = window.scrollY;
 
@@ -20,6 +29,7 @@ function iniciarEfectoPortada() {
             procesando = true;
         }
     });
+ 
 }
 
 document.addEventListener('DOMContentLoaded', () => {

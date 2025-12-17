@@ -10,11 +10,11 @@ localStorage.setItem('idiomaSeleccionado', window.idiomaActual);
 // Funciones para obtener JSON según idioma
 // -------------------------
 function getMascotaJSON() {
-    return `/assets/JSON/${window.idiomaActual}_mascota.json?t=${Date.now()}`;
+    return `assets/JSON/${window.idiomaActual}_mascota.json?t=${Date.now()}`;
 }
 
 function getInterfaceJSON() {
-    return `/assets/JSON/${window.idiomaActual}_interface.json?t=${Date.now()}`;
+    return `assets/JSON/${window.idiomaActual}_interface.json?t=${Date.now()}`;
 }
 
 // -------------------------
@@ -66,8 +66,17 @@ function renderProducto(producto, contenedor) {
             <span class="precio">${new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(Number(producto.precio || 0))}</span>
         </div>
         <button type="button" class="ver-detalle">Ver Detalles</button>
+        <button type="button" class="btn-añadir-carrito" 
+            data-producto-id="${producto.id}"
+        >Añadir al Carrito</button>
     `;
-    tarjeta.querySelector('button').addEventListener('click', () => mostrarDetalle(producto.id));
+    
+    // Guardar OBJETO COMPLETO para referencia directa
+    const btn = tarjeta.querySelector('.btn-añadir-carrito');
+    btn.productoData = producto;
+
+    tarjeta.querySelector('.ver-detalle').productoId = producto.id;
+    
     contenedor.appendChild(tarjeta);
 }
 

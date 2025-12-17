@@ -64,7 +64,7 @@ async function showLogin() {
     }
 
     try {
-        const response = await fetch("/login.html");
+        const response = await fetch("login.html");
         popup.innerHTML = await response.text();
         if (window.Iconify?.scan) Iconify.scan();
         initLoginComponent();
@@ -104,7 +104,7 @@ function initLoginComponent() {
     if (typeof window.initFormHandlers === 'function') window.initFormHandlers();
 }
 
-function initLoginListeners() {}
+function initLoginListeners() { }
 
 // ==================================================
 // Icono y dropdown de usuario
@@ -198,6 +198,11 @@ function loadHTML(containerId, filePath) {
                 setInterval(actualizarReloj, 1000);
                 actualizarReloj();
 
+                // Inicializar el carrito después de cargar el navbar
+                if (typeof window.configurarEventListeners === 'function') {
+                    window.configurarEventListeners();
+                }
+
                 if (window.idiomaActual && window.rutaInterfaceJson && window.cargarYMostrarProductos) {
                     loadTranslations(window.rutaInterfaceJson());
                     window.cargarYMostrarProductos();
@@ -239,6 +244,14 @@ document.addEventListener("click", e => {
         return;
     }
 
+    // Modo Oscuro
+    const btnDarkMode = e.target.closest("#btn-dark-mode");
+    if (btnDarkMode) {
+        e.preventDefault();
+        document.body.classList.toggle("dark-mode");
+        return;
+    }
+
     // Idioma
     const langButton = e.target.closest("#btnOpenLanguage");
     const langMenu = document.getElementById("languageMenu");
@@ -261,6 +274,6 @@ document.addEventListener("click", e => {
 // Inicialización
 // ==================================================
 document.addEventListener("DOMContentLoaded", () => {
-    loadHTML("nav-container", "/nav.html");
-    loadHTML("footer-container", "/footer.html");
+    loadHTML("nav-container", "nav.html");
+    loadHTML("footer-container", "footer.html");
 });
