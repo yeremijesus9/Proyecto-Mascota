@@ -26,7 +26,7 @@ h1 {
     width: 33%;
     display: flex;
     flex-direction: column;
-    justify-content: right;;
+    justify-content:left;
     align-items:center;
     margin-top: 30px;
     border-top: 2px solid black;
@@ -69,7 +69,7 @@ h1 {
 }
 .nombreapellidos, .email, .telefono{
     width: 100%;
-    margin-bottom: 73px;
+    margin-bottom: 13px;
     color: #D37C39;
     display: flex;
     flex-direction: column;
@@ -78,4 +78,8 @@ h1 {
 .boton{
     text-align: right;
     margin-top: 10px;
+}
+
+input[type="text"] {
+  width: 500px;
 }
