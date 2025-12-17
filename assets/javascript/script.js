@@ -20,6 +20,14 @@ function iniciarEfectoPortada() {
             procesando = true;
         }
     });
+    function actualizarPortada() {
+        // Desactivar efecto en móvil/tablet
+        if (window.innerWidth <= 820) {
+            miwuffLogo.style.marginTop = '0px';
+            procesando = false;
+            return;
+        }
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
