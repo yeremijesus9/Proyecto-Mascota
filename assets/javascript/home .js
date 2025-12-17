@@ -96,8 +96,8 @@ async function cargarYMostrarDestacados() {
         if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
         const productos = await resp.json();
 
-        const bloque1 = productos.slice(0, 5);
-        const bloque2 = productos.slice(5, 10);
+        const bloque1 = productos.slice(0, 6);
+        const bloque2 = productos.slice(6, 12);
 
         cont1.innerHTML = '';
         cont2.innerHTML = '';

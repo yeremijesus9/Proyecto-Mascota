@@ -250,10 +250,10 @@ body {
 /* Estilos para ambos contenedores de productos destacados */
 .sec-productos #destacados-1,
 .sec-productos #destacados-2 {
-    display: flex;
-    grid-template-columns: repeat(5, 1fr);
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
     gap: 20px;
-    max-width: 1400px;
+    max-width: 1600px;
     margin: 0 auto;
     padding: 20px;
 }
@@ -316,6 +316,11 @@ body {
 
 /* Responsive: 2 columnas en móviles grandes */
 @media (max-width: 768px) {
+    #fondo {
+        width: 100%;
+        height: 100%;
+        
+    }
 
     .sec-productos #destacados-1,
     .sec-productos #destacados-2 {
