@@ -1,6 +1,4 @@
-// ============================================
 // SISTEMA DE AUTENTICACIÓN CON LOCAL STORAGE
-// ============================================
 
 /**
  * Funciones de gestión de usuarios en localStorage
@@ -23,7 +21,7 @@ const AuthSystem = {
 
         // Verificar si el email ya existe
         if (users.some(user => user.email === email)) {
-            return { success: false, message: '❌ Este correo electrónico ya está registrado' };
+            return { success: false, message: ' Este correo electrónico ya está registrado' };
         }
 
         // Crear nuevo usuario
@@ -31,14 +29,14 @@ const AuthSystem = {
             id: Date.now(),
             username: username,
             email: email,
-            password: password, // En producción, deberías encriptar la contraseña
+            password: password, 
             createdAt: new Date().toISOString()
         };
 
         users.push(newUser);
         this.saveUsers(users);
 
-        return { success: true, message: '✅ ¡Registro exitoso! Ya puedes iniciar sesión', user: newUser };
+        return { success: true, message: ' ¡Registro exitoso! Ya puedes iniciar sesión', user: newUser };
     },
 
     // Iniciar sesión
@@ -49,10 +47,10 @@ const AuthSystem = {
         if (user) {
             // Guardar sesión activa
             localStorage.setItem('miwuff_current_user', JSON.stringify(user));
-            return { success: true, message: '✅ ¡Bienvenido de nuevo!', user: user };
+            return { success: true, message: ' ¡Bienvenido de nuevo!', user: user };
         }
 
-        return { success: false, message: '❌ Correo o contraseña incorrectos' };
+        return { success: false, message: ' Correo o contraseña incorrectos' };
     },
 
     // Cerrar sesión
@@ -73,9 +71,7 @@ const AuthSystem = {
     }
 };
 
-// ============================================
 // MANEJO DE FORMULARIOS
-// ============================================
 
 // Esperar a que el DOM esté cargado
 document.addEventListener('DOMContentLoaded', function () {
@@ -133,17 +129,17 @@ function initFormHandlers() {
             const acceptTerms = document.getElementById('acceptTerms').checked;
 
             if (!acceptTerms) {
-                showMessage('❌ Debes aceptar los términos y condiciones', 'error');
+                showMessage(' Debes aceptar los términos y condiciones', 'error');
                 return;
             }
 
             if (username.length < 3) {
-                showMessage('❌ El nombre de usuario debe tener al menos 3 caracteres', 'error');
+                showMessage(' El nombre de usuario debe tener al menos 3 caracteres', 'error');
                 return;
             }
 
             if (password.length < 6) {
-                showMessage('❌ La contraseña debe tener al menos 6 caracteres', 'error');
+                showMessage(' La contraseña debe tener al menos 6 caracteres', 'error');
                 return;
             }
 
@@ -198,9 +194,7 @@ function initFormHandlers() {
     }
 }
 
-// ============================================
 // FUNCIÓN PARA MOSTRAR MENSAJES
-// ============================================
 function showMessage(message, type = 'info') {
     // Eliminar mensajes anteriores
     const existingMessage = document.querySelector('.auth-message');
@@ -268,8 +262,6 @@ if (!document.getElementById('auth-animations')) {
     document.head.appendChild(style);
 }
 
-// ============================================
 // EXPORTAR FUNCIONES GLOBALES
-// ============================================
 window.AuthSystem = AuthSystem;
 window.initFormHandlers = initFormHandlers;

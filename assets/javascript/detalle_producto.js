@@ -25,9 +25,7 @@ window.cambiarIdioma = async function(nuevoIdioma) {
 (async function() {
     'use strict';
 
-    // ====================================================================
     // HELPERS Y FETCHING
-    // ====================================================================
 
     function getQueryParam(name) {
         const url = new URL(window.location.href);
@@ -68,9 +66,7 @@ window.cambiarIdioma = async function(nuevoIdioma) {
         return `<span class="stars">${s}</span>`;
     }
 
-    // ====================================================================
     // RENDERIZAR PRODUCTO COMPLETO
-    // ====================================================================
 
     function renderProducto(producto, productosAll) {
 
@@ -104,9 +100,7 @@ window.cambiarIdioma = async function(nuevoIdioma) {
             `;
         }
 
-        // ====================================================================
         // *** FILTRAR RELACIONADOS POR MISMA CATEGORÍA (TU SOLICITUD) ***
-        // ====================================================================
         const related = (productosAll || [])
             .filter(p => p.categoria === producto.categoria && p.id !== producto.id)
             .slice(0, 4);
@@ -120,9 +114,7 @@ window.cambiarIdioma = async function(nuevoIdioma) {
             </div>
         `).join('');
 
-        // ====================================================================
         // HTML COMPLETO DE PRODUCTO
-        // ====================================================================
         contenedor.innerHTML = `
             <section class="detalle-producto">
                 <div class="galeria">
@@ -198,9 +190,7 @@ window.cambiarIdioma = async function(nuevoIdioma) {
             </section>
         `;
 
-        // ====================================================================
         // LISTENERS
-        // ====================================================================
 
         // Miniaturas
         document.querySelectorAll('.miniaturas img.thumb').forEach(img => {
@@ -248,9 +238,7 @@ window.cambiarIdioma = async function(nuevoIdioma) {
         });
     }
 
-    // ====================================================================
     // CAMBIAR PRODUCTO PRINCIPAL
-    // ====================================================================
     window.cambiarProductoPrincipal = function(productId, productosList) {
         const producto = productosList.find(p => p.id == productId);
 
@@ -262,9 +250,7 @@ window.cambiarIdioma = async function(nuevoIdioma) {
         renderProducto(producto, productosList);
     }
 
-    // ====================================================================
     // FUNCIÓN PRINCIPAL
-    // ====================================================================
     window.cargarDetalleYRelacionados = async function() {
         contenedor.innerHTML = `<p>Cargando detalle (${window.idiomaActual})...</p>`;
 
