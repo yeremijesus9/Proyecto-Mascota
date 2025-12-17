@@ -557,17 +557,17 @@ footer ul li a:hover {
 }
 
 /* Cuando el checkbox está marcado */
-.menu-checkbox:checked ~ .menu-overlay {
+.menu-checkbox:checked~.menu-overlay {
   display: block;
   opacity: 1;
 }
 
-.menu-checkbox:checked ~ header .menu-lateral {
+.menu-checkbox:checked~header .menu-lateral {
   transform: translateX(0);
 }
 
 /* Hamburguesa fija arriba cuando el menú está abierto */
-.menu-checkbox:checked ~ header .hamburger-btn {
+.menu-checkbox:checked~header .hamburger-btn {
   position: fixed;
   top: 1rem;
   left: 1rem;
@@ -592,6 +592,7 @@ footer ul li a:hover {
    ============================================ */
 
 @media screen and (max-width: 768px) {
+
   /* Barra superior más compacta */
   .barra-superior {
     flex-direction: column;
@@ -685,5 +686,60 @@ footer ul li a:hover {
   .navegacion-abajo a {
     padding: 0.5rem 0.8rem;
     font-size: 0.9rem;
+  }
+}
+
+/* Footer Responsive - Móvil */
+@media screen and (max-width: 768px) {
+  footer {
+    flex-direction: column;
+    padding: 2rem 1rem;
+    gap: 2.5rem;
+    text-align: center;
+  }
+
+  footer>div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  footer h3 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    position: relative;
+    display: inline-block;
+  }
+
+  /* Pequeña línea debajo del título en móvil para separar mejor */
+  footer h3::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 2px;
+    background-color: #fadfcb;
+    margin: 5px auto 0;
+  }
+
+  footer ul {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .follow ul,
+  .payment ul {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+
+  .endfooter {
+    padding: 1.5rem 1rem;
+    font-size: 0.8rem;
+    text-align: center;
+    line-height: 1.5;
   }
 }

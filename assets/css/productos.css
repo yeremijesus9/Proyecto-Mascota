@@ -128,8 +128,12 @@
 }
 
 .ver-detalle {
-    background: #D37C39;
-    color: white;
+    background: white;
+    color: #D37C39;
+    border: 1px solid #D37C39 !important;
+    gap: 5px;
+    padding: 5px;
+    font-weight: 600;
 }
 
 .ver-detalle:hover {

@@ -55,7 +55,7 @@ function calcularTotales() {
         subtotal += item.precio * item.cantidad;
     });
 
-    const envio = subtotal > 50 ? 0 : ENVIO;
+    const envio = subtotal > 100 ? 0 : ENVIO;
     const total = subtotal + envio;
 
     document.getElementById('subtotal').textContent = '€' + subtotal.toFixed(2);
