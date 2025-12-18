@@ -69,17 +69,17 @@ function renderProducto(producto, contenedor) {
             <span class="precio">${new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(Number(producto.precio || 0))}</span>
         </div>
         <button type="button" class="ver-detalle">${window.textosInterface?.ver_detalle || 'Ver Detalle'}</button>
-        <button type="button" class="btn-añadir-carrito" 
+        <button type="button" class="btn-anadir-carrito" 
             data-producto-id="${producto.id}"
         >${window.textosInterface?.detalle_agregar_carrito || 'Comprar'}</button>
     `;
-    
+
     // Guardar OBJETO COMPLETO para referencia directa (Método preferido)
-    const btn = tarjeta.querySelector('.btn-añadir-carrito');
+    const btn = tarjeta.querySelector('.btn-anadir-carrito');
     btn.productoData = producto;
-    
+
     tarjeta.querySelector('.ver-detalle').productoId = producto.id;
-    
+
     contenedor.appendChild(tarjeta);
 }
 

@@ -20,7 +20,7 @@ if (window.CARRITO_INICIALIZADO) {
     } else {
         initCarrito();
     }
-    
+
     // Función de inicio
     function initCarrito() {
         crearHTML();
@@ -30,30 +30,30 @@ if (window.CARRITO_INICIALIZADO) {
 
     // Configurar Listeners (UNA SOLA VEZ)
     function configurarListenersGlobales() {
-        
-        document.body.addEventListener('click', function(e) {
-            
-            // 1. CLICK EN AÑADIR AL CARRITO
-            const btnAñadir = e.target.closest('.btn-añadir-carrito');
-            if (btnAñadir) {
+
+        document.body.addEventListener('click', function (e) {
+
+            // 1. CLICK EN ANADIR AL CARRITO
+            const btnAnadir = e.target.closest('.btn-anadir-carrito');
+            if (btnAnadir) {
                 e.preventDefault();
                 e.stopImmediatePropagation(); // Detener cualquier otro evento
-                
+
                 // Obtener datos
-                const id = btnAñadir.dataset.productoId;
-                
+                const id = btnAnadir.dataset.productoId;
+
                 // Intentar obtener datos del objeto directo (si fue asignado en JS)
-                let producto = btnAñadir.productoData;
-                
+                let producto = btnAnadir.productoData;
+
                 // Si no hay objeto directo, intentar buscar en el DOM (fallback)
                 if (!producto && id) {
-                    const tarjeta = btnAñadir.closest('.tarjeta-producto');
+                    const tarjeta = btnAnadir.closest('.tarjeta-producto');
                     if (tarjeta) {
                         const precioTexto = tarjeta.querySelector('.precio')?.textContent || "0";
                         const precio = parseFloat(precioTexto.replace(/[^\d.,]/g, '').replace(',', '.')) || 0;
                         const imagen = tarjeta.querySelector('img')?.src || 'assets/img/placeholder.jpg';
                         const nombre = tarjeta.querySelector('h3')?.textContent || "Producto";
-                        
+
                         producto = {
                             id: id,
                             nombre: nombre,
@@ -98,8 +98,8 @@ if (window.CARRITO_INICIALIZADO) {
                 return;
             }
 
-             // 6. CAMBIAR CANTIDAD (+ / -)
-             if (e.target.classList.contains('btn-cantidad')) {
+            // 6. CAMBIAR CANTIDAD (+ / -)
+            if (e.target.classList.contains('btn-cantidad')) {
                 const id = e.target.dataset.id;
                 const cambio = parseInt(e.target.dataset.cambio);
                 cambiarCantidad(id, cambio);
@@ -125,7 +125,7 @@ if (window.CARRITO_INICIALIZADO) {
     // Lógica del Carrito
     function plusProducto(producto) {
         const index = carrito.findIndex(p => p.id === producto.id);
-        
+
         if (index !== -1) {
             carrito[index].cantidad++;
         } else {
@@ -137,7 +137,7 @@ if (window.CARRITO_INICIALIZADO) {
                 cantidad: 1
             });
         }
-        
+
         guardarCarrito();
         renderizarCarrito(); // Actualizar panel visualmente
         mostrarNotificacion();
@@ -177,7 +177,7 @@ if (window.CARRITO_INICIALIZADO) {
     }
 
     function vaciarCarrito() {
-        if(confirm("¿Estás seguro de vaciar el carrito?")) {
+        if (confirm("¿Estás seguro de vaciar el carrito?")) {
             carrito = [];
             guardarCarrito();
             renderizarCarrito();
@@ -227,25 +227,25 @@ if (window.CARRITO_INICIALIZADO) {
                                 <button class="btn-cantidad" data-id="${p.id}" data-cambio="-1">-</button>
                                 <span>${p.cantidad}</span>
                                 <button class="btn-cantidad" data-id="${p.id}" data-cambio="1">+</button>
-                                <button class="btn-eliminar" data-id="${p.id}" style="margin-left:auto; background:#ff4444;">🗑️</button>
+                                <button class="btn-eliminar" data-id="${p.id}">🗑️</button>
                             </div>
                         </div>
                     </div>
                 `;
             });
         }
-        
+
         if (precioTotalEl) precioTotalEl.textContent = `€${totalPrecio.toFixed(2)}`;
     }
 
     function crearHTML() {
         if (document.getElementById('carrito-panel')) return;
-        
+
         const html = `
         <div id="carrito-overlay" class="carrito-overlay"></div>
         <div id="carrito-panel" class="carrito-panel">
             <div class="carrito-header">
-                <h2>Tu Carrito 🐾</h2>
+                <h2>Tu Carrito </h2>
                 <button id="carrito-cerrar">✕</button>
             </div>
             <div id="carrito-contenido" class="carrito-contenido"></div>
@@ -263,7 +263,7 @@ if (window.CARRITO_INICIALIZADO) {
 
     function mostrarNotificacion() {
         const notif = document.createElement('div');
-        notif.textContent = "✅ Producto añadido";
+        notif.textContent = "Producto añadido";
         notif.style.cssText = "position:fixed; top:20px; right:20px; background:#28a745; color:white; padding:15px; border-radius:5px; z-index:10000; box-shadow: 0 4px 6px rgba(0,0,0,0.1); animation: fadein 0.5s;";
         document.body.appendChild(notif);
         setTimeout(() => notif.remove(), 2000);
