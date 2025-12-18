@@ -25,18 +25,24 @@ async function cargarInterface() {
         const resp = await fetch(getInterfaceJSON(), { cache: 'no-cache' });
         if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
         const textos = await resp.json();
+        window.textosInterface = textos;
 
         // Cambiar los textos en elementos con data-key
         document.querySelectorAll('[data-key]').forEach(el => {
             const key = el.getAttribute('data-key');
             if (textos[key]) {
-                if ('placeholder' in el) {
-                    el.placeholder = textos[key];
-                } else {
-                    el.innerHTML = textos[key]; // Mantener HTML dentro del elemento
-                }
+                if ('placeholder' in el) el.placeholder = textos[key];
+                else el.innerHTML = textos[key];
             }
         });
+        document.querySelectorAll('.tarjeta-producto').forEach(tarjeta => {
+            const btnDetalle = tarjeta.querySelector('.ver-detalle');
+            const btnCarrito = tarjeta.querySelector('.btn-añadir-carrito');
+            if (btnDetalle) btnDetalle.innerHTML = textos.ver_detalle || 'Ver Detalle';
+            if (btnCarrito) btnCarrito.innerHTML = textos.detalle_agregar_carrito || 'Comprar';
+        });
+
+
     } catch (error) {
         console.error('Error al cargar interfaz:', error);
     }
@@ -65,10 +71,10 @@ function renderProducto(producto, contenedor) {
             <div class="puntuacion">${crearEstrellas(producto.puntuacion)}<span class="opiniones"> (${producto.opiniones || 0})</span></div>
             <span class="precio">${new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(Number(producto.precio || 0))}</span>
         </div>
-        <button type="button" class="ver-detalle">Ver Detalles</button>
+        <button type="button" class="ver-detalle">${window.textosInterface?.ver_detalle || 'Ver Detalle'}</button>
         <button type="button" class="btn-añadir-carrito" 
             data-producto-id="${producto.id}"
-        >Añadir al Carrito</button>
+        >${window.textosInterface?.detalle_agregar_carrito || 'Comprar'}</button>
     `;
     
     // Guardar OBJETO COMPLETO para referencia directa

@@ -104,7 +104,7 @@ function initLoginComponent() {
     if (typeof window.initFormHandlers === 'function') window.initFormHandlers();
 }
 
-function initLoginListeners() { }
+
 
 // ==================================================
 // Icono y dropdown de usuario
@@ -191,7 +191,6 @@ function loadHTML(containerId, filePath) {
             if (container) container.innerHTML = data;
 
             if (containerId === "nav-container") {
-                initLoginListeners();
                 updateLoginIcon();
 
                 reloj = document.getElementById("reloj");
