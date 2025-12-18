@@ -16,10 +16,14 @@
 
     <main>
     </header>
+    <h1 id="titulo-categoria" style="text-align:center; color:#D37C39; margin-top:50px; font-size: 2.5em;">
+     <span id="nombre-Categoria">Contactanos</span>
+        </h1>
 
-    <h1>Contactanos</h1>
+    
     <div class="QuienesSomos">
-    <p>Hola somos el grupo de jovenes programadores de (poner nombre) que hemos creado la pagina web de la tienda de Miwuff, en caso de cualquier 
+
+    <p>Hola, somos el grupo de jovenes programadores de (poner nombre), que hemos creado la pagina web de la tienda de Miwuff, en caso de cualquier 
         duda o necesidad. No dudeis en contactar con nosotros usando el contacto que le facilitamos, un poco más abajo.</p></div>
 
         <div class="elementos">
@@ -29,28 +33,28 @@
     <form action="/procesar-formulario" method="post">
 
           <!-- Campo de Nombre -->
-            <div>
+            <div class="nombreapellidos">
                 <label for="Nombre"><strong>Nombre y Apellidos:</strong></label>
                 <input type="text" id="Nombre" name="nombre" required>
             </div>
          <br>
 
          <!-- Campo de Correo Electronico -->
-                    <div>
+                    <div class="email">
                         <label for="email"><strong> Correo Electronico:</strong></label>
                         <input type="email" id="email" name="email" required>
                     </div>
          <br>
 
         <!-- Campo de Numero Telefono-->
-            <div>
+            <div class="telefono">
                 <label for="number"><strong>Numero de Telefono:</strong></label>
                 <input type="tel" id="number" name="telefono" pattern="[0-9+\- ]{7,}" required>
             </div>
          <br>
 
          <!-- Boton de Envio -->
-          <div>
+          <div class="boton">
             <input type="submit" value="enviar">
 
           </div>
@@ -68,12 +72,11 @@
         <strong><p>Direccion de la tienda: </strong>Calle Ficticia, 20</p>
 
         </div>
-
         <!-- Direccion de la Tienda-->
   
         <div class="Mapa-Informacion">
             <div class="Mapa">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d4148.632296963349!2d-2.947276250493606!3d43.253929675770976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1ses!2ses!4v1764758426048!5m2!1ses!2ses"
+            <iframe src="assets/img/Tienda fisica Miwuff.png"
                      width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
