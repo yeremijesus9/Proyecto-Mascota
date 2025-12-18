@@ -11,10 +11,10 @@ if (window.CARRITO_INICIALIZADO) {
     // Variables
     let carrito = [];
 
-    // Cargar carrito al iniciar
+    // Cargar carrito desde localStorage
     cargarCarrito();
 
-    // Iniciar
+    // Esperar a que el HTML este listo
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initCarrito);
     } else {

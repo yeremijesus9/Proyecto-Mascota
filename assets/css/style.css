@@ -275,15 +275,15 @@ body {
     transition: opacity 0.3s ease;
 }
 
-/* Mostrar popup */
+/* MOSTRAR POPUP */
 .popup-overlay.activo {
     opacity: 1;
     pointer-events: auto;
 }
 
-/* Ventana blanca */
+/* TARJETA DEL POPUP */
 .popup-content {
-    background: #fff;
+    background: rgba(250, 223, 203, 0.99);
     padding: 25px;
     border-radius: 12px;
     text-align: center;
@@ -293,7 +293,7 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* Botón cerrar */
+/* BOTON CERRAR */
 .popup-close {
     position: absolute;
     top: 8px;
@@ -306,6 +306,7 @@ body {
 
 /* Responsive: 3 columnas en tablets (820-1024px) */
 @media (min-width: 820px) and (max-width: 1024px) {
+
     .sec-productos #destacados-1,
     .sec-productos #destacados-2 {
         grid-template-columns: repeat(3, 1fr);
@@ -317,6 +318,7 @@ body {
 
 /* Responsive: 3 columnas en tablets pequeñas */
 @media (min-width: 769px) and (max-width: 819px) {
+
     .sec-productos #destacados-1,
     .sec-productos #destacados-2 {
         grid-template-columns: repeat(3, 1fr);
@@ -348,25 +350,28 @@ body {
 }
 
 /* =========================================
-   MODO OSCURO
+   MODO OSCURO (ACTIVADO DESDE EL NAV)
    ========================================= */
+
+/* 1. Fondo Principal: Cambiamos el blanco por un gris oscuro suave (#222) */
 body.dark-mode {
     background-color: #222222 !important;
-    /* Negro no muy negro (gris oscuro) */
 }
 
-/* Change background of white sections within main to match dark body */
+/* 2. Secciones Internas: También se vuelven oscuras para que no haya parches blancos */
 body.dark-mode .sec,
 body.dark-mode .sec-productos {
     background-color: #222222;
     transition: background-color 0.8s ease;
+    /* Transición suave al cambiar */
 }
 
-/* Change text to white inside main */
+/* 3. Textos Generales: Invertimos el color (de negro a blanco) para que se lean */
 body.dark-mode main {
     color: #ffffff;
 }
 
+/* Forzamos que títulos y párrafos sean blancos explícitamente */
 body.dark-mode main h1,
 body.dark-mode main h3,
 body.dark-mode main h4,
@@ -376,17 +381,18 @@ body.dark-mode main span:not(.iconify):not(.stars):not(.precio):not(.opiniones) 
     color: #ffffff;
 }
 
-/* Keep accent colors for H2 */
+/* 4. Excepciones: Los títulos principales (H2) mantienen su color naranja de marca */
 body.dark-mode main h2 {
     color: #D37C39;
 }
 
-/* PROTECT CARD STYLES (Off-white for cards) */
+/* 5. Tarjetas de Producto: NO las oscurecemos
+   Las dejamos claras (#e0e0e0) para que el producto resalte sobre el fondo oscuro */
 body.dark-mode .tarjeta-producto {
     background-color: #e0e0e0;
-    /* Un poco grisoso, no blanco puro */
 }
 
+/* Los textos DENTRO de la tarjeta deben seguir siendo oscuros para leerse bien */
 body.dark-mode .tarjeta-producto h3,
 body.dark-mode .tarjeta-producto p,
 body.dark-mode .tarjeta-producto span:not(.stars) {
