@@ -1,5 +1,5 @@
 {
-    "nav_envio_gratis": "🚚 <strong>FREE Shipping</strong> on orders over $50 | 🦴 Use code: <strong>MIWUFF20</strong>",
+    "nav_envio_gratis": "🚚 <strong>FREE Shipping</strong> on orders over 100€ | 🦴 Use code: <strong>MIWUFF20</strong>",
     "nav_placeholder_buscar": "What does your best friend need?",
     "nav_menu_perros": " Dogs",
     "nav_menu_gatos": " Cats",
@@ -23,5 +23,10 @@
     "footer_copyright": "&copy; 2025 Miwuff. | All rights reserved | Student Project | Penascalf5.",
     "productos_de": "Products of",
     "home_destacados1":"Featured Products",
-    "home_destacados2":"More Featured Products"
+    "home_destacados2":"More Featured Products",
+    "detalle_relacionados":"Related Products",
+    "detalle_agregar_carrito":"Add to Cart",
+    "detalle_comprar_ahora":"Buy Now",
+    "detalle_resenas_clientes":"Customer Reviews",
+    "ver_detalle":"View Detail" 
 }
