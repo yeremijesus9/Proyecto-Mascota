@@ -90,23 +90,6 @@
     font-size: 0.85em;
 }
 
-.tarjeta-producto button {
-    background: #D37C39;
-    color: white;
-    border: none;
-    padding: 10px 25px;
-    border-radius: 25px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    margin-top: auto;
-    /* Empujar al fondo */
-}
-
-.tarjeta-producto button:hover {
-    background: #b5652b;
-}
-
 /* Estilos para el título de categoría */
 #titulo-categoria {
     display: flex;
@@ -115,7 +98,7 @@
     gap: 15px;
 }
 
-/* Estilos para botones de producto */
+/* Estilos base para botones de producto */
 .tarjeta-producto button {
     width: 100%;
     padding: 10px 25px;
@@ -127,29 +110,65 @@
     border: none;
 }
 
+/* Botón Ver Detalles */
 .ver-detalle {
-    background: white;
-    color: #D37C39;
-    border: 1px solid #D37C39 !important;
-    gap: 5px;
-    padding: 5px;
+    background: #D37C39;
+    color: white;
+    border: 2px solid #D37C39 !important;
     font-weight: 600;
 }
 
 .ver-detalle:hover {
     background: #b5652b;
+    border-color: #b5652b !important;
 }
 
+/* Botón Añadir al Carrito */
 .btn-añadir-carrito {
     background: white;
     color: #D37C39;
-    border: 1px solid #D37C39 !important;
-    gap: 5px;
-    padding: 5px;
+    border: 2px solid #D37C39 !important;
     font-weight: 600;
 }
 
 .btn-añadir-carrito:hover {
     background: #D37C39;
     color: white;
+}
+
+/* Responsive: Tarjetas compactas para tablet */
+@media (min-width: 820px) and (max-width: 1024px) {
+    .tarjeta-producto {
+        padding: 8px;
+    }
+
+    .producto-imagen {
+        height: 150px;
+        margin-bottom: 12px;
+    }
+
+    .producto-nombre {
+        font-size: 1rem;
+        margin: 8px 0;
+        min-height: 2.2em;
+    }
+
+    .producto-marca {
+        font-size: 0.85rem;
+        margin-bottom: 10px;
+    }
+
+    .precio {
+        font-size: 1.1rem;
+    }
+
+    .puntuacion {
+        font-size: 0.85rem;
+    }
+
+    .tarjeta-producto button {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+        margin-top: 8px;
+    }
 }

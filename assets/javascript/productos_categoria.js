@@ -39,8 +39,9 @@ async function cargarInterface() {
             const btnDetalle = tarjeta.querySelector('.ver-detalle');
             const btnCarrito = tarjeta.querySelector('.btn-añadir-carrito');
             if (btnDetalle) btnDetalle.innerHTML = textos.ver_detalle || 'Ver Detalle';
-            if (btnCarrito) btnCarrito.innerHTML = textos.detalle_agregar_carrito || 'Añadir al Carrito';
+            if (btnCarrito) btnCarrito.innerHTML = textos.detalle_agregar_carrito || 'Comprar';
         });
+
 
     } catch (error) {
         console.error('Error al cargar interfaz:', error);
@@ -73,7 +74,7 @@ function renderProducto(producto, contenedor) {
         <button type="button" class="ver-detalle">${window.textosInterface?.ver_detalle || 'Ver Detalle'}</button>
         <button type="button" class="btn-añadir-carrito" 
             data-producto-id="${producto.id}"
-        >${window.textosInterface?.detalle_agregar_carrito || 'Añadir al Carrito'}</button>
+        >${window.textosInterface?.detalle_agregar_carrito || 'Comprar'}</button>
     `;
     
     // Guardar OBJETO COMPLETO para referencia directa

@@ -71,7 +71,7 @@ function renderProducto(producto, contenedor) {
         <button type="button" class="ver-detalle">${window.textosInterface?.ver_detalle || 'Ver Detalle'}</button>
         <button type="button" class="btn-añadir-carrito" 
             data-producto-id="${producto.id}"
-        >${window.textosInterface?.detalle_agregar_carrito || 'Añadir al Carrito'}</button>
+        >${window.textosInterface?.detalle_agregar_carrito || 'Comprar'}</button>
     `;
     
     // Guardar OBJETO COMPLETO para referencia directa (Método preferido)

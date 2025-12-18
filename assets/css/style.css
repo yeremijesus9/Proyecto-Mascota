@@ -304,10 +304,19 @@ body {
     cursor: pointer;
 }
 
+/* Responsive: 3 columnas en tablets (820-1024px) */
+@media (min-width: 820px) and (max-width: 1024px) {
+    .sec-productos #destacados-1,
+    .sec-productos #destacados-2 {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        max-width: 100%;
+        padding: 15px;
+    }
+}
 
-/* Responsive: 3 columnas en tablets */
-@media (max-width: 1024px) {
-
+/* Responsive: 3 columnas en tablets pequeñas */
+@media (min-width: 769px) and (max-width: 819px) {
     .sec-productos #destacados-1,
     .sec-productos #destacados-2 {
         grid-template-columns: repeat(3, 1fr);
@@ -382,6 +391,43 @@ body.dark-mode .tarjeta-producto h3,
 body.dark-mode .tarjeta-producto p,
 body.dark-mode .tarjeta-producto span:not(.stars) {
     color: #333333;
+}
+
+/* Responsive: Portada para tablets (820-1024px) */
+@media (min-width: 820px) and (max-width: 1024px) {
+    .portada {
+        height: 450px;
+    }
+
+    #miwuff-logo {
+        width: 55%;
+        max-width: 500px;
+    }
+
+    #perro {
+        width: 18%;
+        max-width: 150px;
+    }
+
+    #gato {
+        width: 16%;
+        max-width: 140px;
+    }
+
+    #roedor {
+        width: 14%;
+        max-width: 120px;
+    }
+
+    #pez {
+        width: 16%;
+        max-width: 140px;
+    }
+
+    #pajaro {
+        width: 15%;
+        max-width: 130px;
+    }
 }
 
 /* Responsive: Portada para móviles y tablets ( <= 820px ) */
