@@ -1,61 +1,40 @@
-// navegación y footer - cargo estos componentes dinámicamente en todas las páginas
-
-// inicializo el idioma si no existe ya
+// aquí cargo el nav y el footer en todas las páginas para no repetir código.
 if (!window.idiomaActual) window.idiomaActual = 'es';
-let reloj; // esta variable la asigno después de cargar el navbar
+let reloj; 
 
-// función para cambiar idioma y recargar todo el contenido
+// cambio el idioma en toda la web (textos, productos y el reloj).
 function cambiarIdioma(nuevoIdioma) {
-    // si es el mismo idioma no hago nada
-    if (!window.idiomaActual || window.idiomaActual === nuevoIdioma) return;
-
-    window.idiomaActual = nuevoIdioma;
-    console.log(`cambiando idioma a: ${nuevoIdioma}`);
-
-    // cargo traducciones de la interfaz si existe la función
-    if (typeof window.rutaInterfaceJson === 'function') {
-        loadTranslations(window.rutaInterfaceJson());
+    // uso la función global de idioma.js para que todo se actualice bien.
+    if (typeof window.cambiarIdioma === 'function') {
+        window.cambiarIdioma(nuevoIdioma);
     }
-
-    // recargo productos si existe la función
-    if (typeof window.cargarYMostrarProductos === 'function') {
-        window.cargarYMostrarProductos();
-    }
-
-    // actualizo el reloj con el nuevo idioma
-    actualizarReloj();
 }
 
-// cargo el archivo json de traducciones
-function loadTranslations(filePath) {
+// expongo esta función para que otros scripts puedan forzar una traducción.
+window.loadTranslations = function(filePath) {
     fetch(filePath)
         .then(response => response.json())
         .then(translations => applyTranslations(translations))
         .catch(error => console.error("error al cargar traducciones:", error));
-}
+};
 
-// aplico las traducciones a todos los elementos con data-key
+// busco los elementos con data-key y les meto la traducción que toca.
 function applyTranslations(translations) {
-    // actualizo contenido de elementos
     document.querySelectorAll('[data-key]').forEach(element => {
         const key = element.getAttribute('data-key');
         if (translations[key]) element.innerHTML = translations[key];
     });
 
-    // actualizo placeholders de inputs
     document.querySelectorAll('[data-placeholder-key]').forEach(element => {
         const key = element.getAttribute('data-placeholder-key');
         if (translations[key]) element.placeholder = translations[key];
     });
-
-    console.log("traducciones aplicadas.");
 }
 
-// muestro el popup de login cargándolo dinámicamente
+// el login lo cargo solo cuando alguien pincha, para que la página cargue más rápido.
 async function showLogin() {
     let popup = document.getElementById("dynamicLoginPopup");
     if (!popup) {
-        // creo el popup si no existe
         popup = document.createElement("div");
         popup.id = "dynamicLoginPopup";
         popup.classList.add("popup-contenedor");
@@ -63,13 +42,11 @@ async function showLogin() {
     }
 
     try {
-        // cargo el html del login
         const response = await fetch("login.html");
         popup.innerHTML = await response.text();
-        // escaneo los iconos si iconify está disponible
         if (window.Iconify?.scan) Iconify.scan();
         initLoginComponent();
-        // muestro el popup
+
         const wrapper = popup.querySelector(".wrapper");
         popup.classList.add("popup-activo");
         wrapper?.classList.add("active-popup");
@@ -78,7 +55,7 @@ async function showLogin() {
     }
 }
 
-// inicializo los eventos del componente de login
+// activo los clicks de los formularios una vez que se han inyectado en el html.
 function initLoginComponent() {
     const wrapper = document.querySelector(".wrapper");
     if (!wrapper) return;
@@ -88,59 +65,50 @@ function initLoginComponent() {
     const btnClose = document.getElementById("iconClose");
     const popup = document.getElementById("dynamicLoginPopup");
 
-    // cambio entre login y registro
     registerLink?.addEventListener("click", e => {
         e.preventDefault();
-        wrapper.classList.add("active"); // muestro el registro
+        wrapper.classList.add("active");
     });
 
     loginLink?.addEventListener("click", e => {
         e.preventDefault();
-        wrapper.classList.remove("active"); // vuelvo al login
+        wrapper.classList.remove("active");
     });
 
-    // cierro el popup
     btnClose?.addEventListener("click", () => {
         wrapper.classList.remove("active-popup");
         popup.classList.remove("popup-activo");
         wrapper.classList.remove("active");
     });
 
-    // inicializo los formularios si la función existe
     if (typeof window.initFormHandlers === 'function') window.initFormHandlers();
 }
 
-// actualizo el icono de login según si hay sesión iniciada
+// pongo el icono de usuario si hay sesión, o el de añadir si está desconectado.
 function updateLoginIcon() {
     const btnLogin = document.getElementById('btnOpenLogin');
     if (!btnLogin) return;
 
-    // verifico si hay un usuario conectado
     const isLoggedIn = window.AuthSystem ? window.AuthSystem.isLoggedIn() : false;
     const currentUser = window.AuthSystem ? window.AuthSystem.getCurrentUser() : null;
 
     if (isLoggedIn && currentUser) {
-        // si hay sesión, cambio el icono a "account"
         const iconSpan = btnLogin.querySelector('.iconify');
         if (iconSpan) iconSpan.setAttribute('data-icon', 'mdi:account');
         if (window.Iconify?.scan) window.Iconify.scan();
-        // creo el dropdown con info del usuario
         createUserDropdown(btnLogin, currentUser);
     } else {
-        // si no hay sesión, muestro "user-plus"
         const iconSpan = btnLogin.querySelector('.iconify');
         if (iconSpan) iconSpan.setAttribute('data-icon', 'mdi:user-plus');
         if (window.Iconify?.scan) window.Iconify.scan();
     }
 }
 
-// creo el menú dropdown del usuario conectado
+// dibujo el menú pequeñito para cerrar sesión o ver mis datos.
 function createUserDropdown(btnLogin, user) {
-    // elimino dropdown anterior si existe
     let existingDropdown = document.getElementById('userDropdownMenu');
     if (existingDropdown) existingDropdown.remove();
 
-    // creo un contenedor para el dropdown
     const dropdownContainer = document.createElement('div');
     dropdownContainer.className = 'user-dropdown-container';
     dropdownContainer.style.position = 'relative';
@@ -148,7 +116,6 @@ function createUserDropdown(btnLogin, user) {
     btnLogin.parentNode.insertBefore(dropdownContainer, btnLogin);
     dropdownContainer.appendChild(btnLogin);
 
-    // creo el menú dropdown
     const dropdown = document.createElement('div');
     dropdown.id = 'userDropdownMenu';
     dropdown.className = 'dropdown-menu user-dropdown';
@@ -170,7 +137,6 @@ function createUserDropdown(btnLogin, user) {
     dropdownContainer.appendChild(dropdown);
     if (window.Iconify?.scan) window.Iconify.scan();
 
-    // evento para cerrar sesión
     dropdown.querySelector('#btnLogout')?.addEventListener('click', e => {
         e.preventDefault();
         if (window.AuthSystem && confirm('¿seguro que quieres cerrar sesión?')) {
@@ -178,19 +144,17 @@ function createUserDropdown(btnLogin, user) {
         }
     });
 
-    // toggle del dropdown al hacer click
     btnLogin.addEventListener('click', e => {
         e.preventDefault();
         dropdown.classList.toggle('visible');
     });
 
-    // cierro el dropdown si hago click fuera
     document.addEventListener('click', e => {
         if (!dropdownContainer.contains(e.target)) dropdown.classList.remove('visible');
     });
 }
 
-// cargo archivos html dinámicamente en un contenedor
+// traigo el html del nav o del footer y arranco el reloj y la sesión al terminar.
 function loadHTML(containerId, filePath) {
     return fetch(filePath)
         .then(response => {
@@ -201,62 +165,44 @@ function loadHTML(containerId, filePath) {
             const container = document.getElementById(containerId);
             if (container) container.innerHTML = data;
 
-            // si estoy cargando el nav, hago configuraciones extra
             if (containerId === "nav-container") {
                 updateLoginIcon();
-
-                // inicio el reloj
                 reloj = document.getElementById("reloj");
                 setInterval(actualizarReloj, 1000);
                 actualizarReloj();
 
-                // inicializo el carrito si existe la función
                 if (typeof window.configurarEventListeners === 'function') {
                     window.configurarEventListeners();
                 }
 
-                // cargo traducciones y productos si existen las funciones
-                if (window.idiomaActual && window.rutaInterfaceJson && window.cargarYMostrarProductos) {
-                    loadTranslations(window.rutaInterfaceJson());
-                    window.cargarYMostrarProductos();
+                if (window.idiomaActual && window.rutaInterfaceJson) {
+                    window.loadTranslations(window.rutaInterfaceJson());
                 }
             }
         })
         .catch(err => console.error(err));
 }
 
-// actualizo el reloj con la fecha y hora actual
 function actualizarReloj() {
     if (!reloj) return;
     const ahora = new Date();
-    // configuración del formato de fecha
     const opciones = {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+        hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
     };
-    // formateo según el idioma actual
     reloj.textContent = ahora.toLocaleDateString(window.idiomaActual || 'es', opciones);
 }
 
-// listener global para todos los clicks de la página
+// meto todos los clicks importantes aquí (login, modo oscuro, idioma).
 document.addEventListener("click", e => {
-    // click en el botón de login
     const btnLogin = e.target.closest("#btnOpenLogin");
     if (btnLogin) {
         e.preventDefault();
         const isLoggedIn = window.AuthSystem ? window.AuthSystem.isLoggedIn() : false;
-        // si no hay sesión, muestro el login
         if (!isLoggedIn) showLogin();
         return;
     }
 
-    // click en el botón de modo oscuro
     const btnDarkMode = e.target.closest("#btn-dark-mode");
     if (btnDarkMode) {
         e.preventDefault();
@@ -264,28 +210,33 @@ document.addEventListener("click", e => {
         return;
     }
 
-    // manejo del menú de idioma
     const langButton = e.target.closest("#btnOpenLanguage");
     const langMenu = document.getElementById("languageMenu");
     const langOption = e.target.closest(".dropdown-menu a");
 
     if (langButton) {
-        // toggle del menú de idioma
         e.preventDefault();
         langMenu?.classList.toggle("visible");
     } else if (langOption) {
-        // selección de un idioma
         e.preventDefault();
         const lang = langOption.getAttribute('lang');
         if (lang) cambiarIdioma(lang);
         langMenu?.classList.remove("visible");
     } else if (langMenu?.classList.contains("visible") && !e.target.closest(".dropdown-menu")) {
-        // cierro el menú si hago click fuera
         langMenu.classList.remove("visible");
     }
 });
 
-// cuando carga la página, cargo nav y footer
+// escucho cuando alguien pulsa enter en el buscador para llevarle a los resultados.
+document.addEventListener("keydown", e => {
+    if (e.key === "Enter") {
+        const inputBusqueda = e.target.closest(".input-busqueda");
+        if (inputBusqueda && inputBusqueda.value.trim() !== "") {
+            window.location.href = `productos.html?search=${encodeURIComponent(inputBusqueda.value.trim())}`;
+        }
+    }
+});
+
 document.addEventListener("DOMContentLoaded", () => {
     loadHTML("nav-container", "nav.html");
     loadHTML("footer-container", "footer.html");

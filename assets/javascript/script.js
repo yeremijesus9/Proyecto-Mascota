@@ -1,29 +1,24 @@
-
-// efecto parallax del logo en la portada
+// aquí meto el efecto de la portada y el popup de ofertas.
 function iniciarEfectoPortada() {
     const miwuffLogo = document.getElementById('miwuff-logo');
-
     if (!miwuffLogo) return;
 
     let procesando = false;
     function actualizarPortada() {
-        // desactivo el efecto en móviles y tablets para que no se vea raro
+        // el movimiento lo quito en móviles para que no vaya a saltos.
         if (window.innerWidth <= 820) {
             miwuffLogo.style.marginTop = '0px';
             procesando = false;
             return;
         }
 
-        // obtengo cuánto ha hecho scroll el usuario
+        // muevo el logo un pelo más despacio que el scroll para que parezca que tiene fondo.
         const valorScroll = window.scrollY;
-
-        // muevo el logo según el scroll, multiplico por 0.55 para que no sea tan rápido
         miwuffLogo.style.marginTop = `${valorScroll * 0.55}px`;
 
         procesando = false;
     }
 
-    // escucho el evento scroll y actualizo el logo
     window.addEventListener('scroll', () => {
         if (!procesando) {
             window.requestAnimationFrame(actualizarPortada);
@@ -32,30 +27,26 @@ function iniciarEfectoPortada() {
     });
 }
 
-// cuando carga la página ejecuto todo esto
 document.addEventListener('DOMContentLoaded', () => {
-    // inicio el efecto parallax de la portada
     iniciarEfectoPortada();
 
-    // cargo productos si existe esa función (viene de home.js)
+    // si home.js está cargado, arranco la muestra de productos.
     if (typeof window.cargarYMostrarProductos === 'function') {
         window.cargarYMostrarProductos();
     }
 
-    // configuración del popup de oferta
+    // el popup de ofertas que sale nada más entrar a la web.
     const popup = document.getElementById("popup-oferta");
     const btnCerrar = document.getElementById("popup-cerrar");
 
     if (popup && btnCerrar) {
-        // el popup aparece inmediatamente al cargar
         popup.classList.add("activo");
 
-        // se cierra automáticamente después de 7 segundos
+        // que se quite solo a los 7 segundos si el usuario no hace nada.
         setTimeout(() => {
             popup.classList.remove("activo");
         }, 7000);
 
-        // también se puede cerrar manualmente con la X
         btnCerrar.addEventListener("click", () => {
             popup.classList.remove("activo");
         });

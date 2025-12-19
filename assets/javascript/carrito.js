@@ -1,77 +1,49 @@
-// carrito de compras - versión final
-// este archivo maneja todo lo del carrito: añadir, quitar, ver productos, etc
-
-// evito que se ejecute dos veces porque a veces se carga el js varias veces
+// aquí controlo todo lo del carrito (añadir, quitar, comprar).
+// pongo esta bandera para no cargar el script mil veces si el usuario se mueve mucho.
 if (window.CARRITO_INICIALIZADO) {
-    console.warn("⚠️ carrito ya estaba inicializado, no lo vuelvo a iniciar");
+    console.warn("⚠️ carrito ya estaba inicializado");
 } else {
     window.CARRITO_INICIALIZADO = true;
 
-    // aquí guardo los productos que el usuario va añadiendo
+    // los productos los guardo aquí durante la sesión.
     let carrito = [];
 
-    // cargo el carrito cuando empieza la página
+    // al arrancar, cargo lo que ya estaba guardado y preparo el dom.
     cargarCarrito();
 
-    // espero a que el dom esté listo antes de iniciar todo
+    // espero al dom para que no me de error al buscar elementos.
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initCarrito);
     } else {
         initCarrito();
     }
 
-    // inicializo el carrito creando el html y configurando los eventos
+    // preparo el html y activo los escuchadores de eventos.
     function initCarrito() {
         crearHTML();
         actualizarContador();
         configurarListenersGlobales();
     }
 
-    // configuro todos los eventos de click en una sola función para que no se dupliquen
+    // meto los eventos en el body para que sea más fácil y no se dupliquen.
     function configurarListenersGlobales() {
 
         document.body.addEventListener('click', function (e) {
 
-            // botón de añadir al carrito
+            // añadir producto: busco el id y los datos que guardé en el botón.
             const btnAnadir = e.target.closest('.btn-anadir-carrito');
             if (btnAnadir) {
                 e.preventDefault();
-                e.stopImmediatePropagation(); // detengo otros eventos
+                e.stopImmediatePropagation();
 
-                // obtengo el id del producto
                 const id = btnAnadir.dataset.productoId;
-
-                // intento obtener los datos del objeto directo que asigné en el js
                 let producto = btnAnadir.productoData;
 
-                // si no hay objeto directo, busco en el dom como plan b
-                if (!producto && id) {
-                    const tarjeta = btnAnadir.closest('.tarjeta-producto');
-                    if (tarjeta) {
-                        const precioTexto = tarjeta.querySelector('.precio')?.textContent || "0";
-                        const precio = parseFloat(precioTexto.replace(/[^\d.,]/g, '').replace(',', '.')) || 0;
-                        const imagen = tarjeta.querySelector('img')?.src || 'assets/img/placeholder.jpg';
-                        const nombre = tarjeta.querySelector('h3')?.textContent || "Producto";
-
-                        producto = {
-                            id: id,
-                            nombre: nombre,
-                            precio: precio,
-                            imagen: imagen
-                        };
-                    }
-                }
-
-                // si tengo datos del producto, lo añado al carrito
-                if (producto) {
-                    plusProducto(producto);
-                } else {
-                    console.error("❌ no pude obtener datos del producto");
-                }
+                if (producto) plusProducto(producto);
                 return;
             }
 
-            // botón de ver detalles
+            // para ver detalles o ir a pagar.
             const btnDetalle = e.target.closest('.ver-detalle');
             if (btnDetalle && btnDetalle.productoId) {
                 e.preventDefault();
@@ -79,26 +51,24 @@ if (window.CARRITO_INICIALIZADO) {
                 return;
             }
 
-            // click en el icono del carrito para abrirlo
+            // abrir panel con el icono, cerrar con la x o el overlay.
             if (e.target.closest('.carrito-icono')) {
                 e.preventDefault();
                 toggleCarrito(true);
                 return;
             }
 
-            //cerrar el panel del carrito
             if (e.target.id === 'carrito-cerrar' || e.target.id === 'carrito-overlay') {
                 toggleCarrito(false);
                 return;
             }
 
-            //vaciar todo el carrito
+            // gestionar: vaciar todo, cambiar cantidades o quitar uno.
             if (e.target.id === 'btn-vaciar') {
                 vaciarCarrito();
                 return;
             }
 
-            //cambiar cantidad con los botones + y -
             if (e.target.classList.contains('btn-cantidad')) {
                 const id = e.target.dataset.id;
                 const cambio = parseInt(e.target.dataset.cambio);
@@ -106,31 +76,26 @@ if (window.CARRITO_INICIALIZADO) {
                 return;
             }
 
-            //eliminar un producto específico
             if (e.target.classList.contains('btn-eliminar')) {
                 const id = e.target.dataset.id;
                 eliminarProducto(id);
                 return;
             }
 
-            //ir al checkout para finalizar compra
-            const btnCheckout = e.target.closest('#btn-checkout');
-            if (btnCheckout) {
+            if (e.target.closest('#btn-checkout')) {
                 window.location.href = 'checkout.html';
                 return;
             }
         });
     }
 
-    // añado un producto al carrito o sumo cantidad si ya existe
+    // sumo un producto o aumento su cantidad si ya está.
     function plusProducto(producto) {
         const index = carrito.findIndex(p => p.id === producto.id);
 
         if (index !== -1) {
-            // si ya existe, solo sumo 1 a la cantidad
             carrito[index].cantidad++;
         } else {
-            // si no existe, lo añado como nuevo
             carrito.push({
                 id: producto.id,
                 nombre: producto.nombre || producto.nombre_producto,
@@ -141,18 +106,17 @@ if (window.CARRITO_INICIALIZADO) {
         }
 
         guardarCarrito();
-        renderizarCarrito(); // actualizo la vista del panel
+        renderizarCarrito();
         mostrarNotificacion();
     }
 
-    // abro o cierro el panel lateral del carrito
+    // mover el panel lateral (abrir/cerrar) con las clases.
     function toggleCarrito(abrir) {
         const panel = document.getElementById('carrito-panel');
         const overlay = document.getElementById('carrito-overlay');
         if (abrir) {
-            // antes de mostrar, recargo desde localstorage por si cambió en otra pestaña
             cargarCarrito();
-            renderizarCarrito(); // muestro los datos frescos
+            renderizarCarrito();
             panel.classList.add('activo');
             overlay.classList.add('activo');
         } else {
@@ -161,12 +125,11 @@ if (window.CARRITO_INICIALIZADO) {
         }
     }
 
-    // cambio la cantidad de un producto (puede ser +1 o -1)
+    // subir o bajar cantidad. si llega a cero, fuera.
     function cambiarCantidad(id, cambio) {
         const index = carrito.findIndex(p => p.id === id);
         if (index !== -1) {
             carrito[index].cantidad += cambio;
-            // si la cantidad llega a 0 o menos, elimino el producto
             if (carrito[index].cantidad <= 0) {
                 carrito.splice(index, 1);
             }
@@ -175,35 +138,32 @@ if (window.CARRITO_INICIALIZADO) {
         }
     }
 
-    // elimino un producto específico del carrito
     function eliminarProducto(id) {
         carrito = carrito.filter(p => p.id !== id);
         guardarCarrito();
         renderizarCarrito();
     }
 
-    // vacío todo el carrito después de confirmar
     function vaciarCarrito() {
-        if (confirm("¿estás seguro de vaciar el carrito?")) {
+        if (confirm("¿quieres vaciar todo el carrito?")) {
             carrito = [];
             guardarCarrito();
             renderizarCarrito();
         }
     }
 
-    // cargo el carrito desde localstorage cuando inicia la página
+    // guardo y cargo de localstorage para no perder nada al recargar.
     function cargarCarrito() {
         carrito = JSON.parse(localStorage.getItem('MiwuffCarrito')) || [];
         actualizarContador();
     }
 
-    // guardo el carrito en localstorage para que persista
     function guardarCarrito() {
         localStorage.setItem('MiwuffCarrito', JSON.stringify(carrito));
         actualizarContador();
     }
 
-    // actualizo el número que aparece en el iconito del carrito
+    // actualizo el iconito rojo con el número total.
     function actualizarContador() {
         const contadores = document.querySelectorAll('.carrito-contador');
         const total = carrito.reduce((sum, p) => sum + p.cantidad, 0);
@@ -213,7 +173,7 @@ if (window.CARRITO_INICIALIZADO) {
         });
     }
 
-    // dibujo todos los productos dentro del panel del carrito
+    // dibujo de nuevo el interior del carrito si hay cambios.
     function renderizarCarrito() {
         const contenedor = document.getElementById('carrito-contenido');
         const precioTotalEl = document.getElementById('carrito-total-precio');
@@ -248,7 +208,7 @@ if (window.CARRITO_INICIALIZADO) {
         if (precioTotalEl) precioTotalEl.textContent = `€${totalPrecio.toFixed(2)}`;
     }
 
-    // creo el html del panel del carrito si no existe ya
+    // inyecto el html del carrito dinámicamente para no ensuciar el index.
     function crearHTML() {
         if (document.getElementById('carrito-panel')) return;
 
@@ -272,7 +232,7 @@ if (window.CARRITO_INICIALIZADO) {
         document.body.insertAdjacentHTML('beforeend', html);
     }
 
-    // muestro una notificación cuando se añade un producto
+    // aviso rápido arriba a la derecha.
     function mostrarNotificacion() {
         const notif = document.createElement('div');
         notif.textContent = "producto añadido";
