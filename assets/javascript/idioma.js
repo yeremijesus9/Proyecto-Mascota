@@ -1,27 +1,30 @@
-// Idioma actual (por defecto español)
+// sistema de idiomas: español e inglés
+// por defecto arranco en español
 window.idiomaActual = "es";
 
-// Devuelve la ruta del JSON de productos según el idioma
+// esta función me da la ruta del json de productos según el idioma actual
 window.rutaJson = () =>
     `/assets/JSON/${window.idiomaActual}_mascota.json`;
 
-// Devuelve la ruta del JSON de interfaz según el idioma
+// esta función me da la ruta del json de textos de interfaz según el idioma
 window.rutaInterfaceJson = () =>
     `/assets/JSON/${window.idiomaActual}_interface.json`;
 
-// Función para cambiar idioma
+// función para cambiar de idioma
 window.cambiarIdioma = async function(nuevoIdioma) {
+    // si es el mismo idioma que ya tengo, no hago nada
     if (window.idiomaActual === nuevoIdioma) return;
 
+    // cambio el idioma y lo guardo en localstorage
     window.idiomaActual = nuevoIdioma;
     localStorage.setItem('idiomaSeleccionado', nuevoIdioma);
 
-    // Cargar traducciones de la interfaz si existe la función
+    // cargo las traducciones de la interfaz si la función existe
     if (typeof window.rutaInterfaceJson === 'function') {
         loadTranslations(window.rutaInterfaceJson());
     }
 
-    // Recargar detalle de productos si la función existe
+    // recargo los productos en la página de detalle si existe esa función
     if (typeof window.cargarDetalleYRelacionados === "function") {
         await window.cargarDetalleYRelacionados();
     }

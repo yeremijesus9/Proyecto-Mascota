@@ -1,21 +1,23 @@
+// página de detalle de producto - muestro info completa, galería, comentarios y productos relacionados
 
-// Inicialización: Lee el idioma del localStorage o usa 'es' por defecto.
+// inicio con el idioma guardado o español por defecto
 window.idiomaActual = localStorage.getItem('idiomaSeleccionado') || "es";
 
+// función que me da la ruta del json de productos según idioma
 window.rutaJson = function() {
-    // La ruta ahora depende de window.idiomaActual (ej: /assets/JSON/es_mascota.json)
   return `/assets/JSON/${window.idiomaActual}_mascota.json`;
 };
 
+// función que me da la ruta del json de textos de interfaz
 window.rutaInterfaceJson = function () {
   return `/assets/JSON/${window.idiomaActual}_interface.json`;
 };
 
-// Variable global para almacenar todos los productos
+// aquí guardo todos los productos y textos
 window.todosLosProductos = [];
 window.textosInterface = {};
 
-// FUNCIÓN PARA CAMBIAR EL IDIOMA
+// función para cambiar idioma y recargar todo
 window.cambiarIdioma = async function (nuevoIdioma) {
   if (window.idiomaActual === nuevoIdioma) return;
 
@@ -32,18 +34,20 @@ window.cambiarIdioma = async function (nuevoIdioma) {
   const contenedor = document.getElementById('productos-contenedor');
   if (!contenedor) return;
 
-    // ===============================
-  // HELPERS
-  // ===============================
+    // funciones auxiliares que uso en varios sitios
+  
+  // obtengo un parámetro de la url (ejemplo: ?id=CAT1)
   function getQueryParam(name) {
     const url = new URL(window.location.href);
     return url.searchParams.get(name);
   }
 
+  // formateo el precio para mostrarlo bonito
   function formatPrice(p) {
     return typeof p === 'number' ? p.toFixed(2) + ' €' : p;
   }
 
+  // creo las estrellitas de puntuación
   function crearEstrellas(puntuacion) {
     const p = Number(puntuacion) || 0;
     let s = '';
@@ -51,26 +55,22 @@ window.cambiarIdioma = async function (nuevoIdioma) {
     return `<span class="stars">${s}</span>`;
   }
 
-  // ===============================
-  // FETCH INTERFAZ
-  // ===============================
+  // cargo los textos de interfaz desde el json
 async function fetchInterfaceTextos() {
   const ruta = window.rutaInterfaceJson();
   const res = await fetch(ruta);
 
   if (!res.ok) {
-    throw new Error(`Error cargando interfaz: ${ruta}`);
+    throw new Error(`error cargando interfaz: ${ruta}`);
   }
 
   window.textosInterface = await res.json();
 }
 
-  // ===============================
-  // FETCH PRODUCTOS
-  // ===============================
+  // cargo todos los productos desde el json
   async function fetchProductos() {
     const res = await fetch(window.rutaJson());
-    if (!res.ok) throw new Error("Error cargando productos");
+    if (!res.ok) throw new Error("error cargando productos");
 
     const data = await res.json();
     const productos = Array.isArray(data) ? data : data.mascotas || [];
@@ -78,17 +78,17 @@ async function fetchInterfaceTextos() {
     return productos;
   }
 
-  // RENDERIZAR PRODUCTO COMPLETO
-
+  // renderizo el producto completo con toda su info
     function renderProducto(producto, productosAll) {
 
         contenedor.innerHTML = ''; 
         
+        // creo las miniaturas de la galería
         const thumbs = (producto.imagen_miniatura || [])
             .map(src => `<img src="${src}" class="thumb" alt="mini">`)
             .join('');
 
-        // Reviews summary
+        // cuento cuántos comentarios hay de cada puntuación (1 a 5 estrellas)
         const totalComentarios = producto.comentarios ? producto.comentarios.length : 0;
         const counts = {1:0,2:0,3:0,4:0,5:0};
         (producto.comentarios || []).forEach(c => {
@@ -96,15 +96,17 @@ async function fetchInterfaceTextos() {
             if (v>=1 && v<=5) counts[v]++;
         });
 
-        // --- LÓGICA DE FORMATO ---
+        // creo las opciones de formato (peso, tamaño, color, etc)
         let formatoOpciones;
         if (Array.isArray(producto.descripcion_formato)) {
+            // si hay varias opciones, creo un botón para cada una
             formatoOpciones = producto.descripcion_formato.map((desc, index) => `
                 <div class="formato-opcion" data-formato="${desc}" data-index="${index}">
                     ${desc}
                 </div>
             `).join('');
         } else {
+            // si solo hay una opción, la muestro directamente
             formatoOpciones = `
                 <div class="formato-opcion formato-activo" data-formato="${producto.descripcion_formato || 'N/A'}">
                     ${producto.descripcion_formato || 'N/A'}
@@ -112,21 +114,22 @@ async function fetchInterfaceTextos() {
             `;
         }
 
-        // *** FILTRAR RELACIONADOS POR MISMA CATEGORÍA (TU SOLICITUD) ***
+        // filtro productos relacionados de la misma categoría
         const related = (productosAll || [])
             .filter(p => p.categoria === producto.categoria && p.id !== producto.id)
-            .slice(0, 4);
+            .slice(0, 4); // solo muestro 4
 
+        // creo el html de los productos relacionados
         const relatedHtml = related.map(r => `
             <div class="related-card">
                 <img src="${r.imagen_principal}" alt="${r.nombre_producto}">
                 <h4>${r.nombre_producto}</h4>
                 <p class="r-price">${formatPrice(r.precio)}</p>
-                <a href="detalle_producto.html?id=${r.id}" class="btn-small">${window.textosInterface.ver_detalle || 'Ver Detalle'}</a>
+                <a href="detalle_producto.html?id=${r.id}" class="btn-small">${window.textosInterface.ver_detalle || 'ver detalle'}</a>
             </div>
         `).join('');
 
-        // HTML COMPLETO DE PRODUCTO
+        // creo todo el html del producto
         contenedor.innerHTML = `
             <section class="detalle-producto">
                 <div class="galeria">
@@ -137,7 +140,7 @@ async function fetchInterfaceTextos() {
                 </div>
 
                 <aside class="info">
-                    <p class="marca"><strong>Marca:</strong> ${producto.marca}</p>
+                    <p class="marca"><strong>marca:</strong> ${producto.marca}</p>
                     <h1 class="producto-nombre">${producto.nombre_producto}</h1>
                     <div class="rating">${crearEstrellas(producto.puntuacion)} <span class="opiniones">${producto.opiniones} opiniones</span></div>
                     <p class="descripcion">${producto.descripcion}</p>
@@ -152,11 +155,11 @@ async function fetchInterfaceTextos() {
                 
                 <div class="compra-box">
                     <div class="price-box">
-                        <span class="price-label">Precio</span>
+                        <span class="price-label">precio</span>
                         <div class="product-price">${formatPrice(producto.precio)}</div>
-                        <div class="vat-info">Los precios incluyen IVA.</div>
-                        <div class="delivery-info">Entrega GRATIS entre el x - x</div>
-                        <div class="stock-info">En stock</div>
+                        <div class="vat-info">los precios incluyen iva</div>
+                        <div class="delivery-info">entrega gratis entre el x - x</div>
+                        <div class="stock-info">en stock</div>
 
                         <div class="cantidad quantity-selector">
                             <button id="qty-decr">-</button>
@@ -165,21 +168,21 @@ async function fetchInterfaceTextos() {
                         </div>
                         <div class="acciones">
                             <button id="add-cart" class="add-to-cart-btn">
-                                <i class="fas fa-shopping-cart"></i>${window.textosInterface.detalle_agregar_carrito || 'Añadir al carrito'}
+                                <i class="fas fa-shopping-cart"></i>${window.textosInterface.detalle_agregar_carrito || 'añadir al carrito'}
                             </button>
-                            <button id="buy-now" class="buy-now-btn">${window.textosInterface.detalle_comprar_ahora || 'Comprar ahora'}</button>
+                            <button id="buy-now" class="buy-now-btn">${window.textosInterface.detalle_comprar_ahora || 'comprar ahora'}</button>
                         </div>
                     </div>
                 </div>
             </section>
 
             <section class="related">
-                <h3>${window.textosInterface.detalle_relacionados || 'Productos relacionados'}</h3>
+                <h3>${window.textosInterface.detalle_relacionados || 'productos relacionados'}</h3>
                 <div class="related-list">${relatedHtml}</div>
             </section>
 
             <section class="reviews">
-                <h3>${window.textosInterface.detalle_resenas_clientes || 'Reseñas de clientes'}</h3>
+                <h3>${window.textosInterface.detalle_resenas_clientes || 'reseñas de clientes'}</h3>
                 <div class="reviews-summary">
                     <div class="stars-big">${crearEstrellas(producto.puntuacion)} <span>${producto.opiniones} opiniones</span></div>
                     <div class="bars">
@@ -202,9 +205,9 @@ async function fetchInterfaceTextos() {
             </section>
         `;
 
-        // LISTENERS
+        // configuro todos los eventos de la página
 
-        // Miniaturas
+        // evento para cambiar imagen principal al hacer click en miniaturas
         document.querySelectorAll('.miniaturas img.thumb').forEach(img => {
             img.addEventListener('click', () => {
                 document.getElementById('main-img').src = img.src;
@@ -213,7 +216,7 @@ async function fetchInterfaceTextos() {
             });
         });
 
-        // Formato
+        // evento para seleccionar formato
         const formatOptions = document.querySelectorAll('.formato-opcion');
         formatOptions.forEach(o => {
             o.addEventListener('click', () => {
@@ -222,25 +225,27 @@ async function fetchInterfaceTextos() {
             });
         });
 
-        // Cantidad
+        // eventos para cambiar cantidad con botones + y -
         const qtyEl = document.getElementById('qty');
         document.getElementById('qty-incr').addEventListener('click', ()=> qtyEl.value = Number(qtyEl.value)+1);
         document.getElementById('qty-decr').addEventListener('click', ()=> qtyEl.value = Math.max(1, Number(qtyEl.value)-1));
 
-        // Carrito - Usar sistema global
+        // evento para añadir al carrito
         document.getElementById('add-cart').addEventListener('click', ()=>{
             const cantidad = Number(qtyEl.value) || 1;
             const formato = document.querySelector('.formato-opcion.formato-activo')?.dataset.formato;
 
-            // Cargar carrito desde localStorage (clave correcta)
+            // cargo el carrito actual desde localstorage
             const carrito = JSON.parse(localStorage.getItem('MiwuffCarrito') || '[]');
             
-            // Buscar si ya existe
+            // busco si el producto ya existe en el carrito
             const existente = carrito.find(item => item.id === producto.id);
             
             if (existente) {
+                // si existe, solo sumo la cantidad
                 existente.cantidad += cantidad;
             } else {
+                // si no existe, lo añado nuevo
                 carrito.push({
                     id: producto.id,
                     nombre: producto.nombre_producto,
@@ -251,9 +256,10 @@ async function fetchInterfaceTextos() {
                 });
             }
             
+            // guardo el carrito actualizado
             localStorage.setItem('MiwuffCarrito', JSON.stringify(carrito));
             
-            // Actualizar contador si existe
+            // actualizo el contador del carrito si existe
             const contador = document.querySelector('.carrito-contador');
             if (contador) {
                 const total = carrito.reduce((sum, item) => sum + item.cantidad, 0);
@@ -261,7 +267,7 @@ async function fetchInterfaceTextos() {
                 contador.style.display = total > 0 ? 'flex' : 'none';
             }
             
-            // Mostrar notificación
+            // muestro notificación de éxito
             const notif = document.createElement('div');
             notif.textContent = ` ${cantidad} x ${producto.nombre_producto} añadido al carrito`;
             notif.style.cssText = "position:fixed; top:20px; right:20px; background:#28a745; color:white; padding:15px; border-radius:5px; z-index:10000; box-shadow: 0 4px 6px rgba(0,0,0,0.1);";
@@ -269,15 +275,15 @@ async function fetchInterfaceTextos() {
             setTimeout(() => notif.remove(), 2000);
         });
 
-        // Comprar ahora - Añade al carrito y va al checkout
+        // evento para comprar ahora (añade al carrito y va al checkout)
         document.getElementById('buy-now').addEventListener('click', ()=>{
             const cantidad = Number(qtyEl.value) || 1;
             const formato = document.querySelector('.formato-opcion.formato-activo')?.dataset.formato;
 
-            // Cargar carrito
+            // cargo el carrito
             const carrito = JSON.parse(localStorage.getItem('MiwuffCarrito') || '[]');
             
-            // Buscar si ya existe
+            // busco si ya existe
             const existente = carrito.find(item => item.id === producto.id);
             
             if (existente) {
@@ -293,47 +299,50 @@ async function fetchInterfaceTextos() {
                 });
             }
             
-            // Guardar y redirigir al checkout
+            // guardo y redirijo al checkout
             localStorage.setItem('MiwuffCarrito', JSON.stringify(carrito));
             window.location.href = 'checkout.html';
         });
     }
 
-    // CAMBIAR PRODUCTO PRINCIPAL
+    // función para cambiar el producto principal que se muestra
     window.cambiarProductoPrincipal = function(productId, productosList) {
         const producto = productosList.find(p => p.id == productId);
 
         if (!producto) {
-            contenedor.innerHTML = `<p>Producto con ID '${productId}' no encontrado.</p>`;
+            contenedor.innerHTML = `<p>producto con id '${productId}' no encontrado</p>`;
             return;
         }
 
         renderProducto(producto, productosList);
     }
 
-    // FUNCIÓN PRINCIPAL
+    // función principal que cargo al inicio y cuando cambio idioma
     window.cargarDetalleYRelacionados = async function() {
-        contenedor.innerHTML = `<p>Cargando detalle (${window.idiomaActual})...</p>`;
+        contenedor.innerHTML = `<p>cargando detalle (${window.idiomaActual})...</p>`;
 
         try {
+            // cargo textos de interfaz y productos
             await fetchInterfaceTextos();
             const productos = await fetchProductos();
             if (!productos.length) {
-                contenedor.innerHTML = `<p>No hay productos disponibles.</p>`;
+                contenedor.innerHTML = `<p>no hay productos disponibles</p>`;
                 return;
             }
 
+            // obtengo el id del producto de la url
             const productId = getQueryParam('id') || productos[0].id;
 
+            // muestro el producto
             window.cambiarProductoPrincipal(productId, productos);
 
         } catch (err) {
             console.error(err);
-            contenedor.innerHTML = `<p style="color:red">Error cargando datos.</p>`;
+            contenedor.innerHTML = `<p style="color:red">error cargando datos</p>`;
         }
     };
 
-    // Inicializar
+    // inicializo cargando el producto
     window.cargarDetalleYRelacionados();
 
 })();
