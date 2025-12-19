@@ -112,7 +112,7 @@ async function fetchInterfaceTextos() {
             `;
         }
 
-        // *** FILTRAR RELACIONADOS POR MISMA CATEGORÍA (TU SOLICITUD) ***
+        // *** FILTRAR RELACIONADOS POR MISMA CATEGORÍA  ***
         const related = (productosAll || [])
             .filter(p => p.categoria === producto.categoria && p.id !== producto.id)
             .slice(0, 4);
