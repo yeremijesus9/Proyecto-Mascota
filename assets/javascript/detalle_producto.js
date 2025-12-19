@@ -3,7 +3,7 @@
 window.idiomaActual = localStorage.getItem('idiomaSeleccionado') || "es";
 
 window.rutaJson = function() {
-    // La ruta ahora depende de window.idiomaActual (ej: /assets/JSON/es_mascota.json)
+    // La ruta ahora depende de window.idiomaActual 
   return `/assets/JSON/${window.idiomaActual}_mascota.json`;
 };
 
