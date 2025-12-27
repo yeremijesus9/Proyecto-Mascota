@@ -124,14 +124,14 @@
 }
 
 /* Botón Añadir al Carrito */
-.btn-añadir-carrito {
+.btn-anadir-carrito {
     background: white;
     color: #D37C39;
     border: 2px solid #D37C39 !important;
     font-weight: 600;
 }
 
-.btn-añadir-carrito:hover {
+.btn-anadir-carrito:hover {
     background: #D37C39;
     color: white;
 }

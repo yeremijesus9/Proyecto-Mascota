@@ -1,40 +1,24 @@
-
-// Inicialización: Lee el idioma del localStorage o usa 'es' por defecto.
+// pantalla del producto: aquí controlo la galería, los formatos y lo que dice la gente.
 window.idiomaActual = localStorage.getItem('idiomaSeleccionado') || "es";
 
-window.rutaJson = function() {
-    // La ruta ahora depende de window.idiomaActual (ej: /assets/JSON/es_mascota.json)
-  return `/assets/JSON/${window.idiomaActual}_mascota.json`;
-};
+window.rutaJson = () => `/assets/JSON/${window.idiomaActual}_mascota.json`;
+window.rutaInterfaceJson = () => `/assets/JSON/${window.idiomaActual}_interface.json`;
 
-window.rutaInterfaceJson = function () {
-  return `/assets/JSON/${window.idiomaActual}_interface.json`;
-};
-
-// Variable global para almacenar todos los productos
 window.todosLosProductos = [];
 window.textosInterface = {};
 
-// FUNCIÓN PARA CAMBIAR EL IDIOMA
 window.cambiarIdioma = async function (nuevoIdioma) {
   if (window.idiomaActual === nuevoIdioma) return;
-
   window.idiomaActual = nuevoIdioma;
   localStorage.setItem('idiomaSeleccionado', nuevoIdioma);
-
   await window.cargarDetalleYRelacionados();
 };
 
-
 (async function () {
   'use strict';
-
   const contenedor = document.getElementById('productos-contenedor');
   if (!contenedor) return;
 
-    // ===============================
-  // HELPERS
-  // ===============================
   function getQueryParam(name) {
     const url = new URL(window.location.href);
     return url.searchParams.get(name);
@@ -51,289 +35,226 @@ window.cambiarIdioma = async function (nuevoIdioma) {
     return `<span class="stars">${s}</span>`;
   }
 
-  // ===============================
-  // FETCH INTERFAZ
-  // ===============================
-async function fetchInterfaceTextos() {
-  const ruta = window.rutaInterfaceJson();
-  const res = await fetch(ruta);
-
-  if (!res.ok) {
-    throw new Error(`Error cargando interfaz: ${ruta}`);
+  async function fetchInterfaceTextos() {
+    const res = await fetch(window.rutaInterfaceJson());
+    if (!res.ok) throw new Error("error cargando interfaz");
+    window.textosInterface = await res.json();
   }
 
-  window.textosInterface = await res.json();
-}
-
-  // ===============================
-  // FETCH PRODUCTOS
-  // ===============================
   async function fetchProductos() {
     const res = await fetch(window.rutaJson());
-    if (!res.ok) throw new Error("Error cargando productos");
-
+    if (!res.ok) throw new Error("error cargando productos");
     const data = await res.json();
-    const productos = Array.isArray(data) ? data : data.mascotas || [];
-    window.todosLosProductos = productos;
-    return productos;
+    window.todosLosProductos = Array.isArray(data) ? data : data.mascotas || [];
+    return window.todosLosProductos;
   }
 
-  // RENDERIZAR PRODUCTO COMPLETO
+  // monto toda la vista del producto con sus fotos mini y las reseñas.
+  function renderProducto(producto, productosAll) {
+    contenedor.innerHTML = ''; 
+    
+    const thumbs = (producto.imagen_miniatura || [])
+        .map(src => `<img src="${src}" class="thumb" alt="mini">`)
+        .join('');
 
-    function renderProducto(producto, productosAll) {
+    // cuento cuántas estrellas tiene cada comentario para las barritas de resumen.
+    const totalComentarios = producto.comentarios ? producto.comentarios.length : 0;
+    const counts = {1:0,2:0,3:0,4:0,5:0};
+    (producto.comentarios || []).forEach(c => {
+        const v = Number(c.puntuacion) || 0;
+        if (v>=1 && v<=5) counts[v]++;
+    });
 
-        contenedor.innerHTML = ''; 
-        
-        const thumbs = (producto.imagen_miniatura || [])
-            .map(src => `<img src="${src}" class="thumb" alt="mini">`)
-            .join('');
-
-        // Reviews summary
-        const totalComentarios = producto.comentarios ? producto.comentarios.length : 0;
-        const counts = {1:0,2:0,3:0,4:0,5:0};
-        (producto.comentarios || []).forEach(c => {
-            const v = Number(c.puntuacion) || 0;
-            if (v>=1 && v<=5) counts[v]++;
-        });
-
-        // --- LÓGICA DE FORMATO ---
-        let formatoOpciones;
-        if (Array.isArray(producto.descripcion_formato)) {
-            formatoOpciones = producto.descripcion_formato.map((desc, index) => `
-                <div class="formato-opcion" data-formato="${desc}" data-index="${index}">
-                    ${desc}
-                </div>
-            `).join('');
-        } else {
-            formatoOpciones = `
-                <div class="formato-opcion formato-activo" data-formato="${producto.descripcion_formato || 'N/A'}">
-                    ${producto.descripcion_formato || 'N/A'}
-                </div>
-            `;
-        }
-
-        // *** FILTRAR RELACIONADOS POR MISMA CATEGORÍA  ***
-        const related = (productosAll || [])
-            .filter(p => p.categoria === producto.categoria && p.id !== producto.id)
-            .slice(0, 4);
-
-        const relatedHtml = related.map(r => `
-            <div class="related-card">
-                <img src="${r.imagen_principal}" alt="${r.nombre_producto}">
-                <h4>${r.nombre_producto}</h4>
-                <p class="r-price">${formatPrice(r.precio)}</p>
-                <a href="detalle_producto.html?id=${r.id}" class="btn-small">${window.textosInterface.ver_detalle || 'Ver Detalle'}</a>
-            </div>
+    // saco los botones de formato (gramos, kilos, etc) o solo el texto si hay uno.
+    let formatoOpciones;
+    if (Array.isArray(producto.descripcion_formato)) {
+        formatoOpciones = producto.descripcion_formato.map((desc, index) => `
+            <div class="formato-opcion" data-formato="${desc}" data-index="${index}">${desc}</div>
         `).join('');
-
-        // HTML COMPLETO DE PRODUCTO
-        contenedor.innerHTML = `
-            <section class="detalle-producto">
-                <div class="galeria">
-                    <div class="principal">
-                        <img id="main-img" src="${producto.imagen_principal}" alt="${producto.nombre_producto}">
-                    </div>
-                    <div class="miniaturas">${thumbs}</div>
-                </div>
-
-                <aside class="info">
-                    <p class="marca"><strong>Marca:</strong> ${producto.marca}</p>
-                    <h1 class="producto-nombre">${producto.nombre_producto}</h1>
-                    <div class="rating">${crearEstrellas(producto.puntuacion)} <span class="opiniones">${producto.opiniones} opiniones</span></div>
-                    <p class="descripcion">${producto.descripcion}</p>
-
-                    <div class="formato-box">
-                        <div class="format-title">${producto.formato || 'FORMATO'}</div>
-                        <div class="format-options">
-                            ${formatoOpciones}
-                        </div>
-                    </div>
-                </aside>
-                
-                <div class="compra-box">
-                    <div class="price-box">
-                        <span class="price-label">Precio</span>
-                        <div class="product-price">${formatPrice(producto.precio)}</div>
-                        <div class="vat-info">Los precios incluyen IVA.</div>
-                        <div class="delivery-info">Entrega GRATIS entre el x - x</div>
-                        <div class="stock-info">En stock</div>
-
-                        <div class="cantidad quantity-selector">
-                            <button id="qty-decr">-</button>
-                            <input id="qty" type="number" value="1" min="1">
-                            <button id="qty-incr">+</button>
-                        </div>
-                        <div class="acciones">
-                            <button id="add-cart" class="add-to-cart-btn">
-                                <i class="fas fa-shopping-cart"></i>${window.textosInterface.detalle_agregar_carrito || 'Añadir al carrito'}
-                            </button>
-                            <button id="buy-now" class="buy-now-btn">${window.textosInterface.detalle_comprar_ahora || 'Comprar ahora'}</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="related">
-                <h3>${window.textosInterface.detalle_relacionados || 'Productos relacionados'}</h3>
-                <div class="related-list">${relatedHtml}</div>
-            </section>
-
-            <section class="reviews">
-                <h3>${window.textosInterface.detalle_resenas_clientes || 'Reseñas de clientes'}</h3>
-                <div class="reviews-summary">
-                    <div class="stars-big">${crearEstrellas(producto.puntuacion)} <span>${producto.opiniones} opiniones</span></div>
-                    <div class="bars">
-                        <div>5 <div class="bar"><div style="width:${totalComentarios ? (counts[5]/totalComentarios)*100 : 0}%"></div></div> ${counts[5]}</div>
-                        <div>4 <div class="bar"><div style="width:${totalComentarios ? (counts[4]/totalComentarios)*100 : 0}%"></div></div> ${counts[4]}</div>
-                        <div>3 <div class="bar"><div style="width:${totalComentarios ? (counts[3]/totalComentarios)*100 : 0}%"></div></div> ${counts[3]}</div>
-                        <div>2 <div class="bar"><div style="width:${totalComentarios ? (counts[2]/totalComentarios)*100 : 0}%"></div></div> ${counts[2]}</div>
-                        <div>1 <div class="bar"><div style="width:${totalComentarios ? (counts[1]/totalComentarios)*100 : 0}%"></div></div> ${counts[1]}</div>
-                    </div>
-                </div>
-
-                <div class="comentarios">
-                    ${(producto.comentarios || []).map(c=>`
-                        <div class="comentario">
-                            <div class="meta"><strong>${c.usuario}</strong> — <small>${c.fecha}</small> <span class="p">${crearEstrellas(c.puntuacion)}</span></div>
-                            <p>${c.texto}</p>
-                        </div>
-                    `).join('')}
-                </div>
-            </section>
+    } else {
+        formatoOpciones = `
+            <div class="formato-opcion formato-activo" data-formato="${producto.descripcion_formato || 'N/A'}">
+                ${producto.descripcion_formato || 'N/A'}
+            </div>
         `;
-
-        // LISTENERS
-
-        // Miniaturas
-        document.querySelectorAll('.miniaturas img.thumb').forEach(img => {
-            img.addEventListener('click', () => {
-                document.getElementById('main-img').src = img.src;
-                document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
-                img.classList.add('active');
-            });
-        });
-
-        // Formato
-        const formatOptions = document.querySelectorAll('.formato-opcion');
-        formatOptions.forEach(o => {
-            o.addEventListener('click', () => {
-                formatOptions.forEach(x => x.classList.remove('formato-activo'));
-                o.classList.add('formato-activo');
-            });
-        });
-
-        // Cantidad
-        const qtyEl = document.getElementById('qty');
-        document.getElementById('qty-incr').addEventListener('click', ()=> qtyEl.value = Number(qtyEl.value)+1);
-        document.getElementById('qty-decr').addEventListener('click', ()=> qtyEl.value = Math.max(1, Number(qtyEl.value)-1));
-
-        // Carrito - Usar sistema global
-        document.getElementById('add-cart').addEventListener('click', ()=>{
-            const cantidad = Number(qtyEl.value) || 1;
-            const formato = document.querySelector('.formato-opcion.formato-activo')?.dataset.formato;
-
-            // Cargar carrito desde localStorage (clave correcta)
-            const carrito = JSON.parse(localStorage.getItem('MiwuffCarrito') || '[]');
-            
-            // Buscar si ya existe
-            const existente = carrito.find(item => item.id === producto.id);
-            
-            if (existente) {
-                existente.cantidad += cantidad;
-            } else {
-                carrito.push({
-                    id: producto.id,
-                    nombre: producto.nombre_producto,
-                    precio: producto.precio,
-                    imagen: producto.imagen_principal,
-                    cantidad: cantidad,
-                    formato: formato
-                });
-            }
-            
-            localStorage.setItem('MiwuffCarrito', JSON.stringify(carrito));
-            
-            // Actualizar contador si existe
-            const contador = document.querySelector('.carrito-contador');
-            if (contador) {
-                const total = carrito.reduce((sum, item) => sum + item.cantidad, 0);
-                contador.textContent = total;
-                contador.style.display = total > 0 ? 'flex' : 'none';
-            }
-            
-            // Mostrar notificación
-            const notif = document.createElement('div');
-            notif.textContent = ` ${cantidad} x ${producto.nombre_producto} añadido al carrito`;
-            notif.style.cssText = "position:fixed; top:20px; right:20px; background:#28a745; color:white; padding:15px; border-radius:5px; z-index:10000; box-shadow: 0 4px 6px rgba(0,0,0,0.1);";
-            document.body.appendChild(notif);
-            setTimeout(() => notif.remove(), 2000);
-        });
-
-        // Comprar ahora - Añade al carrito y va al checkout
-        document.getElementById('buy-now').addEventListener('click', ()=>{
-            const cantidad = Number(qtyEl.value) || 1;
-            const formato = document.querySelector('.formato-opcion.formato-activo')?.dataset.formato;
-
-            // Cargar carrito
-            const carrito = JSON.parse(localStorage.getItem('MiwuffCarrito') || '[]');
-            
-            // Buscar si ya existe
-            const existente = carrito.find(item => item.id === producto.id);
-            
-            if (existente) {
-                existente.cantidad += cantidad;
-            } else {
-                carrito.push({
-                    id: producto.id,
-                    nombre: producto.nombre_producto,
-                    precio: producto.precio,
-                    imagen: producto.imagen_principal,
-                    cantidad: cantidad,
-                    formato: formato
-                });
-            }
-            
-            // Guardar y redirigir al checkout
-            localStorage.setItem('MiwuffCarrito', JSON.stringify(carrito));
-            window.location.href = 'checkout.html';
-        });
     }
 
-    // CAMBIAR PRODUCTO PRINCIPAL
-    window.cambiarProductoPrincipal = function(productId, productosList) {
-        const producto = productosList.find(p => p.id == productId);
+    // busco otros productos parecidos (de la misma categoría) para recomendar.
+    const related = (productosAll || [])
+        .filter(p => p.categoria === producto.categoria && p.id !== producto.id)
+        .slice(0, 4);
 
-        if (!producto) {
-            contenedor.innerHTML = `<p>Producto con ID '${productId}' no encontrado.</p>`;
+    const relatedHtml = related.map(r => `
+        <div class="related-card">
+            <img src="${r.imagen_principal}" alt="${r.nombre_producto}">
+            <h4>${r.nombre_producto}</h4>
+            <p class="r-price">${formatPrice(r.precio)}</p>
+            <a href="detalle_producto.html?id=${r.id}" class="btn-small">${window.textosInterface.ver_detalle || 'ver detalle'}</a>
+        </div>
+    `).join('');
+
+    contenedor.innerHTML = `
+        <section class="detalle-producto">
+            <div class="galeria">
+                <div class="principal"><img id="main-img" src="${producto.imagen_principal}" alt="${producto.nombre_producto}"></div>
+                <div class="miniaturas">${thumbs}</div>
+            </div>
+            <aside class="info">
+                <p class="marca"><strong>marca:</strong> ${producto.marca}</p>
+                <h1 class="producto-nombre">${producto.nombre_producto}</h1>
+                <div class="rating">${crearEstrellas(producto.puntuacion)} <span class="opiniones">${producto.opiniones} opiniones</span></div>
+                <p class="descripcion">${producto.descripcion}</p>
+                <div class="formato-box">
+                    <div class="format-title">${producto.formato || 'FORMATO'}</div>
+                    <div class="format-options">${formatoOpciones}</div>
+                </div>
+            </aside>
+            <div class="compra-box">
+                <div class="price-box">
+                    <span class="price-label">precio</span>
+                    <div class="product-price">${formatPrice(producto.precio)}</div>
+                    <div class="vat-info">los precios incluyen iva</div>
+                    <div class="delivery-info">entrega gratis entre el x - x</div>
+                    <div class="stock-info">en stock</div>
+                    <div class="cantidad quantity-selector">
+                        <button id="qty-decr">-</button>
+                        <input id="qty" type="number" value="1" min="1">
+                        <button id="qty-incr">+</button>
+                    </div>
+                    <div class="acciones">
+                        <button id="add-cart" class="add-to-cart-btn">
+                            <i class="fas fa-shopping-cart"></i>${window.textosInterface.detalle_agregar_carrito || 'añadir al carrito'}
+                        </button>
+                        <button id="buy-now" class="buy-now-btn">${window.textosInterface.detalle_comprar_ahora || 'comprar ahora'}</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="related">
+            <h3>${window.textosInterface.detalle_relacionados || 'productos relacionados'}</h3>
+            <div class="related-list">${relatedHtml}</div>
+        </section>
+        <section class="reviews">
+            <h3>${window.textosInterface.detalle_resenas_clientes || 'reseñas de clientes'}</h3>
+            <div class="reviews-summary">
+                <div class="stars-big">${crearEstrellas(producto.puntuacion)} <span>${producto.opiniones} opiniones</span></div>
+                <div class="bars">
+                    <div>5 <div class="bar"><div style="width:${totalComentarios ? (counts[5]/totalComentarios)*100 : 0}%"></div></div> ${counts[5]}</div>
+                    <div>4 <div class="bar"><div style="width:${totalComentarios ? (counts[4]/totalComentarios)*100 : 0}%"></div></div> ${counts[4]}</div>
+                    <div>3 <div class="bar"><div style="width:${totalComentarios ? (counts[3]/totalComentarios)*100 : 0}%"></div></div> ${counts[3]}</div>
+                    <div>2 <div class="bar"><div style="width:${totalComentarios ? (counts[2]/totalComentarios)*100 : 0}%"></div></div> ${counts[2]}</div>
+                    <div>1 <div class="bar"><div style="width:${totalComentarios ? (counts[1]/totalComentarios)*100 : 0}%"></div></div> ${counts[1]}</div>
+                </div>
+            </div>
+            <div class="comentarios">
+                ${(producto.comentarios || []).map(c=>`
+                    <div class="comentario">
+                        <div class="meta"><strong>${c.usuario}</strong> — <small>${c.fecha}</small> <span class="p">${crearEstrellas(c.puntuacion)}</span></div>
+                        <p>${c.texto}</p>
+                    </div>
+                `).join('')}
+            </div>
+        </section>
+    `;
+
+    // cambio la foto grande por la pequeña que pinchen.
+    document.querySelectorAll('.miniaturas img.thumb').forEach(img => {
+        img.addEventListener('click', () => {
+            document.getElementById('main-img').src = img.src;
+            document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+            img.classList.add('active');
+        });
+    });
+
+    const formatOptions = document.querySelectorAll('.formato-opcion');
+    formatOptions.forEach(o => {
+        o.addEventListener('click', () => {
+            formatOptions.forEach(x => x.classList.remove('formato-activo'));
+            o.classList.add('formato-activo');
+        });
+    });
+
+    const qtyEl = document.getElementById('qty');
+    document.getElementById('qty-incr').addEventListener('click', ()=> qtyEl.value = Number(qtyEl.value)+1);
+    document.getElementById('qty-decr').addEventListener('click', ()=> qtyEl.value = Math.max(1, Number(qtyEl.value)-1));
+
+    // meto el producto en el carrito (localstorage) al dar al botón.
+    document.getElementById('add-cart').addEventListener('click', ()=>{
+        const cantidad = Number(qtyEl.value) || 1;
+        const formato = document.querySelector('.formato-opcion.formato-activo')?.dataset.formato;
+        const carrito = JSON.parse(localStorage.getItem('MiwuffCarrito') || '[]');
+        const existente = carrito.find(item => item.id === producto.id);
+        
+        if (existente) existente.cantidad += cantidad;
+        else {
+            carrito.push({
+                id: producto.id, nombre: producto.nombre_producto, precio: producto.precio,
+                imagen: producto.imagen_principal, cantidad, formato
+            });
+        }
+        
+        localStorage.setItem('MiwuffCarrito', JSON.stringify(carrito));
+        
+        const contador = document.querySelector('.carrito-contador');
+        if (contador) {
+            const total = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+            contador.textContent = total;
+            contador.style.display = total > 0 ? 'flex' : 'none';
+        }
+        
+        const notif = document.createElement('div');
+        notif.textContent = ` ${cantidad} x ${producto.nombre_producto} añadido al carrito`;
+        notif.style.cssText = "position:fixed; top:20px; right:20px; background:#28a745; color:white; padding:15px; border-radius:5px; z-index:10000; box-shadow: 0 4px 6px rgba(0,0,0,0.1);";
+        document.body.appendChild(notif);
+        setTimeout(() => notif.remove(), 2000);
+    });
+
+    document.getElementById('buy-now').addEventListener('click', ()=>{
+        const cantidad = Number(qtyEl.value) || 1;
+        const formato = document.querySelector('.formato-opcion.formato-activo')?.dataset.formato;
+        const carrito = JSON.parse(localStorage.getItem('MiwuffCarrito') || '[]');
+        const existente = carrito.find(item => item.id === producto.id);
+        
+        if (existente) existente.cantidad += cantidad;
+        else {
+            carrito.push({
+                id: producto.id, nombre: producto.nombre_producto, precio: producto.precio,
+                imagen: producto.imagen_principal, cantidad, formato
+            });
+        }
+        
+        localStorage.setItem('MiwuffCarrito', JSON.stringify(carrito));
+        window.location.href = 'checkout.html';
+    });
+  }
+
+  window.cambiarProductoPrincipal = function(productId, productosList) {
+    const producto = productosList.find(p => p.id == productId);
+    if (!producto) {
+        contenedor.innerHTML = `<p>producto con id '${productId}' no encontrado</p>`;
+        return;
+    }
+    renderProducto(producto, productosList);
+  }
+
+  // lo primero que hago es traer los textos y los productos del servidor (json).
+  window.cargarDetalleYRelacionados = async function() {
+    contenedor.innerHTML = `<p>cargando detalle (${window.idiomaActual})...</p>`;
+    try {
+        await fetchInterfaceTextos();
+        const productos = await fetchProductos();
+        if (!productos.length) {
+            contenedor.innerHTML = `<p>no hay productos disponibles</p>`;
             return;
         }
-
-        renderProducto(producto, productosList);
+        const productId = getQueryParam('id') || productos[0].id;
+        window.cambiarProductoPrincipal(productId, productos);
+    } catch (err) {
+        console.error(err);
+        contenedor.innerHTML = `<p style="color:red">error cargando datos</p>`;
     }
+  };
 
-    // FUNCIÓN PRINCIPAL
-    window.cargarDetalleYRelacionados = async function() {
-        contenedor.innerHTML = `<p>Cargando detalle (${window.idiomaActual})...</p>`;
-
-        try {
-            await fetchInterfaceTextos();
-            const productos = await fetchProductos();
-            if (!productos.length) {
-                contenedor.innerHTML = `<p>No hay productos disponibles.</p>`;
-                return;
-            }
-
-            const productId = getQueryParam('id') || productos[0].id;
-
-            window.cambiarProductoPrincipal(productId, productos);
-
-        } catch (err) {
-            console.error(err);
-            contenedor.innerHTML = `<p style="color:red">Error cargando datos.</p>`;
-        }
-    };
-
-    // Inicializar
-    window.cargarDetalleYRelacionados();
+  window.cargarDetalleYRelacionados();
 
 })();
