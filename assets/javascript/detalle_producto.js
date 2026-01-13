@@ -1,8 +1,7 @@
 // pantalla del producto: aquí controlo la galería, los formatos y lo que dice la gente.
 window.idiomaActual = localStorage.getItem('idiomaSeleccionado') || "es";
 
-window.rutaJson = () => `/assets/JSON/${window.idiomaActual}_mascota.json`;
-window.rutaInterfaceJson = () => `/assets/JSON/${window.idiomaActual}_interface.json`;
+// Rutas definidas globalmente en assets/javascript/rutas.js (o en idioma.js como fallback)
 
 window.todosLosProductos = [];
 window.textosInterface = {};
@@ -38,14 +37,17 @@ window.cambiarIdioma = async function (nuevoIdioma) {
   async function fetchInterfaceTextos() {
     const res = await fetch(window.rutaInterfaceJson());
     if (!res.ok) throw new Error("error cargando interfaz");
-    window.textosInterface = await res.json();
+    const data = await res.json();
+    // json-server devuelve un array, necesitamos el primer elemento
+    window.textosInterface = Array.isArray(data) && data.length > 0 ? data[0] : data;
   }
 
   async function fetchProductos() {
     const res = await fetch(window.rutaJson());
     if (!res.ok) throw new Error("error cargando productos");
     const data = await res.json();
-    window.todosLosProductos = Array.isArray(data) ? data : data.mascotas || [];
+    // json-server devuelve directamente el array de productos
+    window.todosLosProductos = Array.isArray(data) ? data : [];
     return window.todosLosProductos;
   }
 

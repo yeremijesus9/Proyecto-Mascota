@@ -10,7 +10,9 @@ async function cargarInterface() {
         // uso la ruta global de idioma.js
         const resp = await fetch(window.rutaInterfaceJson(), { cache: 'no-cache' });
         if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-        const textos = await resp.json();
+        const data = await resp.json();
+        // json-server devuelve un array, necesitamos el primer elemento
+        const textos = Array.isArray(data) && data.length > 0 ? data[0] : data;
         window.textosInterface = textos;
 
         document.querySelectorAll('[data-key]').forEach(el => {
@@ -80,8 +82,9 @@ async function cargarProductos() {
     // uso la ruta global de idioma.js
     const resp = await fetch(window.rutaJson(), { cache: 'no-cache' });
     if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-    const productos = await resp.json();
-    return Array.isArray(productos) ? productos : [];
+    const data = await resp.json();
+    // json-server devuelve directamente el array de productos
+    return Array.isArray(data) ? data : [];
 }
 
 // busco los productos, los filtro y cambio el título de la página.

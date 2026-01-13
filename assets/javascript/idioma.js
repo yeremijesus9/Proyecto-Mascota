@@ -1,13 +1,19 @@
 // aquí controlo el cambio global de idioma para que todo se actualice a la vez.
 window.idiomaActual = localStorage.getItem('idiomaSeleccionado') || "es";
 
-// monto las rutas de los json según el idioma que esté puesto ahora.
-// les pongo un pequeño talle de tiempo para que no se queden antiguos en el navegador.
-window.rutaJson = () =>
-    `/assets/JSON/${window.idiomaActual}_mascota.json?t=${Date.now()}`;
+// monto las rutas de los servidores según el idioma que esté puesto ahora.
+// Si existe `window.RUTAS` (definido en rutas.js), lo usamos; si no, usamos valores por defecto.
+if (window.RUTAS && typeof window.RUTAS.productos === 'function') {
+    window.rutaJson = window.RUTAS.productos;
+} else {
+    window.rutaJson = () => `http://localhost:12001/productos?t=${Date.now()}`;
+}
 
-window.rutaInterfaceJson = () =>
-    `/assets/JSON/${window.idiomaActual}_interface.json?t=${Date.now()}`;
+if (window.RUTAS && typeof window.RUTAS.interface === 'function') {
+    window.rutaInterfaceJson = window.RUTAS.interface;
+} else {
+    window.rutaInterfaceJson = () => `http://localhost:12000/interface?t=${Date.now()}`;
+}
 
 // guardo el nuevo idioma y aviso a la interfaz y a los productos para que se recarguen.
 window.cambiarIdioma = async function(nuevoIdioma) {

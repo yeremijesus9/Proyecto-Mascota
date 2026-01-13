@@ -35,7 +35,9 @@ window.loadTranslations = async function (url) {
     try {
         const response = await fetch(url);
         if (!response.ok) throw new Error("Error cargando traducción: " + url);
-        const textos = await response.json();
+        const data = await response.json();
+        // json-server devuelve un array, necesitamos el primer elemento
+        const textos = Array.isArray(data) && data.length > 0 ? data[0] : data;
 
         // Guardamos textos por si otros scripts los necesitan
         if (typeof window !== 'undefined') {
