@@ -1,4 +1,3 @@
-/* CARRITO - DISEÑO MEJORADO Y SIMPLE */
 
 /* Icono del carrito */
 .carrito-icono {
@@ -9,10 +8,6 @@
     align-items: center;
 }
 
-.carrito-icono .iconify {
-    font-size: 2rem;
-    color: #D37C39;
-}
 
 .carrito-icono:hover .iconify {
     color: #b5652b;
@@ -180,15 +175,7 @@
 }
 
 .carrito-item .controles button:hover {
-    background: #b5652b;
-}
-
-.carrito-item .controles button:last-child {
-    background: #dc3545;
-}
-
-.carrito-item .controles button:last-child:hover {
-    background: #c82333;
+    background: #5f2800;
 }
 
 .carrito-item .controles span {
@@ -251,13 +238,13 @@
 
 .btn-vaciar {
     background: white;
-    color: #666;
+    color: #1d1d1d;
     border: 2px solid #ddd;
 }
 
 .btn-vaciar:hover {
-    border-color: #dc3545;
-    color: #dc3545;
+    border-color: #D37C39;
+    color: #D37C39;
 }
 
 /* Scrollbar personalizada */

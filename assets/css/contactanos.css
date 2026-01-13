@@ -2,8 +2,16 @@
     font-family: 'Arial', sans-serif;
     text-align: center;
     margin: 20px;
+    font-size: 1.2em;
 }
+h1 {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    margin-top: 30px;
+    color: #D37C39;
+    font-size: 2.5em;
 
+}
 .elementos{
     display: flex;
     flex-direction: row;
@@ -15,18 +23,30 @@
 }
 
 .formulario {
+    width: 33%;
     display: flex;
     flex-direction: column;
-    justify-content: right;;
+    justify-content:left;
     align-items:center;
     margin-top: 30px;
     border-top: 2px solid black;
     border-right: 2px solid black;
     border-left: 2px solid black;
     border-bottom: 2px solid black;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    padding: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 .contacto{
+    width: 33%;
     display: flex;
     flex-direction: column;
     justify-content: left;
@@ -36,6 +56,30 @@
     border-right: 2px solid black;
     border-left: 2px solid black;
     border-bottom: 2px solid black;
-    text-align: left
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    padding: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.nombreapellidos, .email, .telefono{
+    width: 100%;
+    margin-bottom: 13px;
+    color: #D37C39;
+    display: flex;
+    flex-direction: column;
     
-} 
+}
+.boton{
+    text-align: right;
+    margin-top: 10px;
+}
+
+input[type="text"] {
+  width: 500px;
+}
