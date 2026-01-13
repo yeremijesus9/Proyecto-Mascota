@@ -1,9 +1,16 @@
 // pantalla del producto: aquí controlo la galería, los formatos y lo que dice la gente.
 window.idiomaActual = localStorage.getItem('idiomaSeleccionado') || "es";
 
-window.rutaJson = () => `/assets/JSON/${window.idiomaActual}_mascota.json`;
-window.rutaInterfaceJson = () => `/assets/JSON/${window.idiomaActual}_interface.json`;
+window.rutaJson = function() {
+    // La ruta ahora depende de window.idiomaActual (ej: /assets/JSON/es_mascota.json)
+  return `/assets/JSON/${window.idiomaActual}_mascota.json`;
+};
 
+window.rutaInterfaceJson = function () {
+  return `/assets/JSON/${window.idiomaActual}_interface.json`;
+};
+
+// Variable global para almacenar todos los productos
 window.todosLosProductos = [];
 window.textosInterface = {};
 
