@@ -12,7 +12,9 @@ async function cargarInterface() {
         // uso la ruta global de idioma.js
         const resp = await fetch(window.rutaInterfaceJson(), { cache: 'no-cache' });
         if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-        const textos = await resp.json();
+        const data = await resp.json();
+        // json-server devuelve un array, necesitamos el primer elemento
+        const textos = Array.isArray(data) && data.length > 0 ? data[0] : data;
         window.textosInterface = textos;
 
         document.querySelectorAll('[data-key]').forEach(el => {
@@ -74,7 +76,9 @@ async function cargarYMostrarDestacados() {
         // uso la ruta global de idioma.js
         const resp = await fetch(window.rutaJson(), { cache: 'no-cache' });
         if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-        const productos = await resp.json();
+        const data = await resp.json();
+        // json-server devuelve directamente el array de productos
+        const productos = Array.isArray(data) ? data : [];
 
         const bloque1 = productos.slice(0, 6);
         const bloque2 = productos.slice(6, 12);
