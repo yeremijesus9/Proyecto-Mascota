@@ -9,12 +9,6 @@ if (window.RUTAS && typeof window.RUTAS.productos === 'function') {
     window.rutaJson = () => `http://localhost:12001/productos?t=${Date.now()}`;
 }
 
-if (window.RUTAS && typeof window.RUTAS.interface === 'function') {
-    window.rutaInterfaceJson = window.RUTAS.interface;
-} else {
-    window.rutaInterfaceJson = () => `http://localhost:12000/interface?t=${Date.now()}`;
-}
-
 // guardo el nuevo idioma y aviso a la interfaz y a los productos para que se recarguen.
 window.cambiarIdioma = async function(nuevoIdioma) {
     if (window.idiomaActual === nuevoIdioma) return;
