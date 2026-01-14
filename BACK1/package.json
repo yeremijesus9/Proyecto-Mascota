@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev1": "json-server --watch db1.json --port 12000",
-    "dev2": "json-server --watch db2.json --port 12001",
-    "dev": "concurrently \"npm run dev1\" \"npm run dev2\""
+    "dev2": "json-server --watch db2.json --port 12001"
+
   },
   "keywords": [],
   "author": "",
