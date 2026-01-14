@@ -42,6 +42,7 @@ window.cambiarIdioma = async function (nuevoIdioma) {
     window.textosInterface = Array.isArray(data) && data.length > 0 ? data[0] : data;
   }
 
+    //llamamos a los productos mediante el fetch al json server
   async function fetchProductos() {
     const res = await fetch(window.rutaJson());
     if (!res.ok) throw new Error("error cargando productos");
