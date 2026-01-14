@@ -1,59 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Administración</title>
+    <title>Miwuff - Panel de Administración</title>
     <link rel="stylesheet" href="assets/css/panel_del_admin.css">
-    <link rel="stylesheet" href="assets/css/productos.css">
-    <link rel="stylesheet" href="assets/css/checkout.css">
-    <link rel="stylesheet" href="assets/css/navfooterStyles.css">
-    
 </head>
- <body>
-    <header>
-
-          <body>
-        <div id="nav-container"></div>
-
-        <main>
-</header>
-<h1 id="titulo-categoria" style="text-align:center; color:#D37C39; margin-top:50px; font-size: 2.5em;">
-    
-        <h1>Panel de Administración - Productos</h1>
-        <div class="get-product-form">
-            <label for="product-id">ID del Producto a Escoger:</label>
-            <input type="text" id="product-id" placeholder="Ingrese el ID del producto">
-            <button id="get-product-form">Escoger Producto</button>
+<body>
+    <header class="top-nav">
+        <div class="logo-container"><span class="brand-name">Miwuff</span></div>
+        <div class="search-box">
+            <input type="text" id="search-input" placeholder="busca entre mas de 20 productos">
         </div>
-        <div id="message"></div>
-
-        <div class="post-product-form">
-            <label for="product-id">ID del Producto a Publicar:</label>
-            <input type="text" id="product-id" placeholder="Ingrese el ID del producto">
-            <button id="post-product-btn">Publicar Producto</button>
-        </div>
-        <div id="message"></div>
-
-         <div class="put-product-form">
-            <label for="product-id">ID del Producto a Seleccionar:</label>
-            <input type="text" id="product-id" placeholder="Ingrese el ID del producto">
-            <button id="put-product-btn">Poner Producto</button>
-        </div>
-        <div id="message"></div>
-
-         <div class="delete-product-form">
-            <label for="product-id">ID del Producto a Eliminar:</label>
-            <input type="text" id="product-id" placeholder="Ingrese el ID del producto">
-            <button id="delete-product-btn">Eliminar Producto</button>
-        </div>
-        <div id="message"></div>
-        
     </header>
 
+    <div class="admin-layout">
+        <aside class="sidebar">
+            <div class="dashboard-title">🐾 Dashboard</div>
+            <nav>
+                <button class="nav-btn active">Productos</button>
+                <button class="nav-btn">Servicios</button>
+                <button class="nav-btn">Usuario/Roles</button>
+            </nav>
+        </aside>
 
+        <main class="main-content">
+            <h1 class="page-title">Gestión de Productos</h1>
+            
+            <div id="productos-lista" class="products-container">
+                </div>
 
- </body>
+            <button class="fab-add" id="btn-add-product">+</button>
+        </main>
+    </div>
+
+    <script src="assets/js/admin.js"></script>
+</body>
 </html>
-
-

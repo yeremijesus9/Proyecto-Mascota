@@ -1,0 +1,102 @@
+:root {
+    --primary-orange: #D37C39;
+    --sidebar-bg: #FDEBD0;
+    --card-bg: #FEF5ED;
+    --text-dark: #633917;
+    --bg-grey: #E5E7E9;
+}
+
+body { font-family: 'Arial', sans-serif; margin: 0; background-color: #fff; color: var(--text-dark); }
+
+/* Layout & Sidebar */
+.top-nav { background: #7A4A28; 
+    padding: 10px 20px; 
+    display: flex; 
+    justify-content: space-between;
+ }
+
+.admin-layout { 
+    display: grid;
+    grid-template-columns: 260px 1fr; 
+    min-height: 100vh; 
+}
+
+.sidebar { 
+    background: var(--sidebar-bg); 
+    padding: 20px; 
+}
+.nav-btn { width: 100%; padding: 12px; margin-bottom: 10px; border: none; border-radius: 12px; background: white; font-weight: bold; cursor: pointer; text-align: left; }
+.nav-btn.active { background: var(--primary-orange); 
+    color: white; }
+
+/* Tabla y Filas */
+.main-content { 
+    padding: 30px; 
+    position: relative; }
+.table-header { background: var(--primary-orange); 
+    color: white; padding: 15px; display: grid; grid-template-columns: 100px 1fr 120px 150px; border-radius: 10px 10px 0 0; }
+.product-card { border: 1px solid #eee; margin-bottom: 2px; }
+.product-row { display: grid; grid-template-columns: 100px 1fr 120px 150px; align-items: center; padding: 10px; }
+.product-img { width: 60px; height: 60px; object-fit: contain; }
+
+/* Formulario de Edición (Fondo Crema) */
+.edit-form { background: var(--card-bg); 
+    padding: 25px; 
+    border-radius: 15px; 
+    margin: 15px; 
+    border: 1px solid #FAD7A0;
+ }
+
+.form-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 15px; margin-bottom: 20px; 
+}
+.input-group { 
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+}
+
+.input-group label { 
+    width: 140px; 
+    font-weight: bold; 
+    font-size: 0.9em; 
+}
+
+.input-group input, .input-group textarea { 
+    flex: 1;
+    padding: 8px; 
+    border: none; 
+    background: var(--bg-grey); 
+    border-radius: 4px; }
+
+/* Botones y Acciones */
+.action-btn { 
+    border: 2px solid var(--text-dark); 
+    border-radius: 50%; 
+    width: 35px; 
+    height: 35px; 
+    cursor: pointer; 
+    background: white;
+    margin: 0 4px; }
+
+.btn-main { 
+    padding: 12px 35px; 
+    border-radius: 25px; 
+    border: none; 
+    font-weight: bold; 
+    cursor: pointer; 
+    margin-top: 10px; }
+.btn-save { background: var(--primary-orange); 
+    color: white; }
+.fab-add { 
+    position: fixed; bottom: 30px; 
+    right: 30px; width: 60px; 
+    height: 60px; 
+    border-radius: 50%; 
+    background: var(--primary-orange); 
+    color: white; font-size: 30px; 
+    border: none; 
+    cursor: pointer; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
