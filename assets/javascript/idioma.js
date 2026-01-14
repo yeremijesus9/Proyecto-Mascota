@@ -1,27 +1,37 @@
-// Idioma actual (por defecto español)
-window.idiomaActual = "es";
+// aquí controlo el cambio global de idioma para que todo se actualice a la vez.
+window.idiomaActual = localStorage.getItem('idiomaSeleccionado') || "es";
 
-// Devuelve la ruta del JSON de productos según el idioma
+// monto las rutas de los json según el idioma que esté puesto ahora.
+// les pongo un pequeño talle de tiempo para que no se queden antiguos en el navegador.
 window.rutaJson = () =>
-    `/assets/JSON/${window.idiomaActual}_mascota.json`;
+    `/assets/JSON/${window.idiomaActual}_mascota.json?t=${Date.now()}`;
 
-// Devuelve la ruta del JSON de interfaz según el idioma
 window.rutaInterfaceJson = () =>
-    `/assets/JSON/${window.idiomaActual}_interface.json`;
+    `/assets/JSON/${window.idiomaActual}_interface.json?t=${Date.now()}`;
 
-// Función para cambiar idioma
+// guardo el nuevo idioma y aviso a la interfaz y a los productos para que se recarguen.
 window.cambiarIdioma = async function(nuevoIdioma) {
     if (window.idiomaActual === nuevoIdioma) return;
 
     window.idiomaActual = nuevoIdioma;
     localStorage.setItem('idiomaSeleccionado', nuevoIdioma);
 
-    // Cargar traducciones de la interfaz si existe la función
-    if (typeof window.rutaInterfaceJson === 'function') {
-        loadTranslations(window.rutaInterfaceJson());
+    // refresco los textos de los botones y menús.
+    if (typeof window.loadTranslations === 'function') {
+        window.loadTranslations(window.rutaInterfaceJson());
     }
 
-    // Recargar detalle de productos si la función existe
+    // si estamos en la home, que se refresquen los destacados.
+    if (typeof window.cargarYMostrarDestacados === 'function') {
+        await window.cargarYMostrarDestacados();
+    }
+
+    // si estamos en una categoría, que se refresquen los productos.
+    if (typeof window.mostrarProductos === 'function') {
+        await window.mostrarProductos();
+    }
+
+    // si estoy en la página de un producto, que cambie también su descripción.
     if (typeof window.cargarDetalleYRelacionados === "function") {
         await window.cargarDetalleYRelacionados();
     }

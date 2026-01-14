@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="assets/css/navfooterStyles.css">
     <link rel="stylesheet" href="assets/css/checkout.css">
     <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+    <link rel="icon" href="assets/img/home/perro.png" type="image/png">
 </head>
 
 <body>
@@ -14,13 +16,13 @@
 
     <main class="checkout-main">
         <h1>Finalizar Compra</h1>
-        
+
         <div class="checkout-container">
-            <!-- Resumen del pedido -->
+            
             <div class="resumen-pedido">
                 <h2>Tu Pedido</h2>
                 <div id="productos-lista"></div>
-                
+
                 <div class="totales">
                     <p>Subtotal: <span id="subtotal">€0.00</span></p>
                     <p>Envío: <span id="envio">€4.99</span></p>
@@ -28,7 +30,7 @@
                 </div>
             </div>
 
-            <!-- Formulario simple -->
+            
             <div class="formulario-checkout">
                 <h2>Datos de Envío</h2>
                 <form id="form-checkout">
@@ -38,7 +40,7 @@
                     <input type="text" id="direccion" placeholder="Dirección completa" required>
                     <input type="text" id="ciudad" placeholder="Ciudad" required>
                     <input type="text" id="codigo-postal" placeholder="Código Postal" required>
-                    
+
                     <h3>Método de Pago</h3>
                     <select id="metodo-pago" required>
                         <option value="">Selecciona método de pago</option>
@@ -53,7 +55,7 @@
         </div>
     </main>
 
-    <!-- Modal de confirmación -->
+    
     <div id="modal-exito" class="modal" style="display: none;">
         <div class="modal-contenido">
             <h2>¡Pedido Realizado!</h2>
@@ -67,5 +69,7 @@
 
     <script src="assets/javascript/nav_footer.js"></script>
     <script src="assets/javascript/checkout.js"></script>
+    <script src="assets/javascript/login.js"></script>
 </body>
+
 </html>
