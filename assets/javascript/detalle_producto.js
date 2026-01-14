@@ -79,31 +79,42 @@ window.cambiarIdioma = async function (nuevoIdioma) {
         `;
         }
 
+        // Sacamos los textos según el idioma de forma manual y simple
+        const nombreProd = typeof producto.nombre_producto === 'object' ? producto.nombre_producto[window.idiomaActual] : producto.nombre_producto;
+        const descProd = typeof producto.descripcion === 'object' ? producto.descripcion[window.idiomaActual] : producto.descripcion;
+        const catProd = typeof producto.categoria === 'object' ? producto.categoria[window.idiomaActual] : producto.categoria;
+
         // busco otros productos parecidos (de la misma categoría) para recomendar.
         const related = (productosAll || [])
-            .filter(p => p.categoria === producto.categoria && p.id !== producto.id)
+            .filter(p => {
+                const thisCat = typeof p.categoria === 'object' ? p.categoria[window.idiomaActual] : p.categoria;
+                return thisCat === catProd && p.id !== producto.id;
+            })
             .slice(0, 4);
 
-        const relatedHtml = related.map(r => `
-        <div class="related-card">
-            <img src="${r.imagen_principal}" alt="${r.nombre_producto}">
-            <h4>${r.nombre_producto}</h4>
-            <p class="r-price">${formatPrice(r.precio)}</p>
-            <a href="detalle_producto.html?id=${r.id}" class="btn-small">${window.textosInterface.ver_detalle || 'ver detalle'}</a>
-        </div>
-    `).join('');
+        const relatedHtml = related.map(r => {
+            const rNombre = typeof r.nombre_producto === 'object' ? r.nombre_producto[window.idiomaActual] : r.nombre_producto;
+            return `
+                <div class="related-card">
+                    <img src="${r.imagen_principal}" alt="${rNombre}">
+                    <h4>${rNombre}</h4>
+                    <p class="r-price">${formatPrice(r.price || r.precio)}</p>
+                    <a href="detalle_producto.html?id=${r.id}" class="btn-small">${window.textosInterface.ver_detalle || 'ver detalle'}</a>
+                </div>
+            `;
+        }).join('');
 
         contenedor.innerHTML = `
         <section class="detalle-producto">
             <div class="galeria">
-                <div class="principal"><img id="main-img" src="${producto.imagen_principal}" alt="${producto.nombre_producto}"></div>
+                <div class="principal"><img id="main-img" src="${producto.imagen_principal}" alt="${nombreProd}"></div>
                 <div class="miniaturas">${thumbs}</div>
             </div>
             <aside class="info">
                 <p class="marca"><strong>marca:</strong> ${producto.marca}</p>
-                <h1 class="producto-nombre">${producto.nombre_producto}</h1>
+                <h1 class="producto-nombre">${nombreProd}</h1>
                 <div class="rating">${crearEstrellas(producto.puntuacion)} <span class="opiniones">${producto.opiniones} opiniones</span></div>
-                <p class="descripcion">${producto.descripcion}</p>
+                <p class="descripcion">${descProd}</p>
                 <div class="formato-box">
                     <div class="format-title">${producto.formato || 'FORMATO'}</div>
                     <div class="format-options">${formatoOpciones}</div>
@@ -185,11 +196,17 @@ window.cambiarIdioma = async function (nuevoIdioma) {
             const carrito = JSON.parse(localStorage.getItem('MiwuffCarrito') || '[]');
             const existente = carrito.find(item => item.id === producto.id);
 
-            if (existente) existente.cantidad += cantidad;
-            else {
+            if (existente) {
+                existente.cantidad += cantidad;
+            } else {
+                const nombreParaCarrito = typeof producto.nombre_producto === 'object' ? producto.nombre_producto[window.idiomaActual] : producto.nombre_producto;
                 carrito.push({
-                    id: producto.id, nombre: producto.nombre_producto, precio: producto.precio,
-                    imagen: producto.imagen_principal, cantidad, formato
+                    id: producto.id, 
+                    nombre: nombreParaCarrito, 
+                    precio: Number(producto.precio),
+                    imagen: producto.imagen_principal, 
+                    cantidad, 
+                    formato
                 });
             }
 
@@ -202,8 +219,9 @@ window.cambiarIdioma = async function (nuevoIdioma) {
                 contador.style.display = total > 0 ? 'flex' : 'none';
             }
 
+            const nombreLoc = typeof producto.nombre_producto === 'object' ? producto.nombre_producto[window.idiomaActual] : producto.nombre_producto;
             const notif = document.createElement('div');
-            notif.textContent = ` ${cantidad} x ${producto.nombre_producto} añadido al carrito`;
+            notif.textContent = ` ${cantidad} x ${nombreLoc} añadido al carrito`;
             notif.style.cssText = "position:fixed; top:20px; right:20px; background:#28a745; color:white; padding:15px; border-radius:5px; z-index:10000; box-shadow: 0 4px 6px rgba(0,0,0,0.1);";
             document.body.appendChild(notif);
             setTimeout(() => notif.remove(), 2000);
@@ -215,11 +233,17 @@ window.cambiarIdioma = async function (nuevoIdioma) {
             const carrito = JSON.parse(localStorage.getItem('MiwuffCarrito') || '[]');
             const existente = carrito.find(item => item.id === producto.id);
 
-            if (existente) existente.cantidad += cantidad;
-            else {
+            if (existente) {
+                existente.cantidad += cantidad;
+            } else {
+                const nombreParaCarrito = typeof producto.nombre_producto === 'object' ? producto.nombre_producto[window.idiomaActual] : producto.nombre_producto;
                 carrito.push({
-                    id: producto.id, nombre: producto.nombre_producto, precio: producto.precio,
-                    imagen: producto.imagen_principal, cantidad, formato
+                    id: producto.id, 
+                    nombre: nombreParaCarrito, 
+                    precio: Number(producto.precio),
+                    imagen: producto.imagen_principal, 
+                    cantidad, 
+                    formato
                 });
             }
 

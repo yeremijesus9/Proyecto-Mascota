@@ -43,13 +43,17 @@ function renderProducto(producto, contenedor) {
     const tarjeta = document.createElement('div');
     tarjeta.className = 'tarjeta-producto';
 
+    // Si el nombre es un objeto sacamos el idioma, si no pues el texto
+    const nombre = typeof producto.nombre_producto === 'object' ? producto.nombre_producto[window.idiomaActual] : producto.nombre_producto;
+    const precio = Number(producto.precio || 0);
+
     tarjeta.innerHTML = `
-        <img class="producto-imagen" src="${producto.imagen_principal}" alt="imagen de ${producto.nombre_producto}" loading="lazy" decoding="async">
-        <h3 class="producto-nombre">${producto.nombre_producto}</h3>
+        <img class="producto-imagen" src="${producto.imagen_principal}" alt="imagen de ${nombre}" loading="lazy" decoding="async">
+        <h3 class="producto-nombre">${nombre}</h3>
         <p class="producto-marca">marca: <strong>${producto.marca}</strong></p>
         <div class="producto-detalle">
             <div class="puntuacion">${crearEstrellas(producto.puntuacion)}<span class="opiniones"> (${producto.opiniones || 0})</span></div>
-            <span class="precio">${new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(Number(producto.precio || 0))}</span>
+            <span class="precio">${new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(precio)}</span>
         </div>
         <button type="button" class="ver-detalle">${window.textosInterface?.ver_detalle || 'ver detalle'}</button>
         <button type="button" class="btn-anadir-carrito" 
@@ -58,7 +62,12 @@ function renderProducto(producto, contenedor) {
     `;
 
     const btn = tarjeta.querySelector('.btn-anadir-carrito');
-    btn.productoData = producto;
+    // Normalizamos para el carrito
+    btn.productoData = {
+        ...producto,
+        nombre_producto: nombre,
+        precio: precio
+    };
     tarjeta.querySelector('.ver-detalle').productoId = producto.id;
 
     contenedor.appendChild(tarjeta);
@@ -96,7 +105,11 @@ async function mostrarProductos() {
 
     try {
         const productos = await cargarProductos();
-        const filtrados = productos.filter(p => p.categoria?.toLowerCase() === categoria.toLowerCase());
+        const filtrados = productos.filter(p => {
+            // Si la categoria es un objeto la sacamos para el idioma actual, si no usamos el texto
+            const catProd = typeof p.categoria === 'object' ? p.categoria[window.idiomaActual] : p.categoria;
+            return catProd.toLowerCase() === categoria.toLowerCase();
+        });
 
         contenedor.innerHTML = filtrados.length
             ? ''

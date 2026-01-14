@@ -1,49 +1,77 @@
-// aquí controlo todo lo del carrito (añadir, quitar, comprar).
-// pongo esta bandera para no cargar el script mil veces si el usuario se mueve mucho.
+// ==========================================
+// CARRITO DE COMPRAS - VERSIÓN FINAL SEGURA
+// ==========================================
+
+// EVITAR EJECUCIÓN DOBLE (Solución definitiva)
 if (window.CARRITO_INICIALIZADO) {
-    console.warn("⚠️ carrito ya estaba inicializado");
+    console.warn("⚠️ Carrito ya estaba inicializado. Deteniendo segunda ejecución.");
 } else {
     window.CARRITO_INICIALIZADO = true;
 
-    // los productos los guardo aquí durante la sesión.
+    // Variables
     let carrito = [];
 
-    // al arrancar, cargo lo que ya estaba guardado y preparo el dom.
+    // Cargar carrito al iniciar
     cargarCarrito();
 
-    // espero al dom para que no me de error al buscar elementos.
+    // Iniciar
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initCarrito);
     } else {
         initCarrito();
     }
 
-    // preparo el html y activo los escuchadores de eventos.
+    // Función de inicio
     function initCarrito() {
         crearHTML();
         actualizarContador();
         configurarListenersGlobales();
     }
 
-    // meto los eventos en el body para que sea más fácil y no se dupliquen.
+    // Configurar Listeners (UNA SOLA VEZ)
     function configurarListenersGlobales() {
 
         document.body.addEventListener('click', function (e) {
 
-            // añadir producto: busco el id y los datos que guardé en el botón.
+            // 1. CLICK EN ANADIR AL CARRITO
             const btnAnadir = e.target.closest('.btn-anadir-carrito');
             if (btnAnadir) {
                 e.preventDefault();
-                e.stopImmediatePropagation();
+                e.stopImmediatePropagation(); // Detener cualquier otro evento
 
+                // Obtener datos
                 const id = btnAnadir.dataset.productoId;
+
+                // Intentar obtener datos del objeto directo (si fue asignado en JS)
                 let producto = btnAnadir.productoData;
 
-                if (producto) plusProducto(producto);
+                // Si no hay objeto directo, intentar buscar en el DOM (fallback)
+                if (!producto && id) {
+                    const tarjeta = btnAnadir.closest('.tarjeta-producto');
+                    if (tarjeta) {
+                        const precioTexto = tarjeta.querySelector('.precio')?.textContent || "0";
+                        const precio = parseFloat(precioTexto.replace(/[^\d.,]/g, '').replace(',', '.')) || 0;
+                        const imagen = tarjeta.querySelector('img')?.src || 'assets/img/placeholder.jpg';
+                        const nombre = tarjeta.querySelector('h3')?.textContent || "Producto";
+
+                        producto = {
+                            id: id,
+                            nombre: nombre,
+                            precio: precio,
+                            imagen: imagen
+                        };
+                    }
+                }
+
+                if (producto) {
+                    plusProducto(producto);
+                } else {
+                    console.error("❌ No se pudieron obtener datos del producto");
+                }
                 return;
             }
 
-            // para ver detalles o ir a pagar.
+            // 2. CLICK EN VER DETALLES
             const btnDetalle = e.target.closest('.ver-detalle');
             if (btnDetalle && btnDetalle.productoId) {
                 e.preventDefault();
@@ -51,24 +79,26 @@ if (window.CARRITO_INICIALIZADO) {
                 return;
             }
 
-            // abrir panel con el icono, cerrar con la x o el overlay.
+            // 3. CLICK EN ICONO CARRITO (ABRIR)
             if (e.target.closest('.carrito-icono')) {
                 e.preventDefault();
                 toggleCarrito(true);
                 return;
             }
 
+            // 4. CERRAR CARRITO
             if (e.target.id === 'carrito-cerrar' || e.target.id === 'carrito-overlay') {
                 toggleCarrito(false);
                 return;
             }
 
-            // gestionar: vaciar todo, cambiar cantidades o quitar uno.
+            // 5. VACIAR
             if (e.target.id === 'btn-vaciar') {
                 vaciarCarrito();
                 return;
             }
 
+            // 6. CAMBIAR CANTIDAD (+ / -)
             if (e.target.classList.contains('btn-cantidad')) {
                 const id = e.target.dataset.id;
                 const cambio = parseInt(e.target.dataset.cambio);
@@ -76,29 +106,36 @@ if (window.CARRITO_INICIALIZADO) {
                 return;
             }
 
+            // 7. ELIMINAR PROD
             if (e.target.classList.contains('btn-eliminar')) {
                 const id = e.target.dataset.id;
                 eliminarProducto(id);
                 return;
             }
 
-            if (e.target.closest('#btn-checkout')) {
+            // 8. CHECKOUT
+            const btnCheckout = e.target.closest('#btn-checkout');
+            if (btnCheckout) {
                 window.location.href = 'checkout.html';
                 return;
             }
         });
     }
 
-    // sumo un producto o aumento su cantidad si ya está.
+    // Lógica del Carrito
     function plusProducto(producto) {
         const index = carrito.findIndex(p => p.id === producto.id);
+
+        // Sacamos el nombre como texto (por si viene objeto)
+        const nombreCrudo = producto.nombre || producto.nombre_producto;
+        const nombreFinal = typeof nombreCrudo === 'object' ? nombreCrudo[window.idiomaActual || 'es'] : nombreCrudo;
 
         if (index !== -1) {
             carrito[index].cantidad++;
         } else {
             carrito.push({
                 id: producto.id,
-                nombre: producto.nombre || producto.nombre_producto,
+                nombre: nombreFinal,
                 precio: parseFloat(producto.precio),
                 imagen: producto.imagen || producto.imagen_principal,
                 cantidad: 1
@@ -106,17 +143,17 @@ if (window.CARRITO_INICIALIZADO) {
         }
 
         guardarCarrito();
-        renderizarCarrito();
+        renderizarCarrito(); // Actualizar panel visualmente
         mostrarNotificacion();
     }
 
-    // mover el panel lateral (abrir/cerrar) con las clases.
     function toggleCarrito(abrir) {
         const panel = document.getElementById('carrito-panel');
         const overlay = document.getElementById('carrito-overlay');
         if (abrir) {
+            // IMPORTANTE: Recargar desde localStorage antes de mostrar
             cargarCarrito();
-            renderizarCarrito();
+            renderizarCarrito(); // Actualizar vista con datos frescos
             panel.classList.add('activo');
             overlay.classList.add('activo');
         } else {
@@ -125,7 +162,6 @@ if (window.CARRITO_INICIALIZADO) {
         }
     }
 
-    // subir o bajar cantidad. si llega a cero, fuera.
     function cambiarCantidad(id, cambio) {
         const index = carrito.findIndex(p => p.id === id);
         if (index !== -1) {
@@ -145,14 +181,14 @@ if (window.CARRITO_INICIALIZADO) {
     }
 
     function vaciarCarrito() {
-        if (confirm("¿quieres vaciar todo el carrito?")) {
+        if (confirm("¿Estás seguro de vaciar el carrito?")) {
             carrito = [];
             guardarCarrito();
             renderizarCarrito();
         }
     }
 
-    // guardo y cargo de localstorage para no perder nada al recargar.
+    // Persistencia y Renderizado
     function cargarCarrito() {
         carrito = JSON.parse(localStorage.getItem('MiwuffCarrito')) || [];
         actualizarContador();
@@ -163,7 +199,6 @@ if (window.CARRITO_INICIALIZADO) {
         actualizarContador();
     }
 
-    // actualizo el iconito rojo con el número total.
     function actualizarContador() {
         const contadores = document.querySelectorAll('.carrito-contador');
         const total = carrito.reduce((sum, p) => sum + p.cantidad, 0);
@@ -173,7 +208,6 @@ if (window.CARRITO_INICIALIZADO) {
         });
     }
 
-    // dibujo de nuevo el interior del carrito si hay cambios.
     function renderizarCarrito() {
         const contenedor = document.getElementById('carrito-contenido');
         const precioTotalEl = document.getElementById('carrito-total-precio');
@@ -183,7 +217,7 @@ if (window.CARRITO_INICIALIZADO) {
         let totalPrecio = 0;
 
         if (carrito.length === 0) {
-            contenedor.innerHTML = '<div style="text-align:center; padding: 20px; color: #666;">tu carrito está vacío 🐶</div>';
+            contenedor.innerHTML = '<div style="text-align:center; padding: 20px; color: #666;">Tu carrito está vacío 🐶</div>';
         } else {
             carrito.forEach(p => {
                 totalPrecio += p.precio * p.cantidad;
@@ -208,7 +242,6 @@ if (window.CARRITO_INICIALIZADO) {
         if (precioTotalEl) precioTotalEl.textContent = `€${totalPrecio.toFixed(2)}`;
     }
 
-    // inyecto el html del carrito dinámicamente para no ensuciar el index.
     function crearHTML() {
         if (document.getElementById('carrito-panel')) return;
 
@@ -216,26 +249,25 @@ if (window.CARRITO_INICIALIZADO) {
         <div id="carrito-overlay" class="carrito-overlay"></div>
         <div id="carrito-panel" class="carrito-panel">
             <div class="carrito-header">
-                <h2>tu carrito </h2>
+                <h2>Tu Carrito </h2>
                 <button id="carrito-cerrar">✕</button>
             </div>
             <div id="carrito-contenido" class="carrito-contenido"></div>
             <div class="carrito-footer">
                 <div class="carrito-total">
-                    <span>total:</span>
+                    <span>Total:</span>
                     <span id="carrito-total-precio">€0.00</span>
                 </div>
-                <button id="btn-checkout" class="btn-checkout">finalizar compra</button>
-                <button id="btn-vaciar" class="btn-vaciar">vaciar carrito</button>
+                <button id="btn-checkout" class="btn-checkout">Finalizar Compra</button>
+                <button id="btn-vaciar" class="btn-vaciar">Vaciar Carrito</button>
             </div>
         </div>`;
         document.body.insertAdjacentHTML('beforeend', html);
     }
 
-    // aviso rápido arriba a la derecha.
     function mostrarNotificacion() {
         const notif = document.createElement('div');
-        notif.textContent = "producto añadido";
+        notif.textContent = "Producto añadido";
         notif.style.cssText = "position:fixed; top:20px; right:20px; background:#28a745; color:white; padding:15px; border-radius:5px; z-index:10000; box-shadow: 0 4px 6px rgba(0,0,0,0.1); animation: fadein 0.5s;";
         document.body.appendChild(notif);
         setTimeout(() => notif.remove(), 2000);
