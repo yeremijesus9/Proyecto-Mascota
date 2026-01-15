@@ -83,6 +83,7 @@ window.cambiarIdioma = async function (nuevoIdioma) {
         const nombreProd = typeof producto.nombre_producto === 'object' ? producto.nombre_producto[window.idiomaActual] : producto.nombre_producto;
         const descProd = typeof producto.descripcion === 'object' ? producto.descripcion[window.idiomaActual] : producto.descripcion;
         const catProd = typeof producto.categoria === 'object' ? producto.categoria[window.idiomaActual] : producto.categoria;
+        const formatoProd = typeof producto.formato === 'object' ? producto.formato[window.idiomaActual] : (producto.formato || window.textosInterface.detalle_formato_titulo || 'FORMATO');
 
         // busco otros productos parecidos (de la misma categoría) para recomendar.
         const related = (productosAll || [])
@@ -111,22 +112,22 @@ window.cambiarIdioma = async function (nuevoIdioma) {
                 <div class="miniaturas">${thumbs}</div>
             </div>
             <aside class="info">
-                <p class="marca"><strong>marca:</strong> ${producto.marca}</p>
+                <p class="marca"><strong>${window.textosInterface.detalle_marca || 'marca'}:</strong> ${producto.marca}</p>
                 <h1 class="producto-nombre">${nombreProd}</h1>
-                <div class="rating">${crearEstrellas(producto.puntuacion)} <span class="opiniones">${producto.opiniones} opiniones</span></div>
+                <div class="rating">${crearEstrellas(producto.puntuacion)} <span class="opiniones">${producto.opiniones} ${window.textosInterface.detalle_opiniones || 'opiniones'}</span></div>
                 <p class="descripcion">${descProd}</p>
                 <div class="formato-box">
-                    <div class="format-title">${producto.formato || 'FORMATO'}</div>
+                    <div class="format-title">${formatoProd}</div>
                     <div class="format-options">${formatoOpciones}</div>
                 </div>
             </aside>
             <div class="compra-box">
                 <div class="price-box">
-                    <span class="price-label">precio</span>
+                    <span class="price-label">${window.textosInterface.detalle_precio || 'precio'}</span>
                     <div class="product-price">${formatPrice(producto.precio)}</div>
-                    <div class="vat-info">los precios incluyen iva</div>
-                    <div class="delivery-info">entrega gratis entre el x - x</div>
-                    <div class="stock-info">en stock</div>
+                    <div class="vat-info">${window.textosInterface.detalle_iva || 'los precios incluyen iva'}</div>
+                    <div class="delivery-info">${window.textosInterface.detalle_entrega || 'entrega gratis'}</div>
+                    <div class="stock-info">${window.textosInterface.detalle_stock || 'en stock'}</div>
                     <div class="cantidad quantity-selector">
                         <button id="qty-decr">-</button>
                         <input id="qty" type="number" value="1" min="1">
@@ -201,11 +202,11 @@ window.cambiarIdioma = async function (nuevoIdioma) {
             } else {
                 const nombreParaCarrito = typeof producto.nombre_producto === 'object' ? producto.nombre_producto[window.idiomaActual] : producto.nombre_producto;
                 carrito.push({
-                    id: producto.id, 
-                    nombre: nombreParaCarrito, 
+                    id: producto.id,
+                    nombre: nombreParaCarrito,
                     precio: Number(producto.precio),
-                    imagen: producto.imagen_principal, 
-                    cantidad, 
+                    imagen: producto.imagen_principal,
+                    cantidad,
                     formato
                 });
             }
@@ -238,11 +239,11 @@ window.cambiarIdioma = async function (nuevoIdioma) {
             } else {
                 const nombreParaCarrito = typeof producto.nombre_producto === 'object' ? producto.nombre_producto[window.idiomaActual] : producto.nombre_producto;
                 carrito.push({
-                    id: producto.id, 
-                    nombre: nombreParaCarrito, 
+                    id: producto.id,
+                    nombre: nombreParaCarrito,
                     precio: Number(producto.precio),
-                    imagen: producto.imagen_principal, 
-                    cantidad, 
+                    imagen: producto.imagen_principal,
+                    cantidad,
                     formato
                 });
             }
