@@ -1,16 +1,14 @@
 {
   "name": "back1",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "json-server --watch db.json --port 3000"
-
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "description": "",
   "dependencies": {
     "json-server": "^1.0.0-beta.3"
   }
