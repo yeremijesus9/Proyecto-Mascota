@@ -36,11 +36,15 @@ function renderizarProductos(productos) {
     });
 }
 
+// Aliamos la función para que idioma.js pueda refrescar la lista al cambiar idioma
+window.mostrarProductos = cargarProductos;
+
 function crearCardProducto(prod) {
+    const lang = window.idiomaActual || 'es';
     // Manejo de nombres que pueden ser String u Objetos (idiomas)
-    const nombre = typeof prod.nombre_producto === 'object' ? prod.nombre_producto.es : prod.nombre_producto;
-    const descripcion = typeof prod.descripcion === 'object' ? prod.descripcion.es : prod.descripcion;
-    const categoriaLabel = typeof prod.categoria === 'object' ? prod.categoria.es : prod.categoria;
+    const nombre = typeof prod.nombre_producto === 'object' ? prod.nombre_producto[lang] : prod.nombre_producto;
+    const descripcion = typeof prod.descripcion === 'object' ? prod.descripcion[lang] : prod.descripcion;
+    const categoriaLabel = typeof prod.categoria === 'object' ? prod.categoria[lang] : prod.categoria;
 
     const div = document.createElement('div');
     div.className = 'product-card';

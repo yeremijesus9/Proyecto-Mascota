@@ -1,39 +1,10 @@
 // aquí enseño los productos según la categoría que pinchen.
-const idiomasDisponibles = ['es', 'en'];
-let idiomaSeleccionado = localStorage.getItem('idiomaSeleccionado');
-window.idiomaActual = idiomasDisponibles.includes(idiomaSeleccionado) ? idiomaSeleccionado : 'es';
-localStorage.setItem('idiomaSeleccionado', window.idiomaActual);
 
-// pongo los textos de la web y los botones de las tarjetas en el idioma que toque.
-async function cargarInterface() {
-    try {
-        // uso la ruta global de idioma.js
-        const resp = await fetch(window.rutaInterfaceJson(), { cache: 'no-cache' });
-        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-        const data = await resp.json();
-        // json-server devuelve un array, necesitamos el primer elemento
-        const textos = Array.isArray(data) && data.length > 0 ? data[0] : data;
-        window.textosInterface = textos;
+// En productos_categoria.js ya no inicializamos el idioma por nuestra cuenta.
+// Confiamos en que idioma.js ya se ha ejecutado y ha configurado window.idiomaActual
 
-        document.querySelectorAll('[data-key]').forEach(el => {
-            const key = el.getAttribute('data-key');
-            if (textos[key]) {
-                if ('placeholder' in el) el.placeholder = textos[key];
-                else el.innerHTML = textos[key];
-            }
-        });
-        
-        document.querySelectorAll('.tarjeta-producto').forEach(tarjeta => {
-            const btnDetalle = tarjeta.querySelector('.ver-detalle');
-            const btnCarrito = tarjeta.querySelector('.btn-anadir-carrito');
-            if (btnDetalle) btnDetalle.innerHTML = textos.ver_detalle || 'ver detalle';
-            if (btnCarrito) btnCarrito.innerHTML = textos.detalle_agregar_carrito || 'comprar';
-        });
-
-    } catch (error) {
-        console.error('error al cargar interfaz:', error);
-    }
-}
+// Aliamos la función para que idioma.js la pueda llamar
+window.mostrarProductos = mostrarProductos;
 
 function crearEstrellas(puntuacion) {
     const p = Math.max(0, Math.min(5, Math.round(Number(puntuacion) || 0)));
@@ -49,6 +20,10 @@ function renderProducto(producto, contenedor) {
     const nombre = typeof producto.nombre_producto === 'object' ? producto.nombre_producto[window.idiomaActual] : producto.nombre_producto;
     const precio = Number(producto.precio || 0);
 
+    // Obtenemos textos de la interfaz global
+    const txtVerDetalle = window.textosInterface && window.textosInterface.ver_detalle ? window.textosInterface.ver_detalle : 'ver detalle';
+    const txtComprar = window.textosInterface && window.textosInterface.detalle_agregar_carrito ? window.textosInterface.detalle_agregar_carrito : 'comprar';
+
     tarjeta.innerHTML = `
         <img class="producto-imagen" src="${producto.imagen_principal}" alt="imagen de ${nombre}" loading="lazy" decoding="async">
         <h3 class="producto-nombre">${nombre}</h3>
@@ -57,10 +32,10 @@ function renderProducto(producto, contenedor) {
             <div class="puntuacion">${crearEstrellas(producto.puntuacion)}<span class="opiniones"> (${producto.opiniones || 0})</span></div>
             <span class="precio">${new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(precio)}</span>
         </div>
-        <button type="button" class="ver-detalle">${window.textosInterface?.ver_detalle || 'ver detalle'}</button>
+        <button type="button" class="ver-detalle">${txtVerDetalle}</button>
         <button type="button" class="btn-anadir-carrito" 
             data-producto-id="${producto.id}"
-        >${window.textosInterface?.detalle_agregar_carrito || 'comprar'}</button>
+        >${txtComprar}</button>
     `;
 
     const btn = tarjeta.querySelector('.btn-anadir-carrito');
@@ -83,8 +58,35 @@ const categoriasMap = {
 
 // saco la categoría de la barra de direcciones del navegador.
 function getCategoria() {
-    const categoriaUrl = new URLSearchParams(location.search).get('categoria')?.toLowerCase() || 'gato';
-    return categoriasMap[window.idiomaActual][categoriaUrl] || categoriaUrl;
+    // Si la URL es category=dog, usamos 'dog'.
+    // Pero si es category=perro, y estamos en EN, deberíamos buscar su equivalente EN?
+    // O simplemente usar el valor que toca según el idioma actual para filtrar.
+    
+    // Lo más sencillo: obtener el valor de la URL
+    const paramCategoria = new URLSearchParams(location.search).get('categoria')?.toLowerCase() || 'gato';
+    
+    // Si paramCategoria es 'perro' y estamos en 'en', necesitamos 'dog' para buscar en el JSON si el JSON tiene categorias en EN.
+    // El JSON tiene:
+    // "categoria": { "es": "gato", "en": "cat" }
+    
+    // Entonces para filtrar, comparamos con el valor del objeto categoria[idiomaActual].
+    
+    // PERO el titulo de la pagina debe mostrarse traducido.
+    // Usamos el mapa para traducir el parametro de URL (que puede estar en ES o EN si el usuario navega) al idioma actual.
+    
+    // Intentamos encontrar la clave independientemente del idioma de entrada
+    let key = null;
+    for (const k in categoriasMap.es) {
+        if (categoriasMap.es[k] === paramCategoria || categoriasMap.en[k] === paramCategoria) {
+            key = k;
+            break;
+        }
+    }
+    
+    if (key) {
+        return categoriasMap[window.idiomaActual][key];
+    }
+    return paramCategoria;
 }
 
 async function cargarProductos() {
@@ -100,18 +102,20 @@ async function cargarProductos() {
 async function mostrarProductos() {
     const contenedor = document.getElementById('productos-contenedor');
     const tituloCategoria = document.getElementById('nombre-categoria');
-    const categoria = getCategoria();
+    
+    // Obtenemos la categoría traducida al idioma actual
+    const categoriaTarget = getCategoria(); 
 
     if (tituloCategoria) {
-        tituloCategoria.textContent = categoria.charAt(0).toUpperCase() + categoria.slice(1);
+        tituloCategoria.textContent = categoriaTarget.charAt(0).toUpperCase() + categoriaTarget.slice(1);
     }
 
     try {
         const productos = await cargarProductos();
         const filtrados = productos.filter(p => {
-            // Si la categoria es un objeto la sacamos para el idioma actual, si no usamos el texto
+            // Sacamos la categoría del producto en el idioma actual
             const catProd = typeof p.categoria === 'object' ? p.categoria[window.idiomaActual] : p.categoria;
-            return catProd.toLowerCase() === categoria.toLowerCase();
+            return catProd.toLowerCase() === categoriaTarget.toLowerCase();
         });
 
         contenedor.innerHTML = filtrados.length
@@ -130,25 +134,7 @@ function mostrarDetalle(id) {
     window.location.href = `detalle_producto.html?id=${encodeURIComponent(id)}`;
 }
 
-async function cambiarIdioma(nuevoIdioma) {
-    if (!nuevoIdioma || nuevoIdioma === window.idiomaActual) return;
-
-    window.idiomaActual = nuevoIdioma;
-    localStorage.setItem('idiomaSeleccionado', nuevoIdioma);
-
-    await Promise.all([cargarInterface(), mostrarProductos()]);
-}
-
-window.cambiarIdioma = cambiarIdioma;
-
+// Solo mostramos productos al inicio. El idioma lo maneja nav_footer/idioma.js llamando a window.mostrarProductos()
 document.addEventListener('DOMContentLoaded', () => {
-    cargarInterface();
     mostrarProductos();
-
-    document.querySelectorAll('#languageMenu a').forEach(btn => {
-        btn.addEventListener('click', e => {
-            e.preventDefault();
-            cambiarIdioma(btn.getAttribute('lang'));
-        });
-    });
 });
