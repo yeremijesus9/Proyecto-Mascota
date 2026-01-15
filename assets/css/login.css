@@ -220,3 +220,31 @@ body {
 .register-link:hover {
     text-decoration: underline;
 }
+
+/* Estilo para el Badge de Rol */
+.badge-rol {
+    background: #d37c39;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-left: 8px;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+
+/* Estilo para el Icono de Panel Admin */
+.admin-panel-link {
+    color: #682d1e;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.admin-panel-link:hover {
+    color: #d37c39;
+    transform: scale(1.1);
+}
