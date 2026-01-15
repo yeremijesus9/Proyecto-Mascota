@@ -1,14 +1,81 @@
 {
-  "productos": [
+  "products": [
+    {
+      "id": "CAT1",
+      "categoria": {
+        "es": "gato",
+        "en": "cat"
+      },
+      "marca": "Grature",
+      "puntuacion": "4",
+      "opiniones": "20 ",
+      "nombre_producto": {
+        "es": "Grature Pienso de Pollo para Gatos Adultos Esterilizados",
+        "en": "Grature Chicken Dry Food for Sterilized Adult Cats"
+      },
+      "precio": 6.99,
+      "descripcion": {
+        "es": "Pienso para gatos adultos esterilizados de pollo   Grature Pollo es una alimentación elaborada con ingredientes naturales para gatos adultos.",
+        "en": "Dry food for sterilized adult cats, made with chicken. Grature Chicken is a diet made with natural ingredients for adult cats."
+      },
+      "formato": "peso producto",
+      "descripcion_formato": "1.5 Kg",
+      "imagen_principal": "/assets/img/gato/CAT01_0.png",
+      "imagen_miniatura": [
+        "/assets/img/gato/CAT01_0.png",
+        "/assets/img/gato/CAT01_1.png"
+      ],
+      "comentarios": [
+        {
+          "usuario": "AnaG12",
+          "fecha": "2025-02-28",
+          "puntuacion": 4,
+          "texto": "Se lo comieron pero creo que no les gustaba mucho, el grano es muy pequeño parece pienso de junior"
+        },
+        {
+          "usuario": "FotografoJuan",
+          "fecha": "2025-02-20",
+          "puntuacion": 4,
+          "texto": "bien, aunque no todos mis gatos les gusta."
+        },
+        {
+          "usuario": "GatoFeliz",
+          "fecha": "2025-03-01",
+          "puntuacion": 5,
+          "texto": "¡Mi gato lo adora! Le sienta muy bien y mantiene un peso saludable después de la esterilización."
+        },
+        {
+          "usuario": "CompradoraHabitual",
+          "fecha": "2025-02-15",
+          "puntuacion": 5,
+          "texto": "Llevo meses comprándolo. El precio es bueno y la composición es excelente. ¡Lo recomiendo a otros dueños de gatos esterilizados!"
+        },
+        {
+          "usuario": "DudosoDueño",
+          "fecha": "2025-01-25",
+          "puntuacion": 3,
+          "texto": "Tardaron en hacer el cambio, pero después de una semana mi gata lo acepta. No he notado gran cambio en el pelo todavía."
+        }
+      ]
+    },
     {
       "id": "CAT2",
-      "categoria": "gato",
+      "categoria": {
+        "es": "gato",
+        "en": "cat"
+      },
       "marca": "Purina Felix",
       "puntuacion": "5",
       "opiniones": "16 ",
-      "nombre_producto": "Purina Felix Snack Crispies de Salmón y Trucha para Gatos",
-      "precio": 100.34,
-      "descripcion": "¡Premia a tu gato más a menudo con estas chuches ligeras y comparte más momentos traviesos y tiernos con él! Felix Crispies Snacks están irresistiblemente aireados para tener una textura única, ligera y crujiente.",
+      "nombre_producto": {
+        "es": "Purina Felix Snack Crispies de Salmón y Trucha para Gatos",
+        "en": "Purina Felix Snack Crispies of Salmon and Trout for Cats"
+      },
+      "precio": 1.34,
+      "descripcion": {
+        "es": "¡Premia a tu gato más a menudo con estas chuches ligeras y comparte más momentos traviesos y tiernos con él! Felix Crispies Snacks están irresistiblemente aireados para tener una textura única, ligera y crujiente.",
+        "en": "Give your cat a treat more often with these light snacks and share more mischievous and tender moments with him! Felix Crispies Snacks are irresistibly airy for a unique, light and crunchy texture."
+      },
       "formato": "peso producto",
       "descripcion_formato": "45 gr",
       "imagen_principal": "/assets/img/gato/CAT02_0.png",
@@ -54,13 +121,22 @@
     },
     {
       "id": "CAT3",
-      "categoria": "gato",
+      "categoria": {
+        "es": "gato",
+        "en": "cat"
+      },
       "marca": "Gloria Pets",
       "puntuacion": "5",
       "opiniones": "60 ",
-      "nombre_producto": "Gloria Pets Castillo Rascador Grande Nilo Azul para Gatos ",
+      "nombre_producto": {
+        "es": "Gloria Pets Castillo Rascador Grande Nilo Azul para Gatos ",
+        "en": "Gloria Pets Castle Rascador Large Nile Blue for Cats"
+      },
       "precio": 129.99,
-      "descripcion": "Centro de juego perfecto para varios gatos, varios pisos de altura, con rampa de acceso, túnel vertical y hamacas suaves. Varios lugares desde los que podrán descansar al mismo tiempo que vigilan su entorno.",
+      "descripcion": {
+        "es": "Centro de juego perfecto para varios gatos, varios pisos de altura, con rampa de acceso, túnel vertical y hamacas suaves. Varios lugares desde los que podrán descansar al mismo tiempo que vigilan su entorno.",
+        "en": "Perfect play center for multiple cats, multiple floors, with access ramp, vertical tunnel and soft hammocks. Multiple places from which they can rest at the same time while watching their environment."
+      },
       "formato": "Tamaño",
       "descripcion_formato": "50x170x50 cm",
       "imagen_principal": "/assets/img/gato/CAT03_0.png",
@@ -106,13 +182,22 @@
     },
     {
       "id": "CAT4",
-      "categoria": "gato",
+      "categoria": {
+        "es": "gato",
+        "en": "cat"
+      },
       "marca": "SUMSU",
       "puntuacion": "4",
       "opiniones": "10 ",
-      "nombre_producto": "SUMSU Guante PRO Aseo para Perro y Gato",
+      "nombre_producto": {
+        "es": "SUMSU Guante PRO Aseo para Perro y Gato",
+        "en": "SUMSU Pro Wash Gloves for Dogs and Cats"
+      },
       "precio": 4.99,
-      "descripcion": "Guante de Cepillado para peinar Perros y Gatos El guante para peinar perros y gatos es una herramienta práctica y cómoda diseñada para eliminar el pelo suelto y los nudos del pelaje de nuestras mascotas durante el cepillado.",
+      "descripcion": {
+        "es": "Guante de Cepillado para peinar Perros y Gatos El guante para peinar perros y gatos es una herramienta práctica y cómoda diseñada para eliminar el pelo suelto y los nudos del pelaje de nuestras mascotas durante el cepillado.",
+        "en": "Cepillado Gloves for Dogs and Cats is a practical and comfortable tool designed to remove loose hair and knots from our pets' fur during grooming."
+      },
       "formato": "Tamaño",
       "descripcion_formato": "23x17 cm",
       "imagen_principal": "/assets/img/gato/CAT04_0.png",
