@@ -1,15 +1,27 @@
 {
-  "productos": [
+  "products": [
     {
       "id": "CAT1",
-      "categoria": "gato",
+      "categoria": {
+        "es": "gato",
+        "en": "cat"
+      },
       "marca": "Grature",
       "puntuacion": "4",
       "opiniones": "20 ",
-      "nombre_producto": "Grature Pienso de Pollo para Gatos Adultos Esterilizados",
+      "nombre_producto": {
+        "es": "Grature Pienso de Pollo para Gatos Adultos Esterilizados",
+        "en": "Grature Chicken Dry Food for Sterilized Adult Cats"
+      },
       "precio": 6.99,
-      "descripcion": "Pienso para gatos adultos esterilizados de pollo   Grature Pollo es una alimentación elaborada con ingredientes naturales para gatos adultos.",
-      "formato": "peso producto",
+      "descripcion": {
+        "es": "Pienso para gatos adultos esterilizados de pollo   Grature Pollo es una alimentación elaborada con ingredientes naturales para gatos adultos.",
+        "en": "Dry food for sterilized adult cats, made with chicken. Grature Chicken is a diet made with natural ingredients for adult cats."
+      },
+      "formato": {
+        "es": "peso producto",
+        "en": "weight product"
+      },
       "descripcion_formato": "1.5 Kg",
       "imagen_principal": "/assets/img/gato/CAT01_0.png",
       "imagen_miniatura": [
@@ -51,14 +63,26 @@
     },
     {
       "id": "CAT2",
-      "categoria": "gato",
+      "categoria": {
+        "es": "gato",
+        "en": "cat"
+      },
       "marca": "Purina Felix",
       "puntuacion": "5",
       "opiniones": "16 ",
-      "nombre_producto": "Purina Felix Snack Crispies de Salmón y Trucha para Gatos",
+      "nombre_producto": {
+        "es": "Purina Felix Snack Crispies de Salmón y Trucha para Gatos",
+        "en": "Purina Felix Snack Crispies of Salmon and Trout for Cats"
+      },
       "precio": 1.34,
-      "descripcion": "¡Premia a tu gato más a menudo con estas chuches ligeras y comparte más momentos traviesos y tiernos con él! Felix Crispies Snacks están irresistiblemente aireados para tener una textura única, ligera y crujiente.",
-      "formato": "peso producto",
+      "descripcion": {
+        "es": "¡Premia a tu gato más a menudo con estas chuches ligeras y comparte más momentos traviesos y tiernos con él! Felix Crispies Snacks están irresistiblemente aireados para tener una textura única, ligera y crujiente.",
+        "en": "Give your cat a treat more often with these light snacks and share more mischievous and tender moments with him! Felix Crispies Snacks are irresistibly airy for a unique, light and crunchy texture."
+      },
+      "formato": {
+        "es": "peso producto",
+        "en": "weight product"
+      },
       "descripcion_formato": "45 gr",
       "imagen_principal": "/assets/img/gato/CAT02_0.png",
       "imagen_miniatura": [
@@ -103,14 +127,26 @@
     },
     {
       "id": "CAT3",
-      "categoria": "gato",
+      "categoria": {
+        "es": "gato",
+        "en": "cat"
+      },
       "marca": "Gloria Pets",
       "puntuacion": "5",
       "opiniones": "60 ",
-      "nombre_producto": "Gloria Pets Castillo Rascador Grande Nilo Azul para Gatos ",
+      "nombre_producto": {
+        "es": "Gloria Pets Castillo Rascador Grande Nilo Azul para Gatos ",
+        "en": "Gloria Pets Castle Rascador Large Nile Blue for Cats"
+      },
       "precio": 129.99,
-      "descripcion": "Centro de juego perfecto para varios gatos, varios pisos de altura, con rampa de acceso, túnel vertical y hamacas suaves. Varios lugares desde los que podrán descansar al mismo tiempo que vigilan su entorno.",
-      "formato": "Tamaño",
+      "descripcion": {
+        "es": "Centro de juego perfecto para varios gatos, varios pisos de altura, con rampa de acceso, túnel vertical y hamacas suaves. Varios lugares desde los que podrán descansar al mismo tiempo que vigilan su entorno.",
+        "en": "Perfect play center for multiple cats, multiple floors, with access ramp, vertical tunnel and soft hammocks. Multiple places from which they can rest at the same time while watching their environment."
+      },
+      "formato": {
+        "es": "Tamaño",
+        "en": "Size"
+      },
       "descripcion_formato": "50x170x50 cm",
       "imagen_principal": "/assets/img/gato/CAT03_0.png",
       "imagen_miniatura": [
@@ -155,14 +191,26 @@
     },
     {
       "id": "CAT4",
-      "categoria": "gato",
+      "categoria": {
+        "es": "gato",
+        "en": "cat"
+      },
       "marca": "SUMSU",
       "puntuacion": "4",
       "opiniones": "10 ",
-      "nombre_producto": "SUMSU Guante PRO Aseo para Perro y Gato",
+      "nombre_producto": {
+        "es": "SUMSU Guante PRO Aseo para Perro y Gato",
+        "en": "SUMSU Pro Wash Gloves for Dogs and Cats"
+      },
       "precio": 4.99,
-      "descripcion": "Guante de Cepillado para peinar Perros y Gatos El guante para peinar perros y gatos es una herramienta práctica y cómoda diseñada para eliminar el pelo suelto y los nudos del pelaje de nuestras mascotas durante el cepillado.",
-      "formato": "Tamaño",
+      "descripcion": {
+        "es": "Guante de Cepillado para peinar Perros y Gatos El guante para peinar perros y gatos es una herramienta práctica y cómoda diseñada para eliminar el pelo suelto y los nudos del pelaje de nuestras mascotas durante el cepillado.",
+        "en": "Cepillado Gloves for Dogs and Cats is a practical and comfortable tool designed to remove loose hair and knots from our pets' fur during grooming."
+      },
+      "formato": {
+        "es": "Tamaño",
+        "en": "Size"
+      },
       "descripcion_formato": "23x17 cm",
       "imagen_principal": "/assets/img/gato/CAT04_0.png",
       "imagen_miniatura": [
@@ -206,14 +254,26 @@
     },
     {
       "id": "CAT5",
-      "categoria": "gato",
+      "categoria": {
+        "es": "gato",
+        "en": "cat"
+      },
       "marca": "Sure Petcare",
       "puntuacion": "5",
       "opiniones": "20 ",
-      "nombre_producto": "Sure Petcare Bebedero Inteligente Felaqua Connect",
+      "nombre_producto": {
+        "es": "Sure Petcare Bebedero Inteligente Felaqua Connect",
+        "en": "Sure Petcare Bebedero Inteligente Felaqua Connect"
+      },
       "precio": 130.67,
-      "descripcion": "Diseñado especialmente junto con veterinarios expertos en comportamiento, Felaqua Connect anima a tu gato a beber más regularmente y te ofrece información sobre sus hábitos de consumo de agua, avisándote de cualquier cambio en su conducta que pudiera pasar desapercibido.",
-      "formato": "capacidad",
+      "descripcion": {
+        "es": "Diseñado especialmente junto con veterinarios expertos en comportamiento, Felaqua Connect anima a tu gato a beber más regularmente y te ofrece información sobre sus hábitos de consumo de agua, avisándote de cualquier cambio en su conducta que pudiera pasar desapercibido.",
+        "en": "Designed especially in collaboration with veterinarians experts in behavior, Felaqua Connect encourages your cat to drink more regularly and offers you information about their water consumption habits, alerting you to any changes in their behavior that might go unnoticed."
+      },
+      "formato": {
+        "es": "capacidad",
+        "en": "capacity"
+      },
       "descripcion_formato": "1L",
       "imagen_principal": "/assets/img/gato/CAT05_0.png",
       "imagen_miniatura": [
@@ -256,14 +316,26 @@
     },
     {
       "id": "PEZ1",
-      "categoria": "pez",
+      "categoria": {
+        "es": "pez",
+        "en": "fish"
+      },
       "marca": "Tetra",
       "puntuacion": "5",
       "opiniones": "45 ",
-      "nombre_producto": "Tetra Min Alimento en Copos para Peces Tropicales",
+      "nombre_producto": {
+        "es": "Tetra Min Alimento en Copos para Peces Tropicales",
+        "en": "Tetra Min Food in Cups for Tropical Fish"
+      },
       "precio": 8.99,
-      "descripcion": "Alimento completo en copos para todos los peces ornamentales. Con fórmula BioActive que fortalece el sistema inmunitario. Los copos flotan en la superficie antes de hundirse lentamente, lo que satisface los hábitos de alimentación de todos los tipos de peces.",
-      "formato": "peso producto",
+      "descripcion": {
+        "es": "Alimento completo en copos para todos los peces ornamentales. Con fórmula BioActive que fortalece el sistema inmunitario. Los copos flotan en la superficie antes de hundirse lentamente, lo que satisface los hábitos de alimentación de todos los tipos de peces.",
+        "en": "Complete food in cups for all ornamental fish. With BioActive formula that strengthens the immune system. The cups float on the surface before slowly sinking, satisfying the feeding habits of all types of fish."
+      },
+      "formato": {
+        "es": "peso producto",
+        "en": "weight product"
+      },
       "descripcion_formato": "250 gr",
       "imagen_principal": "/assets/img/peces/PEZ01_0.png",
       "imagen_miniatura": [
@@ -305,14 +377,26 @@
     },
     {
       "id": "PEZ2",
-      "categoria": "pez",
+      "categoria": {
+        "es": "pez",
+        "en": "fish"
+      },
       "marca": "Eheim",
       "puntuacion": "5",
       "opiniones": "32 ",
-      "nombre_producto": "Eheim Filtro Externo Profesional 4+ 250 para Acuarios",
+      "nombre_producto": {
+        "es": "Eheim Filtro Externo Profesional 4+ 250 para Acuarios",
+        "en": "Eheim External Professional Filter 4+ 250 for Aquariums"
+      },
       "precio": 189.99,
-      "descripcion": "Filtro externo profesional de alto rendimiento con sistema de prefiltración. Motor de bajo consumo energético y funcionamiento silencioso. Incluye materiales filtrantes de calidad profesional. Ideal para acuarios de 150-250 litros.",
-      "formato": "capacidad",
+      "descripcion": {
+        "es": "Filtro externo profesional de alto rendimiento con sistema de prefiltración. Motor de bajo consumo energético y funcionamiento silencioso. Incluye materiales filtrantes de calidad profesional. Ideal para acuarios de 150-250 litros.",
+        "en": "Professional external filter with high performance and prefiltration system. Energy-efficient motor and silent operation. Includes professional quality filter materials. Ideal for aquariums of 150-250 liters."
+      },
+      "formato": {
+        "es": "capacidad",
+        "en": "capacity"
+      },
       "descripcion_formato": "hasta 250L",
       "imagen_principal": "/assets/img/peces/PEZ02_0.png",
       "imagen_miniatura": [
@@ -354,14 +438,26 @@
     },
     {
       "id": "PEZ3",
-      "categoria": "pez",
+      "categoria": {
+        "es": "pez",
+        "en": "fish"
+      },
       "marca": "Aqua Ornaments",
       "puntuacion": "4",
       "opiniones": "28 ",
-      "nombre_producto": "Aqua Ornaments Castillo Hundido con Plantas Decorativas para Acuario",
+      "nombre_producto": {
+        "es": "Aqua Ornaments Castillo Hundido con Plantas Decorativas para Acuario",
+        "en": "Aqua Ornaments Sunken Castle with Decorative Plants for Aquarium"
+      },
       "precio": 24.99,
-      "descripcion": "Decoración realista de castillo hundido con acabado envejecido. Incluye plantas artificiales de seda que se mueven con la corriente. Proporciona refugio y zonas de descanso para los peces. Material seguro y no tóxico para todos los acuarios.",
-      "formato": "Tamaño",
+      "descripcion": {
+        "es": "Decoración realista de castillo hundido con acabado envejecido. Incluye plantas artificiales de seda que se mueven con la corriente. Proporciona refugio y zonas de descanso para los peces. Material seguro y no tóxico para todos los acuarios.",
+        "en": "Realistic sunken castle decoration with aged finish. Includes artificial silk plants that move with the current. Provides refuge and resting areas for fish. Safe and non-toxic material for all aquariums."
+      },
+      "formato": {
+        "es": "Tamaño",
+        "en": "Size"
+      },
       "descripcion_formato": "25x18x15 cm",
       "imagen_principal": "/assets/img/peces/PEZ03_0.png",
       "imagen_miniatura": [
@@ -403,14 +499,26 @@
     },
     {
       "id": "PEZ4",
-      "categoria": "pez",
+      "categoria": {
+        "es": "pez",
+        "en": "fish"
+      },
       "marca": "JBL",
       "puntuacion": "5",
       "opiniones": "52 ",
-      "nombre_producto": "JBL NovoStick M Alimento en Palitos para Peces de Agua Dulce",
+      "nombre_producto": {
+        "es": "JBL NovoStick M Alimento en Palitos para Peces de Agua Dulce",
+        "en": "JBL NovoStick M Food in Sticks for Freshwater Fish"
+      },
       "precio": 5.49,
-      "descripcion": "Palitos alimenticios que flotan para peces de tamaño medio. Fórmula completa con proteínas de alta calidad, vitaminas y oligoelementos. Contiene espirulina para realzar los colores naturales. No enturbia el agua gracias a su baja solubilidad.",
-      "formato": "peso producto",
+      "descripcion": {
+        "es": "Palitos alimenticios que flotan para peces de tamaño medio. Fórmula completa con proteínas de alta calidad, vitaminas y oligoelementos. Contiene espirulina para realzar los colores naturales. No enturbia el agua gracias a su baja solubilidad.",
+        "en": "Floating food sticks for medium-sized fish. Complete formula with high-quality proteins, vitamins, and trace elements. Contains spirulina to enhance natural colors. Does not cloud the water due to its low solubility."
+      },
+      "formato": {
+        "es": "peso producto",
+        "en": "weight product"
+      },
       "descripcion_formato": "100 gr",
       "imagen_principal": "/assets/img/peces/PEZ04_0.png",
       "imagen_miniatura": [
@@ -452,14 +560,26 @@
     },
     {
       "id": "PEZ5",
-      "categoria": "pez",
+      "categoria": {
+        "es": "pez",
+        "en": "fish"
+      },
       "marca": "Sera",
       "puntuacion": "5",
       "opiniones": "38 ",
-      "nombre_producto": "Sera Aquatan Acondicionador de Agua para Acuarios",
+      "nombre_producto": {
+        "es": "Sera Aquatan Acondicionador de Agua para Acuarios",
+        "en": "Sera Aquatan Water Conditioner for Aquariums"
+      },
       "precio": 12.99,
-      "descripcion": "Acondicionador de agua que elimina inmediatamente cloro, cloraminas y metales pesados del agua del grifo. Protege las mucosas de los peces con coloides naturales. Añade vitamina B para reducir el estrés. Idóneo para cambios de agua y nuevos acuarios.",
-      "formato": "capacidad",
+      "descripcion": {
+        "es": "Acondicionador de agua que elimina inmediatamente cloro, cloraminas y metales pesados del agua del grifo. Protege las mucosas de los peces con coloides naturales. Añade vitamina B para reducir el estrés. Idóneo para cambios de agua y nuevos acuarios.",
+        "en": "Water conditioner that immediately removes chlorine, chloramines, and heavy metals from tap water. Protects fish mucous membranes with natural colloids. Adds vitamin B to reduce stress. Ideal for water changes and new aquariums."
+      },
+      "formato": {
+        "es": "capacidad",
+        "en": "capacity"
+      },
       "descripcion_formato": "500 ml",
       "imagen_principal": "/assets/img/peces/PEZ05_0.png",
       "imagen_miniatura": [
@@ -501,13 +621,26 @@
     },
     {
       "id": "ROE1",
-      "categoria": "Roedores",
+      "categoria": {
+        "es": "roedores",
+        "en": "rodents"
+      },
       "marca": "JR Schmaus",
       "puntuacion": "4",
       "opiniones": "5",
-      "nombre_producto": "JR Schmaus comida para cobayas",
+      "nombre_producto": {
+        "es": "JR Schmaus comida para cobayas",
+        "en": "JR Schmaus rabbit food"
+      },
       "precio": 8.99,
-      "descripcion": "Alimento completo sin cereales para cobayas, contenido alto en fibra bruta, con hierbas y verduras como fuentes de vitaminas y minerales, sin colorantes ni conservantes artificiales",
+      "descripcion": {
+        "es": "Alimento completo sin cereales para cobayas, contenido alto en fibra bruta, con hierbas y verduras como fuentes de vitaminas y minerales, sin colorantes ni conservantes artificiales",
+        "en": "Complete food without cereals for rabbits, high fiber content, with herbs and vegetables as vitamin and mineral sources, without artificial colorants or preservatives"
+      },
+      "formato": {
+        "es": "peso producto",
+        "en": "weight product"
+      },
       "descripcion_formato": "2.5 kg",
       "imagen_principal": "/assets/img/roedores/jr_schmaus.png",
       "imagen_miniatura": [
@@ -549,14 +682,26 @@
     },
     {
       "id": "ROE2",
-      "categoria": "Roedores",
+      "categoria": {
+        "es": "roedores",
+        "en": "rodents"
+      },
       "marca": "TIAKI",
       "puntuacion": "4",
       "opiniones": "2",
-      "nombre_producto": "TIAKI Tug & Find juguete de inteligencia para roedores",
+      "nombre_producto": {
+        "es": "TIAKI Tug & Find juguete de inteligencia para roedores",
+        "en": "TIAKI Tug & Find intelligence toy for rodents"
+      },
       "precio": 38.49,
-      "descripcion": "Puzzle de madera para animales pequeños y pájaros, desarrolla la inteligencia, fácil de rellenar con golosinas o pienso, puede prevenir comportamientos destructivos, de madera de pino natural.",
-      "formato": "tamaño",
+      "descripcion": {
+        "es": "Puzzle de madera para animales pequeños y pájaros, desarrolla la inteligencia, fácil de rellenar con golosinas o pienso, puede prevenir comportamientos destructivos, de madera de pino natural.",
+        "en": "Wood puzzle for small animals and birds, develops intelligence, easy to fill with treats or pellets, can prevent destructive behaviors, pine wood natural."
+      },
+      "formato": {
+        "es": "tamaño",
+        "en": "size"
+      },
       "descripcion_formato": "20 x 5,5 x 7 cm (L x An x Al)",
       "imagen_principal": "/assets/img/roedores/juguete.png",
       "imagen_miniatura": [
@@ -582,14 +727,26 @@
     },
     {
       "id": "ROE3",
-      "categoria": "Roedores",
+      "categoria": {
+        "es": "roedores",
+        "en": "rodents"
+      },
       "marca": "TIAKI",
       "puntuacion": "4",
       "opiniones": "1",
-      "nombre_producto": "Villa TIAKI Jaula para animales pequeños",
+      "nombre_producto": {
+        "es": "Villa TIAKI Jaula para animales pequeños",
+        "en": "TIAKI Villa cage for small animals"
+      },
       "precio": 146.99,
-      "descripcion": "Jaula para animales pequeños, con 2 pisos y escaleras, incl. equipo básico como comedero y bebedero, base extraíble, ampliable con kit independiente, ruedas 360°, distancia entre rejillas: 23 mm",
-      "formato": "tamaño",
+      "descripcion": {
+        "es": "Jaula para animales pequeños, con 2 pisos y escaleras, incl. equipo básico como comedero y bebedero, base extraíble, ampliable con kit independiente, ruedas 360°, distancia entre rejillas: 23 mm",
+        "en": "Cage for small animals, with 2 floors and stairs, includes basic equipment such as feeder and waterer, removable base, expandable with independent kit, 360° wheels, grid spacing: 23 mm"
+      },
+      "formato": {
+        "es": "tamaño",
+        "en": "size"
+      },
       "descripcion_formato": "jaula principal + complemento (79 x 52 x 142 cm, L x An x Al)",
       "imagen_principal": "/assets/img/roedores/jaula.png",
       "imagen_miniatura": [
@@ -609,14 +766,26 @@
     },
     {
       "id": "ROE4",
-      "categoria": "Roedores",
+      "categoria": {
+        "es": "roedores",
+        "en": "rodents"
+      },
       "marca": "LUXE",
       "puntuacion": "1",
       "opiniones": "3",
-      "nombre_producto": "Bebedero Classic de Luxe",
+      "nombre_producto": {
+        "es": "Bebedero Classic de Luxe",
+        "en": "LUXE Classic water bottle"
+      },
       "precio": 7.49,
-      "descripcion": "Práctico bebedero para fijar en la jaula de conejos o pequeños roedores. Botella transparente de plástico con una boquilla reforzada de metal antioxidante y sistema antigoteo. Abrazadera incluida.",
-      "formato": "Capacidad líquida",
+      "descripcion": {
+        "es": "Práctico bebedero para fijar en la jaula de conejos o pequeños roedores. Botella transparente de plástico con una boquilla reforzada de metal antioxidante y sistema antigoteo. Abrazadera incluida.",
+        "en": "Practical water bottle for fixing in rabbit or small rodents cage. Transparent plastic bottle with a reinforced metal antioxidant nozzle and anti-flea system. Included strap."
+      },
+      "formato": {
+        "es": "Capacidad líquida",
+        "en": "Capacity liquid"
+      },
       "descripcion_formato": "600 ml",
       "imagen_principal": "/assets/img/roedores/bebedero.png",
       "imagen_miniatura": [
@@ -645,14 +814,26 @@
     },
     {
       "id": "ROE5",
-      "categoria": "Roedores",
+      "categoria": {
+        "es": "roedores",
+        "en": "rodents"
+      },
       "marca": "New Flag",
       "puntuacion": "3",
       "opiniones": "1",
-      "nombre_producto": "Pet Teezer De-shedding cepillo para mascotas",
+      "nombre_producto": {
+        "es": "Pet Teezer De-shedding cepillo para mascotas",
+        "en": "Pet Teezer De-shedding pet comb"
+      },
       "precio": 13.99,
-      "descripcion": "Cepillo para perros, gatos y animales pequeños, ideal para retirar los pelos sueltos y para usar en zonas sensibles, con púas blandas para un cuidado delicado, indicado para pelo seco o mojado.",
-      "formato": "Tamaño",
+      "descripcion": {
+        "es": "Cepillo para perros, gatos y animales pequeños, ideal para retirar los pelos sueltos y para usar en zonas sensibles, con púas blandas para un cuidado delicado, indicado para pelo seco o mojado.",
+        "en": "Pet comb for dogs, cats and small animals, ideal for removing loose hair and using on sensitive areas, with soft bristles for delicate care, suitable for dry or wet hair."
+      },
+      "formato": {
+        "es": "Tamaño",
+        "en": "Size"
+      },
       "descripcion_formato": "aprox. 12,5 x 5,5 x 5,5 cm (L x An x Al)",
       "imagen_principal": "/assets/img/roedores/cepillo.png",
       "imagen_miniatura": [
@@ -671,14 +852,26 @@
     },
     {
       "id": "DOG1",
-      "categoria": "perro",
+      "categoria": {
+        "es": "perro",
+        "en": "dog"
+      },
       "marca": "TK-Pet Tindaya caseta con puerta para perro",
       "puntuacion": "4",
       "opiniones": "18",
-      "nombre_producto": "caseta para perro",
+      "nombre_producto": {
+        "es": "caseta para perro",
+        "en": "dog house"
+      },
       "precio": 89.95,
-      "descripcion": "Caseta para perros con puerta para mayor comodidad y seguridad.",
-      "formato": "tamaño",
+      "descripcion": {
+        "es": "Caseta para perros con puerta para mayor comodidad y seguridad.",
+        "en": "Dog house with door for greater comfort and security."
+      },
+      "formato": {
+        "es": "tamaño",
+        "en": "size"
+      },
       "descripcion_formato": "Mediano",
       "imagen_principal": "/assets/img/perros/casetaperro.png",
       "imagen_miniatura": [
@@ -721,14 +914,26 @@
     },
     {
       "id": "DOG2",
-      "categoria": "perro",
+      "categoria": {
+        "es": "perro",
+        "en": "dog"
+      },
       "marca": "Juguete con cuerda DC Batman para perros",
       "puntuacion": "5",
       "opiniones": "22",
-      "nombre_producto": "juguete con cuerda",
+      "nombre_producto": {
+        "es": "juguete con cuerda",
+        "en": "jewel with string DC Batman for dogs"
+      },
       "precio": 10.99,
-      "descripcion": "Juguete con cuerda DC Batman para perros, ideal para mantener a tu mascota entretenida y activa.",
-      "formato": "Tamaño",
+      "descripcion": {
+        "es": "Juguete con cuerda DC Batman para perros, ideal para mantener a tu mascota entretenida y activa.",
+        "en": "Jewel with string DC Batman for dogs, ideal to keep your pet entertained and active."
+      },
+      "formato": {
+        "es": "Tamaño",
+        "en": "Size"
+      },
       "descripcion_formato": "20 cm",
       "imagen_principal": "/assets/img/perros/jugueteperro.png",
       "imagen_miniatura": [
@@ -764,14 +969,26 @@
     },
     {
       "id": "DOG3",
-      "categoria": "perro",
+      "categoria": {
+        "es": "perro",
+        "en": "dog"
+      },
       "marca": "cochesito para mascotas pequeñas Sporty pet stroller",
       "puntuacion": "4",
       "opiniones": "15",
-      "nombre_producto": "cochesito para mascotas",
+      "nombre_producto": {
+        "es": "cochesito para mascotas",
+        "en": "Sporty pet stroller for small pets"
+      },
       "precio": 66.99,
-      "descripcion": "Cochesito para mascotas pequeñas Sporty pet stroller, ideal para pasear a tu mascota con comodidad y seguridad.",
-      "formato": "color",
+      "descripcion": {
+        "es": "Cochesito para mascotas pequeñas Sporty pet stroller, ideal para pasear a tu mascota con comodidad y seguridad.",
+        "en": "Sporty pet stroller for small pets, ideal for walking your pet with comfort and security."
+      },
+      "formato": {
+        "es": "color",
+        "en": "color"
+      },
       "descripcion_formato": "Gris claro",
       "imagen_principal": "/assets/img/perros/cochesitoperro.png",
       "imagen_miniatura": [
@@ -807,14 +1024,26 @@
     },
     {
       "id": "DOG4",
-      "categoria": "perro",
+      "categoria": {
+        "es": "perro",
+        "en": "dog"
+      },
       "marca": "Pedigree dentastix/dentastix fresh 120 uds- pack ahorro",
       "puntuacion": "5",
       "opiniones": "19",
-      "nombre_producto": "Pedigree dentastix",
+      "nombre_producto": {
+        "es": "Pedigree dentastix",
+        "en": "Pedigree dentastix"
+      },
       "precio": 21.99,
-      "descripcion": "pedigree dentastix para el cuidado dental de perros.",
-      "formato": "Unidades",
+      "descripcion": {
+        "es": "pedigree dentastix para el cuidado dental de perros.",
+        "en": "Pedigree dentastix for dog dental care."
+      },
+      "formato": {
+        "es": "Unidades",
+        "en": "Units"
+      },
       "descripcion_formato": "120 uds",
       "imagen_principal": "/assets/img/perros/dientesperro.png",
       "imagen_miniatura": [
@@ -856,14 +1085,26 @@
     },
     {
       "id": "DOG5",
-      "categoria": "perro",
+      "categoria": {
+        "es": "perro",
+        "en": "dog"
+      },
       "marca": "Hill`S Prescription Diet food sensitives Z/D pienso para perros",
       "puntuacion": "5",
       "opiniones": "21",
-      "nombre_producto": "Hill`S Prescription",
+      "nombre_producto": {
+        "es": "Hill`S Prescription",
+        "en": "Hill`S Prescription Diet food sensitives Z/D"
+      },
       "precio": 81.49,
-      "descripcion": "Pienso para perros Hill`S Prescription Diet food sensitives Z/D.",
-      "formato": "peso producto",
+      "descripcion": {
+        "es": "Pienso para perros Hill`S Prescription Diet food sensitives Z/D.",
+        "en": "Hill`S Prescription Diet food sensitives Z/D dog food."
+      },
+      "formato": {
+        "es": "peso producto",
+        "en": "weight product"
+      },
       "descripcion_formato": "10Kg",
       "imagen_principal": "/assets/img/perros/piensoperro.png",
       "imagen_miniatura": [
@@ -906,14 +1147,26 @@
     },
     {
       "id": "TXO1",
-      "categoria": "pajaro",
+      "categoria": {
+        "es": "pajaro",
+        "en": "bird"
+      },
       "marca": "Versele-Laga",
       "puntuacion": "5",
       "opiniones": "20",
-      "nombre_producto": "Versele-Laga Prestige comida para cotorras y ninfas",
+      "nombre_producto": {
+        "es": "Versele-Laga Prestige comida para cotorras y ninfas",
+        "en": "Versele-Laga Prestige food for parrots and macaws"
+      },
       "precio": 10.29,
-      "descripcion": "Alimento especialmente adaptado a las cotorras y ninfas, mezcla equilibrada de granos para una alimentación óptima, potencia el colorido de las plumas y promueve una vida larga y sana.",
-      "formato": "peso producto",
+      "descripcion": {
+        "es": "Alimento especialmente adaptado a las cotorras y ninfas, mezcla equilibrada de granos para una alimentación óptima, potencia el colorido de las plumas y promueve una vida larga y sana.",
+        "en": "Special food for parrots and macaws, balanced grain mix for optimal nutrition, enhances feather color and promotes a long and healthy life."
+      },
+      "formato": {
+        "es": "peso producto",
+        "en": "weight product"
+      },
       "descripcion_formato": "4 Kg",
       "imagen_principal": "/assets/img/pajaros/comida.png",
       "imagen_miniatura": [
@@ -954,14 +1207,26 @@
     },
     {
       "id": "TXO2",
-      "categoria": "pajaro",
+      "categoria": {
+        "es": "pajaro",
+        "en": "bird"
+      },
       "marca": "Montana",
       "puntuacion": "3",
       "opiniones": "2",
-      "nombre_producto": "Jaula Montana Finca Play para pájaros",
+      "nombre_producto": {
+        "es": "Jaula Montana Finca Play para pájaros",
+        "en": "Montana Finca Play bird cage"
+      },
       "precio": 207.99,
-      "descripcion": "Jaula para loros pequeños, cotorras y ninfas, con 2 perchas en 2 niveles y comederos, parte frontal para recoger la comida, con ruedas 360°, 18 mm entre rejillas.",
-      "formato": "Tamaño",
+      "descripcion": {
+        "es": "Jaula para loros pequeños, cotorras y ninfas, con 2 perchas en 2 niveles y comederos, parte frontal para recoger la comida, con ruedas 360°, 18 mm entre rejillas.",
+        "en": "Cage for small parrots, macaws and macaws, with 2 perches in 2 levels and feeders, front part to collect food, with wheels 360°, 18 mm between bars."
+      },
+      "formato": {
+        "es": "Tamaño",
+        "en": "Size"
+      },
       "descripcion_formato": "77 x 71 x 165 cm (L x An x Al) - (*envío en 2 paquetes)",
       "imagen_principal": "/assets/img/pajaros/jaulatx.png",
       "imagen_miniatura": [
@@ -987,14 +1252,26 @@
     },
     {
       "id": "TXO3",
-      "categoria": "pajaro",
+      "categoria": {
+        "es": "pajaro",
+        "en": "bird"
+      },
       "marca": "Kerbl Hobbyfarming Riederstein",
       "puntuacion": "4",
       "opiniones": "0",
-      "nombre_producto": "Comedero Kerbl Hobbyfarming Riederstein para pájaros",
+      "nombre_producto": {
+        "es": "Comedero Kerbl Hobbyfarming Riederstein para pájaros",
+        "en": "Kerbl Hobbyfarming Riederstein bird feeder"
+      },
       "precio": 11.29,
-      "descripcion": "Comedero de madera para aves silvestres, perfecto para el jardín, balcón o patio, con ventanas transparentes de cristal acrílico, techo abatible y percha, materiales resistentes a la intemperie",
-      "formato": "Tamaño",
+      "descripcion": {
+        "es": "Comedero de madera para aves silvestres, perfecto para el jardín, balcón o patio, con ventanas transparentes de cristal acrílico, techo abatible y percha, materiales resistentes a la intemperie",
+        "en": "Wood feeder for wild birds, perfect for the garden, balcony or patio, with transparent windows of acrylic glass, removable roof and perch, durable materials against the weather"
+      },
+      "formato": {
+        "es": "Tamaño",
+        "en": "Size"
+      },
       "descripcion_formato": "23,8 x 17 x 20,7 cm (L x An x Al)",
       "imagen_principal": "/assets/img/pajaros/comedero.png",
       "imagen_miniatura": [
@@ -1004,14 +1281,26 @@
     },
     {
       "id": "TXO4",
-      "categoria": "pajaro",
+      "categoria": {
+        "es": "pajaro",
+        "en": "bird"
+      },
       "marca": "TIAKI",
       "puntuacion": "4",
       "opiniones": "2",
-      "nombre_producto": "Piñata TIAKI Lama juguete para pájaros",
+      "nombre_producto": {
+        "es": "Piñata TIAKI Lama juguete para pájaros",
+        "en": "TIAKI Lama bird toy"
+      },
       "precio": 3.99,
-      "descripcion": "Colorida piñata de juguete para pájaros pequeños y medianos, con tiras de papel para desplumar, se puede rellenar con golosinas o juguetes, con gancho metálico para sujetarla a la pajarera",
-      "formato": "Tamaño",
+      "descripcion": {
+        "es": "Colorida piñata de juguete para pájaros pequeños y medianos, con tiras de papel para desplumar, se puede rellenar con golosinas o juguetes, con gancho metálico para sujetarla a la pajarera",
+        "en": "Colorful bird toy for small and medium birds, with paper strips to pluck, can be filled with candies or toys, with metal hook to hang it on the birdhouse"
+      },
+      "formato": {
+        "es": "Tamaño",
+        "en": "Size"
+      },
       "descripcion_formato": "aprox. 14 x 6 x 23 cm (L x An x Al)",
       "imagen_principal": "/assets/img/pajaros/piñata.png",
       "imagen_miniatura": [
@@ -1035,14 +1324,26 @@
     },
     {
       "id": "TXO5",
-      "categoria": "pajaro",
+      "categoria": {
+        "es": "pajaro",
+        "en": "bird"
+      },
       "marca": "Verm-x",
       "puntuacion": "5",
       "opiniones": "1",
-      "nombre_producto": "Verm-x pellets para pájaros",
+      "nombre_producto": {
+        "es": "Verm-x pellets para pájaros",
+        "en": "Verm-x pellets for birds"
+      },
       "precio": 34.99,
-      "descripcion": "Alimento complementario natural para pollos, patos y otras aves desde los 2 meses, también para polluelos y animales sensibles, favorece la función digestiva natural, con hierbas, sin aditivos químicos",
-      "formato": "Peso",
+      "descripcion": {
+        "es": "Alimento complementario natural para pollos, patos y otras aves desde los 2 meses, también para polluelos y animales sensibles, favorece la función digestiva natural, con hierbas, sin aditivos químicos",
+        "en": "Natural complementary food for chickens, ducks and other birds from 2 months, also for chicks and sensitive animals, promotes natural digestive function, with herbs, without chemical additives"
+      },
+      "formato": {
+        "es": "Peso",
+        "en": "Weight"
+      },
       "descripcion_formato": "750 g",
       "imagen_principal": "/assets/img/pajaros/pellets.png",
       "imagen_miniatura": [

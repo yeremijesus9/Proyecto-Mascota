@@ -1,20 +1,15 @@
 {
   "name": "back1",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "dev2": "json-server --watch db2.json --port 12001"
-
+    "dev": "json-server --watch db.json --port 3000"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "description": "",
   "dependencies": {
     "json-server": "^1.0.0-beta.3"
-  },
-  "devDependencies": {
-    "concurrently": "^9.2.1"
   }
 }
