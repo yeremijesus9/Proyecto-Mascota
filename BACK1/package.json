@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev2": "json-server --watch db2.json --port 12001"
+    "dev": "json-server --watch db.json --port 3000"
 
   },
   "keywords": [],
@@ -13,6 +13,5 @@
   "type": "commonjs",
   "dependencies": {
     "json-server": "^1.0.0-beta.3"
-  },
-  "type": "commonjs"
+  }
 }
