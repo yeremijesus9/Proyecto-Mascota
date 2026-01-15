@@ -134,7 +134,8 @@ function mostrarDetalle(id) {
     window.location.href = `detalle_producto.html?id=${encodeURIComponent(id)}`;
 }
 
-// Solo mostramos productos al inicio. El idioma lo maneja nav_footer/idioma.js llamando a window.mostrarProductos()
-document.addEventListener('DOMContentLoaded', () => {
-    mostrarProductos();
-});
+// Eliminamos el DOMContentLoaded listener porque nav_footer.js se encargará de llamar a mostrarProductos()
+// una vez que se haya cargado el navbar y las traducciones.
+// document.addEventListener('DOMContentLoaded', () => {
+//     mostrarProductos();
+// });

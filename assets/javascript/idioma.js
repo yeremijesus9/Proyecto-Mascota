@@ -22,7 +22,7 @@ window.cambiarIdioma = async function (nuevoIdioma) {
 
   // refresco los textos de los botones y menús.
   if (typeof window.loadTranslations === "function") {
-    window.loadTranslations(window.rutaInterfaceJson());
+    await window.loadTranslations(window.rutaInterfaceJson());
   }
 
   // si estamos en la home, que se refresquen los destacados.

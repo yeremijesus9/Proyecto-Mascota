@@ -86,11 +86,16 @@ function loadHTML(containerId, filePath) {
                 }
 
                 if (typeof window.loadTranslations === 'function' && window.rutaInterfaceJson) {
-                    window.loadTranslations(window.rutaInterfaceJson());
-                }
-
-                if (window.cargarYMostrarProductos) {
-                    window.cargarYMostrarProductos();
+                    window.loadTranslations(window.rutaInterfaceJson()).then(() => {
+                        // Al terminar de cargar traducciones, lanzamos la carga de productos
+                        // para asegurar que los botones (ver detalle, comprar) tengan el texto correcto.
+                        if (window.cargarYMostrarProductos) {
+                            window.cargarYMostrarProductos();
+                        }
+                        if (window.mostrarProductos) {
+                            window.mostrarProductos();
+                        }
+                    });
                 }
             }
         })
