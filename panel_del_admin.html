@@ -1,59 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Administración</title>
-    <link rel="stylesheet" href="assets/css/panel_del_admin.css">
-    <link rel="stylesheet" href="assets/css/productos.css">
-    <link rel="stylesheet" href="assets/css/checkout.css">
+    <title>Miwuff - Panel de Administración</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/navfooterStyles.css">
-    
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/panel_del_admin.css">
 </head>
- <body>
-    <header>
+<body>
+    <div id="nav-container"></div>
 
-          <body>
-        <div id="nav-container"></div>
+    <div class="admin-layout">
+        <aside class="sidebar">
+            <div class="dashboard-title">
+                <i class="fas fa-paw"></i> Dashboard
+            </div>
+            <nav>
+                <button class="nav-btn active" onclick="location.href='panel_del_admin.html'">Productos</button>
+                <button class="nav-btn" onclick="location.href='##'">Servicios</button>
+                <button class="nav-btn"onclick="location.href='##'">Usuario/Roles</button>
+            </nav>
+        </aside>
 
-        <main>
-</header>
-<h1 id="titulo-categoria" style="text-align:center; color:#D37C39; margin-top:50px; font-size: 2.5em;">
-    
-        <h1>Panel de Administración - Productos</h1>
-        <div class="get-product-form">
-            <label for="product-id">ID del Producto a Escoger:</label>
-            <input type="text" id="product-id" placeholder="Ingrese el ID del producto">
-            <button id="get-product-form">Escoger Producto</button>
-        </div>
-        <div id="message"></div>
+        <main class="main-content">
+            <h1 class="page-title">Gestión de Productos</h1>
+            
+            <div id="productos-lista" class="products-container">
+                <div class="table-header">
+                    <span>Imagen</span>
+                    <span></span>
+                    <span class="text-center">Precio</span>
+                    <span class="text-center">Acciones</span>
+                </div>
+            </div>
 
-        <div class="post-product-form">
-            <label for="product-id">ID del Producto a Publicar:</label>
-            <input type="text" id="product-id" placeholder="Ingrese el ID del producto">
-            <button id="post-product-btn">Publicar Producto</button>
-        </div>
-        <div id="message"></div>
+            <button class="fab-add" id="btn-add-product">+</button>
+        </main>
+    </div>
 
-         <div class="put-product-form">
-            <label for="product-id">ID del Producto a Seleccionar:</label>
-            <input type="text" id="product-id" placeholder="Ingrese el ID del producto">
-            <button id="put-product-btn">Poner Producto</button>
-        </div>
-        <div id="message"></div>
+    <div id="footer-container"></div>
 
-         <div class="delete-product-form">
-            <label for="product-id">ID del Producto a Eliminar:</label>
-            <input type="text" id="product-id" placeholder="Ingrese el ID del producto">
-            <button id="delete-product-btn">Eliminar Producto</button>
-        </div>
-        <div id="message"></div>
-        
-    </header>
-
-
-
- </body>
+    <script src="assets/javascript/nav_footer.js"></script>
+    <script src="assets/javascript/rutas.js"></script>
+    <script src="assets/javascript/panel_del_admin.js"></script>
+</body>
 </html>
-
-
