@@ -1,36 +1,10 @@
-// aquí controlo la home: productos destacados y el cambio de idioma.
-const idiomasDisponibles = ['es', 'en'];
-let langGuardado = localStorage.getItem('lang');
-window.idiomaActual = idiomasDisponibles.includes(langGuardado) ? langGuardado : 'es';
-localStorage.setItem('lang', window.idiomaActual);
+// aquí controlo la home: productos destacados.
 
-window.textosInterface = {};
+// En home.js ya no inicializamos el idioma por nuestra cuenta.
+// Confiamos en que idioma.js ya se ha ejecutado y ha configurado window.idiomaActual
 
-// busco los elementos con data-key y les enchufo el texto traducido.
-async function cargarInterface() {
-    try {
-        // uso la ruta global de idioma.js
-        const resp = await fetch(window.rutaInterfaceJson(), { cache: 'no-cache' });
-        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-        const data = await resp.json();
-        // json-server devuelve un array, necesitamos el primer elemento
-        const textos = Array.isArray(data) && data.length > 0 ? data[0] : data;
-        window.textosInterface = textos;
-
-        document.querySelectorAll('[data-key]').forEach(el => {
-            const key = el.getAttribute('data-key');
-            if (textos[key]) {
-                if ('placeholder' in el) {
-                    el.placeholder = textos[key];
-                } else {
-                    el.innerHTML = textos[key];
-                }
-            }
-        });
-    } catch (error) {
-        console.error('error al cargar interfaz:', error);
-    }
-}
+// Aliamos la función para que nav_footer.js la pueda llamar al terminar de cargar el nav
+window.cargarYMostrarProductos = cargarYMostrarDestacados;
 
 // dibujo las estrellas de la puntuación (máximo 5).
 function crearEstrellas(puntuacion) {
@@ -46,6 +20,10 @@ function renderProducto(producto, contenedor) {
     // Forma simple de elegir el idioma: si es un objeto, sacamos el idioma actual, si no, el texto tal cual
     const nombre = typeof producto.nombre_producto === 'object' ? producto.nombre_producto[window.idiomaActual] : producto.nombre_producto;
     const precio = Number(producto.precio || 0);
+    
+    // Obtenemos textos de la interfaz global
+    const txtVerDetalle = window.textosInterface && window.textosInterface.ver_detalle ? window.textosInterface.ver_detalle : 'ver detalle';
+    const txtComprar = window.textosInterface && window.textosInterface.detalle_agregar_carrito ? window.textosInterface.detalle_agregar_carrito : 'comprar';
 
     tarjeta.innerHTML = `
         <img class="producto-imagen" src="${producto.imagen_principal}" alt="imagen de ${nombre}" loading="lazy" decoding="async">
@@ -55,10 +33,10 @@ function renderProducto(producto, contenedor) {
             <div class="puntuacion">${crearEstrellas(producto.puntuacion)}<span class="opiniones"> (${producto.opiniones || 0})</span></div>
             <span class="precio">${new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(precio)}</span>
         </div>
-        <button type="button" class="ver-detalle">${window.textosInterface?.ver_detalle || 'ver detalle'}</button>
+        <button type="button" class="ver-detalle">${txtVerDetalle}</button>
         <button type="button" class="btn-anadir-carrito" 
             data-producto-id="${producto.id}"
-        >${window.textosInterface?.detalle_agregar_carrito || 'comprar'}</button>
+        >${txtComprar}</button>
     `;
 
     // meto el objeto entero en el botón para que el carrito lo pille fácil.
@@ -80,12 +58,11 @@ async function cargarYMostrarDestacados() {
     if (!cont1 || !cont2) return;
 
     try {
-        await cargarInterface();
-        // uso la ruta global de idioma.js
-        const resp = await fetch(window.rutaJson(), { cache: 'no-cache' });
+        // Obtenemos la URL del json de productos desde idioma.js
+        const urlProductos = window.rutaJson ? window.rutaJson() : 'http://localhost:3000/products';
+        const resp = await fetch(urlProductos, { cache: 'no-cache' });
         if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
         const data = await resp.json();
-        // json-server devuelve directamente el array de productos
         const productos = Array.isArray(data) ? data : [];
 
         const bloque1 = productos.slice(0, 6);
@@ -107,32 +84,8 @@ function mostrarDetalle(id) {
     window.location.href = `detalle_producto.html?id=${encodeURIComponent(id)}`;
 }
 
-// recargo todo si el usuario cambia el idioma en el selector.
-async function cambiarIdioma(nuevoIdioma) {
-    if (!nuevoIdioma || nuevoIdioma === window.idiomaActual) return;
+// Exponemos la función globalmente para que idioma.js pueda llamarla
+window.cargarYMostrarDestacados = cargarYMostrarDestacados;
 
-    window.idiomaActual = nuevoIdioma;
-    localStorage.setItem('lang', nuevoIdioma);
-
-    const cont1 = document.getElementById('destacados-1');
-    const cont2 = document.getElementById('destacados-2');
-    if (cont1 && cont2) {
-        cont1.innerHTML = '<p class="loading">cargando...</p>';
-        cont2.innerHTML = '';
-    }
-
-    await cargarInterface();
-    await cargarYMostrarDestacados();
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    cargarYMostrarDestacados();
-    cargarInterface();
-
-    document.querySelectorAll('#languageMenu a').forEach(btn => {
-        btn.addEventListener('click', e => {
-            e.preventDefault();
-            cambiarIdioma(btn.getAttribute('lang'));
-        });
-    });
-});
+// Ya no añadimos listeners duplicados ni logica de idiomaLocal aquí.
+// nav_footer.js se encarga de llamar a window.cargarYMostrarProductos() cuando todo esté listo.

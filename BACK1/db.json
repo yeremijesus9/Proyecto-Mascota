@@ -10,13 +10,11 @@
       "puntuacion": "4",
       "opiniones": "20 ",
       "nombre_producto": {
-        "es": "Grature Pienso de Pollo para Gatos Adultos Esterilizados",
-        "en": "Grature Chicken Dry Food for Sterilized Adult Cats"
+        "es": "Grature Chicken Dry Food for Sterilized Adult Cats"
       },
-      "precio": 6.99,
+      "precio": 8,
       "descripcion": {
-        "es": "Pienso para gatos adultos esterilizados de pollo   Grature Pollo es una alimentación elaborada con ingredientes naturales para gatos adultos.",
-        "en": "Dry food for sterilized adult cats, made with chicken. Grature Chicken is a diet made with natural ingredients for adult cats."
+        "es": "Dry food for sterilized adult cats, made with chicken. Grature Chicken is a diet made with natural ingredients for adult cats."
       },
       "formato": {
         "es": "peso producto",
@@ -1359,6 +1357,15 @@
           "texto": "A mis gallinas les encanta este complemento. He notado una mejora en su digestión y en la calidad de sus huevos desde que empecé a dárselos. Además, es natural y sin químicos, lo cual es un gran plus."
         }
       ]
+    }
+  ],
+  "carrito": [
+    {
+      "id": "ROE1",
+      "nombre": "JR Schmaus comida para cobayas",
+      "precio": 8.99,
+      "imagen": "/assets/img/roedores/jr_schmaus.png",
+      "cantidad": 1
     }
   ]
 }
