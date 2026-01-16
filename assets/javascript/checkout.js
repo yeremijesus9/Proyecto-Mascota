@@ -97,11 +97,37 @@ async function finalizarCompra(e) {
         total: document.getElementById('total').textContent
     };
 
-    // guardo el pedido en localstorage para simular que se ha hecho la compra.
-    // (En un futuro podríamos guardarlo también en db.json creando una sección "pedidos")
-    const pedidos = JSON.parse(localStorage.getItem('pedidos') || '[]');
-    pedidos.push(pedido);
-    localStorage.setItem('pedidos', JSON.stringify(pedidos));
+    // PREPARAR DATOS PARA DB.JSON (datos_envio)
+    // Usamos una estructura plana como sugieren los campos en db.json
+    const envioData = {
+        nombre: nombre,
+        email: email,
+        telefono: telefono,
+        direccion: direccion,
+        ciudad: ciudad,
+        codigo_postal: codigoPostal,
+        metodo_pago: metodoPago,
+        producto: carritoCheckout, // Array con los productos comprados
+        precio_total: document.getElementById('total').textContent,
+        numero_pedido: numeroPedido,
+        fecha: new Date().toISOString()
+    };
+
+    // GUARDAR EN SERVIDOR (db.json/datos_envio)
+    try {
+        const respuestaPedido = await fetch('http://localhost:3000/datos_envio', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(envioData)
+        });
+
+        if (!respuestaPedido.ok) throw new Error("Error guardando pedido");
+
+    } catch (error) {
+        console.error("Error al guardar pedido en servidor:", error);
+        alert("Hubo un problema procesando el pedido. Inténtalo de nuevo.");
+        return;
+    }
 
     // vacio el carrito DEL SERVIDOR
     try {
