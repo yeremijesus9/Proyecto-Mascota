@@ -40,6 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnCerrar = document.getElementById("popup-cerrar");
 
     if (popup && btnCerrar) {
+        // Verificar si el usuario ya cerró el popup anteriormente
+        if (localStorage.getItem("popupOfertaCerrado") === "true") {
+            popup.style.display = "none"; // Asegurarnos de que no sea visible
+            return;
+        }
+
         popup.classList.add("activo");
 
         // que se quite solo a los 7 segundos si el usuario no hace nada.
@@ -49,6 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         btnCerrar.addEventListener("click", () => {
             popup.classList.remove("activo");
+            // Guardar en localStorage que el usuario ya cerró el popup
+            localStorage.setItem("popupOfertaCerrado", "true");
         });
     }
 });
