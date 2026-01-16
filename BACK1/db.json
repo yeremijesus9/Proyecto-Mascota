@@ -337,10 +337,10 @@
         "en": "weight product"
       },
       "descripcion_formato": "250 gr",
-      "imagen_principal": "/assets/img/peces/PEZ01_0.png",
+      "imagen_principal": "http://127.0.0.1:5505/assets/img/peces/PEZ01_0.png",
       "imagen_miniatura": [
-        "/assets/img/peces/PEZ01_0.png",
-        "/assets/img/peces/PEZ01_1.png"
+        "http://127.0.0.1:5505/assets/img/peces/PEZ01_0.png",
+        "http://127.0.0.1:5505/assets/img/peces/PEZ01_1.png"
       ],
       "comentarios": [
         {
@@ -787,9 +787,9 @@
         "en": "Capacity liquid"
       },
       "descripcion_formato": "600 ml",
-      "imagen_principal": "/assets/img/roedores/bebedero.png",
+      "imagen_principal": "http://127.0.0.1:5505/assets/img/roedores/bebedero.png",
       "imagen_miniatura": [
-        "/assets/img/roedores/bebedero.png"
+        "http://127.0.0.1:5505/assets/img/roedores/bebedero.png"
       ],
       "comentarios": [
         {
@@ -935,10 +935,10 @@
         "en": "Size"
       },
       "descripcion_formato": "20 cm",
-      "imagen_principal": "/assets/img/perros/jugueteperro.png",
+      "imagen_principal": "http://127.0.0.1:5505/assets/img/perros/jugueteperro.png",
       "imagen_miniatura": [
-        "/assets/img/perros/jugueteperro.png",
-        "/assets/img/perros/jugueteperro2.png"
+        "http://127.0.0.1:5505/assets/img/perros/jugueteperro.png",
+        "http://127.0.0.1:5505/assets/img/perros/jugueteperro2.png"
       ],
       "comentarios": [
         {
@@ -1360,5 +1360,6 @@
         }
       ]
     }
-  ]
+  ],
+  "carrito": []
 }
