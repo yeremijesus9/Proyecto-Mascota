@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Miwuff Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="nuevocss.css">
+</head>
+<body>
+    <header class="top-nav">
+        <div class="logo">Miwuff</div>
+        <div class="search-container">
+            <input type="text" placeholder="Search...">
+            <span class="search-icon">🔍</span>
+        </div>
+        <div class="user-menu">
+            <div class="avatar"></div>
+            <div class="avatar"></div>
+            <div class="avatar"></div>
+        </div>
+    </header>
+
+    <div class="layout">
+        <aside class="sidebar">
+            <nav>
+                <div class="nav-item active">🐾 Dashboard</div>
+                <div class="nav-item color-1">📦 Productos</div>
+                <div class="nav-item color-2">💼 Servicios</div>
+                <div class="nav-item color-3">👥 Usuario/Roles</div>
+                <div class="nav-item color-1">💼 Servicios</div>
+                <div class="nav-item color-2">📦 Servicios</div>
+                <div class="nav-item color-3">👥 Usuario/Roles</div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <h1 class="main-title">Agregar Nuevo Producto</h1>
+            
+            <section class="form-container">
+                <div class="input-group">
+                    <label>Categoria</label>
+                    <input type="text">
+                </div>
+                <div class="input-group">
+                    <label>Marca</label>
+                    <input type="text">
+                </div>
+                <div class="input-group">
+                    <label>Precio</label>
+                    <input type="text">
+                </div>
+                <div class="input-group">
+                    <label>Descripcion</label>
+                    <input type="text">
+                </div>
+                <div class="input-group">
+                    <label>Formato:</label>
+                    <input type="text">
+                </div>
+
+                <div class="upload-section">
+                    <h3>Imagen principal:</h3>
+                    <div class="drop-area">
+                        <div class="img-placeholder">🖼️</div>
+                        <p>Arrastra tu imagen aquí o <span>haz click para seleccionar</span></p>
+                    </div>
+                    <div class="btn-row">
+                        <button class="btn-fill">Añadir imagen</button>
+                        <button class="btn-outline">Cancelar</button>
+                    </div>
+                </div>
+
+                <div class="final-actions">
+                    <button class="btn-save">Guardar Productos</button>
+                    <button class="btn-cancel">Cancelar</button>
+                </div>
+            </section>
+
+            <div class="json-box">
+                <div class="json-header">Previsualización JSON <span>&lt;/&gt;</span></div>
+                <code>[Patee Tole:ice mef!", "Costhegl4"]...</code>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
