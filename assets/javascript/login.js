@@ -299,7 +299,6 @@ function actualizarIconoUsuario() {
             btnAdmin.href = 'panel_del_admin.html';
             btnAdmin.id = 'btnAdminPanel';
             btnAdmin.className = 'admin-panel-link';
-            btnAdmin.title = 'Panel de Administración';
             btnAdmin.innerHTML = '<span class="iconify" data-icon="mdi:view-dashboard"></span>';
             btnAdmin.style.cssText = 'margin-right: 15px; display: inline-flex; align-items: center;';
 
