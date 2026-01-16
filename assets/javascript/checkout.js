@@ -2,24 +2,35 @@
 let carritoCheckout = [];
 const ENVIO = 4.99;
 
-document.addEventListener('DOMContentLoaded', function () {
-    cargarCarrito();
-    mostrarProductos();
-    calcularTotales();
+const API_URL = 'http://localhost:3000/carrito';
 
-    // mando el pedido cuando le dan a finalizar.
+document.addEventListener('DOMContentLoaded', async function () {
+    await cargarCarrito();
+    // mostrarProductos y calcularTotales se llaman dentro de cargarCarrito si todo va bien
     document.getElementById('form-checkout').addEventListener('submit', finalizarCompra);
 });
 
-// saco los datos del carrito. si no hay nada, te mando de vuelta a la tienda.
-function cargarCarrito() {
-    const carritoGuardado = localStorage.getItem('MiwuffCarrito');
-    if (!carritoGuardado || carritoGuardado === '[]') {
-        alert('tu carrito está vacío');
-        window.location.href = 'index.html';
-        return;
+// saco los datos del carrito DESDE EL SERVIDOR
+async function cargarCarrito() {
+    try {
+        const respuesta = await fetch(API_URL);
+        if (!respuesta.ok) throw new Error("Error al cargar carrito");
+
+        carritoCheckout = await respuesta.json();
+
+        if (carritoCheckout.length === 0) {
+            alert('tu carrito está vacío');
+            window.location.href = 'index.html';
+            return;
+        }
+
+        mostrarProductos();
+        calcularTotales();
+
+    } catch (error) {
+        console.error(error);
+        alert('Hubo un error cargando tu compra');
     }
-    carritoCheckout = JSON.parse(carritoGuardado);
 }
 
 // pongo la lista de productos que vas a pagar a la derecha.
@@ -58,7 +69,7 @@ function calcularTotales() {
 }
 
 // guardo el pedido en localstorage para simular que se ha hecho la compra.
-function finalizarCompra(e) {
+async function finalizarCompra(e) {
     e.preventDefault();
 
     const nombre = document.getElementById('nombre').value;
@@ -86,12 +97,20 @@ function finalizarCompra(e) {
         total: document.getElementById('total').textContent
     };
 
+    // guardo el pedido en localstorage para simular que se ha hecho la compra.
+    // (En un futuro podríamos guardarlo también en db.json creando una sección "pedidos")
     const pedidos = JSON.parse(localStorage.getItem('pedidos') || '[]');
     pedidos.push(pedido);
     localStorage.setItem('pedidos', JSON.stringify(pedidos));
 
-    // limpio el carrito para que no se quede ahí después de comprar.
-    localStorage.removeItem('MiwuffCarrito');
+    // vacio el carrito DEL SERVIDOR
+    try {
+        for (const item of carritoCheckout) {
+            await fetch(`${API_URL}/${item.id}`, { method: 'DELETE' });
+        }
+    } catch (error) {
+        console.error("Error vaciando el carrito", error);
+    }
 
     // enseño el cartel de que todo ha ido bien.
     document.getElementById('numero-pedido').textContent = numeroPedido;
