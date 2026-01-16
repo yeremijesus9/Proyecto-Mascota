@@ -179,65 +179,50 @@ window.todosLosProductos = [];
         document.getElementById('qty-incr').addEventListener('click', () => qtyEl.value = Number(qtyEl.value) + 1);
         document.getElementById('qty-decr').addEventListener('click', () => qtyEl.value = Math.max(1, Number(qtyEl.value) - 1));
 
-        // meto el producto en el carrito (localstorage) al dar al botón.
-        document.getElementById('add-cart').addEventListener('click', () => {
+        // meto el producto en el carrito (servidor) al dar al botón.
+        document.getElementById('add-cart').addEventListener('click', async (e) => {
+            e.preventDefault(); // EVITA RECARGA
+
             const cantidad = Number(qtyEl.value) || 1;
             const formato = document.querySelector('.formato-opcion.formato-activo')?.dataset.formato;
-            const carrito = JSON.parse(localStorage.getItem('MiwuffCarrito') || '[]');
-            const existente = carrito.find(item => item.id === producto.id);
 
-            if (existente) {
-                existente.cantidad += cantidad;
+            // Preparamos el objeto para la función plusProducto
+            const nombreParaCarrito = typeof producto.nombre_producto === 'object' ? producto.nombre_producto[window.idiomaActual] : producto.nombre_producto;
+
+            const productoAGuardar = {
+                id: producto.id,
+                nombre: nombreParaCarrito,
+                precio: Number(producto.precio),
+                imagen: producto.imagen_principal,
+                formato: formato
+            };
+
+            // Llamamos a la función global del carrito pasándole la cantidad indicada
+            if (window.plusProducto) {
+                await window.plusProducto(productoAGuardar, cantidad);
             } else {
-                const nombreParaCarrito = typeof producto.nombre_producto === 'object' ? producto.nombre_producto[window.idiomaActual] : producto.nombre_producto;
-                carrito.push({
-                    id: producto.id,
-                    nombre: nombreParaCarrito,
-                    precio: Number(producto.precio),
-                    imagen: producto.imagen_principal,
-                    cantidad,
-                    formato
-                });
+                console.error("No se encontró la función plusProducto");
             }
-
-            localStorage.setItem('MiwuffCarrito', JSON.stringify(carrito));
-
-            const contador = document.querySelector('.carrito-contador');
-            if (contador) {
-                const total = carrito.reduce((sum, item) => sum + item.cantidad, 0);
-                contador.textContent = total;
-                contador.style.display = total > 0 ? 'flex' : 'none';
-            }
-
-            const nombreLoc = typeof producto.nombre_producto === 'object' ? producto.nombre_producto[window.idiomaActual] : producto.nombre_producto;
-            const notif = document.createElement('div');
-            notif.textContent = ` ${cantidad} x ${nombreLoc} añadido al carrito`;
-            notif.style.cssText = "position:fixed; top:20px; right:20px; background:#28a745; color:white; padding:15px; border-radius:5px; z-index:10000; box-shadow: 0 4px 6px rgba(0,0,0,0.1);";
-            document.body.appendChild(notif);
-            setTimeout(() => notif.remove(), 2000);
         });
 
-        document.getElementById('buy-now').addEventListener('click', () => {
+        document.getElementById('buy-now').addEventListener('click', async (e) => {
+            e.preventDefault();
             const cantidad = Number(qtyEl.value) || 1;
             const formato = document.querySelector('.formato-opcion.formato-activo')?.dataset.formato;
-            const carrito = JSON.parse(localStorage.getItem('MiwuffCarrito') || '[]');
-            const existente = carrito.find(item => item.id === producto.id);
 
-            if (existente) {
-                existente.cantidad += cantidad;
-            } else {
-                const nombreParaCarrito = typeof producto.nombre_producto === 'object' ? producto.nombre_producto[window.idiomaActual] : producto.nombre_producto;
-                carrito.push({
-                    id: producto.id,
-                    nombre: nombreParaCarrito,
-                    precio: Number(producto.precio),
-                    imagen: producto.imagen_principal,
-                    cantidad,
-                    formato
-                });
+            const nombreParaCarrito = typeof producto.nombre_producto === 'object' ? producto.nombre_producto[window.idiomaActual] : producto.nombre_producto;
+
+            const productoAGuardar = {
+                id: producto.id,
+                nombre: nombreParaCarrito,
+                precio: Number(producto.precio),
+                imagen: producto.imagen_principal,
+                formato: formato
+            };
+
+            if (window.plusProducto) {
+                await window.plusProducto(productoAGuardar, cantidad);
             }
-
-            localStorage.setItem('MiwuffCarrito', JSON.stringify(carrito));
             window.location.href = 'checkout.html';
         });
     }
