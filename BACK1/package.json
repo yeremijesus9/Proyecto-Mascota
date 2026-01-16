@@ -11,10 +11,6 @@
   "description": "",
   "dependencies": {
     "json-server": "^1.0.0-beta.3"
-<<<<<<< HEAD
-  }
-=======
   },
   "type": "commonjs"
->>>>>>> 3021e3d7332a434b3d270ce4fe85cc29b53b540d
 }
