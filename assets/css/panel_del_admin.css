@@ -9,6 +9,7 @@
     --input-grey: #E5E7E9;
     --bg-light: #FDF6EC;
     --danger: #e74c3c;
+    --success: #27ae60;
 }
 
 html { font-size: 100%; }
@@ -147,6 +148,7 @@ body {
     gap: 0.5rem;
 }
 
+/* TUS BOTONES ORIGINALES (CONSERVADOS) */
 .action-btn {
     width: 3.2rem;
     height: 3.2rem;
@@ -174,7 +176,7 @@ body {
 }
 
 /* ==========================================================================
-   4. FORMULARIO DE EDICIÓN (Bilingüe e Imágenes)
+   4. FORMULARIO DE EDICIÓN
    ========================================================================== */
 .edit-form {
     background: #FFF0E5;
@@ -222,7 +224,7 @@ body {
     resize: vertical;
 }
 
-/* NUEVA SECCIÓN: GESTIÓN DE IMÁGENES */
+/* GESTIÓN DE IMÁGENES */
 .image-layout-container {
     display: flex;
     gap: 2.5rem;
@@ -243,7 +245,6 @@ body {
     letter-spacing: 0.5px;
 }
 
-/* Cuadro Imagen Principal */
 .main-preview-card {
     position: relative;
     width: 160px;
@@ -252,6 +253,14 @@ body {
     border: 2px solid var(--input-grey);
     border-radius: 1rem;
     overflow: hidden;
+    transition: 0.3s;
+}
+
+/* Efecto Highlight para Drag and Drop */
+.main-preview-card.highlight, 
+.add-mini-card.highlight {
+    border-color: var(--primary-orange);
+    background: var(--sidebar-bg);
 }
 
 .main-preview-card img {
@@ -277,7 +286,6 @@ body {
     transform: scale(1.1);
 }
 
-/* Galería de Miniaturas */
 .minis-gallery-grid {
     display: flex;
     flex-wrap: wrap;
@@ -292,7 +300,6 @@ body {
     border-radius: 0.8rem;
     background: white;
     overflow: hidden;
-    transition: transform 0.2s;
 }
 
 .mini-item img {
@@ -319,7 +326,6 @@ body {
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
-/* Cuadro "Agregar" en galería */
 .add-mini-card {
     width: 85px;
     height: 85px;
@@ -338,14 +344,65 @@ body {
 .add-mini-card:hover {
     background: var(--sidebar-bg);
     transform: translateY(-3px);
-    border-style: solid;
 }
 
-.add-mini-card i { font-size: 1.5rem; }
-.add-mini-card span { font-size: 0.75rem; font-weight: bold; margin-top: 5px; }
+/* ==========================================================================
+   5. VISTA PREVIA JSON
+   ========================================================================== */
+.json-preview-container {
+    background: #2D1B0D; 
+    padding: 2rem;
+    border-radius: 1rem;
+    margin-top: 2rem;
+}
+
+.json-block {
+    font-family: 'Consolas', monospace;
+    font-size: 0.95rem;
+    color: #F8C471;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
 
 /* ==========================================================================
-   5. BOTONES Y CONTROLES
+   6. POP-UP DEL SERVIDOR (TOAST MEJORADO)
+   ========================================================================== */
+#toast-container {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    z-index: 9999;
+}
+
+.toast {
+    background: white;
+    color: var(--text-dark);
+    padding: 1.2rem 2rem;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-left: 6px solid var(--success);
+    font-weight: bold;
+    min-width: 300px;
+    animation: toastSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.toast.error { border-left-color: var(--danger); }
+
+@keyframes toastSlideIn {
+    from { transform: translateX(120%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeOut {
+    to { opacity: 0; transform: translateY(-10px); }
+}
+
+/* ==========================================================================
+   7. BOTONES FINALES Y FAB
    ========================================================================== */
 .final-controls {
     margin-top: 3rem;
@@ -364,25 +421,9 @@ body {
     transition: 0.3s;
 }
 
-.btn-save {
-    background: var(--primary-orange);
-    color: white;
-}
-
-.btn-save:hover {
-    background: var(--text-dark);
-    box-shadow: 0 4px 12px rgba(211, 124, 57, 0.4);
-}
-
-.btn-cancel {
-    background: white;
-    border: 0.15rem solid var(--primary-orange);
-    color: var(--primary-orange);
-}
-
-.btn-cancel:hover {
-    background: var(--bg-light);
-}
+.btn-save { background: var(--primary-orange); color: white; }
+.btn-save:hover { background: var(--text-dark); box-shadow: 0 4px 12px rgba(211, 124, 57, 0.4); }
+.btn-cancel { background: white; border: 0.15rem solid var(--primary-orange); color: var(--primary-orange); }
 
 .fab-add {
     position: fixed;
