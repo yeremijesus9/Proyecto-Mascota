@@ -1359,13 +1359,5 @@
       ]
     }
   ],
-  "carrito": [
-    {
-      "id": "ROE1",
-      "nombre": "JR Schmaus comida para cobayas",
-      "precio": 8.99,
-      "imagen": "/assets/img/roedores/jr_schmaus.png",
-      "cantidad": 1
-    }
-  ]
+  "carrito": []
 }
