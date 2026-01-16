@@ -1,3 +1,6 @@
+/* ==========================================================================
+   1. VARIABLES Y RESET
+   ========================================================================== */
 :root {
     --primary-orange: #D37C39;
     --sidebar-bg: #FDEBD0;
@@ -5,11 +8,10 @@
     --text-dark: #633917;
     --input-grey: #E5E7E9;
     --bg-light: #FDF6EC;
+    --danger: #e74c3c;
 }
 
-html {
-    font-size: 100%;
-}
+html { font-size: 100%; }
 
 body {
     font-family: 'Segoe UI', sans-serif;
@@ -18,6 +20,9 @@ body {
     color: var(--text-dark);
 }
 
+/* ==========================================================================
+   2. LAYOUT PRINCIPAL (Sidebar y Contenedor)
+   ========================================================================== */
 .admin-layout {
     display: grid;
     grid-template-columns: 18rem 1fr;
@@ -84,6 +89,9 @@ body {
     font-weight: bold;
 }
 
+/* ==========================================================================
+   3. LISTADO DE PRODUCTOS (Tabla)
+   ========================================================================== */
 .table-header {
     background: var(--primary-orange);
     color: white;
@@ -158,7 +166,6 @@ body {
     background-color: var(--text-dark);
     color: white;
     transform: scale(1.15) rotate(5deg);
-    box-shadow: 0 0.4rem 0.8rem rgba(99, 57, 23, 0.3);
 }
 
 .action-btn.inactive {
@@ -166,15 +173,9 @@ body {
     color: #999;
 }
 
-.action-btn.inactive:hover {
-    background-color: #999;
-    color: white;
-}
-
-.action-btn:active {
-    transform: scale(0.9);
-}
-
+/* ==========================================================================
+   4. FORMULARIO DE EDICIÓN (Bilingüe e Imágenes)
+   ========================================================================== */
 .edit-form {
     background: #FFF0E5;
     padding: 3rem;
@@ -182,33 +183,170 @@ body {
 }
 
 .form-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-    max-width: 55rem;
-    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    max-width: 100%;
+}
+
+.full-width {
+    grid-column: 1 / -1;
 }
 
 .input-group {
-    display: grid;
-    grid-template-columns: 15rem 1fr;
-    align-items: center;
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start;
+    gap: 0.5rem;
 }
 
-.input-group label {
+.input-group label, .input-group b {
+    font-size: 1rem;
+    color: var(--text-dark);
     font-weight: bold;
-    font-size: 1.2rem;
 }
 
 .input-group input, 
 .input-group textarea {
+    width: 100%;
     padding: 0.8rem;
     border: none;
     background: var(--input-grey);
     border-radius: 0.4rem;
     font-size: 1.1rem;
+    box-sizing: border-box;
 }
 
+.input-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* NUEVA SECCIÓN: GESTIÓN DE IMÁGENES */
+.image-layout-container {
+    display: flex;
+    gap: 2.5rem;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid #e0d5c5;
+    margin-top: 1rem;
+}
+
+.label-title {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: var(--primary-orange);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Cuadro Imagen Principal */
+.main-preview-card {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    background: #fdfdfd;
+    border: 2px solid var(--input-grey);
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.main-preview-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.upload-badge {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: var(--primary-orange);
+    color: white;
+    padding: 0.6rem;
+    border-radius: 1rem 0 0 0;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.upload-badge:hover {
+    background: var(--text-dark);
+    transform: scale(1.1);
+}
+
+/* Galería de Miniaturas */
+.minis-gallery-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.mini-item {
+    position: relative;
+    width: 85px;
+    height: 85px;
+    border: 2px solid var(--input-grey);
+    border-radius: 0.8rem;
+    background: white;
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.mini-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.remove-btn {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: var(--danger);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Cuadro "Agregar" en galería */
+.add-mini-card {
+    width: 85px;
+    height: 85px;
+    border: 2px dashed var(--primary-orange);
+    border-radius: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-orange);
+    cursor: pointer;
+    transition: all 0.3s;
+    background: #fff;
+}
+
+.add-mini-card:hover {
+    background: var(--sidebar-bg);
+    transform: translateY(-3px);
+    border-style: solid;
+}
+
+.add-mini-card i { font-size: 1.5rem; }
+.add-mini-card span { font-size: 0.75rem; font-weight: bold; margin-top: 5px; }
+
+/* ==========================================================================
+   5. BOTONES Y CONTROLES
+   ========================================================================== */
 .final-controls {
     margin-top: 3rem;
     display: flex;
@@ -223,6 +361,7 @@ body {
     font-weight: bold;
     border: none;
     cursor: pointer;
+    transition: 0.3s;
 }
 
 .btn-save {
@@ -230,10 +369,19 @@ body {
     color: white;
 }
 
+.btn-save:hover {
+    background: var(--text-dark);
+    box-shadow: 0 4px 12px rgba(211, 124, 57, 0.4);
+}
+
 .btn-cancel {
     background: white;
     border: 0.15rem solid var(--primary-orange);
     color: var(--primary-orange);
+}
+
+.btn-cancel:hover {
+    background: var(--bg-light);
 }
 
 .fab-add {
@@ -249,4 +397,5 @@ body {
     border: none;
     cursor: pointer;
     box-shadow: 0 0.5rem 1.5rem rgba(211, 124, 57, 0.4);
+    z-index: 100;
 }

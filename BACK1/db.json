@@ -10,21 +10,23 @@
       "puntuacion": "4",
       "opiniones": "20 ",
       "nombre_producto": {
-        "es": "Grature Chicken Dry Food for Sterilized Adult Cats"
+        "es": "Alimento seco de pollo Grature para gatos adultos esterilizados",
+        "en": "Grature Chicken Dry Food for Sterilized Adult Cats"
       },
       "precio": 8,
       "descripcion": {
-        "es": "Dry food for sterilized adult cats, made with chicken. Grature Chicken is a diet made with natural ingredients for adult cats."
+        "es": "Alimento seco para gatos adultos esterilizados, elaborado con pollo. Grature Pollo es una dieta con ingredientes naturales para gatos adultos.",
+        "en": "Dry food for sterilized adult cats, made with chicken. Grature Chicken is a diet made with natural ingredients for adult cats."
       },
       "formato": {
         "es": "peso producto",
         "en": "weight product"
       },
       "descripcion_formato": "1.5 Kg",
-      "imagen_principal": "/assets/img/gato/CAT01_0.png",
+      "imagen_principal": "http://127.0.0.1:5505/assets/img/gato/CAT01_0.png",
       "imagen_miniatura": [
-        "/assets/img/gato/CAT01_0.png",
-        "/assets/img/gato/CAT01_1.png"
+        "http://127.0.0.1:5505/assets/img/gato/CAT01_0.png",
+        "http://127.0.0.1:5505/assets/img/gato/CAT01_1.png"
       ],
       "comentarios": [
         {
@@ -273,11 +275,11 @@
         "en": "capacity"
       },
       "descripcion_formato": "1L",
-      "imagen_principal": "/assets/img/gato/CAT05_0.png",
+      "imagen_principal": "http://127.0.0.1:5505/assets/img/gato/CAT05_0.png",
       "imagen_miniatura": [
-        "/assets/img/gato/CAT05_0.png",
-        "/assets/img/gato/CAT05_1.png",
-        "/assets/img/gato/CAT05_2.png"
+        "http://127.0.0.1:5505/assets/img/gato/CAT05_0.png",
+        "http://127.0.0.1:5505/assets/img/gato/CAT05_1.png",
+        "http://127.0.0.1:5505/assets/img/gato/CAT05_2.png"
       ],
       "comentarios": [
         {
