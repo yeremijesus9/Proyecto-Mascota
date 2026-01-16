@@ -296,7 +296,7 @@ function actualizarIconoUsuario() {
         // --- NUEVO: Botón de Panel Admin si es admin ---
         if (usuario.rol === 'admin') {
             const btnAdmin = document.createElement('a');
-            btnAdmin.href = 'admin_panel.html';
+            btnAdmin.href = 'panel_del_admin.html';
             btnAdmin.id = 'btnAdminPanel';
             btnAdmin.className = 'admin-panel-link';
             btnAdmin.title = 'Panel de Administración';
