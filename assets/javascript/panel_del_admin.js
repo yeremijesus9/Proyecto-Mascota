@@ -53,14 +53,14 @@ function crearCardProducto(prod) {
             </div>
             <div class="product-price">${prod.precio} €</div>
             <div class="product-actions">
-                <button class="action-btn" onclick="toggleEdicion('${prod.id}')"><i class="fas fa-pen"></i></button>
-                <button class="action-btn" onclick="eliminarProducto('${prod.id}')"><i class="fas fa-trash"></i></button>
-                <button class="action-btn" onclick="toggleVisibilidad(this)"><i class="fas fa-eye"></i></button>
+                <button class="action-btn" onclick="toggleEdicion('${prod.id}')" title="Editar"><i class="fas fa-pen"></i></button>
+                <button class="action-btn" onclick="eliminarProducto('${prod.id}')" title="Eliminar"><i class="fas fa-trash"></i></button>
+                <button class="action-btn" onclick="toggleVisibilidad(this)" title="Visibilidad"><i class="fas fa-eye"></i></button>
             </div>
         </div>
         
         <div id="form-edit-${prod.id}" class="edit-form" style="${isNew ? 'display:block' : 'display:none'}">
-            <div class="form-grid">
+            <div class="form-grid" oninput="actualizarVistaJSON('${prod.id}')">
                 <div class="input-group"><b>Nombre (ES):</b><input type="text" id="edit-n-es-${prod.id}" value="${nES}"></div>
                 <div class="input-group"><b>Nombre (EN):</b><input type="text" id="edit-n-en-${prod.id}" value="${nEN}"></div>
                 <div class="input-group"><b>Precio:</b><input type="number" step="0.01" id="edit-p-${prod.id}" value="${prod.precio}"></div>
@@ -90,7 +90,7 @@ function crearCardProducto(prod) {
                                 ${(prod.imagen_miniatura || []).map(img => `
                                     <div class="mini-item">
                                         <img src="${img}">
-                                        <button class="remove-btn" onclick="this.parentElement.remove()">×</button>
+                                        <button class="remove-btn" onclick="eliminarMiniatura(this, '${prod.id}')">×</button>
                                     </div>
                                 `).join('')}
                                 <label class="add-mini-card" id="drop-zone-mini-${prod.id}">
@@ -102,6 +102,11 @@ function crearCardProducto(prod) {
                         </div>
                     </div>
                 </div>
+
+                <div class="full-width json-preview-container" style="margin-top: 2rem;">
+                    <label class="label-title" style="color: #D37C39; font-weight: bold;"><i class="fas fa-code"></i> Vista Previa del Objeto JSON</label>
+                    <pre id="json-view-${prod.id}" style="background: #2c3e50; color: #ecf0f1; padding: 1.5rem; border-radius: 0.8rem; font-size: 0.85rem; overflow-x: auto; white-space: pre-wrap; word-break: break-all; border: 1px solid #444; margin-top: 10px;">{}</pre>
+                </div>
             </div>
 
             <div class="final-controls">
@@ -112,10 +117,66 @@ function crearCardProducto(prod) {
             </div>
         </div>
     `;
+    setTimeout(() => actualizarVistaJSON(prod.id), 50);
     return div;
 }
 
-// Lógica de Arrastrar y Soltar (Drag & Drop)
+function actualizarVistaJSON(id) {
+    const miniaturas = Array.from(document.querySelectorAll(`#minis-container-${id} img`)).map(img => {
+        const src = img.src;
+        return src.length > 60 ? src.substring(0, 60) + "... [DATA BASE64]" : src;
+    });
+
+    const mockData = {
+        id: id === 'new' ? "Autogenerado" : id,
+        nombre_producto: {
+            es: document.getElementById(`edit-n-es-${id}`)?.value || "",
+            en: document.getElementById(`edit-n-en-${id}`)?.value || ""
+        },
+        descripcion: {
+            es: document.getElementById(`edit-d-es-${id}`)?.value || "",
+            en: document.getElementById(`edit-d-en-${id}`)?.value || ""
+        },
+        formato: {
+            es: document.getElementById(`edit-f-es-${id}`)?.value || "",
+            en: document.getElementById(`edit-f-en-${id}`)?.value || ""
+        },
+        precio: parseFloat(document.getElementById(`edit-p-${id}`)?.value) || 0,
+        marca: document.getElementById(`edit-m-${id}`)?.value || "",
+        imagen_principal: document.getElementById(`prev-main-${id}`)?.src.substring(0, 60) + "... [DATA BASE64]",
+        imagen_miniatura: miniaturas
+    };
+
+    const pre = document.getElementById(`json-view-${id}`);
+    if (pre) pre.textContent = JSON.stringify(mockData, null, 4);
+}
+
+// Lógica CORE: Sincroniza imagen principal eliminando la anterior de la galería si corresponde
+function actualizarImagenPrincipalEnCascada(base64Nueva, id) {
+    const imgPrincipalElem = document.getElementById(`prev-main-${id}`);
+    const base64Anterior = imgPrincipalElem.src;
+
+    // 1. Si la imagen anterior ya estaba en las miniaturas, la quitamos para limpiar
+    const miniaturasDOM = Array.from(document.querySelectorAll(`#minis-container-${id} .mini-item`));
+    miniaturasDOM.forEach(item => {
+        const img = item.querySelector('img');
+        if (img && img.src === base64Anterior) {
+            item.remove();
+        }
+    });
+
+    // 2. Actualizamos la imagen principal
+    imgPrincipalElem.src = base64Nueva;
+
+    // 3. Añadimos la nueva a la galería (si no está ya por casualidad)
+    const miniaturasActuales = Array.from(document.querySelectorAll(`#minis-container-${id} img`)).map(img => img.src);
+    if (!miniaturasActuales.includes(base64Nueva)) {
+        inyectarMiniaturaHTML(base64Nueva, id);
+    }
+
+    actualizarVistaJSON(id);
+}
+
 function activarDragAndDrop(id) {
     const zoneMain = document.getElementById(`drop-zone-main-${id}`);
     const zoneMini = document.getElementById(`drop-zone-mini-${id}`);
@@ -133,7 +194,8 @@ function activarDragAndDrop(id) {
     zoneMain.addEventListener('drop', async (e) => {
         const archivo = e.dataTransfer.files[0];
         if (archivo && archivo.type.startsWith('image/')) {
-            document.getElementById(`prev-main-${id}`).src = await toBase64(archivo);
+            const base64 = await toBase64(archivo);
+            actualizarImagenPrincipalEnCascada(base64, id);
         }
     });
 
@@ -145,22 +207,28 @@ function activarDragAndDrop(id) {
                 inyectarMiniaturaHTML(base64, id);
             }
         }
+        actualizarVistaJSON(id);
     });
 }
 
-// Inyectar miniatura en el DOM
 function inyectarMiniaturaHTML(src, id) {
     const container = document.getElementById(`minis-container-${id}`);
     const addBtn = container.querySelector('.add-mini-card');
     const newMini = document.createElement('div');
     newMini.className = 'mini-item';
-    newMini.innerHTML = `<img src="${src}"><button class="remove-btn" onclick="this.parentElement.remove()">×</button>`;
+    newMini.innerHTML = `<img src="${src}"><button class="remove-btn" onclick="eliminarMiniatura(this, '${id}')">×</button>`;
     container.insertBefore(newMini, addBtn);
+}
+
+function eliminarMiniatura(btn, id) {
+    btn.parentElement.remove();
+    actualizarVistaJSON(id);
 }
 
 async function cambiarImagenPrincipal(input, id) {
     if (input.files && input.files[0]) {
-        document.getElementById(`prev-main-${id}`).src = await toBase64(input.files[0]);
+        const base64 = await toBase64(input.files[0]);
+        actualizarImagenPrincipalEnCascada(base64, id);
     }
 }
 
@@ -168,6 +236,7 @@ async function agregarMiniaturaUnaAUna(input, id) {
     if (input.files && input.files[0]) {
         inyectarMiniaturaHTML(await toBase64(input.files[0]), id);
         input.value = "";
+        actualizarVistaJSON(id);
     }
 }
 
@@ -195,11 +264,9 @@ async function guardarCambios(id) {
     };
 
     try {
-        const metodo = esNuevo ? 'POST' : 'PATCH';
         const url = esNuevo ? BASE_URL : `${BASE_URL}/${id}`;
-        
         const res = await fetch(url, {
-            method: metodo,
+            method: esNuevo ? 'POST' : 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(actualizacion)
         });
@@ -216,10 +283,12 @@ function toggleEdicion(id) {
     const form = document.getElementById(`form-edit-${id}`);
     const abriendo = form.style.display === 'none';
     form.style.display = abriendo ? 'block' : 'none';
-    if (abriendo) activarDragAndDrop(id);
+    if (abriendo) {
+        activarDragAndDrop(id);
+        actualizarVistaJSON(id);
+    }
 }
 
-// Lógica para el botón flotante (+)
 function abrirFormularioNuevo() {
     const contenedor = document.getElementById('nuevo-producto-container');
     const mockProd = {
@@ -232,6 +301,7 @@ function abrirFormularioNuevo() {
     const card = crearCardProducto(mockProd);
     contenedor.appendChild(card);
     activarDragAndDrop('new');
+    actualizarVistaJSON('new');
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 

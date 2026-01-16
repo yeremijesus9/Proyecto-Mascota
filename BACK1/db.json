@@ -581,10 +581,10 @@
         "en": "capacity"
       },
       "descripcion_formato": "500 ml",
-      "imagen_principal": "/assets/img/peces/PEZ05_0.png",
+      "imagen_principal": "http://127.0.0.1:5505/assets/img/peces/PEZ05_0.png",
       "imagen_miniatura": [
-        "/assets/img/peces/PEZ05_0.png",
-        "/assets/img/peces/PEZ05_1.png"
+        "http://127.0.0.1:5505/assets/img/peces/PEZ05_0.png",
+        "http://127.0.0.1:5505/assets/img/peces/PEZ05_1.png"
       ],
       "comentarios": [
         {
@@ -1360,6 +1360,5 @@
         }
       ]
     }
-  ],
-  "carrito": []
+  ]
 }
