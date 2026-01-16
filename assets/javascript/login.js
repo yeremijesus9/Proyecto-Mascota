@@ -175,9 +175,8 @@ function configurarEventosDelModal(popup) {
         formRegistro.addEventListener("submit", (e) => {
             e.preventDefault();
 
-            // Recogemos todos los datos
+            // Recogemos todos los datos (el ID y el ROL se gestionan en guardarNuevoUsuario)
             const datosNuevoUsuario = {
-                id: Date.now(),
                 username: popup.querySelector("#registerUsername").value,
                 email: popup.querySelector("#registerEmail").value,
                 clave: popup.querySelector("#registerPassword").value
@@ -217,11 +216,31 @@ const CLAVE_SESION = 'sistema_usuario_activo';
 
 function obtenerTodosLosUsuarios() {
     const datos = localStorage.getItem(CLAVE_USUARIOS);
-    return datos ? JSON.parse(datos) : [];
+    let usuarios = datos ? JSON.parse(datos) : [];
+
+    // Si la lista está vacía, definimos al administrador (ID 1)
+    if (usuarios.length === 0) {
+        usuarios.push({
+            id: 1,
+            username: 'admin',
+            email: 'admin@miwuff.com',
+            clave: 'admin123',
+            rol: 'admin'
+        });
+        localStorage.setItem(CLAVE_USUARIOS, JSON.stringify(usuarios));
+    }
+    return usuarios;
 }
 
 function guardarNuevoUsuario(usuario) {
     const lista = obtenerTodosLosUsuarios();
+
+    // El admin siempre es ID 1. Buscamos el ID más alto para seguir la secuencia.
+    const maxId = lista.reduce((max, u) => (u.id > max ? u.id : max), 1);
+
+    usuario.id = maxId + 1; // Los demás usuarios del 2 en adelante
+    usuario.rol = 'cliente'; // Todo usuario nuevo es cliente
+
     lista.push(usuario);
     localStorage.setItem(CLAVE_USUARIOS, JSON.stringify(lista));
 }
@@ -274,6 +293,19 @@ function actualizarIconoUsuario() {
 
     // SI EL USUARIO ESTA CONECTADO -> CREAMOS EL MENU DESPLEGABLE
     if (usuario) {
+        // --- NUEVO: Botón de Panel Admin si es admin ---
+        if (usuario.rol === 'admin') {
+            const btnAdmin = document.createElement('a');
+            btnAdmin.href = 'panel_del_admin.html';
+            btnAdmin.id = 'btnAdminPanel';
+            btnAdmin.className = 'admin-panel-link';
+            btnAdmin.innerHTML = '<span class="iconify" data-icon="mdi:view-dashboard"></span>';
+            btnAdmin.style.cssText = 'margin-right: 15px; display: inline-flex; align-items: center;';
+
+            // Lo insertamos justo antes del botón de login (o su futuro contenedor)
+            btnLogin.parentNode.insertBefore(btnAdmin, btnLogin);
+        }
+
         // Creamos contenedor para agrupar
         const contenedor = document.createElement('div');
         contenedor.className = 'user-dropdown-container';
@@ -288,13 +320,16 @@ function actualizarIconoUsuario() {
         menu.className = 'dropdown-menu user-dropdown';
         menu.innerHTML = `
             <div class="user-info">
-                <strong>${usuario.username}</strong><br>
+                <strong>${usuario.username}</strong> <span class="badge-rol">${usuario.rol}</span><br>
                 <small>${usuario.email}</small>
             </div>
             <hr>
             <a href="#" id="botonCerrarSesion">Cerrar Sesión</a>
         `;
         contenedor.appendChild(menu);
+
+        // Re-escaneo de Iconify para el nuevo icono
+        if (window.Iconify && window.Iconify.scan) window.Iconify.scan();
 
         // Evento Cerrar Sesión
         menu.querySelector('#botonCerrarSesion').addEventListener('click', (e) => {

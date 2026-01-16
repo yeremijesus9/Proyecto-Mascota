@@ -1,18 +1,10 @@
 // pantalla del producto: aquí controlo la galería, los formatos y lo que dice la gente.
-window.idiomaActual = localStorage.getItem('idiomaSeleccionado') || "es";
 
-window.rutaJson = () => 'http://localhost:3000/products';
-window.rutaInterfaceJson = () => `/assets/JSON/${window.idiomaActual}_interface.json`;
+// En detalle_producto.js ya no inicializamos el idioma por nuestra cuenta.
+// Confiamos en que idioma.js ya se ha ejecutado.
 
 window.todosLosProductos = [];
-window.textosInterface = {};
-
-window.cambiarIdioma = async function (nuevoIdioma) {
-    if (window.idiomaActual === nuevoIdioma) return;
-    window.idiomaActual = nuevoIdioma;
-    localStorage.setItem('idiomaSeleccionado', nuevoIdioma);
-    await window.cargarDetalleYRelacionados();
-};
+// window.textosInterface ya se inicializa en home/nav_footer/idioma context, esperamos a tenerlo.
 
 (async function () {
     'use strict';
@@ -35,14 +27,10 @@ window.cambiarIdioma = async function (nuevoIdioma) {
         return `<span class="stars">${s}</span>`;
     }
 
-    async function fetchInterfaceTextos() {
-        const res = await fetch(window.rutaInterfaceJson());
-        if (!res.ok) throw new Error("error cargando interfaz");
-        window.textosInterface = await res.json();
-    }
-
     async function fetchProductos() {
-        const res = await fetch(window.rutaJson());
+        // Usamos la ruta global defininda en idioma.js
+        const url = window.rutaJson ? window.rutaJson() : 'http://localhost:3000/products';
+        const res = await fetch(url);
         if (!res.ok) throw new Error("error cargando productos");
         const data = await res.json();
         window.todosLosProductos = Array.isArray(data) ? data : data.mascotas || [];
@@ -52,6 +40,7 @@ window.cambiarIdioma = async function (nuevoIdioma) {
     // monto toda la vista del producto con sus fotos mini y las reseñas.
     function renderProducto(producto, productosAll) {
         contenedor.innerHTML = '';
+        const textos = window.textosInterface || {};
 
         const thumbs = (producto.imagen_miniatura || [])
             .map(src => `<img src="${src}" class="thumb" alt="mini">`)
@@ -83,7 +72,7 @@ window.cambiarIdioma = async function (nuevoIdioma) {
         const nombreProd = typeof producto.nombre_producto === 'object' ? producto.nombre_producto[window.idiomaActual] : producto.nombre_producto;
         const descProd = typeof producto.descripcion === 'object' ? producto.descripcion[window.idiomaActual] : producto.descripcion;
         const catProd = typeof producto.categoria === 'object' ? producto.categoria[window.idiomaActual] : producto.categoria;
-        const formatoProd = typeof producto.formato === 'object' ? producto.formato[window.idiomaActual] : (producto.formato || window.textosInterface.detalle_formato_titulo || 'FORMATO');
+        const formatoProd = typeof producto.formato === 'object' ? producto.formato[window.idiomaActual] : (producto.formato || textos.detalle_formato_titulo || 'FORMATO');
 
         // busco otros productos parecidos (de la misma categoría) para recomendar.
         const related = (productosAll || [])
@@ -100,7 +89,7 @@ window.cambiarIdioma = async function (nuevoIdioma) {
                     <img src="${r.imagen_principal}" alt="${rNombre}">
                     <h4>${rNombre}</h4>
                     <p class="r-price">${formatPrice(r.price || r.precio)}</p>
-                    <a href="detalle_producto.html?id=${r.id}" class="btn-small">${window.textosInterface.ver_detalle || 'ver detalle'}</a>
+                    <a href="detalle_producto.html?id=${r.id}" class="btn-small">${textos.ver_detalle || 'ver detalle'}</a>
                 </div>
             `;
         }).join('');
@@ -112,9 +101,9 @@ window.cambiarIdioma = async function (nuevoIdioma) {
                 <div class="miniaturas">${thumbs}</div>
             </div>
             <aside class="info">
-                <p class="marca"><strong>${window.textosInterface.detalle_marca || 'marca'}:</strong> ${producto.marca}</p>
+                <p class="marca"><strong>${textos.detalle_marca || 'marca'}:</strong> ${producto.marca}</p>
                 <h1 class="producto-nombre">${nombreProd}</h1>
-                <div class="rating">${crearEstrellas(producto.puntuacion)} <span class="opiniones">${producto.opiniones} ${window.textosInterface.detalle_opiniones || 'opiniones'}</span></div>
+                <div class="rating">${crearEstrellas(producto.puntuacion)} <span class="opiniones">${producto.opiniones} ${textos.detalle_opiniones || 'opiniones'}</span></div>
                 <p class="descripcion">${descProd}</p>
                 <div class="formato-box">
                     <div class="format-title">${formatoProd}</div>
@@ -123,11 +112,11 @@ window.cambiarIdioma = async function (nuevoIdioma) {
             </aside>
             <div class="compra-box">
                 <div class="price-box">
-                    <span class="price-label">${window.textosInterface.detalle_precio || 'precio'}</span>
+                    <span class="price-label">${textos.detalle_precio || 'precio'}</span>
                     <div class="product-price">${formatPrice(producto.precio)}</div>
-                    <div class="vat-info">${window.textosInterface.detalle_iva || 'los precios incluyen iva'}</div>
-                    <div class="delivery-info">${window.textosInterface.detalle_entrega || 'entrega gratis'}</div>
-                    <div class="stock-info">${window.textosInterface.detalle_stock || 'en stock'}</div>
+                    <div class="vat-info">${textos.detalle_iva || 'los precios incluyen iva'}</div>
+                    <div class="delivery-info">${textos.detalle_entrega || 'entrega gratis'}</div>
+                    <div class="stock-info">${textos.detalle_stock || 'en stock'}</div>
                     <div class="cantidad quantity-selector">
                         <button id="qty-decr">-</button>
                         <input id="qty" type="number" value="1" min="1">
@@ -135,19 +124,19 @@ window.cambiarIdioma = async function (nuevoIdioma) {
                     </div>
                     <div class="acciones">
                         <button id="add-cart" class="add-to-cart-btn">
-                            <i class="fas fa-shopping-cart"></i>${window.textosInterface.detalle_agregar_carrito || 'añadir al carrito'}
+                            <i class="fas fa-shopping-cart"></i>${textos.detalle_agregar_carrito || 'añadir al carrito'}
                         </button>
-                        <button id="buy-now" class="buy-now-btn">${window.textosInterface.detalle_comprar_ahora || 'comprar ahora'}</button>
+                        <button id="buy-now" class="buy-now-btn">${textos.detalle_comprar_ahora || 'comprar ahora'}</button>
                     </div>
                 </div>
             </div>
         </section>
         <section class="related">
-            <h3>${window.textosInterface.detalle_relacionados || 'productos relacionados'}</h3>
+            <h3>${textos.detalle_relacionados || 'productos relacionados'}</h3>
             <div class="related-list">${relatedHtml}</div>
         </section>
         <section class="reviews">
-            <h3>${window.textosInterface.detalle_resenas_clientes || 'reseñas de clientes'}</h3>
+            <h3>${textos.detalle_resenas_clientes || 'reseñas de clientes'}</h3>
             <div class="reviews-summary">
                 <div class="stars-big">${crearEstrellas(producto.puntuacion)} <span>${producto.opiniones} opiniones</span></div>
                 <div class="bars">
@@ -190,65 +179,50 @@ window.cambiarIdioma = async function (nuevoIdioma) {
         document.getElementById('qty-incr').addEventListener('click', () => qtyEl.value = Number(qtyEl.value) + 1);
         document.getElementById('qty-decr').addEventListener('click', () => qtyEl.value = Math.max(1, Number(qtyEl.value) - 1));
 
-        // meto el producto en el carrito (localstorage) al dar al botón.
-        document.getElementById('add-cart').addEventListener('click', () => {
+        // meto el producto en el carrito (servidor) al dar al botón.
+        document.getElementById('add-cart').addEventListener('click', async (e) => {
+            e.preventDefault(); // EVITA RECARGA
+
             const cantidad = Number(qtyEl.value) || 1;
             const formato = document.querySelector('.formato-opcion.formato-activo')?.dataset.formato;
-            const carrito = JSON.parse(localStorage.getItem('MiwuffCarrito') || '[]');
-            const existente = carrito.find(item => item.id === producto.id);
 
-            if (existente) {
-                existente.cantidad += cantidad;
+            // Preparamos el objeto para la función plusProducto
+            const nombreParaCarrito = typeof producto.nombre_producto === 'object' ? producto.nombre_producto[window.idiomaActual] : producto.nombre_producto;
+
+            const productoAGuardar = {
+                id: producto.id,
+                nombre: nombreParaCarrito,
+                precio: Number(producto.precio),
+                imagen: producto.imagen_principal,
+                formato: formato
+            };
+
+            // Llamamos a la función global del carrito pasándole la cantidad indicada
+            if (window.plusProducto) {
+                await window.plusProducto(productoAGuardar, cantidad);
             } else {
-                const nombreParaCarrito = typeof producto.nombre_producto === 'object' ? producto.nombre_producto[window.idiomaActual] : producto.nombre_producto;
-                carrito.push({
-                    id: producto.id,
-                    nombre: nombreParaCarrito,
-                    precio: Number(producto.precio),
-                    imagen: producto.imagen_principal,
-                    cantidad,
-                    formato
-                });
+                console.error("No se encontró la función plusProducto");
             }
-
-            localStorage.setItem('MiwuffCarrito', JSON.stringify(carrito));
-
-            const contador = document.querySelector('.carrito-contador');
-            if (contador) {
-                const total = carrito.reduce((sum, item) => sum + item.cantidad, 0);
-                contador.textContent = total;
-                contador.style.display = total > 0 ? 'flex' : 'none';
-            }
-
-            const nombreLoc = typeof producto.nombre_producto === 'object' ? producto.nombre_producto[window.idiomaActual] : producto.nombre_producto;
-            const notif = document.createElement('div');
-            notif.textContent = ` ${cantidad} x ${nombreLoc} añadido al carrito`;
-            notif.style.cssText = "position:fixed; top:20px; right:20px; background:#28a745; color:white; padding:15px; border-radius:5px; z-index:10000; box-shadow: 0 4px 6px rgba(0,0,0,0.1);";
-            document.body.appendChild(notif);
-            setTimeout(() => notif.remove(), 2000);
         });
 
-        document.getElementById('buy-now').addEventListener('click', () => {
+        document.getElementById('buy-now').addEventListener('click', async (e) => {
+            e.preventDefault();
             const cantidad = Number(qtyEl.value) || 1;
             const formato = document.querySelector('.formato-opcion.formato-activo')?.dataset.formato;
-            const carrito = JSON.parse(localStorage.getItem('MiwuffCarrito') || '[]');
-            const existente = carrito.find(item => item.id === producto.id);
 
-            if (existente) {
-                existente.cantidad += cantidad;
-            } else {
-                const nombreParaCarrito = typeof producto.nombre_producto === 'object' ? producto.nombre_producto[window.idiomaActual] : producto.nombre_producto;
-                carrito.push({
-                    id: producto.id,
-                    nombre: nombreParaCarrito,
-                    precio: Number(producto.precio),
-                    imagen: producto.imagen_principal,
-                    cantidad,
-                    formato
-                });
+            const nombreParaCarrito = typeof producto.nombre_producto === 'object' ? producto.nombre_producto[window.idiomaActual] : producto.nombre_producto;
+
+            const productoAGuardar = {
+                id: producto.id,
+                nombre: nombreParaCarrito,
+                precio: Number(producto.precio),
+                imagen: producto.imagen_principal,
+                formato: formato
+            };
+
+            if (window.plusProducto) {
+                await window.plusProducto(productoAGuardar, cantidad);
             }
-
-            localStorage.setItem('MiwuffCarrito', JSON.stringify(carrito));
             window.location.href = 'checkout.html';
         });
     }
@@ -266,7 +240,7 @@ window.cambiarIdioma = async function (nuevoIdioma) {
     window.cargarDetalleYRelacionados = async function () {
         contenedor.innerHTML = `<p>cargando detalle (${window.idiomaActual})...</p>`;
         try {
-            await fetchInterfaceTextos();
+            // Ya no llamamos a fetchInterfaceTextos() aquí, asumimos que nav_footer la cargó o usamos defaults
             const productos = await fetchProductos();
             if (!productos.length) {
                 contenedor.innerHTML = `<p>no hay productos disponibles</p>`;
@@ -280,6 +254,7 @@ window.cambiarIdioma = async function (nuevoIdioma) {
         }
     };
 
-    window.cargarDetalleYRelacionados();
+    // Alias para que nav_footer.js la llame cuando cargue todo
+    window.cargarYMostrarProductos = window.cargarDetalleYRelacionados;
 
 })();
