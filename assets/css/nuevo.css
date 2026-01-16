@@ -1,0 +1,101 @@
+:root {
+    --orange-main: #e67e22;
+    --orange-bg: #ffe4cc;
+    --sidebar-bg: #ffdfc4;
+    --text-brown: #5d4037;
+}
+
+body {
+    margin: 0;
+    font-family: 'Fredoka', sans-serif;
+    color: var(--text-brown);
+}
+
+
+.search-container {
+    position: relative;
+    width: 40%;
+}
+
+.search-container input {
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: 2px solid #ddd;
+    outline: none;
+}
+
+
+/* Formulario */
+.main-content { flex: 1; padding: 40px 60px; }
+
+.main-title { color: var(--orange-main); font-size: 28px; margin-bottom: 30px; }
+
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.input-group label { width: 140px; font-weight: 600; }
+
+.input-group input {
+    width: 400px;
+    padding: 12px 20px;
+    border: 2px solid #ddd;
+    border-radius: 15px;
+}
+
+/* Drop Area */
+.drop-area {
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 15px 0;
+}
+
+.img-placeholder { width: 80px; height: 80px; background: #eee; border-radius: 5px; }
+
+/* Botones */
+.btn-fill { 
+    background: var(--orange-main); 
+    border: none; color: white; 
+    padding: 10px 25px; 
+    border-radius: 25px; 
+    cursor: pointer; }
+
+.btn-outline { 
+    background: white; 
+    border: 2px solid var(--orange-main); 
+    color: var(--orange-main); 
+    padding: 10px 25px; 
+    border-radius: 25px; 
+    cursor: pointer; }
+
+.final-actions { 
+    margin-top: 50px; 
+    display: flex; 
+    gap: 20px; }
+
+.btn-save { 
+    background: var(--orange-main); 
+    color: white; 
+    padding: 15px 50px; 
+    border-radius: 40px; 
+    border: none; 
+    font-size: 16px; 
+    font-weight: 600; 
+}
+
+.btn-cancel {
+    background: white;
+    border: 2px solid var(--orange-main);
+    color: var(--orange-main);
+    padding: 15px 50px;
+    border-radius: 40px;
+    font-size: 16px;
+}
+
