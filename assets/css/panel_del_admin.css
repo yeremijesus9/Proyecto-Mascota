@@ -426,12 +426,14 @@ body {
 .btn-cancel { background: white; border: 0.15rem solid var(--primary-orange); color: var(--primary-orange); }
 
 .fab-add {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: fixed;
     bottom: 3rem;
     right: 3rem;
-    width: 6rem;
-    height: 6rem;
-    font-size: 3.5rem;
+    width: 6.5rem;
+    height: 6.5rem;
     background: var(--primary-orange);
     color: white;
     border-radius: 50%;
@@ -439,4 +441,26 @@ body {
     cursor: pointer;
     box-shadow: 0 0.5rem 1.5rem rgba(211, 124, 57, 0.4);
     z-index: 100;
+    
+    /* EFECTO BASE: Suaviza cualquier cambio */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* EFECTO AL PASAR EL RATÓN (HOVER) */
+.fab-add:hover {
+    background-color: var(--text-dark); /* Cambia de naranja a café oscuro */
+    transform: scale(1.1) rotate(90deg); /* Se agranda y el "+" gira para verse elegante */
+    box-shadow: 0 0.8rem 2rem rgba(0, 0, 0, 0.2); /* Sombra más profunda */
+}
+
+/* EFECTO AL HACER CLIC (ACTIVE) */
+.fab-add:active {
+    transform: scale(0.9) rotate(0deg); /* Se encoge un poco al presionarlo */
+}
+
+.fab-add .iconify {
+    font-size: 3.8rem; 
+    color: white;
+    /* Aseguramos que el icono no se desfase al girar */
+    pointer-events: none; 
 }
