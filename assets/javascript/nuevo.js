@@ -32,7 +32,7 @@ function configurarListenerFormulario() {
 function agregarPlaceholders() {
     const inputs = document.querySelectorAll('.grupo-entrada input');
     const placeholders = [
-        'Ej: Perro, Gato, Pajaro, Pez, Roedor',
+        'Ej: Perro, Gato, Pajaro, Pez, Roedor, Otros',
         'Ej: Pedigree, Royal Canin, Purina',
         'Ej: 25.99',
         'Describe el producto de manera detallada',
