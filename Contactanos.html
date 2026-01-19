@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -8,106 +8,173 @@
     <link rel="stylesheet" href="assets/css/contactanos.css">
     <link rel="stylesheet" href="/assets/css/navfooterStyles.css">
     <link rel="stylesheet" href="assets/css/carrito.css">
-    
+
     <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
     <link rel="icon" href="assets/img/home/perro.png" type="image/png">
 </head>
 
-<header>
-
-    <body>
+<body>
+    <header>
         <div id="nav-container"></div>
+    </header>
 
-        <main>
-</header>
-<h1 id="titulo-categoria" style="text-align:center; color:#D37C39; margin-top:50px; font-size: 2.5em;">
-    <span id="nombre-Categoria">Contactanos</span>
-</h1>
+    <main>
+        <h1 class="page-title">Contacto por Incidencia</h1>
 
+        <div class="contact-container">
+            <!-- Formulario -->
+            <div class="contact-form-card">
+                <h2>Envíanos un mensaje</h2>
 
-<div class="QuienesSomos">
+                <form action="/procesar-formulario" method="post">
+                    <div class="form-group">
+                        <label for="nombre">Nombre Completo</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+                    </div>
 
-    <p>Hola, somos el grupo de jovenes programadores de (poner nombre), que hemos creado la pagina web de la tienda de Miwuff, en caso de cualquier 
-        duda o necesidad. No dudeis en contactar con nosotros usando el contacto que le facilitamos, un poco más abajo.</p></div>
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico</label>
+                        <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com" required>
+                    </div>
 
-<div class="elementos">
+                    <div class="form-group">
+                        <label for="tipo">Tipo de Incidencia</label>
+                        <select id="tipo" name="tipo">
+                            <option value="">Selecciona...</option>
+                            <option value="pedido">Estado del Pedido</option>
+                            <option value="producto">Producto Defectuoso</option>
+                            <option value="devolucion">Devoluciones</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
 
-    <div class="formulario">
-        <!-- INICIO DEL FORMULARIO -->
-        <form action="/procesar-formulario" method="post">
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje</label>
+                        <textarea id="mensaje" name="mensaje" placeholder="Describe tu incidencia..."
+                            required></textarea>
+                    </div>
 
-            <!-- Campo de Nombre -->
-            <div class="nombreapellidos">
-                <label for="Nombre"><strong>Nombre y Apellidos:</strong></label>
-                <input type="text" id="Nombre" name="nombre" required>
+                    <button type="submit" class="btn-submit">Enviar Incidencia</button>
+                </form>
             </div>
-            <br>
 
-            <!-- Campo de Correo Electronico -->
-            <div class="email">
-                <label for="email"><strong> Correo Electronico:</strong></label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <br>
+            <!-- Ubicacion -->
+            <div class="contact-info-card">
+                <h2>Nuestra Ubicación</h2>
+                <span class="sub-text">Ven a visitarnos a nuestra tienda principal.</span>
 
-            <!-- Campo de Numero Telefono-->
-            <div class="telefono">
-                <label for="number"><strong>Numero de Telefono:</strong></label>
-                <input type="tel" id="number" name="telefono" pattern="[0-9+\- ]{7,}" required>
-            </div>
-            <br>
+                <div class="map-container">
+                    <!-- Google Map Embed (New York as placeholder/example) -->
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.30596698663!2d-74.25986763304465!3d40.69714941680757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNueva%20York%2C%20EE.%20UU.!5e0!3m2!1ses!2ses!4v1679000000000!5m2!1ses!2ses"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
 
-            <!-- Boton de Envio -->
-            <div class="boton">
-                <input type="submit" value="enviar">
-
-            </div>
-        </form>
-    </div>
-    <!-- FIN DEL FORMULARIO-->
-
-    <!-- INFORMACION DE LA TIENDA FISICA (Contacto, Direccion, Mapa + marcador)-->
-
-    <!-- Contacto -->
-    <div class="contacto">
-        <div class="Informacion-Tienda-Fisica">
-
-            <strong>
-                <p>Telefono de contacto:
-            </strong>829580627</p>
-            <strong>
-                <p>Direccion de la tienda:
-            </strong>Calle Ficticia, 20</p>
-
-        </div>
-        <!-- Direccion de la Tienda-->
-
-        <div class="Mapa-Informacion">
-            <div class="Mapa">
-                <iframe src="assets/img/Tienda fisica Miwuff.png" width="600" height="450" style="border:0;"
-                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <div class="info-details">
+                    <p><strong>Dirección:</strong> Av. Animales 123, Ciudad Mascota.</p>
+                    <p><strong>Horario:</strong> Lunes a Sábado: 9:00 AM - 8:00 PM</p>
+                </div>
             </div>
         </div>
-        <!-- Marcador de la Direccion-->
-        <div class="marcador">
-            📍
-            <span class="tooltip">Aqui estamos!</span>
+
+        <!-- Preguntas Frecuentes -->
+        <div class="faq-section">
+            <div class="faq-header">
+                <h2><span class="icon">?</span> Preguntas Frecuentes</h2>
+                <p>Encuentra respuestas a las dudas más comunes de nuestros clientes</p>
+            </div>
+
+            <div class="faq-container">
+                <details class="faq-item">
+                    <summary class="faq-question">
+                        ¿Cuáles son los métodos de pago aceptados?
+                        <span class="arrow"><span class="iconify" data-icon="akar-icons:chevron-down"></span></span>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>Aceptamos tarjetas de crédito, débito, PayPal y transferencias bancarias.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item" open> <!-- Example open (active) -->
+                    <summary class="faq-question">
+                        ¿Cuánto tarda en llegar mi pedido?
+                        <span class="arrow"><span class="iconify" data-icon="akar-icons:chevron-down"></span></span>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>El tiempo de entrega estimado es de 2 a 5 días hábiles dependiendo de tu ubicación.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">
+                        ¿Puedo devolver un producto si no me convence?
+                        <span class="arrow"><span class="iconify" data-icon="akar-icons:chevron-down"></span></span>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>Sí, tienes un plazo de 15 días para realizar devoluciones si el producto está en perfecto
+                            estado.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">
+                        ¿Los productos son aptos para todas las razas y edades?
+                        <span class="arrow"><span class="iconify" data-icon="akar-icons:chevron-down"></span></span>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>Contamos con productos específicos para cada raza y etapa de vida de tu mascota. Revisa la
+                            descripción de cada producto.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">
+                        ¿Ofrecen descuentos para clientes frecuentes?
+                        <span class="arrow"><span class="iconify" data-icon="akar-icons:chevron-down"></span></span>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>Sí, contamos con un programa de fidelización con descuentos especiales para nuestros clientes
+                            habituales.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">
+                        ¿Cómo puedo rastrear mi pedido?
+                        <span class="arrow"><span class="iconify" data-icon="akar-icons:chevron-down"></span></span>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>Al realizar tu compra recibirás un correo con el número de seguimiento y un enlace para ver
+                            el estado de tu pedido.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">
+                        ¿Tienen tienda física donde pueda ver los productos?
+                        <span class="arrow"><span class="iconify" data-icon="akar-icons:chevron-down"></span></span>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>Sí, nuestra tienda principal está en Av. Animales 123, Ciudad Mascota. ¡Te esperamos!</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">
+                        ¿Qué hago si mi mascota tiene una reacción adversa a un producto?
+                        <span class="arrow"><span class="iconify" data-icon="akar-icons:chevron-down"></span></span>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>Suspende su uso inmediatamente y consulta a tu veterinario. Contáctanos para gestionar la
+                            devolución o cambio.</p>
+                    </div>
+                </details>
+            </div>
         </div>
-    </div>
-</div>
-<br>
-<br>
-<br>
-
-    <link rel="icon" href="assets/img/home/miwuff.png" type="image/png">
-</head>
-
-
-</div>
-</main>
+    </main>
 
     <div id="footer-container"></div>
-        <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+
     <script src="assets/javascript/idioma.js"></script>
     <script src="assets/javascript/carrito.js"></script>
     <script src="assets/javascript/nav_footer.js"></script>
