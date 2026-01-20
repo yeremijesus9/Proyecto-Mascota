@@ -1,10 +1,9 @@
 // ==========================================
-// NUEVO PRODUCTO - Gestión de Formulario
+// NUEVO PRODUCTO - Agregar y Guardar en BD
 // ==========================================
 
-document.addEventListener('DOMContentLoaded', function() {
-    initializeNewProductForm();
-});
+// API URL del servidor JSON
+const API_URL = 'http://localhost:3000/nuevos_productos';
 
 // Estado de las imágenes
 const imageState = {
@@ -12,17 +11,22 @@ const imageState = {
     thumbnailImage: null
 };
 
-// ==========================================
-// INICIALIZACIÓN
-// ==========================================
-function initializeNewProductForm() {
-    setupDragAndDrop();
+// Esperar a que cargue el DOM
+document.addEventListener('DOMContentLoaded', function() {
     setupFormListeners();
+});
+
+// ==========================================
+// CONFIGURAR LISTENERS
+// ==========================================
+function setupFormListeners() {
+    const inputGroups = document.querySelectorAll('.input-group input');
+    setupDragAndDrop();
     setupButtonListeners();
 }
 
 // ==========================================
-// DRAG AND DROP
+// DRAG AND DROP PARA IMÁGENES
 // ==========================================
 function setupDragAndDrop() {
     const dropAreas = document.querySelectorAll('.drop-area');
@@ -30,13 +34,11 @@ function setupDragAndDrop() {
     dropAreas.forEach((dropArea, index) => {
         const isMainImage = index === 0;
         
-        // Prevenir el comportamiento predeterminado del navegador
+        // Eventos de drag and drop
         ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
             dropArea.addEventListener(eventName, preventDefaults, false);
-            document.body.addEventListener(eventName, preventDefaults, false);
         });
         
-        // Resaltar el área al pasar el archivo
         ['dragenter', 'dragover'].forEach(eventName => {
             dropArea.addEventListener(eventName, () => highlight(dropArea), false);
         });
@@ -45,18 +47,16 @@ function setupDragAndDrop() {
             dropArea.addEventListener(eventName, () => unhighlight(dropArea), false);
         });
         
-        // Manejar la liberación del archivo
         dropArea.addEventListener('drop', (e) => handleDrop(e, isMainImage), false);
         
-        // Hacer clickeable el área de drop
+        // Click para seleccionar archivo
         dropArea.addEventListener('click', () => {
             const fileInput = document.createElement('input');
             fileInput.type = 'file';
             fileInput.accept = 'image/*';
             fileInput.addEventListener('change', (e) => {
-                const files = e.target.files;
-                if (files.length > 0) {
-                    handleFile(files[0], isMainImage);
+                if (e.target.files.length > 0) {
+                    handleFile(e.target.files[0], isMainImage);
                 }
             });
             fileInput.click();
@@ -80,44 +80,27 @@ function unhighlight(element) {
 }
 
 function handleDrop(e, isMainImage) {
-    const dt = e.dataTransfer;
-    const files = dt.files;
-    
-    if (files.length > 0) {
-        const file = files[0];
-        if (file.type.startsWith('image/')) {
-            handleFile(file, isMainImage);
-        } else {
-            alert('Por favor, selecciona una imagen válida');
-        }
+    const files = e.dataTransfer.files;
+    if (files.length > 0 && files[0].type.startsWith('image/')) {
+        handleFile(files[0], isMainImage);
     }
 }
 
 function handleFile(file, isMainImage) {
-    // Validar tamaño de archivo (máximo 5MB)
     const maxSize = 5 * 1024 * 1024; // 5MB
     if (file.size > maxSize) {
         alert('El archivo es demasiado grande. Máximo 5MB');
         return;
     }
     
-    // Leer el archivo como URL de datos
     const reader = new FileReader();
     reader.onload = function(e) {
-        const imageData = e.target.result;
-        
         if (isMainImage) {
-            imageState.mainImage = {
-                file: file,
-                data: imageData
-            };
-            updateImagePreview(0, imageData, file.name);
+            imageState.mainImage = e.target.result;
+            updateImagePreview(0, e.target.result, file.name);
         } else {
-            imageState.thumbnailImage = {
-                file: file,
-                data: imageData
-            };
-            updateImagePreview(1, imageData, file.name);
+            imageState.thumbnailImage = e.target.result;
+            updateImagePreview(1, e.target.result, file.name);
         }
     };
     reader.readAsDataURL(file);
@@ -125,24 +108,14 @@ function handleFile(file, isMainImage) {
 
 function updateImagePreview(index, imageData, fileName) {
     const dropAreas = document.querySelectorAll('.drop-area');
-    const dropArea = dropAreas[index];
-    
-    // Limpiar el contenido previo
-    dropArea.innerHTML = `
+    dropAreas[index].innerHTML = `
         <img src="${imageData}" style="max-width: 100%; max-height: 200px; object-fit: contain;">
         <p style="margin-top: 10px; font-size: 12px; color: #666;">${fileName}</p>
     `;
 }
 
 // ==========================================
-// FORM LISTENERS
-// ==========================================
-function setupFormListeners() {
-    // Aquí puedes agregar validación en tiempo real si es necesario
-}
-
-// ==========================================
-// BUTTON LISTENERS
+// BUTTON LISTENERS - GUARDAR Y CANCELAR
 // ==========================================
 function setupButtonListeners() {
     const buttons = document.querySelectorAll('button');
@@ -157,117 +130,99 @@ function setupButtonListeners() {
 }
 
 // ==========================================
-// MANEJO DEL FORMULARIO
+// MANEJAR GUARDAR PRODUCTO
 // ==========================================
-function getFormData() {
-    const inputs = document.querySelectorAll('.input-group input');
-    const formData = {
-        categoria: inputs[0]?.value || '',
-        marca: inputs[1]?.value || '',
-        precio: inputs[2]?.value || '',
-        descripcion: inputs[3]?.value || '',
-        formato: inputs[4]?.value || '',
-        mainImage: imageState.mainImage,
-        thumbnailImage: imageState.thumbnailImage
-    };
-    return formData;
-}
-
-function validateForm(formData) {
-    const errors = [];
-    
-    if (!formData.categoria.trim()) {
-        errors.push('La categoría es requerida');
-    }
-    
-    if (!formData.marca.trim()) {
-        errors.push('La marca es requerida');
-    }
-    
-    if (!formData.precio.trim()) {
-        errors.push('El precio es requerido');
-    } else if (isNaN(parseFloat(formData.precio))) {
-        errors.push('El precio debe ser un número válido');
-    }
-    
-    if (!formData.descripcion.trim()) {
-        errors.push('La descripción es requerida');
-    }
-    
-    if (!formData.formato.trim()) {
-        errors.push('El formato es requerido');
-    }
-    
-    if (!formData.mainImage) {
-        errors.push('La imagen principal es requerida');
-    }
-    
-    if (!formData.thumbnailImage) {
-        errors.push('La imagen en miniatura es requerida');
-    }
-    
-    return errors;
-}
-
 function handleSaveProduct(e) {
     e.preventDefault();
     
-    const formData = getFormData();
-    const errors = validateForm(formData);
+    // Obtener datos de los inputs
+    const inputs = document.querySelectorAll('.input-group input');
+    const formData = {
+        categoria: inputs[0]?.value.trim() || '',
+        marca: inputs[1]?.value.trim() || '',
+        precio: inputs[2]?.value.trim() || '',
+        descripcion: inputs[3]?.value.trim() || '',
+        formato: inputs[4]?.value.trim() || ''
+    };
     
-    if (errors.length > 0) {
-        alert('Por favor, completa todos los campos:\n\n' + errors.join('\n'));
+    // Validar
+    if (!formData.categoria || !formData.marca || !formData.precio || 
+        !formData.descripcion || !formData.formato) {
+        alert('Por favor completa todos los campos de texto');
         return;
     }
     
-    // Crear objeto de producto
+    if (isNaN(parseFloat(formData.precio)) || parseFloat(formData.precio) <= 0) {
+        alert('El precio debe ser un número válido mayor a 0');
+        return;
+    }
+    
+    if (!imageState.mainImage) {
+        alert('Por favor carga una imagen principal');
+        return;
+    }
+    
+    if (!imageState.thumbnailImage) {
+        alert('Por favor carga una imagen en miniatura');
+        return;
+    }
+    
+    // Crear objeto producto
     const newProduct = {
-        id: Date.now(),
+        id: 'PROD' + Date.now(),
         categoria: formData.categoria,
         marca: formData.marca,
+        nombre_producto: formData.categoria + ' ' + formData.marca,
         precio: parseFloat(formData.precio),
         descripcion: formData.descripcion,
         formato: formData.formato,
-        mainImage: formData.mainImage.data,
-        thumbnailImage: formData.thumbnailImage.data,
-        fechaCreacion: new Date().toISOString()
+        imagen_principal: imageState.mainImage,
+        imagen_miniatura: [imageState.mainImage, imageState.thumbnailImage],
+        puntuacion: '5',
+        opiniones: '0',
+        comentarios: []
     };
     
-    // Guardar en localStorage o enviar al servidor
-    saveProductToServer(newProduct);
+    // Guardar en el servidor
+    guardarProducto(newProduct);
 }
 
-function saveProductToServer(product) {
-    // Opción 2: Enviar al servidor
-    fetch('http://localhost:3000/productos', {
+// ==========================================
+// GUARDAR PRODUCTO EN LA BD
+// ==========================================
+function guardarProducto(producto) {
+    fetch(API_URL, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(product)
+        body: JSON.stringify(producto)
     })
     .then(response => {
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            throw new Error('Error en la respuesta del servidor');
         }
         return response.json();
     })
     .then(data => {
         console.log('Producto guardado:', data);
-        alert('¡Producto guardado exitosamente!');
+        alert('✓ Producto guardado exitosamente');
         resetForm();
         
-        // Redirigir al panel del admin después de guardar
+        // Redirigir después de 1.5 segundos
         setTimeout(() => {
             window.location.href = 'panel_del_admin.html';
         }, 1500);
     })
     .catch(error => {
         console.error('Error:', error);
-        alert('Error al guardar el producto. Verifica que el servidor esté ejecutándose.');
+        alert('✗ Error al guardar. Verifica que el servidor esté en http://localhost:3000');
     });
 }
 
+// ==========================================
+// MANEJAR CANCELAR
+// ==========================================
 function handleCancel(e) {
     e.preventDefault();
     
@@ -277,8 +232,11 @@ function handleCancel(e) {
     }
 }
 
+// ==========================================
+// LIMPIAR FORMULARIO
+// ==========================================
 function resetForm() {
-    // Limpiar inputs de texto
+    // Limpiar inputs
     const inputs = document.querySelectorAll('.input-group input');
     inputs.forEach(input => input.value = '');
     
@@ -286,7 +244,7 @@ function resetForm() {
     imageState.mainImage = null;
     imageState.thumbnailImage = null;
     
-    // Restaurar vista previa de imágenes
+    // Restaurar vistas previas
     const dropAreas = document.querySelectorAll('.drop-area');
     dropAreas.forEach(dropArea => {
         dropArea.innerHTML = `
@@ -294,49 +252,4 @@ function resetForm() {
             <p>Arrastra tu imagen aquí o <span>haz click para seleccionar</span></p>
         `;
     });
-}
-
-// ==========================================
-// FUNCIONES AUXILIARES
-// ==========================================
-
-// Función para obtener productos del localStorage
-function getAllProducts() {
-    try {
-        return JSON.parse(localStorage.getItem('productos')) || [];
-    } catch (error) {
-        console.error('Error al obtener productos:', error);
-        return [];
-    }
-}
-
-// Función para eliminar un producto
-function deleteProduct(productId) {
-    try {
-        let products = getAllProducts();
-        products = products.filter(p => p.id !== productId);
-        localStorage.setItem('productos', JSON.stringify(products));
-        return true;
-    } catch (error) {
-        console.error('Error al eliminar producto:', error);
-        return false;
-    }
-}
-
-// Función para actualizar un producto
-function updateProduct(productId, updatedData) {
-    try {
-        let products = getAllProducts();
-        const index = products.findIndex(p => p.id === productId);
-        
-        if (index !== -1) {
-            products[index] = { ...products[index], ...updatedData };
-            localStorage.setItem('productos', JSON.stringify(products));
-            return true;
-        }
-        return false;
-    } catch (error) {
-        console.error('Error al actualizar producto:', error);
-        return false;
-    }
 }

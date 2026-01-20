@@ -1361,6 +1361,7 @@
       ]
     }
   ],
-  "carrito":[],
-  "datos_envio":[]
+  "carrito": [],
+  "datos_envio": [],
+  "nuevos_productos": []
 }
