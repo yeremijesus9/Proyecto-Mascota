@@ -1,5 +1,14 @@
+/******************************************************************
+ * URL base de la API REST donde se gestionan los productos
+ * Se usa para GET, PUT y DELETE
+ ******************************************************************/
 const BASE_URL = 'http://localhost:3000/products';
 
+/******************************************************************
+ * Mapa de categorías:
+ * Permite convertir la categoría en español a su equivalente en inglés
+ * Se usa para autocompletar automáticamente el campo EN
+ ******************************************************************/
 const CATEGORIAS_MAP = {
     "gato": "cat",
     "perro": "dog",
@@ -9,6 +18,12 @@ const CATEGORIAS_MAP = {
     "otros": "others"
 };
 
+
+/******************************************************************
+ * Convierte un archivo (File) a Base64
+ * - Se usa para imágenes (principal y miniaturas)
+ * - Retorna una Promesa
+ ******************************************************************/
 const toBase64 = file => new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -16,8 +31,15 @@ const toBase64 = file => new Promise((resolve, reject) => {
     reader.onerror = error => reject(error);
 });
 
+/******************************************************************
+ * Al cargar el DOM se ejecuta la carga inicial de productos
+ ******************************************************************/
+
 document.addEventListener('DOMContentLoaded', cargarProductos);
 
+/******************************************************************
+ * Obtiene los productos desde la API y los renderiza
+ ******************************************************************/
 async function cargarProductos() {
     try {
         const respuesta = await fetch(BASE_URL);
@@ -28,9 +50,15 @@ async function cargarProductos() {
     }
 }
 
+/******************************************************************
+ * Renderiza la lista completa de productos
+ ******************************************************************/
+
 function renderizarProductos(productos) {
     const contenedor = document.getElementById('productos-lista');
     if (!contenedor) return;
+
+    // Cabecera de la tabla/lista
     contenedor.innerHTML = `
         <div class="table-header">
             <span>Imagen</span>
@@ -39,16 +67,27 @@ function renderizarProductos(productos) {
             <span class="text-center">Acciones</span>
         </div>
     `;
+        // Se crea una tarjeta por cada producto
     productos.forEach(prod => contenedor.appendChild(crearCardProducto(prod)));
 }
 
+/******************************************************************
+ * Crea la tarjeta completa de un producto
+ * Incluye:
+ * - Vista normal
+ * - Formulario de edición
+ ******************************************************************/
+
 function crearCardProducto(prod) {
+        // Valores por defecto para categorías
     const catES = prod.categoria?.es || "otros";
     const catEN = prod.categoria?.en || "others";
 
     const div = document.createElement('div');
+        // HTML completo del producto
     div.className = 'product-card';
     div.innerHTML = `
+    
         <div class="product-row" id="row-${prod.id}">
             <img src="${prod.imagen_principal}" class="product-img">
             <div class="product-info">
@@ -127,11 +166,20 @@ function crearCardProducto(prod) {
     return div;
 }
 
+
+/******************************************************************
+ * Autocompleta la categoría en inglés según la selección en español
+ ******************************************************************/
+
 function autoCompletarCategoria(id) {
     const valES = document.getElementById(`edit-cat-es-${id}`).value;
     document.getElementById(`edit-cat-en-${id}`).value = CATEGORIAS_MAP[valES] || "others";
     actualizarVistaJSON(id);
 }
+
+/******************************************************************
+ * Genera una vista previa del JSON que se enviará al backend
+ ******************************************************************/
 
 function actualizarVistaJSON(id) {
     const miniaturas = Array.from(document.querySelectorAll(`#minis-container-${id} img`)).map(img => 
@@ -166,6 +214,10 @@ function actualizarVistaJSON(id) {
     const pre = document.getElementById(`json-view-${id}`);
     if (pre) pre.textContent = JSON.stringify(dataFinal, null, 2);
 }
+
+/******************************************************************
+ * Envía los cambios al backend (PUT)
+ ******************************************************************/
 
 async function guardarCambios(id) {
     const miniaturas = Array.from(document.querySelectorAll(`#minis-container-${id} img`)).map(img => img.src);
@@ -207,6 +259,9 @@ async function guardarCambios(id) {
     } catch (e) { alert("Error al conectar con el servidor."); }
 }
 
+/******************************************************************
+ * Alterna la visibilidad visual de un producto (no elimina)
+ ******************************************************************/
 function toggleVisibilidad(boton, id) {
     const icono = boton.querySelector('i');
     const fila = document.getElementById(`row-${id}`);
@@ -215,12 +270,20 @@ function toggleVisibilidad(boton, id) {
     fila.style.opacity = estaOculto ? '1' : '0.4';
 }
 
+/******************************************************************
+ * Elimina un producto definitivamente
+ ******************************************************************/
+
 async function eliminarProducto(id) {
     if (confirm(`¿Eliminar definitivamente ${id}?`)) {
         await fetch(`${BASE_URL}/${id}`, { method: 'DELETE' });
         cargarProductos();
     }
 }
+
+/******************************************************************
+ * Abre o cierra el formulario de edición
+ ******************************************************************/
 
 function toggleEdicion(id) {
     const form = document.getElementById(`form-edit-${id}`);
@@ -232,11 +295,19 @@ function toggleEdicion(id) {
     }
 }
 
+/******************************************************************
+ * Actualiza la imagen principal y refresca la vista JSON
+ ******************************************************************/
+
 function actualizarImagenPrincipalEnCascada(base64Nueva, id) {
     const imgPrincipalElem = document.getElementById(`prev-main-${id}`);
     imgPrincipalElem.src = base64Nueva;
     actualizarVistaJSON(id);
 }
+
+/******************************************************************
+ * Activa drag & drop para imágenes
+ ******************************************************************/
 
 function activarDragAndDrop(id) {
     const zoneMain = document.getElementById(`drop-zone-main-${id}`);
@@ -262,6 +333,11 @@ function activarDragAndDrop(id) {
     }
 }
 
+
+/******************************************************************
+ * Inserta una miniatura en el DOM
+ ******************************************************************/
+
 function inyectarMiniaturaHTML(src, id) {
     const container = document.getElementById(`minis-container-${id}`);
     const addBtn = container.querySelector('.add-mini-card');
@@ -271,6 +347,30 @@ function inyectarMiniaturaHTML(src, id) {
     container.insertBefore(div, addBtn);
 }
 
-function eliminarMiniatura(btn, id) { btn.parentElement.remove(); actualizarVistaJSON(id); }
-async function cambiarImagenPrincipal(input, id) { if (input.files?.[0]) actualizarImagenPrincipalEnCascada(await toBase64(input.files[0]), id); }
-async function agregarMiniaturaUnaAUna(input, id) { if (input.files?.[0]) { inyectarMiniaturaHTML(await toBase64(input.files[0]), id); input.value = ""; actualizarVistaJSON(id); } }
+/******************************************************************
+ * Elimina una miniatura
+ ******************************************************************/
+function eliminarMiniatura(btn, id) {
+    btn.parentElement.remove();
+    actualizarVistaJSON(id);
+}
+
+/******************************************************************
+ * Cambia la imagen principal desde input file
+ ******************************************************************/
+async function cambiarImagenPrincipal(input, id) {
+    if (input.files?.[0]) {
+        actualizarImagenPrincipalEnCascada(await toBase64(input.files[0]), id);
+    }
+}
+/******************************************************************
+ * Agrega miniaturas de una en una
+ ******************************************************************/
+async function agregarMiniaturaUnaAUna(input, id) {
+    if (input.files?.[0]) {
+        inyectarMiniaturaHTML(await toBase64(input.files[0]), id);
+        input.value = "";
+        actualizarVistaJSON(id);
+    }
+}
+
