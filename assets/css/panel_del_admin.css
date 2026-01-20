@@ -148,7 +148,6 @@ body {
     gap: 0.5rem;
 }
 
-/* TUS BOTONES ORIGINALES (CONSERVADOS) */
 .action-btn {
     width: 3.2rem;
     height: 3.2rem;
@@ -208,7 +207,9 @@ body {
     font-weight: bold;
 }
 
+/* MEJORA: Estética unificada para input, select y textarea */
 .input-group input, 
+.input-group select,
 .input-group textarea {
     width: 100%;
     padding: 0.8rem;
@@ -217,50 +218,46 @@ body {
     border-radius: 0.4rem;
     font-size: 1.1rem;
     box-sizing: border-box;
+    font-family: inherit;
+    color: var(--text-dark);
+    outline: none;
+}
+
+/* Ajuste específico para el select para que coincida con los recuadros */
+.input-group select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23633917' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.1em;
 }
 
 .input-group textarea {
-    min-height: 100px;
+    min-height: 6.25rem; /* 100px */
     resize: vertical;
 }
 
-/* GESTIÓN DE IMÁGENES */
+/* GESTIÓN DE IMÁGENES (Convertido a REM) */
 .image-layout-container {
     display: flex;
     gap: 2.5rem;
     background: #fff;
     padding: 2rem;
     border-radius: 1rem;
-    border: 1px solid #e0d5c5;
+    border: 0.06rem solid #e0d5c5;
     margin-top: 1rem;
-}
-
-.label-title {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    color: var(--primary-orange);
-    font-size: 0.95rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
 }
 
 .main-preview-card {
     position: relative;
-    width: 160px;
-    height: 160px;
+    width: 10rem; /* 160px */
+    height: 10rem; /* 160px */
     background: #fdfdfd;
-    border: 2px solid var(--input-grey);
+    border: 0.12rem solid var(--input-grey);
     border-radius: 1rem;
     overflow: hidden;
     transition: 0.3s;
-}
-
-/* Efecto Highlight para Drag and Drop */
-.main-preview-card.highlight, 
-.add-mini-card.highlight {
-    border-color: var(--primary-orange);
-    background: var(--sidebar-bg);
 }
 
 .main-preview-card img {
@@ -281,22 +278,17 @@ body {
     transition: 0.3s;
 }
 
-.upload-badge:hover {
-    background: var(--text-dark);
-    transform: scale(1.1);
-}
-
 .minis-gallery-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 0.93rem; /* 15px */
 }
 
 .mini-item {
     position: relative;
-    width: 85px;
-    height: 85px;
-    border: 2px solid var(--input-grey);
+    width: 5.3rem; /* 85px */
+    height: 5.3rem; /* 85px */
+    border: 0.12rem solid var(--input-grey);
     border-radius: 0.8rem;
     background: white;
     overflow: hidden;
@@ -310,26 +302,26 @@ body {
 
 .remove-btn {
     position: absolute;
-    top: 4px;
-    right: 4px;
+    top: 0.25rem;
+    right: 0.25rem;
     background: var(--danger);
     color: white;
     border: none;
     border-radius: 50%;
-    width: 22px;
-    height: 22px;
+    width: 1.37rem; /* 22px */
+    height: 1.37rem; /* 22px */
     cursor: pointer;
-    font-size: 14px;
+    font-size: 0.87rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 0.12rem 0.25rem rgba(0,0,0,0.2);
 }
 
 .add-mini-card {
-    width: 85px;
-    height: 85px;
-    border: 2px dashed var(--primary-orange);
+    width: 5.3rem;
+    height: 5.3rem;
+    border: 0.12rem dashed var(--primary-orange);
     border-radius: 0.8rem;
     display: flex;
     flex-direction: column;
@@ -341,13 +333,8 @@ body {
     background: #fff;
 }
 
-.add-mini-card:hover {
-    background: var(--sidebar-bg);
-    transform: translateY(-3px);
-}
-
 /* ==========================================================================
-   5. VISTA PREVIA JSON
+   5. VISTA PREVIA JSON (Convertido a REM)
    ========================================================================== */
 .json-preview-container {
     background: #2D1B0D; 
@@ -365,7 +352,7 @@ body {
 }
 
 /* ==========================================================================
-   6. POP-UP DEL SERVIDOR (TOAST MEJORADO)
+   6. POP-UP DEL SERVIDOR (Convertido a REM)
    ========================================================================== */
 #toast-container {
     position: fixed;
@@ -380,29 +367,18 @@ body {
     padding: 1.2rem 2rem;
     border-radius: 1rem;
     margin-bottom: 1rem;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 0.62rem 1.56rem rgba(0,0,0,0.1);
     display: flex;
     align-items: center;
     gap: 1rem;
-    border-left: 6px solid var(--success);
+    border-left: 0.37rem solid var(--success);
     font-weight: bold;
-    min-width: 300px;
+    min-width: 18.75rem;
     animation: toastSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
-.toast.error { border-left-color: var(--danger); }
-
-@keyframes toastSlideIn {
-    from { transform: translateX(120%); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
-}
-
-@keyframes fadeOut {
-    to { opacity: 0; transform: translateY(-10px); }
-}
-
 /* ==========================================================================
-   7. BOTONES FINALES Y FAB
+   7. BOTONES FINALES Y FAB (Convertido a REM)
    ========================================================================== */
 .final-controls {
     margin-top: 3rem;
@@ -422,7 +398,7 @@ body {
 }
 
 .btn-save { background: var(--primary-orange); color: white; }
-.btn-save:hover { background: var(--text-dark); box-shadow: 0 4px 12px rgba(211, 124, 57, 0.4); }
+.btn-save:hover { background: var(--text-dark); box-shadow: 0 0.25rem 0.75rem rgba(211, 124, 57, 0.4); }
 .btn-cancel { background: white; border: 0.15rem solid var(--primary-orange); color: var(--primary-orange); }
 
 .fab-add {
@@ -441,26 +417,17 @@ body {
     cursor: pointer;
     box-shadow: 0 0.5rem 1.5rem rgba(211, 124, 57, 0.4);
     z-index: 100;
-    
-    /* EFECTO BASE: Suaviza cualquier cambio */
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* EFECTO AL PASAR EL RATÓN (HOVER) */
 .fab-add:hover {
-    background-color: var(--text-dark); /* Cambia de naranja a café oscuro */
-    transform: scale(1.1) rotate(90deg); /* Se agranda y el "+" gira para verse elegante */
-    box-shadow: 0 0.8rem 2rem rgba(0, 0, 0, 0.2); /* Sombra más profunda */
-}
-
-/* EFECTO AL HACER CLIC (ACTIVE) */
-.fab-add:active {
-    transform: scale(0.9) rotate(0deg); /* Se encoge un poco al presionarlo */
+    background-color: var(--text-dark);
+    transform: scale(1.1) rotate(90deg);
+    box-shadow: 0 0.8rem 2rem rgba(0, 0, 0, 0.2);
 }
 
 .fab-add .iconify {
     font-size: 3.8rem; 
     color: white;
-    /* Aseguramos que el icono no se desfase al girar */
     pointer-events: none; 
 }
