@@ -5,6 +5,11 @@
 const BASE_URL = 'http://localhost:3000/products';
 
 /******************************************************************
+ * URL para los productos nuevos creados
+ ******************************************************************/
+const NUEVO_PRODUCTO_URL = 'http://localhost:3000/nuevo_producto';
+
+/******************************************************************
  * Mapa de categorías:
  * Permite convertir la categoría en español a su equivalente en inglés
  * Se usa para autocompletar automáticamente el campo EN
@@ -42,9 +47,26 @@ document.addEventListener('DOMContentLoaded', cargarProductos);
  ******************************************************************/
 async function cargarProductos() {
     try {
-        const respuesta = await fetch(BASE_URL);
-        const productos = await respuesta.json();
-        renderizarProductos(productos);
+        // Cargar productos del endpoint principal
+        const respuestaProductos = await fetch(BASE_URL);
+        const productos = await respuestaProductos.json();
+        
+        // Intentar cargar productos nuevos (si el endpoint no existe, solo usa los principales)
+        let productosNuevos = [];
+        try {
+            const respuestaNuevos = await fetch(NUEVO_PRODUCTO_URL);
+            if (respuestaNuevos.ok) {
+                productosNuevos = await respuestaNuevos.json();
+            }
+        } catch (errorNuevos) {
+            console.log("Endpoint de nuevos productos no disponible, usando solo productos principales");
+        }
+        
+        // Combinar ambos arrays de productos
+        const todosLosProductos = [...productos, ...productosNuevos];
+        
+        console.log('Productos cargados:', todosLosProductos.length);
+        renderizarProductos(todosLosProductos);
     } catch (error) {
         console.error("Error al cargar productos:", error);
     }

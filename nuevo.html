@@ -39,27 +39,35 @@
 
                 <div class="grupo-entrada">
                     <label>Categoria</label>
-                    <input type="text" placeholder="perro, gato, pajaro, pez, roedor, otros">
+                    <select id="categoria-select">
+                        <option value="">Selecciona una categoría</option>
+                        <option value="perro">Perro</option>
+                        <option value="gato">Gato</option>
+                        <option value="pajaro">Pájaro</option>
+                        <option value="roedores">Roedores</option>
+                        <option value="pez">Pez</option>
+                        <option value="otros">Otros</option>
+                    </select>
                 </div>
 
                 <div class="grupo-entrada">
                     <label>Marca</label>
-                    <input type="text" placeholder="Ej: Pedigree, Royal Canin">
+                    <input type="text" id="marca-input" placeholder="Ej: Pedigree, Royal Canin">
                 </div>
 
                 <div class="grupo-entrada">
                     <label>Precio</label>
-                    <input type="text" placeholder="Ej: 25.99">
+                    <input type="text" id="precio-input" placeholder="Ej: 25.99">
                 </div>
 
                 <div class="grupo-entrada">
                     <label>Descripcion</label>
-                    <input type="text" placeholder="Describe el producto">
+                    <input type="text" id="descripcion-input" placeholder="Describe el producto">
                 </div>
 
                 <div class="grupo-entrada">
                     <label>Formato:</label>
-                    <input type="text" placeholder="Ej: 1kg, Caja 5 piezas">
+                    <input type="text" id="formato-input" placeholder="Ej: 1kg, Caja 5 piezas">
                 </div>
 
                 <!-- Campos ocultos para guardar imágenes -->
@@ -91,7 +99,6 @@
                     <button class="btn-cancel">Cancelar</button>
                 </div>
             </section>
-
 
         </main>
     </div>
