@@ -2,24 +2,35 @@
 let carritoCheckout = [];
 const ENVIO = 4.99;
 
-document.addEventListener('DOMContentLoaded', function () {
-    cargarCarrito();
-    mostrarProductos();
-    calcularTotales();
+const API_URL = 'http://localhost:3000/carrito';
 
-    // mando el pedido cuando le dan a finalizar.
+document.addEventListener('DOMContentLoaded', async function () {
+    await cargarCarrito();
+    // mostrarProductos y calcularTotales se llaman dentro de cargarCarrito si todo va bien
     document.getElementById('form-checkout').addEventListener('submit', finalizarCompra);
 });
 
-// saco los datos del carrito. si no hay nada, te mando de vuelta a la tienda.
-function cargarCarrito() {
-    const carritoGuardado = localStorage.getItem('MiwuffCarrito');
-    if (!carritoGuardado || carritoGuardado === '[]') {
-        alert('tu carrito está vacío');
-        window.location.href = 'index.html';
-        return;
+// saco los datos del carrito DESDE EL SERVIDOR
+async function cargarCarrito() {
+    try {
+        const respuesta = await fetch(API_URL);
+        if (!respuesta.ok) throw new Error("Error al cargar carrito");
+
+        carritoCheckout = await respuesta.json();
+
+        if (carritoCheckout.length === 0) {
+            alert('tu carrito está vacío');
+            window.location.href = 'index.html';
+            return;
+        }
+
+        mostrarProductos();
+        calcularTotales();
+
+    } catch (error) {
+        console.error(error);
+        alert('Hubo un error cargando tu compra');
     }
-    carritoCheckout = JSON.parse(carritoGuardado);
 }
 
 // pongo la lista de productos que vas a pagar a la derecha.
@@ -58,7 +69,7 @@ function calcularTotales() {
 }
 
 // guardo el pedido en localstorage para simular que se ha hecho la compra.
-function finalizarCompra(e) {
+async function finalizarCompra(e) {
     e.preventDefault();
 
     const nombre = document.getElementById('nombre').value;
@@ -86,12 +97,46 @@ function finalizarCompra(e) {
         total: document.getElementById('total').textContent
     };
 
-    const pedidos = JSON.parse(localStorage.getItem('pedidos') || '[]');
-    pedidos.push(pedido);
-    localStorage.setItem('pedidos', JSON.stringify(pedidos));
+    // PREPARAR DATOS PARA DB.JSON (datos_envio)
+    // Usamos una estructura plana como sugieren los campos en db.json
+    const envioData = {
+        nombre: nombre,
+        email: email,
+        telefono: telefono,
+        direccion: direccion,
+        ciudad: ciudad,
+        codigo_postal: codigoPostal,
+        metodo_pago: metodoPago,
+        producto: carritoCheckout, // Array con los productos comprados
+        precio_total: document.getElementById('total').textContent,
+        numero_pedido: numeroPedido,
+        fecha: new Date().toISOString()
+    };
 
-    // limpio el carrito para que no se quede ahí después de comprar.
-    localStorage.removeItem('MiwuffCarrito');
+    // GUARDAR EN SERVIDOR (db.json/datos_envio)
+    try {
+        const respuestaPedido = await fetch('http://localhost:3000/datos_envio', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(envioData)
+        });
+
+        if (!respuestaPedido.ok) throw new Error("Error guardando pedido");
+
+    } catch (error) {
+        console.error("Error al guardar pedido en servidor:", error);
+        alert("Hubo un problema procesando el pedido. Inténtalo de nuevo.");
+        return;
+    }
+
+    // vacio el carrito DEL SERVIDOR
+    try {
+        for (const item of carritoCheckout) {
+            await fetch(`${API_URL}/${item.id}`, { method: 'DELETE' });
+        }
+    } catch (error) {
+        console.error("Error vaciando el carrito", error);
+    }
 
     // enseño el cartel de que todo ha ido bien.
     document.getElementById('numero-pedido').textContent = numeroPedido;
