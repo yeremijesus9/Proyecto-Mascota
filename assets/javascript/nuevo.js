@@ -2,275 +2,301 @@
 // NUEVO PRODUCTO - Agregar y Guardar en BD
 // ==========================================
 
-// URL de API del servidor JSON
-const URL_API = 'http://localhost:3000/nuevo_producto';
+// URL donde guardamos los productos
+const API_URL = 'http://localhost:3000/nuevo_producto';
 
-// Estado de las imágenes
-const estadoImagenes = {
-    imagenPrincipal: null,
-    imagenMiniatura: null
+// Objeto para guardar temporalmente las imágenes
+const imagenes = {
+    principal: null,    // Imagen principal del producto
+    miniatura: null     // Imagen pequeña del producto
 };
 
-// Esperar a que cargue el DOM
+// ========================================================================
+// PASO 1: CUANDO LA PÁGINA CARGA, CONFIGURAMOS TODO
+// ========================================================================
 document.addEventListener('DOMContentLoaded', function() {
-    configurarListenerFormulario();
-    agregarPlaceholders();
+    console.log('✓ Página cargada');
+    configurarAreasDeImagenes();
+    configurarBotones();
 });
 
-// ==========================================
-// CONFIGURAR LISTENERS
-// ==========================================
-function configurarListenerFormulario() {
-    const inputGroups = document.querySelectorAll('.grupo-entrada input');
-    configurarArrastreYSuelta();
-    configurarListenerBotones();
-}
-
-// ==========================================
-// AGREGAR PLACEHOLDERS
-// ==========================================
-function agregarPlaceholders() {
-    const inputs = document.querySelectorAll('.grupo-entrada input');
-    const placeholders = [
-        'Ej: Perro, Gato, Pajaro, Pez, Roedor, Otros',
-        'Ej: Pedigree, Royal Canin, Purina',
-        'Ej: 25.99',
-        'Describe el producto de manera detallada',
-        'Ej: Bolsa 1kg, Lata 250g, Caja 5 piezas'
-    ];
+// ========================================================================
+// PASO 2: PREPARAR LAS ÁREAS DONDE SE ARRASTRAN LAS IMÁGENES
+// ========================================================================
+function configurarAreasDeImagenes() {
+    // Encontrar todas las áreas donde el usuario puede soltar imágenes
+    const areas = document.querySelectorAll('.area-soltar');
+    console.log('Encontradas ' + areas.length + ' áreas para imágenes');
     
-    inputs.forEach((input, index) => {
-        if (placeholders[index]) {
-            input.placeholder = placeholders[index];
-        }
-    });
-}
-
-// ==========================================
-// ARRASTRAR Y SOLTAR IMÁGENES
-// ==========================================
-function configurarArrastreYSuelta() {
-    const dropAreas = document.querySelectorAll('.area-soltar');
-    
-    dropAreas.forEach((dropArea, index) => {
-        const esImagenPrincipal = index === 0;
-        
-        // Eventos de arrastrar y soltar
-        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-            dropArea.addEventListener(eventName, prevenirDefectos, false);
+    // Para cada área, configurar:
+    areas.forEach((area, indice) => {
+        // 1. CUANDO PASAMOS ARCHIVOS POR ENCIMA
+        area.addEventListener('dragover', (evento) => {
+            evento.preventDefault();
+            area.style.backgroundColor = '#e8f4f8';
         });
         
-        ['dragenter', 'dragover'].forEach(eventName => {
-            dropArea.addEventListener(eventName, () => resaltar(dropArea), false);
+        // 2. CUANDO SALIMOS DEL ÁREA
+        area.addEventListener('dragleave', () => {
+            area.style.backgroundColor = '';
         });
         
-        ['dragleave', 'drop'].forEach(eventName => {
-            dropArea.addEventListener(eventName, () => desresaltar(dropArea), false);
+        // 3. CUANDO SOLTAMOS LA IMAGEN
+        area.addEventListener('drop', (evento) => {
+            evento.preventDefault();
+            area.style.backgroundColor = '';
+            
+            // Obtener el archivo que soltaron
+            if (evento.dataTransfer.files.length > 0) {
+                const archivo = evento.dataTransfer.files[0];
+                procesarImagen(archivo, indice);
+            }
         });
         
-        dropArea.addEventListener('drop', (e) => manejarSuelta(e, esImagenPrincipal), false);
-        
-        // Click para seleccionar archivo
-        dropArea.addEventListener('click', () => {
-            const inputArchivo = document.createElement('input');
-            inputArchivo.type = 'file';
-            inputArchivo.accept = 'image/*';
-            inputArchivo.addEventListener('change', (e) => {
-                if (e.target.files.length > 0) {
-                    manejarArchivo(e.target.files[0], esImagenPrincipal);
+        // 4. CUANDO HACEMOS CLICK EN EL ÁREA
+        area.addEventListener('click', () => {
+            // Crear un input invisible para seleccionar archivos
+            const selector = document.createElement('input');
+            selector.type = 'file';
+            selector.accept = 'image/*';
+            
+            // Cuando selecciona un archivo
+            selector.onchange = (evento) => {
+                if (evento.target.files.length > 0) {
+                    const archivo = evento.target.files[0];
+                    procesarImagen(archivo, indice);
                 }
-            });
-            inputArchivo.click();
+            };
+            
+            // Abrir el selector de archivos
+            selector.click();
         });
     });
 }
 
-function prevenirDefectos(e) {
-    e.preventDefault();
-    e.stopPropagation();
-}
-
-function resaltar(elemento) {
-    elemento.style.backgroundColor = '#f0f0f0';
-    elemento.style.borderColor = '#007bff';
-}
-
-function desresaltar(elemento) {
-    elemento.style.backgroundColor = '';
-    elemento.style.borderColor = '';
-}
-
-function manejarSuelta(e, esImagenPrincipal) {
-    const archivos = e.dataTransfer.files;
-    if (archivos.length > 0 && archivos[0].type.startsWith('image/')) {
-        manejarArchivo(archivos[0], esImagenPrincipal);
-    }
-}
-
-function manejarArchivo(archivo, esImagenPrincipal) {
-    const tamañoMaximo = 5 * 1024 * 1024; // 5MB
-    if (archivo.size > tamañoMaximo) {
-        alert('El archivo es demasiado grande. Máximo 5MB');
+// ========================================================================
+// PASO 3: PROCESAR LA IMAGEN (CONVERTIR A BASE64)
+// ========================================================================
+function procesarImagen(archivo, posicion) {
+    // Verificar que sea una imagen
+    if (!archivo.type.startsWith('image/')) {
+        alert('⚠️ Por favor selecciona una imagen');
         return;
     }
     
+    // Verificar que no sea muy grande (máximo 5MB)
+    const tamañoMaximo = 5 * 1024 * 1024; // 5MB en bytes
+    if (archivo.size > tamañoMaximo) {
+        alert('⚠️ La imagen es muy grande. Máximo 5MB');
+        return;
+    }
+    
+    // Leer el archivo y convertir a base64
     const lector = new FileReader();
-    lector.onload = function(e) {
-        if (esImagenPrincipal) {
-            estadoImagenes.imagenPrincipal = e.target.result;
-            actualizarVistaPrevia(0, e.target.result, archivo.name);
+    
+    lector.onload = function(evento) {
+        const imagenBase64 = evento.target.result;
+        
+        // Guardar la imagen en nuestro objeto
+        if (posicion === 0) {
+            imagenes.principal = imagenBase64;
+            console.log('✓ Imagen principal cargada');
         } else {
-            estadoImagenes.imagenMiniatura = e.target.result;
-            actualizarVistaPrevia(1, e.target.result, archivo.name);
+            imagenes.miniatura = imagenBase64;
+            console.log('✓ Imagen miniatura cargada');
         }
+        
+        // Mostrar vista previa
+        mostrarVistaPreviaImagen(posicion, imagenBase64, archivo.name);
     };
+    
     lector.readAsDataURL(archivo);
 }
 
-function actualizarVistaPrevia(indice, datosImagen, nombreArchivo) {
-    const areasSuelta = document.querySelectorAll('.area-soltar');
-    areasSuelta[indice].innerHTML = `
-        <img src="${datosImagen}" style="max-width: 100%; max-height: 200px; object-fit: contain;">
-        <p style="margin-top: 10px; font-size: 12px; color: #666;">${nombreArchivo}</p>
+// ========================================================================
+// PASO 4: MOSTRAR LA IMAGEN EN LA PÁGINA
+// ========================================================================
+function mostrarVistaPreviaImagen(posicion, imagenBase64, nombreArchivo) {
+    const areas = document.querySelectorAll('.area-soltar');
+    
+    // Reemplazar el contenido del área con la imagen
+    areas[posicion].innerHTML = `
+        <img src="${imagenBase64}" 
+             style="max-width: 100%; max-height: 200px; object-fit: contain;">
+        <p style="margin-top: 10px; font-size: 12px; color: #666;">
+            ✓ ${nombreArchivo}
+        </p>
     `;
 }
 
-// ==========================================
-// LISTENERS DE BOTONES - GUARDAR Y CANCELAR
-// ==========================================
-function configurarListenerBotones() {
-    const botones = document.querySelectorAll('button');
+// ========================================================================
+// PASO 5: CONFIGURAR LOS BOTONES (GUARDAR Y CANCELAR)
+// ========================================================================
+function configurarBotones() {
+    // Encontrar el botón de guardar
+    const botonGuardar = document.querySelector('.btn-save');
+    if (botonGuardar) {
+        botonGuardar.addEventListener('click', guardarProducto);
+        console.log('✓ Botón Guardar configurado');
+    }
     
-    botones.forEach(boton => {
-        if (boton.classList.contains('btn-save')) {
-            boton.addEventListener('click', manejarGuardarProducto);
-        } else if (boton.classList.contains('btn-cancel')) {
-            boton.addEventListener('click', manejarCancelar);
-        }
-    });
+    // Encontrar el botón de cancelar
+    const botonCancelar = document.querySelector('.btn-cancel');
+    if (botonCancelar) {
+        botonCancelar.addEventListener('click', cancelarProducto);
+        console.log('✓ Botón Cancelar configurado');
+    }
 }
 
-// ==========================================
-// MANEJAR GUARDAR PRODUCTO
-// ==========================================
-function manejarGuardarProducto(e) {
-    e.preventDefault();
+// ========================================================================
+// PASO 6: GUARDAR EL PRODUCTO
+// ========================================================================
+function guardarProducto(evento) {
+    evento.preventDefault();
     
-    // Obtener datos de los inputs
+    console.log('--- Guardando producto ---');
+    
+    // PASO 6.1: Obtener los datos del formulario
     const inputs = document.querySelectorAll('.grupo-entrada input');
-    const datosFormulario = {
-        categoria: inputs[0]?.value.trim() || '',
-        marca: inputs[1]?.value.trim() || '',
-        precio: inputs[2]?.value.trim() || '',
-        descripcion: inputs[3]?.value.trim() || '',
-        formato: inputs[4]?.value.trim() || ''
-    };
     
-    // Validar
-    if (!datosFormulario.categoria || !datosFormulario.marca || !datosFormulario.precio || 
-        !datosFormulario.descripcion || !datosFormulario.formato) {
-        alert('Por favor completa todos los campos de texto');
+    const categoria = inputs[0].value.trim();
+    const marca = inputs[1].value.trim();
+    const precio = inputs[2].value.trim();
+    const descripcion = inputs[3].value.trim();
+    const formato = inputs[4].value.trim();
+    
+    console.log('Datos ingresados:', {categoria, marca, precio, descripcion, formato});
+    
+    // PASO 6.2: Validar que todos los campos estén completos
+    if (!categoria || !marca || !precio || !descripcion || !formato) {
+        alert('⚠️ Error: Debes completar TODOS los campos');
         return;
     }
     
-    if (isNaN(parseFloat(datosFormulario.precio)) || parseFloat(datosFormulario.precio) <= 0) {
-        alert('El precio debe ser un número válido mayor a 0');
+    // PASO 6.3: Validar que el precio sea un número válido
+    const precioNumero = parseFloat(precio);
+    if (isNaN(precioNumero) || precioNumero <= 0) {
+        alert('⚠️ Error: El precio debe ser un número válido mayor que 0');
         return;
     }
     
-    if (!estadoImagenes.imagenPrincipal) {
-        alert('Por favor carga una imagen principal');
+    // PASO 6.4: Validar que las imágenes estén cargadas
+    if (!imagenes.principal) {
+        alert('⚠️ Error: Debes cargar una imagen principal');
         return;
     }
     
-    if (!estadoImagenes.imagenMiniatura) {
-        alert('Por favor carga una imagen en miniatura');
+    if (!imagenes.miniatura) {
+        alert('⚠️ Error: Debes cargar una imagen en miniatura');
         return;
     }
     
-    // Crear objeto producto
+    // PASO 6.5: Crear el objeto producto
     const nuevoProducto = {
-        id: 'PROD' + Date.now(),
-        categoria: datosFormulario.categoria,
-        marca: datosFormulario.marca,
-        nombre_producto: datosFormulario.categoria + ' ' + datosFormulario.marca,
-        precio: parseFloat(datosFormulario.precio),
-        descripcion: datosFormulario.descripcion,
-        formato: datosFormulario.formato,
-        imagen_principal: estadoImagenes.imagenPrincipal,
-        imagen_miniatura: [estadoImagenes.imagenPrincipal, estadoImagenes.imagenMiniatura],
-        puntuacion: '5',
-        opiniones: '0',
-        comentarios: []
+        id: 'PROD_' + Date.now(),                    // ID único basado en fecha
+        categoria: categoria,                         // Categoría del producto
+        marca: marca,                                 // Marca del producto
+        nombre_producto: marca + ' - ' + categoria,  // Nombre descriptivo
+        precio: precioNumero,                         // Precio como número
+        descripcion: descripcion,                     // Descripción del producto
+        formato: formato,                             // Formato/presentación
+        imagen_principal: imagenes.principal,        // Imagen principal en base64
+        imagen_miniatura: [imagenes.principal, imagenes.miniatura], // Array de imágenes
+        puntuacion: '5',                              // Puntuación inicial
+        opiniones: '0',                               // Número de opiniones
+        comentarios: []                               // Array de comentarios
     };
     
-    // Guardar en el servidor
-    guardarProductoEnBD(nuevoProducto);
+    console.log('Producto creado:', nuevoProducto.id);
+    
+    // PASO 6.6: Enviar el producto al servidor
+    enviarProductoAlServidor(nuevoProducto);
 }
 
-// ==========================================
-// GUARDAR PRODUCTO EN LA BD
-// ==========================================
-function guardarProductoEnBD(producto) {
-    fetch(URL_API, {
-        method: 'POST',
+// ========================================================================
+// PASO 7: ENVIAR PRODUCTO AL SERVIDOR
+// ========================================================================
+function enviarProductoAlServidor(producto) {
+    console.log('Enviando producto al servidor...');
+    
+    // Usar fetch para enviar el producto
+    fetch(API_URL, {
+        method: 'POST',                          // Método: POST (crear nuevo)
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json'   // Decir que enviamos JSON
         },
-        body: JSON.stringify(producto)
+        body: JSON.stringify(producto)           // Convertir objeto a JSON
     })
     .then(respuesta => {
+        console.log('Respuesta del servidor:', respuesta.status);
+        
+        // Verificar si la respuesta es correcta
         if (!respuesta.ok) {
-            throw new Error('Error en la respuesta del servidor');
+            throw new Error('Error ' + respuesta.status);
         }
+        
         return respuesta.json();
     })
     .then(datos => {
-        console.log('Producto guardado:', datos);
-        alert('✓ Producto guardado exitosamente');
+        // ¡Éxito! El producto se guardó
+        console.log('✓ Producto guardado exitosamente');
+        alert('✓ ¡Producto guardado exitosamente!');
+        
+        // Limpiar el formulario
         limpiarFormulario();
         
-        // Redirigir después de 1.5 segundos
+        // Redirigir al panel después de 2 segundos
         setTimeout(() => {
             window.location.href = 'panel_del_admin.html';
-        }, 1500);
+        }, 2000);
     })
     .catch(error => {
-        console.error('Error:', error);
-        alert('✗ Error al guardar. Verifica que el servidor esté en http://localhost:3000');
+        // Algo salió mal
+        console.error('✗ Error al guardar:', error);
+        alert('✗ Error al guardar el producto\n\nVerifica que:\n1. El servidor esté corriendo\n2. La dirección sea http://localhost:3000');
     });
 }
 
-// ==========================================
-// MANEJAR CANCELAR
-// ==========================================
-function manejarCancelar(e) {
-    e.preventDefault();
+// ========================================================================
+// PASO 8: CANCELAR LA OPERACIÓN
+// ========================================================================
+function cancelarProducto(evento) {
+    evento.preventDefault();
     
-    if (confirm('¿Estás seguro de que deseas cancelar? Se perderán todos los datos.')) {
+    // Preguntar si está seguro
+    const confirmacion = confirm('¿Estás seguro?\nSe borrarán todos los datos del formulario');
+    
+    if (confirmacion) {
         limpiarFormulario();
         window.location.href = 'panel_del_admin.html';
     }
 }
 
-// ==========================================
-// LIMPIAR FORMULARIO
-// ==========================================
+// ========================================================================
+// PASO 9: LIMPIAR EL FORMULARIO
+// ========================================================================
 function limpiarFormulario() {
-    // Limpiar inputs
-    const inputs = document.querySelectorAll('.input-group input');
-    inputs.forEach(input => input.value = '');
+    console.log('Limpiando formulario...');
     
-    // Limpiar imágenes
-    estadoImagenes.imagenPrincipal = null;
-    estadoImagenes.imagenMiniatura = null;
+    // Limpiar los inputs de texto
+    const inputs = document.querySelectorAll('.grupo-entrada input');
+    inputs.forEach(input => {
+        input.value = '';
+    });
     
-    // Restaurar vistas previas
-    const areasSuelta = document.querySelectorAll('.drop-area');
-    areasSuelta.forEach(areaSuelta => {
-        areaSuelta.innerHTML = `
+    // Limpiar las imágenes guardadas
+    imagenes.principal = null;
+    imagenes.miniatura = null;
+    
+    // Restaurar las áreas a su estado original
+    const areas = document.querySelectorAll('.area-soltar');
+    areas.forEach(area => {
+        area.style.backgroundColor = '';
+        area.innerHTML = `
             <div class="img-placeholder">🖼️</div>
             <p>Arrastra tu imagen aquí o <span>haz click para seleccionar</span></p>
         `;
     });
+    
+    console.log('✓ Formulario limpiado');
 }

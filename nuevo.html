@@ -39,28 +39,32 @@
 
                 <div class="grupo-entrada">
                     <label>Categoria</label>
-                    <input type="text">
+                    <input type="text" placeholder="perro, gato, pajaro, pez, roedor, otros">
                 </div>
 
                 <div class="grupo-entrada">
                     <label>Marca</label>
-                    <input type="text">
+                    <input type="text" placeholder="Ej: Pedigree, Royal Canin">
                 </div>
 
                 <div class="grupo-entrada">
                     <label>Precio</label>
-                    <input type="text">
+                    <input type="text" placeholder="Ej: 25.99">
                 </div>
 
                 <div class="grupo-entrada">
                     <label>Descripcion</label>
-                    <input type="text">
+                    <input type="text" placeholder="Describe el producto">
                 </div>
 
                 <div class="grupo-entrada">
                     <label>Formato:</label>
-                    <input type="text">
+                    <input type="text" placeholder="Ej: 1kg, Caja 5 piezas">
                 </div>
+
+                <!-- Campos ocultos para guardar imágenes -->
+                <input type="hidden" id="imagenPrincipal" value="">
+                <input type="hidden" id="imagenMiniatura" value="">
 
                 <div class="upload-section">
                     <h3>Imagen principal:</h3>
@@ -72,12 +76,6 @@
 
                 
                 </div>
-
-                <div class="final-actions">
-                    <button class="btn-save">Guardar Productos</button>
-                    <button class="btn-cancel">Cancelar</button>
-                </div>
-
 
                 <div class="upload-section">
                     <h3>Imagen en miniatura:</h3>
