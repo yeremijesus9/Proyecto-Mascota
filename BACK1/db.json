@@ -1257,6 +1257,13 @@
       "email": "admin@miwuff.com",
       "clave": "admin123",
       "rol": "admin"
+    },
+    {
+      "username": "juan",
+      "email": "juan@gmail.com",
+      "clave": "123",
+      "id": 2,
+      "rol": "cliente"
     }
   ],
   "carrito": [],
