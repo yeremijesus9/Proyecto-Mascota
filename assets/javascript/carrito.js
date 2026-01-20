@@ -8,15 +8,11 @@ if (window.CARRITO_INICIALIZADO) {
 } else {
     window.CARRITO_INICIALIZADO = true;
 
-    const API_URL = 'http://localhost:3000/carrito';
+    // Variables
     let carrito = [];
 
     // Cargar carrito al iniciar
-    async function cargarCarritoAlInicio() {
-        await cargarCarrito();
-        actualizarContador();
-    }
-    cargarCarritoAlInicio();
+    cargarCarrito();
 
     // Iniciar
     if (document.readyState === 'loading') {
@@ -98,28 +94,21 @@ if (window.CARRITO_INICIALIZADO) {
 
             // 5. VACIAR
             if (e.target.id === 'btn-vaciar') {
-                e.preventDefault();
                 vaciarCarrito();
                 return;
             }
 
             // 6. CAMBIAR CANTIDAD (+ / -)
-            const btnCantidad = e.target.closest('.btn-cantidad');
-            if (btnCantidad) {
-                e.preventDefault();
-                e.stopImmediatePropagation();
-                const id = btnCantidad.dataset.id;
-                const cambio = parseInt(btnCantidad.dataset.cambio);
+            if (e.target.classList.contains('btn-cantidad')) {
+                const id = e.target.dataset.id;
+                const cambio = parseInt(e.target.dataset.cambio);
                 cambiarCantidad(id, cambio);
                 return;
             }
 
             // 7. ELIMINAR PROD
-            const btnEliminar = e.target.closest('.btn-eliminar');
-            if (btnEliminar) {
-                e.preventDefault();
-                e.stopImmediatePropagation();
-                const id = btnEliminar.dataset.id;
+            if (e.target.classList.contains('btn-eliminar')) {
+                const id = e.target.dataset.id;
                 eliminarProducto(id);
                 return;
             }
@@ -127,7 +116,6 @@ if (window.CARRITO_INICIALIZADO) {
             // 8. CHECKOUT
             const btnCheckout = e.target.closest('#btn-checkout');
             if (btnCheckout) {
-                e.preventDefault();
                 window.location.href = 'checkout.html';
                 return;
             }
@@ -135,41 +123,23 @@ if (window.CARRITO_INICIALIZADO) {
     }
 
     // Lógica del Carrito
-    async function plusProducto(producto, cantidadSumar = 1) {
-        // Sacamos el nombre como texto (por si viene objeto)
-        const nombreCrudo = producto.nombre || producto.nombre_producto;
-        const nombreFinal = typeof nombreCrudo === 'object' ? nombreCrudo[window.idiomaActual || 'es'] : nombreCrudo;
-
+    function plusProducto(producto) {
         const index = carrito.findIndex(p => p.id === producto.id);
 
         if (index !== -1) {
-            // Si ya existe, actualizamos cantidad en el servidor
-            const nuevaCantidad = carrito[index].cantidad + cantidadSumar;
-            await actualizarCantidadServidor(producto.id, nuevaCantidad);
+            carrito[index].cantidad++;
         } else {
-            // Si no existe, lo creamos en el servidor
-            const nuevoItem = {
+            carrito.push({
                 id: producto.id,
-                nombre: nombreFinal,
+                nombre: producto.nombre || producto.nombre_producto,
                 precio: parseFloat(producto.precio),
                 imagen: producto.imagen || producto.imagen_principal,
-                cantidad: cantidadSumar
-            };
-
-            try {
-                const response = await fetch(API_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(nuevoItem)
-                });
-                if (!response.ok) throw new Error("Error al añadir");
-            } catch (err) {
-                console.error("No se pudo guardar en el servidor, usando respaldo local", err);
-            }
+                cantidad: 1
+            });
         }
 
-        await cargarCarrito(); // Recargar datos frescos del servidor
-        renderizarCarrito();   // Actualizar panel visualmente
+        guardarCarrito();
+        renderizarCarrito(); // Actualizar panel visualmente
         mostrarNotificacion();
     }
 
@@ -188,70 +158,42 @@ if (window.CARRITO_INICIALIZADO) {
         }
     }
 
-    async function cambiarCantidad(id, cambio) {
+    function cambiarCantidad(id, cambio) {
         const index = carrito.findIndex(p => p.id === id);
         if (index !== -1) {
-            const nuevaCantidad = carrito[index].cantidad + cambio;
-
-            if (nuevaCantidad <= 0) {
-                await eliminarProducto(id);
-            } else {
-                await actualizarCantidadServidor(id, nuevaCantidad);
-                await cargarCarrito();
-                renderizarCarrito();
+            carrito[index].cantidad += cambio;
+            if (carrito[index].cantidad <= 0) {
+                carrito.splice(index, 1);
             }
-        }
-    }
-
-    async function eliminarProducto(id) {
-        try {
-            await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
-            await cargarCarrito();
+            guardarCarrito();
             renderizarCarrito();
-        } catch (err) {
-            console.error("Error al eliminar", err);
         }
     }
 
-    async function actualizarCantidadServidor(id, cantidad) {
-        try {
-            await fetch(`${API_URL}/${id}`, {
-                method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ cantidad: cantidad })
-            });
-        } catch (err) {
-            console.error("Error al actualizar cantidad", err);
-        }
+    function eliminarProducto(id) {
+        carrito = carrito.filter(p => p.id !== id);
+        guardarCarrito();
+        renderizarCarrito();
     }
 
-    async function vaciarCarrito() {
+    function vaciarCarrito() {
         if (confirm("¿Estás seguro de vaciar el carrito?")) {
-            // JSON-Server no tiene un "delete all", hay que borrar uno por uno o resetear el array si tuvieras acceso total
-            // Una forma rápida es recorrer el carrito actual y borrar cada ID
-            for (const item of carrito) {
-                await fetch(`${API_URL}/${item.id}`, { method: 'DELETE' });
-            }
-            await cargarCarrito();
+            carrito = [];
+            guardarCarrito();
             renderizarCarrito();
         }
     }
 
     // Persistencia y Renderizado
-    async function cargarCarrito() {
-        try {
-            const response = await fetch(API_URL);
-            if (response.ok) {
-                carrito = await response.json();
-            }
-        } catch (err) {
-            console.error("Error al conectar con el servidor del carrito:", err);
-            carrito = []; // Si falla el servidor, el carrito se muestra vacío
-        }
+    function cargarCarrito() {
+        carrito = JSON.parse(localStorage.getItem('MiwuffCarrito')) || [];
         actualizarContador();
     }
 
-
+    function guardarCarrito() {
+        localStorage.setItem('MiwuffCarrito', JSON.stringify(carrito));
+        actualizarContador();
+    }
 
     function actualizarContador() {
         const contadores = document.querySelectorAll('.carrito-contador');
@@ -282,10 +224,10 @@ if (window.CARRITO_INICIALIZADO) {
                             <div class="nombre">${p.nombre}</div>
                             <div class="precio">€${(p.precio * p.cantidad).toFixed(2)}</div>
                             <div class="controles">
-                                <button type="button" class="btn-cantidad" data-id="${p.id}" data-cambio="-1">-</button>
+                                <button class="btn-cantidad" data-id="${p.id}" data-cambio="-1">-</button>
                                 <span>${p.cantidad}</span>
-                                <button type="button" class="btn-cantidad" data-id="${p.id}" data-cambio="1">+</button>
-                                <button type="button" class="btn-eliminar" data-id="${p.id}">🗑️</button>
+                                <button class="btn-cantidad" data-id="${p.id}" data-cambio="1">+</button>
+                                <button class="btn-eliminar" data-id="${p.id}">🗑️</button>
                             </div>
                         </div>
                     </div>
@@ -312,17 +254,12 @@ if (window.CARRITO_INICIALIZADO) {
                     <span>Total:</span>
                     <span id="carrito-total-precio">€0.00</span>
                 </div>
-                <button type="button" id="btn-checkout" class="btn-checkout">Finalizar Compra</button>
-                <button type="button" id="btn-vaciar" class="btn-vaciar">Vaciar Carrito</button>
+                <button id="btn-checkout" class="btn-checkout">Finalizar Compra</button>
+                <button id="btn-vaciar" class="btn-vaciar">Vaciar Carrito</button>
             </div>
         </div>`;
         document.body.insertAdjacentHTML('beforeend', html);
     }
-
-    // EXPORTAR FUNCIONES AL GLOBAL (Para detalle_producto.js y otros)
-    window.plusProducto = plusProducto;
-    window.cargarCarrito = cargarCarrito;
-    window.renderizarCarrito = renderizarCarrito;
 
     function mostrarNotificacion() {
         const notif = document.createElement('div');
