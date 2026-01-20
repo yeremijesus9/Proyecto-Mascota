@@ -15,80 +15,6 @@ const imagenes = {
     miniatura: null       // La imagen pequeña
 };
 
-<<<<<<< HEAD
-// Esperar a que cargue el DOM
-document.addEventListener('DOMContentLoaded', function () {
-    configurarListenerFormulario();
-    agregarPlaceholders();
-});
-
-// ==========================================
-// CONFIGURAR LISTENERS
-// ==========================================
-function configurarListenerFormulario() {
-    const inputGroups = document.querySelectorAll('.grupo-entrada input');
-    configurarArrastreYSuelta();
-    configurarListenerBotones();
-}
-
-// ==========================================
-// AGREGAR PLACEHOLDERS
-// ==========================================
-function agregarPlaceholders() {
-    const inputs = document.querySelectorAll('.grupo-entrada input');
-    const placeholders = [
-        'Ej: Perro, Gato, Pajaro, Pez, Roedor, Otros',
-        'Ej: Pedigree, Royal Canin, Purina',
-        'Ej: 25.99',
-        'Describe el producto de manera detallada',
-        'Ej: Bolsa 1kg, Lata 250g, Caja 5 piezas'
-    ];
-
-    inputs.forEach((input, index) => {
-        if (placeholders[index]) {
-            input.placeholder = placeholders[index];
-        }
-    });
-}
-
-// ==========================================
-// ARRASTRAR Y SOLTAR IMÁGENES
-// ==========================================
-function configurarArrastreYSuelta() {
-    const dropAreas = document.querySelectorAll('.area-soltar');
-
-    dropAreas.forEach((dropArea, index) => {
-        const esImagenPrincipal = index === 0;
-
-        // Eventos de arrastrar y soltar
-        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-            dropArea.addEventListener(eventName, prevenirDefectos, false);
-        });
-
-        ['dragenter', 'dragover'].forEach(eventName => {
-            dropArea.addEventListener(eventName, () => resaltar(dropArea), false);
-        });
-
-        ['dragleave', 'drop'].forEach(eventName => {
-            dropArea.addEventListener(eventName, () => desresaltar(dropArea), false);
-        });
-
-        dropArea.addEventListener('drop', (e) => manejarSuelta(e, esImagenPrincipal), false);
-
-        // Click para seleccionar archivo
-        dropArea.addEventListener('click', () => {
-            const inputArchivo = document.createElement('input');
-            inputArchivo.type = 'file';
-            inputArchivo.accept = 'image/*';
-            inputArchivo.addEventListener('change', (e) => {
-                if (e.target.files.length > 0) {
-                    manejarArchivo(e.target.files[0], esImagenPrincipal);
-                }
-            });
-            inputArchivo.click();
-        });
-    });
-=======
 // PASO 3: Esperar a que cargue toda la página
 // Cuando termina de cargar, ejecutamos las funciones de configuración
 document.addEventListener('DOMContentLoaded', function() {
@@ -128,7 +54,6 @@ function configurarImagenes() {
 function evitarDefecto(evento) {
     evento.preventDefault();
     evento.stopPropagation();
->>>>>>> 606c347736cde1f4becdf5c283ae64217e6413a3
 }
 
 // PASO 6: Resaltar el área cuando pasamos imagen encima
@@ -186,14 +111,6 @@ function procesarArchivo(archivo, esPrincipal) {
         alert('⚠️ La imagen es muy grande. Máximo 5 MB');
         return;
     }
-<<<<<<< HEAD
-
-    const lector = new FileReader();
-    lector.onload = function (e) {
-        if (esImagenPrincipal) {
-            estadoImagenes.imagenPrincipal = e.target.result;
-            actualizarVistaPrevia(0, e.target.result, archivo.name);
-=======
     
     // Convertir imagen a base64 (texto para guardar en JSON)
     const lector = new FileReader();
@@ -201,7 +118,6 @@ function procesarArchivo(archivo, esPrincipal) {
         if (esPrincipal) {
             imagenes.principal = evento.target.result;
             mostrarPreview(0, evento.target.result, archivo.name);
->>>>>>> 606c347736cde1f4becdf5c283ae64217e6413a3
         } else {
             imagenes.miniatura = evento.target.result;
             mostrarPreview(1, evento.target.result, archivo.name);
@@ -231,12 +147,8 @@ function mostrarPreview(numero, datosImagen, nombreArchivo) {
 function configurarBotones() {
     // Encontrar todos los botones
     const botones = document.querySelectorAll('button');
-<<<<<<< HEAD
-
-=======
     
     // Agregar eventos a cada botón
->>>>>>> 606c347736cde1f4becdf5c283ae64217e6413a3
     botones.forEach(boton => {
         if (boton.classList.contains('btn-save')) {
             boton.addEventListener('click', guardarProducto);
@@ -246,48 +158,6 @@ function configurarBotones() {
     });
 }
 
-<<<<<<< HEAD
-// ==========================================
-// MANEJAR GUARDAR PRODUCTO
-// ==========================================
-function manejarGuardarProducto(e) {
-    e.preventDefault();
-
-    // Obtener datos de los inputs
-    const inputs = document.querySelectorAll('.grupo-entrada input');
-    const datosFormulario = {
-        categoria: inputs[0]?.value.trim() || '',
-        marca: inputs[1]?.value.trim() || '',
-        precio: inputs[2]?.value.trim() || '',
-        descripcion: inputs[3]?.value.trim() || '',
-        formato: inputs[4]?.value.trim() || ''
-    };
-
-    // Validar
-    if (!datosFormulario.categoria || !datosFormulario.marca || !datosFormulario.precio ||
-        !datosFormulario.descripcion || !datosFormulario.formato) {
-        alert('Por favor completa todos los campos de texto');
-        return;
-    }
-
-    if (isNaN(parseFloat(datosFormulario.precio)) || parseFloat(datosFormulario.precio) <= 0) {
-        alert('El precio debe ser un número válido mayor a 0');
-        return;
-    }
-
-    if (!estadoImagenes.imagenPrincipal) {
-        alert('Por favor carga una imagen principal');
-        return;
-    }
-
-    if (!estadoImagenes.imagenMiniatura) {
-        alert('Por favor carga una imagen en miniatura');
-        return;
-    }
-
-    // Crear objeto producto
-    const nuevoProducto = {
-=======
 // PASO 13: GUARDAR PRODUCTO - Validar datos
 function guardarProducto(evento) {
     evento.preventDefault();
@@ -354,7 +224,6 @@ function guardarProducto(evento) {
     const nombreEN = datosProducto.nombre;
     
     const productoNuevo = {
->>>>>>> 606c347736cde1f4becdf5c283ae64217e6413a3
         id: 'PROD' + Date.now(),
         categoria: categoriasMap[datosProducto.categoria] || { es: datosProducto.categoria, en: datosProducto.categoria },
         marca: datosProducto.marca,
@@ -378,15 +247,9 @@ function guardarProducto(evento) {
         opiniones: '0',
         comentarios: []
     };
-<<<<<<< HEAD
-
-    // Guardar en el servidor
-    guardarProductoEnBD(nuevoProducto);
-=======
     
     // Enviar producto al servidor
     enviarAlServidor(productoNuevo);
->>>>>>> 606c347736cde1f4becdf5c283ae64217e6413a3
 }
 
 // PASO 14: ENVIAR PRODUCTO AL SERVIDOR
@@ -401,37 +264,6 @@ function enviarAlServidor(producto) {
         },
         body: JSON.stringify(producto)     // Convertir objeto a JSON
     })
-<<<<<<< HEAD
-        .then(respuesta => {
-            if (!respuesta.ok) {
-                throw new Error('Error en la respuesta del servidor');
-            }
-            return respuesta.json();
-        })
-        .then(datos => {
-            console.log('Producto guardado:', datos);
-            alert('✓ Producto guardado exitosamente');
-            limpiarFormulario();
-
-            // Redirigir después de 1.5 segundos
-            setTimeout(() => {
-                window.location.href = 'panel_del_admin.html';
-            }, 1500);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('✗ Error al guardar. Verifica que el servidor esté en http://localhost:3000');
-        });
-}
-
-// ==========================================
-// MANEJAR CANCELAR
-// ==========================================
-function manejarCancelar(e) {
-    e.preventDefault();
-
-    if (confirm('¿Estás seguro de que deseas cancelar? Se perderán todos los datos.')) {
-=======
     .then(respuesta => {
         // Revisar si la respuesta fue exitosa
         if (!respuesta.ok) {
@@ -463,7 +295,6 @@ function cancelarFormulario(evento) {
     
     // Preguntar si está seguro
     if (confirm('¿Seguro que deseas cancelar? Se perderán todos los datos')) {
->>>>>>> 606c347736cde1f4becdf5c283ae64217e6413a3
         limpiarFormulario();
         window.location.href = 'panel_del_admin.html';
     }
@@ -471,20 +302,6 @@ function cancelarFormulario(evento) {
 
 // PASO 16: LIMPIAR FORMULARIO (vaciar campos e imágenes)
 function limpiarFormulario() {
-<<<<<<< HEAD
-    // Limpiar inputs
-    const inputs = document.querySelectorAll('.input-group input');
-    inputs.forEach(input => input.value = '');
-
-    // Limpiar imágenes
-    estadoImagenes.imagenPrincipal = null;
-    estadoImagenes.imagenMiniatura = null;
-
-    // Restaurar vistas previas
-    const areasSuelta = document.querySelectorAll('.area-soltar');
-    areasSuelta.forEach(areaSuelta => {
-        areaSuelta.innerHTML = `
-=======
     console.log('🧹 Limpiando formulario...');
     
     // Limpiar todos los inputs de texto usando IDs específicos
@@ -502,7 +319,6 @@ function limpiarFormulario() {
     const areas = document.querySelectorAll('.area-soltar');
     areas.forEach(area => {
         area.innerHTML = `
->>>>>>> 606c347736cde1f4becdf5c283ae64217e6413a3
             <div class="img-placeholder">🖼️</div>
             <p>Arrastra tu imagen aquí o <span>haz click para seleccionar</span></p>
         `;
