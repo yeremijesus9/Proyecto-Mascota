@@ -165,6 +165,7 @@ function guardarProducto(evento) {
     
     // Obtener los valores que escribió el usuario usando IDs específicos
     const selectCategoria = document.getElementById('categoria-select');
+    const nombreInput = document.getElementById('nombre-input');
     const marcaInput = document.getElementById('marca-input');
     const precioInput = document.getElementById('precio-input');
     const descripcionInput = document.getElementById('descripcion-input');
@@ -172,6 +173,7 @@ function guardarProducto(evento) {
     
     const datosProducto = {
         categoria: selectCategoria?.value.trim() || '',
+        nombre: nombreInput?.value.trim() || '',
         marca: marcaInput?.value.trim() || '',
         precio: precioInput?.value.trim() || '',
         descripcion: descripcionInput?.value.trim() || '',
@@ -179,7 +181,7 @@ function guardarProducto(evento) {
     };
     
     // Validación 1: ¿Escribió todos los campos?
-    if (!datosProducto.categoria || !datosProducto.marca || !datosProducto.precio || 
+    if (!datosProducto.categoria || !datosProducto.nombre || !datosProducto.marca || !datosProducto.precio || 
         !datosProducto.descripcion || !datosProducto.formato) {
         alert('❌ Faltan campos por llenar. Por favor completa todos los datos');
         return;
@@ -217,8 +219,9 @@ function guardarProducto(evento) {
     };
     
     // Crear nombres en ambos idiomas
-    const nombreES = datosProducto.marca + ' - ' + datosProducto.categoria;
-    const nombreEN = datosProducto.marca + ' - ' + (categoriasMap[datosProducto.categoria]?.en || datosProducto.categoria);
+    // Usar el nombre que escribió el usuario
+    const nombreES = datosProducto.nombre;
+    const nombreEN = datosProducto.nombre;
     
     const productoNuevo = {
         id: 'PROD' + Date.now(),
