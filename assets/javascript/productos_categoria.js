@@ -94,8 +94,21 @@ async function cargarProductos() {
     const resp = await fetch(window.rutaJson(), { cache: 'no-cache' });
     if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
     const data = await resp.json();
-    // json-server devuelve directamente el array de productos
-    return Array.isArray(data) ? data : [];
+    const productosExistentes = Array.isArray(data) ? data : [];
+    
+    // También cargar productos nuevos desde el endpoint de nuevo_producto
+    try {
+        const respNuevos = await fetch('http://localhost:3000/nuevo_producto', { cache: 'no-cache' });
+        if (respNuevos.ok) {
+            const dataNuevos = await respNuevos.json();
+            const productosNuevos = Array.isArray(dataNuevos) ? dataNuevos : [];
+            return [...productosExistentes, ...productosNuevos];
+        }
+    } catch (error) {
+        console.log('Info: No se pudieron cargar productos nuevos');
+    }
+    
+    return productosExistentes;
 }
 
 // busco los productos, los filtro y cambio el título de la página.
