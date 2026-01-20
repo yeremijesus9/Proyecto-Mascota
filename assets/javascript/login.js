@@ -152,14 +152,14 @@ function configurarEventosDelModal(popup) {
 
     // -- ENVIO DE FORMULARIO: LOGIN --
     if (formLogin) {
-        formLogin.addEventListener("submit", (e) => {
+        formLogin.addEventListener("submit", async (e) => {
             e.preventDefault();
 
             const email = popup.querySelector("#loginEmail").value;
             const password = popup.querySelector("#loginPassword").value;
 
             // -> PASAMOS AL PASO 4: VALIDAR DATOS
-            const usuario = verificarCredenciales(email, password);
+            const usuario = await verificarCredenciales(email, password);
 
             if (usuario) {
                 // -> SI ES CORRECTO: PASAMOS AL FINAL (LOGIN EXITOSO)
@@ -172,7 +172,7 @@ function configurarEventosDelModal(popup) {
 
     // -- ENVIO DE FORMULARIO: REGISTRO --
     if (formRegistro) {
-        formRegistro.addEventListener("submit", (e) => {
+        formRegistro.addEventListener("submit", async (e) => {
             e.preventDefault();
 
             // Recogemos todos los datos (el ID y el ROL se gestionan en guardarNuevoUsuario)
@@ -189,13 +189,13 @@ function configurarEventosDelModal(popup) {
             }
 
             // -> PASAMOS AL PASO 4: GUARDAR DATOS
-            const listaUsuarios = obtenerTodosLosUsuarios();
+            const listaUsuarios = await obtenerTodosLosUsuarios();
             const existe = listaUsuarios.some(u => u.email === datosNuevoUsuario.email);
 
             if (existe) {
                 alert("Este correo ya está registrado.");
             } else {
-                guardarNuevoUsuario(datosNuevoUsuario);
+                await guardarNuevoUsuario(datosNuevoUsuario);
                 alert("¡Registro exitoso! Iniciando sesión...");
 
                 // Redirigimos al usuario para que inicie sesión o lo logueamos directamente
@@ -211,44 +211,53 @@ function configurarEventosDelModal(popup) {
 // PASO 4: LOGICA DE DATOS (EL "CEREBRO" DEL SISTEMA)
 // =============================================================================
 
-const CLAVE_USUARIOS = 'sistema_usuarios_registrados';
+const URL_USUARIOS = 'http://localhost:3000/usuarios';
 const CLAVE_SESION = 'sistema_usuario_activo';
 
-function obtenerTodosLosUsuarios() {
-    const datos = localStorage.getItem(CLAVE_USUARIOS);
-    let usuarios = datos ? JSON.parse(datos) : [];
-
-    // Si la lista está vacía, definimos al administrador (ID 1)
-    if (usuarios.length === 0) {
-        usuarios.push({
-            id: 1,
-            username: 'admin',
-            email: 'admin@miwuff.com',
-            clave: 'admin123',
-            rol: 'admin'
-        });
-        localStorage.setItem(CLAVE_USUARIOS, JSON.stringify(usuarios));
+async function obtenerTodosLosUsuarios() {
+    try {
+        const respuesta = await fetch(URL_USUARIOS);
+        if (!respuesta.ok) return [];
+        return await respuesta.json();
+    } catch (error) {
+        console.error("Error al obtener usuarios:", error);
+        return [];
     }
-    return usuarios;
 }
 
-function guardarNuevoUsuario(usuario) {
-    const lista = obtenerTodosLosUsuarios();
+async function guardarNuevoUsuario(usuario) {
+    const lista = await obtenerTodosLosUsuarios();
 
     // El admin siempre es ID 1. Buscamos el ID más alto para seguir la secuencia.
-    const maxId = lista.reduce((max, u) => (u.id > max ? u.id : max), 1);
+    const ids = lista.map(u => Number(u.id));
+    const maxId = ids.length > 0 ? Math.max(...ids) : 1;
 
     usuario.id = maxId + 1; // Los demás usuarios del 2 en adelante
     usuario.rol = 'cliente'; // Todo usuario nuevo es cliente
 
-    lista.push(usuario);
-    localStorage.setItem(CLAVE_USUARIOS, JSON.stringify(lista));
+    try {
+        const respuesta = await fetch(URL_USUARIOS, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(usuario)
+        });
+        return await respuesta.json();
+    } catch (error) {
+        console.error("Error al guardar usuario:", error);
+    }
 }
 
-function verificarCredenciales(email, password) {
-    const lista = obtenerTodosLosUsuarios();
-    // Buscamos coincidencia exacta de email Y contraseña
-    return lista.find(u => u.email === email && u.clave === password) || null;
+async function verificarCredenciales(email, password) {
+    try {
+        const respuesta = await fetch(`${URL_USUARIOS}?email=${email}&clave=${password}`);
+        const usuariosEncontrados = await respuesta.json();
+        return usuariosEncontrados.length > 0 ? usuariosEncontrados[0] : null;
+    } catch (error) {
+        console.error("Error al verificar credenciales:", error);
+        return null;
+    }
 }
 
 function iniciarSesionUsuario(usuario) {
