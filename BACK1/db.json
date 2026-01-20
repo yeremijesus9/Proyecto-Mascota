@@ -148,45 +148,13 @@
         "en": "Size"
       },
       "descripcion_formato": "50x170x50 cm",
-      "imagen_principal": "/assets/img/gato/CAT03_0.png",
+      "imagen_principal": "http://127.0.0.1:5505/assets/img/gato/CAT03_0.png",
       "imagen_miniatura": [
-        "/assets/img/gato/CAT03_0.png",
-        "/assets/img/gato/CAT03_1.png",
-        "/assets/img/gato/CAT03_2.png",
-        "/assets/img/gato/CAT03_3.png",
-        "/assets/img/gato/CAT03_4.png"
-      ],
-      "comentarios": [
-        {
-          "usuario": "FamiliaMultigatuna",
-          "fecha": "2025-11-20",
-          "puntuacion": 5,
-          "texto": "¡Impresionante! Tengo 3 gatos grandes y es súper estable, incluso cuando suben a toda velocidad. El color Nilo Azul es muy elegante y la base es robusta."
-        },
-        {
-          "usuario": "ElArquitectoFelino",
-          "fecha": "2025-12-01",
-          "puntuacion": 4,
-          "texto": "El diseño es excelente, la rampa de acceso es ideal para mi gato mayor. Tardo un poco en montarlo yo solo, pero las instrucciones eran claras. Las hamacas son un éxito total."
-        },
-        {
-          "usuario": "RascadorPro",
-          "fecha": "2025-10-15",
-          "puntuacion": 5,
-          "texto": "Lo mejor que he comprado en meses. La altura es perfecta para que vigilen la casa y el túnel vertical les da un extra de diversión. El sisal de los postes es de buena calidad."
-        },
-        {
-          "usuario": "DueñoDeMaineCoon",
-          "fecha": "2025-11-28",
-          "puntuacion": 4,
-          "texto": "Es un rascador realmente grande, tal como se describe. Mi Maine Coon puede estirarse completamente en la plataforma superior. Solo le pongo 4 estrellas porque la tela de las hamacas es un poco fina."
-        },
-        {
-          "usuario": "CompradoraFeliz",
-          "fecha": "2025-12-04",
-          "puntuacion": 5,
-          "texto": "Mis dos gatas se peleaban por el rascador viejo. Ahora cada una tiene su sitio. El centro de juego es un 24/7 y por el precio, es una inversión que vale la pena."
-        }
+        "http://127.0.0.1:5505/assets/img/gato/CAT03_0.png",
+        "http://127.0.0.1:5505/assets/img/gato/CAT03_1.png",
+        "http://127.0.0.1:5505/assets/img/gato/CAT03_2.png",
+        "http://127.0.0.1:5505/assets/img/gato/CAT03_3.png",
+        "http://127.0.0.1:5505/assets/img/gato/CAT03_4.png"
       ]
     },
     {
@@ -196,8 +164,6 @@
         "en": "cat"
       },
       "marca": "SUMSU",
-      "puntuacion": "4",
-      "opiniones": "10 ",
       "nombre_producto": {
         "es": "SUMSU Guante PRO Aseo para Perro y Gato",
         "en": "SUMSU Pro Wash Gloves for Dogs and Cats"
@@ -212,44 +178,12 @@
         "en": "Size"
       },
       "descripcion_formato": "23x17 cm",
-      "imagen_principal": "/assets/img/gato/CAT04_0.png",
+      "imagen_principal": "http://127.0.0.1:5505/assets/img/gato/CAT04_0.png",
       "imagen_miniatura": [
-        "/assets/img/gato/CAT04_0.png",
-        "/assets/img/gato/CAT04_1.png",
-        "/assets/img/gato/CAT04_2.png",
-        "/assets/img/gato/CAT04_3.png"
-      ],
-      "comentarios": [
-        {
-          "usuario": "DueñaDePeludos",
-          "fecha": "2025-03-10",
-          "puntuacion": 5,
-          "texto": "¡Funciona de maravilla con mi Golden Retriever! Recoge muchísimo pelo suelto y, lo mejor de todo, a él le encanta que lo 'acaricie' con el guante, lo ve como un masaje."
-        },
-        {
-          "usuario": "GatoPersaMom",
-          "fecha": "2025-02-28",
-          "puntuacion": 4,
-          "texto": "Muy efectivo para el pelo corto de mi gato. Es fácil de limpiar y el pelo se quita de una sola pasada. No le doy 5 estrellas porque me hubiera gustado un ajuste más firme en la muñeca."
-        },
-        {
-          "usuario": "TrainerJuan",
-          "fecha": "2025-03-05",
-          "puntuacion": 5,
-          "texto": "El guante es muy cómodo de usar, no se me cansa la mano. Ideal para perros nerviosos o que odian los cepillos tradicionales, ya que el tacto es más suave y natural."
-        },
-        {
-          "usuario": "CompradorAhorrador",
-          "fecha": "2025-02-20",
-          "puntuacion": 4,
-          "texto": "Por el precio que tiene, es una solución excelente para el mantenimiento diario. No es tan profundo como un peine de muda, pero para quitar lo superficial y darle brillo al pelo, es perfecto."
-        },
-        {
-          "usuario": "PeloPorTodaLaCasa",
-          "fecha": "2025-03-01",
-          "puntuacion": 3,
-          "texto": "Recoge bastante pelo de mi perro de pelo duro, aunque no tanto como esperaba. Aún así, es mejor que nada y a mi perro le resulta menos invasivo que el cepillo metálico."
-        }
+        "http://127.0.0.1:5505/assets/img/gato/CAT04_0.png",
+        "http://127.0.0.1:5505/assets/img/gato/CAT04_1.png",
+        "http://127.0.0.1:5505/assets/img/gato/CAT04_2.png",
+        "http://127.0.0.1:5505/assets/img/gato/CAT04_3.png"
       ]
     },
     {
@@ -439,8 +373,8 @@
     {
       "id": "PEZ3",
       "categoria": {
-        "es": "pez",
-        "en": "fish"
+        "es": "pajaro",
+        "en": "bird"
       },
       "marca": "Aqua Ornaments",
       "puntuacion": "4",
@@ -459,42 +393,10 @@
         "en": "Size"
       },
       "descripcion_formato": "25x18x15 cm",
-      "imagen_principal": "/assets/img/peces/PEZ03_0.png",
+      "imagen_principal": "http://127.0.0.1:5505/assets/img/peces/PEZ03_0.png",
       "imagen_miniatura": [
-        "/assets/img/peces/PEZ03_0.png",
-        "/assets/img/peces/PEZ03_1.png"
-      ],
-      "comentarios": [
-        {
-          "usuario": "AcuarioMagico",
-          "fecha": "2025-11-18",
-          "puntuacion": 5,
-          "texto": "¡Precioso! Transforma completamente el aspecto del acuario. Los peces pequeños se esconden entre las plantas y el castillo. Muy detallado."
-        },
-        {
-          "usuario": "BettaLover",
-          "fecha": "2025-10-25",
-          "puntuacion": 4,
-          "texto": "A mi Betta le encanta nadar entre las torres del castillo. Las plantas de seda son suaves y no dañan las aletas. El acabado es realista."
-        },
-        {
-          "usuario": "DecoradorAcuatico",
-          "fecha": "2025-11-05",
-          "puntuacion": 4,
-          "texto": "Bonita decoración por el precio. Se integra bien con grava oscura. Tuve que enjuagarlo bien antes de meterlo porque tenía algo de polvo."
-        },
-        {
-          "usuario": "FamiliaPececitos",
-          "fecha": "2025-09-30",
-          "puntuacion": 3,
-          "texto": "Queda bien pero esperaba que fuera un poco más grande. Aun así cumple su función y a los peces les gusta. Las plantas son de buena calidad."
-        },
-        {
-          "usuario": "NiñosContentos",
-          "fecha": "2025-10-12",
-          "puntuacion": 5,
-          "texto": "A mis hijos les fascina. Le da un toque de fantasía al acuario. Los guppys se refugian dentro cuando apago la luz. Muy satisfecho con la compra."
-        }
+        "http://127.0.0.1:5505/assets/img/peces/PEZ03_0.png",
+        "http://127.0.0.1:5505/assets/img/peces/PEZ03_1.png"
       ]
     },
     {
@@ -1362,6 +1264,5 @@
     }
   ],
   "carrito": [],
-  "datos_envio": [],
-  "nuevos_productos": []
+  "datos_envio": []
 }
