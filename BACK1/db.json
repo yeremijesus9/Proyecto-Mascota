@@ -164,8 +164,6 @@
         "en": "cat"
       },
       "marca": "SUMSU",
-      "puntuacion": "4",
-      "opiniones": "10 ",
       "nombre_producto": {
         "es": "SUMSU Guante PRO Aseo para Perro y Gato",
         "en": "SUMSU Pro Wash Gloves for Dogs and Cats"
@@ -180,44 +178,12 @@
         "en": "Size"
       },
       "descripcion_formato": "23x17 cm",
-      "imagen_principal": "/assets/img/gato/CAT04_0.png",
+      "imagen_principal": "http://127.0.0.1:5505/assets/img/gato/CAT04_0.png",
       "imagen_miniatura": [
-        "/assets/img/gato/CAT04_0.png",
-        "/assets/img/gato/CAT04_1.png",
-        "/assets/img/gato/CAT04_2.png",
-        "/assets/img/gato/CAT04_3.png"
-      ],
-      "comentarios": [
-        {
-          "usuario": "DueñaDePeludos",
-          "fecha": "2025-03-10",
-          "puntuacion": 5,
-          "texto": "¡Funciona de maravilla con mi Golden Retriever! Recoge muchísimo pelo suelto y, lo mejor de todo, a él le encanta que lo 'acaricie' con el guante, lo ve como un masaje."
-        },
-        {
-          "usuario": "GatoPersaMom",
-          "fecha": "2025-02-28",
-          "puntuacion": 4,
-          "texto": "Muy efectivo para el pelo corto de mi gato. Es fácil de limpiar y el pelo se quita de una sola pasada. No le doy 5 estrellas porque me hubiera gustado un ajuste más firme en la muñeca."
-        },
-        {
-          "usuario": "TrainerJuan",
-          "fecha": "2025-03-05",
-          "puntuacion": 5,
-          "texto": "El guante es muy cómodo de usar, no se me cansa la mano. Ideal para perros nerviosos o que odian los cepillos tradicionales, ya que el tacto es más suave y natural."
-        },
-        {
-          "usuario": "CompradorAhorrador",
-          "fecha": "2025-02-20",
-          "puntuacion": 4,
-          "texto": "Por el precio que tiene, es una solución excelente para el mantenimiento diario. No es tan profundo como un peine de muda, pero para quitar lo superficial y darle brillo al pelo, es perfecto."
-        },
-        {
-          "usuario": "PeloPorTodaLaCasa",
-          "fecha": "2025-03-01",
-          "puntuacion": 3,
-          "texto": "Recoge bastante pelo de mi perro de pelo duro, aunque no tanto como esperaba. Aún así, es mejor que nada y a mi perro le resulta menos invasivo que el cepillo metálico."
-        }
+        "http://127.0.0.1:5505/assets/img/gato/CAT04_0.png",
+        "http://127.0.0.1:5505/assets/img/gato/CAT04_1.png",
+        "http://127.0.0.1:5505/assets/img/gato/CAT04_2.png",
+        "http://127.0.0.1:5505/assets/img/gato/CAT04_3.png"
       ]
     },
     {

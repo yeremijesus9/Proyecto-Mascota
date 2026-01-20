@@ -84,12 +84,13 @@ function crearCardProducto(prod) {
                 <div class="input-group"><b>Marca:</b><input type="text" id="edit-marca-${prod.id}" value="${prod.marca || ''}"></div>
                 <div class="input-group"><b>Nombre (ES):</b><input type="text" id="edit-n-es-${prod.id}" value="${prod.nombre_producto?.es || ''}"></div>
                 <div class="input-group"><b>Nombre (EN):</b><input type="text" id="edit-n-en-${prod.id}" value="${prod.nombre_producto?.en || ''}"></div>
-                <div class="input-group"><b>Precio (€):</b><input type="number" step="0.01" id="edit-p-${prod.id}" value="${prod.precio || 0}"></div>
-                <div class="input-group"><b>Puntuación:</b><input type="text" id="edit-punt-${prod.id}" value="${prod.puntuacion || '0'}"></div>
-                <div class="input-group"><b>Opiniones:</b><input type="text" id="edit-opin-${prod.id}" value="${prod.opiniones || '0'}"></div>
+                
                 <div class="input-group"><b>Formato (ES):</b><input type="text" id="edit-f-es-${prod.id}" value="${prod.formato?.es || ''}"></div>
                 <div class="input-group"><b>Formato (EN):</b><input type="text" id="edit-f-en-${prod.id}" value="${prod.formato?.en || ''}"></div>
-                <div class="input-group full-width"><b>Descripción Formato:</b><input type="text" id="edit-desc-f-${prod.id}" value="${prod.descripcion_formato || ''}"></div>
+                
+                <div class="input-group"><b>Precio (€):</b><input type="number" step="0.01" id="edit-p-${prod.id}" value="${prod.precio || 0}"></div>
+                <div class="input-group"><b>Descripción Formato:</b><input type="text" id="edit-desc-f-${prod.id}" value="${prod.descripcion_formato || ''}"></div>
+                
                 <div class="input-group full-width"><b>Descripción (ES):</b><textarea id="edit-d-es-${prod.id}">${prod.descripcion?.es || ''}</textarea></div>
                 <div class="input-group full-width"><b>Descripción (EN):</b><textarea id="edit-d-en-${prod.id}">${prod.descripcion?.en || ''}</textarea></div>
 
@@ -144,8 +145,6 @@ function actualizarVistaJSON(id) {
             en: document.getElementById(`edit-cat-en-${id}`).value
         },
         marca: document.getElementById(`edit-marca-${id}`).value,
-        puntuacion: document.getElementById(`edit-punt-${id}`).value,
-        opiniones: document.getElementById(`edit-opin-${id}`).value,
         nombre_producto: {
             es: document.getElementById(`edit-n-es-${id}`).value,
             en: document.getElementById(`edit-n-en-${id}`).value
@@ -177,8 +176,6 @@ async function guardarCambios(id) {
             en: document.getElementById(`edit-cat-en-${id}`).value
         },
         marca: document.getElementById(`edit-marca-${id}`).value,
-        puntuacion: document.getElementById(`edit-punt-${id}`).value,
-        opiniones: document.getElementById(`edit-opin-${id}`).value,
         nombre_producto: {
             es: document.getElementById(`edit-n-es-${id}`).value,
             en: document.getElementById(`edit-n-en-${id}`).value
@@ -207,7 +204,7 @@ async function guardarCambios(id) {
             alert("¡MODIFICACIÓN CAMBIOS EXITOSA!");
             cargarProductos();
         }
-    } catch (e) { alert("Error al conectar."); }
+    } catch (e) { alert("Error al conectar con el servidor."); }
 }
 
 function toggleVisibilidad(boton, id) {
@@ -216,7 +213,6 @@ function toggleVisibilidad(boton, id) {
     const estaOculto = icono.classList.contains('fa-eye-slash');
     icono.className = estaOculto ? 'fas fa-eye' : 'fas fa-eye-slash';
     fila.style.opacity = estaOculto ? '1' : '0.4';
-    boton.classList.toggle('inactive', !estaOculto);
 }
 
 async function eliminarProducto(id) {
@@ -238,35 +234,32 @@ function toggleEdicion(id) {
 
 function actualizarImagenPrincipalEnCascada(base64Nueva, id) {
     const imgPrincipalElem = document.getElementById(`prev-main-${id}`);
-    const base64Anterior = imgPrincipalElem.src;
-    Array.from(document.querySelectorAll(`#minis-container-${id} .mini-item`)).forEach(item => {
-        if (item.querySelector('img')?.src === base64Anterior) item.remove();
-    });
     imgPrincipalElem.src = base64Nueva;
-    const minis = Array.from(document.querySelectorAll(`#minis-container-${id} img`)).map(img => img.src);
-    if (!minis.includes(base64Nueva)) inyectarMiniaturaHTML(base64Nueva, id);
     actualizarVistaJSON(id);
 }
 
 function activarDragAndDrop(id) {
     const zoneMain = document.getElementById(`drop-zone-main-${id}`);
     const zoneMini = document.getElementById(`drop-zone-mini-${id}`);
-    if(!zoneMain || !zoneMini) return;
     const prevenir = (e) => { e.preventDefault(); e.stopPropagation(); };
-    [zoneMain, zoneMini].forEach(z => {
-        z.addEventListener('dragover', prevenir);
-        z.addEventListener('drop', prevenir);
-    });
-    zoneMain.addEventListener('drop', async (e) => {
-        const f = e.dataTransfer.files[0];
-        if (f?.type.startsWith('image/')) actualizarImagenPrincipalEnCascada(await toBase64(f), id);
-    });
-    zoneMini.addEventListener('drop', async (e) => {
-        for (const f of e.dataTransfer.files) {
-            if (f.type.startsWith('image/')) inyectarMiniaturaHTML(await toBase64(f), id);
-        }
-        actualizarVistaJSON(id);
-    });
+    if(zoneMain) {
+        zoneMain.addEventListener('dragover', prevenir);
+        zoneMain.addEventListener('drop', prevenir);
+        zoneMain.addEventListener('drop', async (e) => {
+            const f = e.dataTransfer.files[0];
+            if (f?.type.startsWith('image/')) actualizarImagenPrincipalEnCascada(await toBase64(f), id);
+        });
+    }
+    if(zoneMini) {
+        zoneMini.addEventListener('dragover', prevenir);
+        zoneMini.addEventListener('drop', prevenir);
+        zoneMini.addEventListener('drop', async (e) => {
+            for (const f of e.dataTransfer.files) {
+                if (f.type.startsWith('image/')) inyectarMiniaturaHTML(await toBase64(f), id);
+            }
+            actualizarVistaJSON(id);
+        });
+    }
 }
 
 function inyectarMiniaturaHTML(src, id) {
