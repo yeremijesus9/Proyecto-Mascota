@@ -33,40 +33,19 @@ if (window.CARRITO_INICIALIZADO) {
 
         document.body.addEventListener('click', function (e) {
 
-            // 1. CLICK EN ANADIR AL CARRITO
+            // 1. AÑADIR AL CARRITO
             const btnAnadir = e.target.closest('.btn-anadir-carrito');
             if (btnAnadir) {
                 e.preventDefault();
-                e.stopImmediatePropagation(); // Detener cualquier otro evento
+                e.stopImmediatePropagation();
 
-                // Obtener datos
-                const id = btnAnadir.dataset.productoId;
-
-                // Intentar obtener datos del objeto directo (si fue asignado en JS)
-                let producto = btnAnadir.productoData;
-
-                // Si no hay objeto directo, intentar buscar en el DOM (fallback)
-                if (!producto && id) {
-                    const tarjeta = btnAnadir.closest('.tarjeta-producto');
-                    if (tarjeta) {
-                        const precioTexto = tarjeta.querySelector('.precio')?.textContent || "0";
-                        const precio = parseFloat(precioTexto.replace(/[^\d.,]/g, '').replace(',', '.')) || 0;
-                        const imagen = tarjeta.querySelector('img')?.src || 'assets/img/placeholder.jpg';
-                        const nombre = tarjeta.querySelector('h3')?.textContent || "Producto";
-
-                        producto = {
-                            id: id,
-                            nombre: nombre,
-                            precio: precio,
-                            imagen: imagen
-                        };
-                    }
-                }
+                // Obtener datos del producto desde el botón
+                const producto = btnAnadir.productoData;
 
                 if (producto) {
                     plusProducto(producto);
                 } else {
-                    console.error("❌ No se pudieron obtener datos del producto");
+                    console.error("❌ Error: El botón no tiene datos del producto asignados");
                 }
                 return;
             }
