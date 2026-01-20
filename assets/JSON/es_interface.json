@@ -1,12 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-  {
-=======
 {
->>>>>>> 3021e3d7332a434b3d270ce4fe85cc29b53b540d
-=======
-  {
->>>>>>> 74352bba9d9903748f65222d13f4ef32ac1c6d80
     "nav_envio_gratis": "🚚 <strong>Envío GRATIS</strong> en pedidos superiores a 100€ | 🦴 Usa el código: <strong>MIWUFF20</strong>",
     "nav_placeholder_buscar": "¿Qué necesita tu mejor amigo?",
     "nav_menu_perros": " Perros",
@@ -30,18 +22,13 @@
     "footer_metodos_pago": "Métodos de pago",
     "footer_copyright": "&copy; 2025 Miwuff. | Todos los derechos reservados | Proyecto estudiantil | Penascalf5.",
     "productos_de": "Productos de",
-<<<<<<< HEAD
-<<<<<<< HEAD
     "home_destacados1":"Productos Destacados",
     "home_destacados2":"Más Productos Destacados",
     "detalle_relacionados":"Productos Relacionados",
     "detalle_agregar_carrito":"Añadir al carrito",
     "detalle_comprar_ahora":"Comprar ahora",
     "detalle_resenas_clientes":"Reseñas de Clientes",
-    "ver_detalle":"Ver Detalle"
-=======
-=======
->>>>>>> 74352bba9d9903748f65222d13f4ef32ac1c6d80
+    "ver_detalle":"Ver Detalle",
     "home_destacados1": "Productos Destacados",
     "home_destacados2": "Más Productos Destacados",
     "detalle_relacionados": "Productos Relacionados",
@@ -56,8 +43,4 @@
     "detalle_stock": "En stock",
     "detalle_formato_titulo": "Formato",
     "detalle_opiniones": "opiniones"
-<<<<<<< HEAD
->>>>>>> 3021e3d7332a434b3d270ce4fe85cc29b53b540d
-=======
->>>>>>> 74352bba9d9903748f65222d13f4ef32ac1c6d80
 }
