@@ -1,18 +1,12 @@
-// ==========================================
-// CARRITO DE COMPRAS - VERSIÓN FINAL SEGURA
-// ==========================================
 
-// EVITAR EJECUCIÓN DOBLE (Solución definitiva)
 if (window.CARRITO_INICIALIZADO) {
     console.warn("⚠️ Carrito ya estaba inicializado. Deteniendo segunda ejecución.");
 } else {
     window.CARRITO_INICIALIZADO = true;
 
     // Variables
+    const API_URL = 'http://localhost:3000/carrito';
     let carrito = [];
-
-    // Cargar carrito al iniciar
-    cargarCarrito();
 
     // Iniciar
     if (document.readyState === 'loading') {
@@ -22,28 +16,24 @@ if (window.CARRITO_INICIALIZADO) {
     }
 
     // Función de inicio
-    function initCarrito() {
+    async function initCarrito() {
         crearHTML();
+        await cargarCarrito();
         actualizarContador();
         configurarListenersGlobales();
     }
 
     // Configurar Listeners (UNA SOLA VEZ)
     function configurarListenersGlobales() {
-
-        document.body.addEventListener('click', function (e) {
-
+        document.body.addEventListener('click', async function (e) {
             // 1. AÑADIR AL CARRITO
             const btnAnadir = e.target.closest('.btn-anadir-carrito');
             if (btnAnadir) {
                 e.preventDefault();
                 e.stopImmediatePropagation();
-
-                // Obtener datos del producto desde el botón
                 const producto = btnAnadir.productoData;
-
                 if (producto) {
-                    plusProducto(producto);
+                    await plusProducto(producto);
                 } else {
                     console.error("❌ Error: El botón no tiene datos del producto asignados");
                 }
@@ -73,7 +63,7 @@ if (window.CARRITO_INICIALIZADO) {
 
             // 5. VACIAR
             if (e.target.id === 'btn-vaciar') {
-                vaciarCarrito();
+                await vaciarCarrito();
                 return;
             }
 
@@ -81,14 +71,14 @@ if (window.CARRITO_INICIALIZADO) {
             if (e.target.classList.contains('btn-cantidad')) {
                 const id = e.target.dataset.id;
                 const cambio = parseInt(e.target.dataset.cambio);
-                cambiarCantidad(id, cambio);
+                await cambiarCantidad(id, cambio);
                 return;
             }
 
             // 7. ELIMINAR PROD
             if (e.target.classList.contains('btn-eliminar')) {
                 const id = e.target.dataset.id;
-                eliminarProducto(id);
+                await eliminarProducto(id);
                 return;
             }
 
@@ -101,34 +91,59 @@ if (window.CARRITO_INICIALIZADO) {
         });
     }
 
-    // Lógica del Carrito
-    function plusProducto(producto) {
-        const index = carrito.findIndex(p => p.id === producto.id);
+    // Lógica del Carrito con Servidor
+    async function plusProducto(producto) {
+        const itemExistente = carrito.find(p => p.id === producto.id);
 
-        if (index !== -1) {
-            carrito[index].cantidad++;
+        if (itemExistente) {
+            // Si ya existe en el servidor, actualizamos cantidad
+            const nuevaCantidad = itemExistente.cantidad + 1;
+            try {
+                const res = await fetch(`${API_URL}/${producto.id}`, {
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ cantidad: nuevaCantidad })
+                });
+                if (res.ok) {
+                    itemExistente.cantidad = nuevaCantidad;
+                }
+            } catch (err) {
+                console.error("Error actualizando producto:", err);
+            }
         } else {
-            carrito.push({
+            // Si no existe, lo creamos
+            const nuevoItem = {
                 id: producto.id,
                 nombre: producto.nombre || producto.nombre_producto,
                 precio: parseFloat(producto.precio),
                 imagen: producto.imagen || producto.imagen_principal,
                 cantidad: 1
-            });
+            };
+            try {
+                const res = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(nuevoItem)
+                });
+                if (res.ok) {
+                    carrito.push(nuevoItem);
+                }
+            } catch (err) {
+                console.error("Error añadiendo producto:", err);
+            }
         }
 
-        guardarCarrito();
-        renderizarCarrito(); // Actualizar panel visualmente
+        actualizarContador();
+        renderizarCarrito();
         mostrarNotificacion();
     }
 
-    function toggleCarrito(abrir) {
+    async function toggleCarrito(abrir) {
         const panel = document.getElementById('carrito-panel');
         const overlay = document.getElementById('carrito-overlay');
         if (abrir) {
-            // IMPORTANTE: Recargar desde localStorage antes de mostrar
-            cargarCarrito();
-            renderizarCarrito(); // Actualizar vista con datos frescos
+            await cargarCarrito();
+            renderizarCarrito();
             panel.classList.add('activo');
             overlay.classList.add('activo');
         } else {
@@ -137,40 +152,73 @@ if (window.CARRITO_INICIALIZADO) {
         }
     }
 
-    function cambiarCantidad(id, cambio) {
+    async function cambiarCantidad(id, cambio) {
         const index = carrito.findIndex(p => p.id === id);
-        if (index !== -1) {
-            carrito[index].cantidad += cambio;
-            if (carrito[index].cantidad <= 0) {
-                carrito.splice(index, 1);
+        if (index === -1) return;
+
+        const nuevaCantidad = carrito[index].cantidad + cambio;
+
+        if (nuevaCantidad <= 0) {
+            await eliminarProducto(id);
+        } else {
+            try {
+                const res = await fetch(`${API_URL}/${id}`, {
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ cantidad: nuevaCantidad })
+                });
+                if (res.ok) {
+                    carrito[index].cantidad = nuevaCantidad;
+                    actualizarContador();
+                    renderizarCarrito();
+                }
+            } catch (err) {
+                console.error("Error cambiando cantidad:", err);
             }
-            guardarCarrito();
-            renderizarCarrito();
         }
     }
 
-    function eliminarProducto(id) {
-        carrito = carrito.filter(p => p.id !== id);
-        guardarCarrito();
-        renderizarCarrito();
+    async function eliminarProducto(id) {
+        try {
+            const res = await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+            if (res.ok) {
+                carrito = carrito.filter(p => p.id !== id);
+                actualizarContador();
+                renderizarCarrito();
+            }
+        } catch (err) {
+            console.error("Error eliminando producto:", err);
+        }
     }
 
-    function vaciarCarrito() {
-        if (confirm("¿Estás seguro de vaciar el carrito?")) {
+    async function vaciarCarrito() {
+        if (!confirm("¿Estás seguro de vaciar el carrito?")) return;
+        
+        try {
+            // json-server no permite borrar todo de golpe, hay que borrar uno por uno
+            // O podemos simplemente re-cargar para estar seguros de lo que hay
+            for (const item of carrito) {
+                await fetch(`${API_URL}/${item.id}`, { method: 'DELETE' });
+            }
             carrito = [];
-            guardarCarrito();
+            actualizarContador();
             renderizarCarrito();
+        } catch (err) {
+            console.error("Error vaciando carrito:", err);
         }
     }
 
     // Persistencia y Renderizado
-    function cargarCarrito() {
-        carrito = JSON.parse(localStorage.getItem('MiwuffCarrito')) || [];
-        actualizarContador();
-    }
-
-    function guardarCarrito() {
-        localStorage.setItem('MiwuffCarrito', JSON.stringify(carrito));
+    async function cargarCarrito() {
+        try {
+            const response = await fetch(API_URL);
+            if (response.ok) {
+                carrito = await response.json();
+            }
+        } catch (error) {
+            console.warn('⚠️ No se pudo cargar el carrito del servidor:', error);
+            carrito = [];
+        }
         actualizarContador();
     }
 

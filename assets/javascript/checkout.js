@@ -3,6 +3,7 @@ let carritoCheckout = [];
 const ENVIO = 4.99;
 
 const API_URL = 'http://localhost:3000/carrito';
+let datos_envio = [];
 
 document.addEventListener('DOMContentLoaded', async function () {
     await cargarCarrito();
