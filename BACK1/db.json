@@ -1266,14 +1266,6 @@
       "rol": "cliente"
     }
   ],
-  "carrito": [
-    {
-      "id": "PEZ3",
-      "nombre": "Aqua Ornaments Castillo Hundido con Plantas Decorativas para Acuario",
-      "precio": 24.99,
-      "imagen": "http://127.0.0.1:5505/assets/img/peces/PEZ03_0.png",
-      "cantidad": 18
-    }
-  ],
+  "carrito": [],
   "datos_envio": []
 }
