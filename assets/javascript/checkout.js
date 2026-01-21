@@ -1,4 +1,4 @@
-// pantalla final: monto el resumen de lo que vas a comprar y el envío.
+// pantalla final: resumen de compra y envio
 let carritoCheckout = [];
 const ENVIO = 4.99;
 
@@ -7,20 +7,20 @@ let datos_envio = [];
 
 document.addEventListener('DOMContentLoaded', async function () {
     await cargarCarrito();
-    // mostrarProductos y calcularTotales se llaman dentro de cargarCarrito si todo va bien
+    // el formulario activa la funcion de finalizar
     document.getElementById('form-checkout').addEventListener('submit', finalizarCompra);
 });
 
-// saco los datos del carrito DESDE EL SERVIDOR
+// cargamos los datos del carrito desde el servidor
 async function cargarCarrito() {
     try {
         const respuesta = await fetch(API_URL);
-        if (!respuesta.ok) throw new Error("Error al cargar carrito");
+        if (!respuesta.ok) throw new Error("error al cargar");
 
         carritoCheckout = await respuesta.json();
 
         if (carritoCheckout.length === 0) {
-            alert('tu carrito está vacío');
+            alert('tu carrito esta vacio');
             window.location.href = 'index.html';
             return;
         }
@@ -30,11 +30,11 @@ async function cargarCarrito() {
 
     } catch (error) {
         console.error(error);
-        alert('Hubo un error cargando tu compra');
+        alert('error cargando los datos de compra');
     }
 }
 
-// pongo la lista de productos que vas a pagar a la derecha.
+// lista de productos a la derecha
 function mostrarProductos() {
     const lista = document.getElementById('productos-lista');
     if (carritoCheckout.length === 0) {
@@ -48,13 +48,13 @@ function mostrarProductos() {
         div.className = 'producto-item';
         div.innerHTML = `
             <span>${item.nombre} x ${item.cantidad}</span>
-            <span>€${(item.precio * item.cantidad).toFixed(2)}</span>
+            <span>eur ${(item.precio * item.cantidad).toFixed(2)}</span>
         `;
         lista.appendChild(div);
     });
 }
 
-// sumo todo. si el total pasa de 100€, el envío me sale gratis.
+// suma total y envio gratis si pasa de 100
 function calcularTotales() {
     let subtotal = 0;
     carritoCheckout.forEach(function (item) {
@@ -64,12 +64,12 @@ function calcularTotales() {
     const envio = subtotal > 100 ? 0 : ENVIO;
     const total = subtotal + envio;
 
-    document.getElementById('subtotal').textContent = '€' + subtotal.toFixed(2);
-    document.getElementById('envio').textContent = envio === 0 ? 'GRATIS' : '€' + envio.toFixed(2);
-    document.getElementById('total').textContent = '€' + total.toFixed(2);
+    document.getElementById('subtotal').textContent = 'eur ' + subtotal.toFixed(2);
+    document.getElementById('envio').textContent = envio === 0 ? 'gratis' : 'eur ' + envio.toFixed(2);
+    document.getElementById('total').textContent = 'eur ' + total.toFixed(2);
 }
 
-// guardo el pedido en localstorage para simular que se ha hecho la compra.
+// guarda el pedido y vacia el carrito
 async function finalizarCompra(e) {
     e.preventDefault();
 
@@ -82,24 +82,14 @@ async function finalizarCompra(e) {
     const metodoPago = document.getElementById('metodo-pago').value;
 
     if (!nombre || !email || !telefono || !direccion || !ciudad || !codigoPostal || !metodoPago) {
-        alert('por favor, completa todos los campos');
+        alert('rellena todos los campos por favor');
         return;
     }
 
-    // me invento un número de pedido con la fecha actual.
-    const numeroPedido = 'MW' + Date.now();
+    // numero de pedido con la fecha
+    const numeroPedido = 'mw' + Date.now();
 
-    const pedido = {
-        numero: numeroPedido,
-        fecha: new Date().toISOString(),
-        cliente: { nombre, email, telefono, direccion, ciudad, codigoPostal },
-        productos: carritoCheckout,
-        metodoPago: metodoPago,
-        total: document.getElementById('total').textContent
-    };
-
-    // PREPARAR DATOS PARA DB.JSON (datos_envio)
-    // Usamos una estructura plana como sugieren los campos en db.json
+    // preparamos los datos para el servidor
     const envioData = {
         nombre: nombre,
         email: email,
@@ -108,13 +98,13 @@ async function finalizarCompra(e) {
         ciudad: ciudad,
         codigo_postal: codigoPostal,
         metodo_pago: metodoPago,
-        producto: carritoCheckout, // Array con los productos comprados
+        productos: carritoCheckout,
         precio_total: document.getElementById('total').textContent,
         numero_pedido: numeroPedido,
         fecha: new Date().toISOString()
     };
 
-    // GUARDAR EN SERVIDOR (db.json/datos_envio)
+    // guardar pedido en db.json
     try {
         const respuestaPedido = await fetch('http://localhost:3000/datos_envio', {
             method: 'POST',
@@ -122,24 +112,24 @@ async function finalizarCompra(e) {
             body: JSON.stringify(envioData)
         });
 
-        if (!respuestaPedido.ok) throw new Error("Error guardando pedido");
+        if (!respuestaPedido.ok) throw new Error("error guardando");
 
     } catch (error) {
-        console.error("Error al guardar pedido en servidor:", error);
-        alert("Hubo un problema procesando el pedido. Inténtalo de nuevo.");
+        console.error("error servidor:", error);
+        alert("problema al procesar el pedido");
         return;
     }
 
-    // vacio el carrito DEL SERVIDOR
+    // vaciamos el carrito borrando uno por uno
     try {
         for (const item of carritoCheckout) {
             await fetch(`${API_URL}/${item.id}`, { method: 'DELETE' });
         }
     } catch (error) {
-        console.error("Error vaciando el carrito", error);
+        console.error("error vaciando", error);
     }
 
-    // enseño el cartel de que todo ha ido bien.
+    // mostramos el mensaje de exito
     document.getElementById('numero-pedido').textContent = numeroPedido;
     document.getElementById('modal-exito').style.display = 'flex';
 }
