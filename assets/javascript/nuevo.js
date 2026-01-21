@@ -5,17 +5,20 @@
 // Tiene funciones para: subir imágenes, validar datos y guardar en el servidor
 
 // PASO 1: Guardar la URL donde está el servidor
-// Si cambias la URL de tu servidor, cámbiala aquí
+
+// La dirección donde guardaremos todo.(Nuestra base de datos)
 const URL_SERVIDOR = 'http://localhost:3000/products';
 
 // PASO 2: Guardar las imágenes en variables
-// Aquí guardamos las imágenes que sube el usuario
+
+// Aquí guardamos temporalmente las imágenes que sube el administrador
 const imagenes = {
     principal: null,      // La imagen grande
     miniatura: null       // La imagen pequeña
 };
 
-// PASO 3: Esperar a que cargue toda la página
+// PASO 3: El evento le dice que espere a cargar toda la página
+
 // Cuando termina de cargar, ejecutamos las funciones de configuración
 document.addEventListener('DOMContentLoaded', function() {
     console.log('✓ Página cargada - Iniciando configuración...');
@@ -35,7 +38,7 @@ function configurarImagenes() {
         // Definir si es la imagen principal (primera) o miniatura (segunda)
         const esPrincipal = numero === 0;
         
-        // Agregar eventos para arrastrar
+        // Agregar eventos para arrastrar. 
         area.addEventListener('dragenter', evitarDefecto);
         area.addEventListener('dragover', evitarDefecto);
         area.addEventListener('dragleave', removerResaltado);
@@ -50,7 +53,7 @@ function configurarImagenes() {
     });
 }
 
-// PASO 5: Función para evitar comportamiento por defecto
+// PASO 5: Función para evitar comportamiento por defecto. Usamos evitarDefecto, porque por defecto, si sueltas una imagen en un navegador, este intenta abrirla. Pero no nos interesa.
 function evitarDefecto(evento) {
     evento.preventDefault();
     evento.stopPropagation();
@@ -112,7 +115,7 @@ function procesarArchivo(archivo, esPrincipal) {
         return;
     }
     
-    // Convertir imagen a base64 (texto para guardar en JSON)
+    // Convertir imagen a base64 (texto para guardar en JSON). Ya que al convertirlo crea una cadena de texto muy larga (Base64) que es mucho más fácil de guardar en un JSON que un archivo de imagen real.
     const lector = new FileReader();
     lector.onload = function(evento) {
         if (esPrincipal) {
