@@ -211,21 +211,28 @@ function configurarEventosDelModal(popup) {
 // PASO 4: LOGICA DE DATOS (EL "CEREBRO" DEL SISTEMA)
 // =============================================================================
 
-const URL_USUARIOS = 'http://localhost:3000/usuarios';
+const URL_USUARIOS = 'http://localhost:3000/usuarios'; 
 const CLAVE_SESION = 'sistema_usuario_activo';
 
 async function obtenerTodosLosUsuarios() {
     try {
-        const respuesta = await fetch(URL_USUARIOS);
-        if (!respuesta.ok) return [];
-        return await respuesta.json();
+        const respuesta = await fetch(URL_USUARIOS); //devuelve un objeto especial del navegador llamado Response
+        if (!respuesta.ok) return []; 
+        return await respuesta.json();  //método del objeto Response
+                                        // Lee el cuerpo de la respuesta
+                                        // Convierte el JSON en un objeto JavaScript
+                                        // Devuelve una Promise
     } catch (error) {
         console.error("Error al obtener usuarios:", error);
         return [];
     }
 }
 
-async function guardarNuevoUsuario(usuario) {
+async function guardarNuevoUsuario(usuario) {                                       //obtiene todos los usuarios existentes, 
+                                                                                    // calcula un ID nuevo, 
+                                                                                    // asigna un rol por defecto, 
+                                                                                    // envía el nuevo usuario al servidor con POST 
+                                                                                    // y Devuelve el usuario guardado
     const lista = await obtenerTodosLosUsuarios();
 
     // El admin siempre es ID 1. Buscamos el ID más alto para seguir la secuencia.
