@@ -2,7 +2,7 @@
 let carritoCheckout = [];
 const ENVIO = 4.99;
 
-const API_URL = 'http://localhost:3000/carrito';
+const API_ENDPOINT_CARRITO = `${API_URL}/carrito`;
 let datos_envio = [];
 
 document.addEventListener('DOMContentLoaded', async function () {
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 // cargamos los datos del carrito desde el servidor
 async function cargarCarrito() {
     try {
-        const respuesta = await fetch(API_URL);
+        const respuesta = await fetch(API_ENDPOINT_CARRITO);
         if (!respuesta.ok) throw new Error("error al cargar");
 
         carritoCheckout = await respuesta.json();
@@ -106,7 +106,7 @@ async function finalizarCompra(e) {
 
     // guardar pedido en db.json
     try {
-        const respuestaPedido = await fetch('http://localhost:3000/datos_envio', {
+        const respuestaPedido = await fetch(`${API_URL}/datos_envio`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(envioData)
@@ -123,7 +123,7 @@ async function finalizarCompra(e) {
     // vaciamos el carrito borrando uno por uno
     try {
         for (const item of carritoCheckout) {
-            await fetch(`${API_URL}/${item.id}`, { method: 'DELETE' });
+            await fetch(`${API_ENDPOINT_CARRITO}/${item.id}`, { method: 'DELETE' });
         }
     } catch (error) {
         console.error("error vaciando", error);

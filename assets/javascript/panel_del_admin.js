@@ -2,15 +2,15 @@
  * URL base de la API REST donde se gestionan los productos
  * Se usa para GET, PUT y DELETE
  ******************************************************************/
-const BASE_URL = 'http://localhost:3000/products';
-const BASE_URL_PEDIDOS = 'http://localhost:3000/datos_envio';
+const BASE_URL = `${API_URL}/products`;
+const BASE_URL_PEDIDOS = `${API_URL}/datos_envio`;
 
 let totalPedidosLocal = []; // Para filtrado sin volver a cargar de la API
 
 /******************************************************************
  * URL para los productos nuevos creados
  ******************************************************************/
-const NUEVO_PRODUCTO_URL = 'http://localhost:3000/nuevo_producto';
+const NUEVO_PRODUCTO_URL = `${API_URL}/nuevo_producto`;
 
 /******************************************************************
  * Mapa de categorías:

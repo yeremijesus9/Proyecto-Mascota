@@ -29,7 +29,7 @@ window.todosLosProductos = [];
 
     async function fetchProductos() {
         // Usamos la ruta global defininda en idioma.js
-        const url = window.rutaJson ? window.rutaJson() : 'http://localhost:3000/products';
+        const url = window.rutaJson ? window.rutaJson() : `${API_URL}/products`;
         const res = await fetch(url);
         if (!res.ok) throw new Error("error cargando productos");
         const data = await res.json();
