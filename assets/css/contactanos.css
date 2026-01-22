@@ -1,69 +1,259 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
-
-/* Reset básico y tipografía */
-*{
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9f9f9;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    color: #333;
+}
+
+/* Global Font Application */
+h1,
+h2,
+h3,
+p,
+label,
+button {
     font-family: 'Poppins', sans-serif;
 }
 
-body{
-    background: #f7f7f7;
-    color: #222;
+/* Titles */
+.page-title {
+    text-align: center;
+    color: #333;
+    font-size: 2.2em;
+    font-weight: 700;
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
 
-.elementos{
+/* Layout Container */
+.contact-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    gap: 1rem;
-    margin: 1rem;
-    flex-wrap: wrap; /* permite responsividad */
+    justify-content: center;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto 60px auto;
+    padding: 0 20px;
+    flex-wrap: wrap;
+    /* Responsive */
 }
 
-.formulario,
-.contacto{
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    border: 2px solid #000; /* simplificado */
-    border-radius: 8px;
-    padding: 1rem;
+/* Cards */
+.contact-form-card,
+.contact-info-card {
     background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    padding: 30px;
+    flex: 1;
+    min-width: 300px;
+}
+
+.contact-form-card h2,
+.contact-info-card h2 {
+    font-size: 1.2em;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.sub-text {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 20px;
+    display: block;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.9em;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+
+.contact-form-card input[type="text"],
+.contact-form-card input[type="email"],
+.contact-form-card input[type="tel"],
+.contact-form-card select,
+.contact-form-card textarea {
     width: 100%;
-    max-width: 480px; /* evita que crezcan demasiado en pantallas grandes */
-    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.95em;
+    background-color: #fcfcfc;
+    box-sizing: border-box;
+    /* Fix sizing */
+    font-family: 'Poppins', sans-serif;
 }
 
-/* .contacto mantiene la misma apariencia que .formulario; reglas específicas pueden añadirse aquí si hace falta */
-
-/* Movil: apilar y centrar */
-@media (max-width: 600px){
-    .elementos{
-        flex-direction: column;
-        align-items: center;
-    }
+.contact-form-card input:focus,
+.contact-form-card select:focus,
+.contact-form-card textarea:focus {
+    outline: none;
+    border-color: #D37C39;
+    background-color: #fff;
 }
 
-/* Map responsive */
-.Mapa iframe{
+.contact-form-card textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.btn-submit {
+    background-color: #eb7c28;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 15px;
+    font-size: 1em;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-submit:hover {
+    background-color: #d66a1b;
+}
+
+/* Map Section */
+.map-container {
     width: 100%;
     height: 300px;
-    max-width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    position: relative;
+    background-color: #eee;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
     border: 0;
 }
 
-.marcador{
-    margin-top: 0.5rem;
-    font-size: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+.info-details p {
+    margin: 5px 0;
+    font-size: 0.95em;
 }
 
-.tooltip{
-    font-size: 0.9rem;
+.info-details strong {
+    font-weight: 700;
+}
+
+/* FAQ Section */
+.faq-section {
+    max-width: 800px;
+    margin: 0 auto 60px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.faq-header {
+    margin-bottom: 30px;
+}
+
+.faq-header h2 {
+    font-size: 1.8em;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.faq-header h2 .icon {
+    color: #eb7c28;
+    font-size: 1.2em;
+    border: 2px solid #eb7c28;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.faq-header p {
     color: #666;
+}
+
+/* Updated FAQ Styles for <details> and <summary> */
+details.faq-item {
+    background: #fff;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    border: 1px solid #eee;
+    text-align: left;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+details.faq-item[open] {
+    border: 1px solid #eb7c28;
+}
+
+summary.faq-question {
+    padding: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    color: #333;
+    list-style: none;
+    /* Remove default marker */
+}
+
+/* Remove default marker for Webkit */
+summary.faq-question::-webkit-details-marker {
+    display: none;
+}
+
+summary.faq-question:hover {
+    background-color: #fdfdfd;
+}
+
+details.faq-item[open] summary.faq-question {
+    color: #eb7c28;
+    border-bottom: 1px solid #f0f0f0;
+    /* Optional separator */
+}
+
+.faq-answer {
+    padding: 20px;
+    color: #555;
+    font-size: 0.95em;
+    line-height: 1.5;
+    background-color: #fff;
+    margin: 0;
+    /* Override paragraph margins if needed */
+}
+
+.faq-answer p {
+    margin: 0;
+}
+
+.arrow {
+    transition: transform 0.3s ease;
+    color: #eb7c28;
+    display: inline-block;
+}
+
+details.faq-item[open] .arrow {
+    transform: rotate(180deg);
 }
