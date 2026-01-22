@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ============================================================
-// PASO 4: CONFIGURAR ARRASTRAR Y SOLTAR IMÁGENES
+// PASO 4: CONFIGURAR ARRASTRAR Y SOLTAR IMÁGENES (drag y drop)
 // ============================================================
 function configurarImagenes() {
     // Encontrar todas las áreas donde se pueden soltar imágenes
