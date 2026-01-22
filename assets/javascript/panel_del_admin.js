@@ -2,12 +2,15 @@
  * URL base de la API REST donde se gestionan los productos
  * Se usa para GET, PUT y DELETE
  ******************************************************************/
-const BASE_URL = 'http://localhost:3000/products';
+const BASE_URL = `${API_URL}/products`;
+const BASE_URL_PEDIDOS = `${API_URL}/datos_envio`;
+
+let totalPedidosLocal = []; // Para filtrado sin volver a cargar de la API
 
 /******************************************************************
  * URL para los productos nuevos creados
  ******************************************************************/
-const NUEVO_PRODUCTO_URL = 'http://localhost:3000/nuevo_producto';
+const NUEVO_PRODUCTO_URL = `${API_URL}/nuevo_producto`;
 
 /******************************************************************
  * Mapa de categorías:
@@ -40,8 +43,62 @@ const toBase64 = file => new Promise((resolve, reject) => {
  * Al cargar el DOM se ejecuta la carga inicial de productos
  ******************************************************************/
 
-document.addEventListener('DOMContentLoaded', cargarProductos);
+document.addEventListener('DOMContentLoaded', () => {
+    // Verificar si el usuario es administrador
+    const usuarioActivo = JSON.parse(localStorage.getItem('sistema_usuario_activo'));
+    if (!usuarioActivo || usuarioActivo.rol !== 'admin') {
+        alert("Acceso denegado. Se requieren permisos de administrador.");
+        window.location.href = 'index.html';
+        return;
+    }
+    
+    cargarProductos();
+    cargarRegistros();
 
+    // Comprobar si venimos de otra página pidiendo una sección específica
+    const urlParams = new URLSearchParams(window.location.search);
+    const section = urlParams.get('section');
+    if (section === 'registros') {
+        mostrarSeccion('registros');
+    }
+});
+
+// --- ACTUALIZAR ESTADÍSTICAS ---
+function actualizarEstadisticas(pedidos, productos) {
+    if (pedidos) {
+        document.getElementById('stat-total-pedidos').textContent = pedidos.length;
+        const totalVentas = pedidos.reduce((acc, p) => {
+            // Extraer solo el número del string de precio
+            const precioStr = String(p.precio_total || p.total || "0").replace(/[^0-9.]/g, '');
+            const precio = parseFloat(precioStr);
+            return acc + (isNaN(precio) ? 0 : precio);
+        }, 0);
+        document.getElementById('stat-ventas-totales').textContent = `${totalVentas.toFixed(2)} €`;
+    }
+    if (productos) {
+        document.getElementById('stat-total-productos').textContent = productos.length;
+    }
+}
+
+// --- GESTIÓN DE VISTAS ---
+function mostrarSeccion(seccion) {
+    const secProt = document.getElementById('seccion-productos');
+    const secReg = document.getElementById('seccion-registros');
+    const btnProt = document.getElementById('btn-view-products');
+    const btnReg = document.getElementById('btn-view-registros');
+
+    if (seccion === 'productos') {
+        secProt.style.display = 'block';
+        secReg.style.display = 'none';
+        btnProt.classList.add('active');
+        btnReg.classList.remove('active');
+    } else {
+        secProt.style.display = 'none';
+        secReg.style.display = 'block';
+        btnProt.classList.remove('active');
+        btnReg.classList.add('active');
+    }
+}
 /******************************************************************
  * Obtiene los productos desde la API y los renderiza
  ******************************************************************/
@@ -67,6 +124,7 @@ async function cargarProductos() {
         
         console.log('Productos cargados:', todosLosProductos.length);
         renderizarProductos(todosLosProductos);
+        actualizarEstadisticas(null, todosLosProductos);
     } catch (error) {
         console.error("Error al cargar productos:", error);
     }
@@ -396,3 +454,212 @@ async function agregarMiniaturaUnaAUna(input, id) {
     }
 }
 
+// --- GESTIÓN DE PEDIDOS (DATOS_ENVIO) ---
+
+async function cargarRegistros() {
+    try {
+        const respuesta = await fetch(BASE_URL_PEDIDOS);
+        if (!respuesta.ok) throw new Error('Error al cargar pedidos');
+        const pedidos = await respuesta.json();
+        totalPedidosLocal = pedidos; // Guardar copia local para búsqueda
+        renderizarRegistros(pedidos);
+        actualizarEstadisticas(pedidos, null);
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+function renderizarRegistros(pedidos) {
+    const contenedor = document.getElementById('registros-lista');
+    const header = contenedor.querySelector('.table-header');
+    contenedor.innerHTML = '';
+    contenedor.appendChild(header);
+
+    pedidos.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+
+    pedidos.forEach(pedido => {
+        const row = crearCardPedido(pedido);
+        contenedor.appendChild(row);
+    });
+}
+
+function crearCardPedido(pedido) {
+    const row = document.createElement('div');
+    row.className = 'order-card'; 
+    row.id = `pedido-${pedido.id}`;
+    
+    const listaProductos = Array.isArray(pedido.producto) ? pedido.producto : (Array.isArray(pedido.productos) ? pedido.productos : []);
+    
+    const productosHtml = listaProductos.length > 0
+        ? listaProductos.map(p => `
+            <div class="product-mini-item">
+                <span>${p.nombre} <strong>x${p.cantidad}</strong></span>
+                <span>${(p.precio * p.cantidad).toFixed(2)} €</span>
+            </div>`).join('')
+        : '<p>Sin productos registrados</p>';
+
+    row.innerHTML = `
+        <div class="order-main-row" onclick="toggleDetallesPedido(${pedido.id})">
+            <div>
+                <span class="status-badge">Completado</span>
+            </div>
+            <div class="order-info">
+                <span class="order-id">${pedido.numero_pedido || 'ID: ' + pedido.id}</span>
+                <span class="order-date">${new Date(pedido.fecha).toLocaleString()}</span>
+            </div>
+            <div class="customer-info">
+                <strong>${pedido.nombre}</strong>
+                <small>${pedido.email}</small>
+            </div>
+            <div class="price-total">
+                ${(() => {
+                    const pTotal = String(pedido.precio_total || pedido.total || "0").replace(/[^0-9.]/g, '');
+                    return `${parseFloat(pTotal).toFixed(2)} €`;
+                })()}
+            </div>
+            <div class="product-actions" onclick="event.stopPropagation()">
+                <button class="action-btn" onclick="toggleEdicionPedido(${pedido.id})" title="Editar pedido">
+                    <i class="fas fa-pen"></i>
+                </button>
+                <button class="action-btn" onclick="eliminarPedido(${pedido.id})" title="Eliminar del registro">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- FORMULARIO DE EDICIÓN DE PEDIDO -->
+        <div id="form-edit-pedido-${pedido.id}" class="edit-form" style="display:none">
+            <h4 style="margin-bottom: 1.5rem; color: var(--primary-orange);">Editar Detalles del Pedido</h4>
+            <div class="form-grid">
+                <div class="input-group"><b>Nº Pedido:</b><input type="text" id="edit-ord-num-${pedido.id}" value="${pedido.numero_pedido || ''}"></div>
+                <div class="input-group"><b>Fecha:</b><input type="text" id="edit-ord-fecha-${pedido.id}" value="${pedido.fecha}" readonly></div>
+                
+                <div class="input-group"><b>Nombre Cliente:</b><input type="text" id="edit-ord-nom-${pedido.id}" value="${pedido.nombre || ''}"></div>
+                <div class="input-group"><b>Email:</b><input type="text" id="edit-ord-email-${pedido.id}" value="${pedido.email || ''}"></div>
+                
+                <div class="input-group"><b>Teléfono:</b><input type="text" id="edit-ord-tel-${pedido.id}" value="${pedido.telefono || ''}"></div>
+                <div class="input-group"><b>Método Pago:</b><input type="text" id="edit-ord-pago-${pedido.id}" value="${pedido.metodo_pago || ''}"></div>
+
+                <div class="input-group full-width"><b>Dirección:</b><input type="text" id="edit-ord-dir-${pedido.id}" value="${pedido.direccion || ''}"></div>
+                
+                <div class="input-group"><b>Ciudad:</b><input type="text" id="edit-ord-ciu-${pedido.id}" value="${pedido.ciudad || ''}"></div>
+                <div class="input-group"><b>Código Postal:</b><input type="text" id="edit-ord-cp-${pedido.id}" value="${pedido.codigo_postal || ''}"></div>
+
+                <div class="input-group"><b>Precio Total:</b><input type="text" id="edit-ord-total-${pedido.id}" value="${pedido.precio_total || pedido.total || ''}"></div>
+            </div>
+
+            <div class="final-controls">
+                <button class="btn-main btn-save" onclick="guardarCambiosPedido(${pedido.id})">GUARDAR CAMBIOS</button>
+                <button class="btn-main btn-cancel" onclick="toggleEdicionPedido(${pedido.id})">Cancelar</button>
+            </div>
+        </div>
+        <div class="order-details-expanded" id="detalles-pedido-${pedido.id}" style="display: none;">
+            <div class="products-mini-list">
+                <h4>Productos en este pedido</h4>
+                ${productosHtml}
+            </div>
+            <div class="details-grid">
+                <div class="detail-box">
+                    <h4>Datos de Envío</h4>
+                    <p>${pedido.direccion}<br>${pedido.ciudad}, ${pedido.codigo_postal}</p>
+                </div>
+                <div class="detail-box">
+                    <h4>Método de Pago</h4>
+                    <p><span class="iconify" data-icon="mdi:credit-card-outline"></span> ${pedido.metodo_pago}</p>
+                </div>
+                <div class="detail-box">
+                    <h4>Contacto</h4>
+                    <p><span class="iconify" data-icon="mdi:phone"></span> ${pedido.telefono}</p>
+                </div>
+            </div>
+        </div>
+    `;
+    return row;
+}
+
+function toggleDetallesPedido(id) {
+    const el = document.getElementById(`detalles-pedido-${id}`);
+    const isVisible = el.style.display === 'block';
+    el.style.display = isVisible ? 'none' : 'block';
+}
+
+function filtrarPedidos() {
+    const term = document.getElementById('order-search').value.toLowerCase();
+    const filtrados = totalPedidosLocal.filter(p => 
+        (p.numero_pedido && p.numero_pedido.toLowerCase().includes(term)) ||
+        (p.email && p.email.toLowerCase().includes(term)) ||
+        (p.nombre && p.nombre.toLowerCase().includes(term))
+    );
+    renderizarRegistros(filtrados);
+}
+
+async function eliminarPedido(id) {
+    if (!confirm('¿Estás seguro de que deseas eliminar permanentemente este pedido del registro?')) return;
+
+    try {
+        const respuesta = await fetch(`${BASE_URL_PEDIDOS}/${id}`, {
+            method: 'DELETE'
+        });
+
+        if (respuesta.ok) {
+            document.getElementById(`pedido-${id}`).remove();
+            // Actualizar local y stats
+            totalPedidosLocal = totalPedidosLocal.filter(p => p.id !== id);
+            actualizarEstadisticas(totalPedidosLocal, null);
+        } else {
+            alert('Error al eliminar el pedido');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+function toggleEdicionPedido(id) {
+    const form = document.getElementById(`form-edit-pedido-${id}`);
+    const currentDisplay = form.style.display;
+    
+    // Cerrar detalles si están abiertos
+    const detalles = document.getElementById(`detalles-pedido-${id}`);
+    if (detalles) detalles.style.display = 'none';
+
+    form.style.display = (currentDisplay === 'none') ? 'block' : 'none';
+}
+
+async function guardarCambiosPedido(id) {
+    // 1. Obtener el pedido original para no perder los productos
+    const pedidoOriginal = totalPedidosLocal.find(p => p.id == id);
+    if (!pedidoOriginal) return;
+
+    // 2. Recolectar nuevos valores
+    const updatedPedido = {
+        ...pedidoOriginal, // Mantiene productos y otros campos no editables
+        numero_pedido: document.getElementById(`edit-ord-num-${id}`).value,
+        nombre: document.getElementById(`edit-ord-nom-${id}`).value,
+        email: document.getElementById(`edit-ord-email-${id}`).value,
+        telefono: document.getElementById(`edit-ord-tel-${id}`).value,
+        metodo_pago: document.getElementById(`edit-ord-pago-${id}`).value,
+        direccion: document.getElementById(`edit-ord-dir-${id}`).value,
+        ciudad: document.getElementById(`edit-ord-ciu-${id}`).value,
+        codigo_postal: document.getElementById(`edit-ord-cp-${id}`).value,
+        precio_total: document.getElementById(`edit-ord-total-${id}`).value
+    };
+
+    try {
+        const respuesta = await fetch(`${BASE_URL_PEDIDOS}/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(updatedPedido)
+        });
+
+        if (respuesta.ok) {
+            alert('Pedido actualizado con éxito');
+            // Recargar datos para refrescar la UI
+            cargarRegistros();
+        } else {
+            alert('Error al guardar los cambios del pedido');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Error de conexión con el servidor');
+    }
+}

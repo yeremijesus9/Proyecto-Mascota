@@ -98,7 +98,7 @@ async function cargarProductos() {
     
     // También cargar productos nuevos desde el endpoint de nuevo_producto
     try {
-        const respNuevos = await fetch('http://localhost:3000/nuevo_producto', { cache: 'no-cache' });
+        const respNuevos = await fetch(`${API_URL}/nuevo_producto`, { cache: 'no-cache' });
         if (respNuevos.ok) {
             const dataNuevos = await respNuevos.json();
             const productosNuevos = Array.isArray(dataNuevos) ? dataNuevos : [];

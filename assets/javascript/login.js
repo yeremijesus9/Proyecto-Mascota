@@ -211,7 +211,7 @@ function configurarEventosDelModal(popup) {
 // PASO 4: LOGICA DE DATOS (EL "CEREBRO" DEL SISTEMA)
 // =============================================================================
 
-const URL_USUARIOS = 'http://localhost:3000/usuarios'; 
+const URL_USUARIOS = `${API_URL}/usuarios`; 
 const CLAVE_SESION = 'sistema_usuario_activo';
 
 async function obtenerTodosLosUsuarios() {

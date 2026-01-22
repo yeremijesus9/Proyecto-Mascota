@@ -1,7 +1,7 @@
 // PASO 1: Guardar la URL donde está el servidor
 
 // La dirección donde guardaremos todo.(Nuestra base de datos)
-const URL_SERVIDOR = 'http://localhost:3000/products';
+const URL_SERVIDOR = `${API_URL}/products`;
 
 // PASO 2: Guardar las imágenes en variables
 

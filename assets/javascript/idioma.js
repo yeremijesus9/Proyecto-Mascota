@@ -3,7 +3,7 @@ window.idiomaActual = localStorage.getItem("idiomaSeleccionado") || "es";
 
 // monto las rutas de los json según el idioma que esté puesto ahora.
 // les pongo un pequeño talle de tiempo para que no se queden antiguos en el navegador.
-window.rutaJson = () => 'http://localhost:3000/products';
+window.rutaJson = () => `${API_URL}/products`;
 
 window.rutaInterfaceJson = () =>
   `/assets/JSON/${window.idiomaActual}_interface.json?t=${Date.now()}`;

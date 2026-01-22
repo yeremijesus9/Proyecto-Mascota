@@ -18,33 +18,77 @@
                 <i class="fas fa-paw"></i> Dashboard
             </div>
             <nav>
-                <button class="nav-btn active" onclick="location.href='panel_del_admin.html'">Productos</button>
+                <button class="nav-btn active" id="btn-view-products" onclick="mostrarSeccion('productos')">Productos</button>
                 <button class="nav-btn" onclick="location.href='##'">Servicios</button>
-                <button class="nav-btn"onclick="location.href='##'">Usuario/Roles</button>
+                <button class="nav-btn" onclick="location.href='##'">Usuario/Roles</button>
+                <button class="nav-btn" id="btn-view-registros" onclick="mostrarSeccion('registros')">Pedidos</button>                
             </nav>
         </aside>
 
         <main class="main-content">
-            <h1 class="page-title">Gestión de Productos</h1>
-            
-            <div id="productos-lista" class="products-container">
-                <div class="table-header">
-                    <span>Imagen</span>
-                    <span></span>
-                    <span class="text-center">Precio</span>
-                    <span class="text-center">Acciones</span>
+            <div class="stats-overview">
+                <div class="stat-card">
+                    <span class="stat-icon orders"><span class="iconify" data-icon="mdi:cart-outline"></span></span>
+                    <div class="stat-info">
+                        <h3 id="stat-total-pedidos">0</h3>
+                        <p>Pedidos Totales</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-icon products"><span class="iconify" data-icon="mdi:dog"></span></span>
+                    <div class="stat-info">
+                        <h3 id="stat-total-productos">0</h3>
+                        <p>Productos</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-icon revenue"><span class="iconify" data-icon="mdi:cash-multiple"></span></span>
+                    <div class="stat-info">
+                        <h3 id="stat-ventas-totales">€0</h3>
+                        <p>Ventas Totales</p>
+                    </div>
                 </div>
             </div>
+            <div id="seccion-productos">
+                <h1 class="page-title">Gestión de Productos</h1>
+                <div id="productos-lista" class="products-container">
+                    <div class="table-header">
+                        <span>Imagen</span>
+                        <span>Producto</span>
+                        <span class="text-center">Precio</span>
+                        <span class="text-center">Acciones</span>
+                    </div>
+                </div>
+                <button class="fab-add" id="btn-add-product" onclick="window.location.href='nuevo.html'">
+                    <span class="iconify" data-icon="fa6-solid:plus"></span>
+                </button>
+            </div>
 
-            <button class="fab-add" id="btn-add-product" onclick="window.location.href='nuevo.html'">
-                <span class="iconify" data-icon="fa6-solid:plus"></span>
-            </button>
+            <div id="seccion-registros" style="display: none;">
+                <div class="section-header">
+                    <h1 class="page-title">Historial de Pedidos</h1>
+                    <div class="search-bar">
+                        <span class="iconify" data-icon="mdi:magnify"></span>
+                        <input type="text" id="order-search" placeholder="Buscar por Nº pedido o email..." onkeyup="filtrarPedidos()">
+                    </div>
+                </div>
+                <div id="registros-lista" class="orders-container">
+                    <div class="table-header order-header">
+                        <span>Estado</span>
+                        <span>Información Pedido</span>
+                        <span>Envío & Contacto</span>
+                        <span class="text-center">Total</span>
+                        <span class="text-center">Acciones</span>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 
     <div id="footer-container"></div>
 
     <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+    <script src="assets/javascript/config.js"></script>
     <script src="assets/javascript/idioma.js"></script>
     <script src="assets/javascript/nav_footer.js"></script>
     <script src="assets/javascript/panel_del_admin.js"></script>
