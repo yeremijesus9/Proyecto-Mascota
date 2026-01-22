@@ -10,6 +10,10 @@
     --bg-light: #FDF6EC;
     --danger: #e74c3c;
     --success: #27ae60;
+    --accent-blue: #3498db;
+    --accent-green: #2ecc71;
+    --bg-white: #ffffff;
+    --shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
 
 html { font-size: 100%; }
@@ -20,6 +24,11 @@ body {
     background-color: #ffffff;
     color: var(--text-dark);
 }
+
+.text-center {
+    text-align: center;
+}
+
 
 /* ==========================================================================
    2. LAYOUT PRINCIPAL (Sidebar y Contenedor)
@@ -98,7 +107,7 @@ body {
     color: white;
     display: grid;
     grid-template-columns: 12rem 1fr 10rem 12rem;
-    padding: 1.5rem;
+    padding: 1.5rem 2rem;
     border-radius: 1rem 1rem 0 0;
     font-size: 1.2rem;
     font-weight: bold;
@@ -113,7 +122,7 @@ body {
     display: grid;
     grid-template-columns: 12rem 1fr 10rem 12rem;
     align-items: center;
-    padding: 2rem;
+    padding: 1.5rem 2rem;
 }
 
 .product-img {
@@ -430,4 +439,208 @@ body {
     font-size: 3.8rem; 
     color: white;
     pointer-events: none; 
+}
+
+/* ==========================================================================
+   8. MEJORAS ESTÉTICAS GENERALES Y STATS
+   ========================================================================== */
+.stats-overview {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.stat-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-icon {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+.stat-icon.orders { background: #E8F4FD; color: #3498DB; }
+.stat-icon.products { background: #FEF5ED; color: #D37C39; }
+.stat-icon.revenue { background: #E8F8F5; color: #27AE60; }
+
+.stat-info h3 {
+    font-size: 1.8rem;
+    margin: 0;
+    color: var(--text-dark);
+}
+
+.stat-info p {
+    font-size: 0.9rem;
+    color: #888;
+    margin: 0;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: #f5f5f5;
+    padding: 0.8rem 1.5rem;
+    border-radius: 2.5rem;
+    gap: 0.8rem;
+    width: 30rem;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.search-bar:focus-within {
+    background: white;
+    border-color: var(--primary-orange);
+    box-shadow: 0 0 10px rgba(211, 124, 57, 0.1);
+}
+
+.search-bar input {
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 1rem;
+    width: 100%;
+}
+
+/* ==========================================================================
+   9. ESTILOS ESPECÍFICOS PARA PEDIDOS
+   ========================================================================== */
+.order-header {
+    grid-template-columns: 8rem 1fr 1.5fr 10rem 10rem !important;
+}
+
+.order-card {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+}
+
+.order-main-row {
+    display: grid;
+    grid-template-columns: 8rem 1fr 1.5fr 10rem 10rem;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    cursor: pointer;
+}
+
+.order-main-row:hover {
+    background: #fafafa;
+}
+
+.status-badge {
+    padding: 0.4rem 0.8rem;
+    border-radius: 2rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-block;
+    background: #e8f8f5;
+    color: #27ae60;
+    text-align: center;
+}
+
+.order-id {
+    font-weight: 700;
+    color: var(--text-dark);
+    display: block;
+}
+
+.order-date {
+    font-size: 0.85rem;
+    color: #999;
+}
+
+.customer-info strong {
+    display: block;
+    font-size: 1.1rem;
+}
+
+.customer-info small {
+    color: #666;
+}
+
+.shipping-compact {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.4;
+}
+
+.price-total {
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--primary-orange);
+    text-align: center;
+}
+
+.order-details-expanded {
+    background: #fdfdfd;
+    padding: 2rem;
+    border-top: 1px solid #f0f0f0;
+    animation: fadeInDown 0.3s ease;
+}
+
+.products-mini-list {
+    margin-bottom: 1.5rem;
+}
+
+.product-mini-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed #eee;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    font-size: 0.95rem;
+}
+
+.detail-box h4 {
+    margin: 0 0 0.5rem 0;
+    color: #888;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+}
+
+.detail-box p {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin: 0;
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }

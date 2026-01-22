@@ -87,7 +87,7 @@ async function finalizarCompra(e) {
     }
 
     // numero de pedido con la fecha
-    const numeroPedido = 'mw' + Date.now();
+    const numeroPedido = 'MW' + Date.now();
 
     // preparamos los datos para el servidor
     const envioData = {
