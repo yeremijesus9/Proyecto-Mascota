@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = 'index.html';
         return;
     }
-    
+
     cargarProductos();
     cargarRegistros();
 
@@ -107,7 +107,7 @@ async function cargarProductos() {
         // Cargar productos del endpoint principal
         const respuestaProductos = await fetch(BASE_URL);
         const productos = await respuestaProductos.json();
-        
+
         // Intentar cargar productos nuevos (si el endpoint no existe, solo usa los principales)
         let productosNuevos = [];
         try {
@@ -118,10 +118,10 @@ async function cargarProductos() {
         } catch (errorNuevos) {
             console.log("Endpoint de nuevos productos no disponible, usando solo productos principales");
         }
-        
+
         // Combinar ambos arrays de productos
         const todosLosProductos = [...productos, ...productosNuevos];
-        
+
         console.log('Productos cargados:', todosLosProductos.length);
         renderizarProductos(todosLosProductos);
         actualizarEstadisticas(null, todosLosProductos);
@@ -147,7 +147,7 @@ function renderizarProductos(productos) {
             <span class="text-center">Acciones</span>
         </div>
     `;
-        // Se crea una tarjeta por cada producto
+    // Se crea una tarjeta por cada producto
     productos.forEach(prod => contenedor.appendChild(crearCardProducto(prod)));
 }
 
@@ -159,12 +159,12 @@ function renderizarProductos(productos) {
  ******************************************************************/
 
 function crearCardProducto(prod) {
-        // Valores por defecto para categorías
+    // Valores por defecto para categorías
     const catES = prod.categoria?.es || "otros";
     const catEN = prod.categoria?.en || "others";
 
     const div = document.createElement('div');
-        // HTML completo del producto
+    // HTML completo del producto
     div.className = 'product-card';
     div.innerHTML = `
     
@@ -262,7 +262,7 @@ function autoCompletarCategoria(id) {
  ******************************************************************/
 
 function actualizarVistaJSON(id) {
-    const miniaturas = Array.from(document.querySelectorAll(`#minis-container-${id} img`)).map(img => 
+    const miniaturas = Array.from(document.querySelectorAll(`#minis-container-${id} img`)).map(img =>
         img.src.length > 50 ? img.src.substring(0, 50) + "... [BASE64]" : img.src
     );
 
@@ -369,9 +369,9 @@ function toggleEdicion(id) {
     const form = document.getElementById(`form-edit-${id}`);
     const abriendo = form.style.display === 'none';
     form.style.display = abriendo ? 'block' : 'none';
-    if (abriendo) { 
-        activarDragAndDrop(id); 
-        actualizarVistaJSON(id); 
+    if (abriendo) {
+        activarDragAndDrop(id);
+        actualizarVistaJSON(id);
     }
 }
 
@@ -393,7 +393,7 @@ function activarDragAndDrop(id) {
     const zoneMain = document.getElementById(`drop-zone-main-${id}`);
     const zoneMini = document.getElementById(`drop-zone-mini-${id}`);
     const prevenir = (e) => { e.preventDefault(); e.stopPropagation(); };
-    if(zoneMain) {
+    if (zoneMain) {
         zoneMain.addEventListener('dragover', prevenir);
         zoneMain.addEventListener('drop', prevenir);
         zoneMain.addEventListener('drop', async (e) => {
@@ -401,7 +401,7 @@ function activarDragAndDrop(id) {
             if (f?.type.startsWith('image/')) actualizarImagenPrincipalEnCascada(await toBase64(f), id);
         });
     }
-    if(zoneMini) {
+    if (zoneMini) {
         zoneMini.addEventListener('dragover', prevenir);
         zoneMini.addEventListener('drop', prevenir);
         zoneMini.addEventListener('drop', async (e) => {
@@ -485,11 +485,11 @@ function renderizarRegistros(pedidos) {
 
 function crearCardPedido(pedido) {
     const row = document.createElement('div');
-    row.className = 'order-card'; 
+    row.className = 'order-card';
     row.id = `pedido-${pedido.id}`;
-    
+
     const listaProductos = Array.isArray(pedido.producto) ? pedido.producto : (Array.isArray(pedido.productos) ? pedido.productos : []);
-    
+
     const productosHtml = listaProductos.length > 0
         ? listaProductos.map(p => `
             <div class="product-mini-item">
@@ -499,7 +499,7 @@ function crearCardPedido(pedido) {
         : '<p>Sin productos registrados</p>';
 
     row.innerHTML = `
-        <div class="order-main-row" onclick="toggleDetallesPedido(${pedido.id})">
+        <div class="order-main-row" onclick="toggleDetallesPedido('${pedido.id}')">
             <div>
                 <span class="status-badge">Completado</span>
             </div>
@@ -513,15 +513,15 @@ function crearCardPedido(pedido) {
             </div>
             <div class="price-total">
                 ${(() => {
-                    const pTotal = String(pedido.precio_total || pedido.total || "0").replace(/[^0-9.]/g, '');
-                    return `${parseFloat(pTotal).toFixed(2)} €`;
-                })()}
+            const pTotal = String(pedido.precio_total || pedido.total || "0").replace(/[^0-9.]/g, '');
+            return `${parseFloat(pTotal).toFixed(2)} €`;
+        })()}
             </div>
             <div class="product-actions" onclick="event.stopPropagation()">
-                <button class="action-btn" onclick="toggleEdicionPedido(${pedido.id})" title="Editar pedido">
+                <button class="action-btn" onclick="toggleEdicionPedido('${pedido.id}')" title="Editar pedido">
                     <i class="fas fa-pen"></i>
                 </button>
-                <button class="action-btn" onclick="eliminarPedido(${pedido.id})" title="Eliminar del registro">
+                <button class="action-btn" onclick="eliminarPedido('${pedido.id}')" title="Eliminar del registro">
                     <i class="fas fa-trash"></i>
                 </button>
             </div>
@@ -549,8 +549,8 @@ function crearCardPedido(pedido) {
             </div>
 
             <div class="final-controls">
-                <button class="btn-main btn-save" onclick="guardarCambiosPedido(${pedido.id})">GUARDAR CAMBIOS</button>
-                <button class="btn-main btn-cancel" onclick="toggleEdicionPedido(${pedido.id})">Cancelar</button>
+                <button class="btn-main btn-save" onclick="guardarCambiosPedido('${pedido.id}')">GUARDAR CAMBIOS</button>
+                <button class="btn-main btn-cancel" onclick="toggleEdicionPedido('${pedido.id}')">Cancelar</button>
             </div>
         </div>
         <div class="order-details-expanded" id="detalles-pedido-${pedido.id}" style="display: none;">
@@ -585,7 +585,7 @@ function toggleDetallesPedido(id) {
 
 function filtrarPedidos() {
     const term = document.getElementById('order-search').value.toLowerCase();
-    const filtrados = totalPedidosLocal.filter(p => 
+    const filtrados = totalPedidosLocal.filter(p =>
         (p.numero_pedido && p.numero_pedido.toLowerCase().includes(term)) ||
         (p.email && p.email.toLowerCase().includes(term)) ||
         (p.nombre && p.nombre.toLowerCase().includes(term))
@@ -617,7 +617,7 @@ async function eliminarPedido(id) {
 function toggleEdicionPedido(id) {
     const form = document.getElementById(`form-edit-pedido-${id}`);
     const currentDisplay = form.style.display;
-    
+
     // Cerrar detalles si están abiertos
     const detalles = document.getElementById(`detalles-pedido-${id}`);
     if (detalles) detalles.style.display = 'none';
