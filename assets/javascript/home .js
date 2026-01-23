@@ -59,7 +59,7 @@ async function cargarYMostrarDestacados() {
 
     try {
         // Obtenemos la URL del json de productos desde idioma.js
-        const urlProductos = window.rutaJson ? window.rutaJson() : 'http://localhost:3000/products';
+        const urlProductos = window.rutaJson ? window.rutaJson() : `${API_URL}/products`;
         const resp = await fetch(urlProductos, { cache: 'no-cache' });
         if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
         const data = await resp.json();

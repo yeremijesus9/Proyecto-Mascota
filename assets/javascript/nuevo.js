@@ -1,13 +1,7 @@
-// ============================================================
-// NUEVO PRODUCTO - Crear y Guardar Mascotas en la Base de Datos
-// ============================================================
-// Este archivo ayuda a guardar nuevos productos (mascotas) en db.json
-// Tiene funciones para: subir imágenes, validar datos y guardar en el servidor
-
 // PASO 1: Guardar la URL donde está el servidor
 
 // La dirección donde guardaremos todo.(Nuestra base de datos)
-const URL_SERVIDOR = 'http://localhost:3000/products';
+const URL_SERVIDOR = `${API_URL}/nuevo_producto`;
 
 // PASO 2: Guardar las imágenes en variables
 
@@ -27,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ============================================================
-// PASO 4: CONFIGURAR ARRASTRAR Y SOLTAR IMÁGENES
+// PASO 4: CONFIGURAR ARRASTRAR Y SOLTAR IMÁGENES (drag y drop)
 // ============================================================
 function configurarImagenes() {
     // Encontrar todas las áreas donde se pueden soltar imágenes
@@ -115,7 +109,7 @@ function procesarArchivo(archivo, esPrincipal) {
         return;
     }
     
-    // Convertir imagen a base64 (texto para guardar en JSON). Ya que al convertirlo crea una cadena de texto muy larga (Base64) que es mucho más fácil de guardar en un JSON que un archivo de imagen real.
+    // Convertir imagen a base64. Hay que convertirlo para poder guardar imágenes en JSON. Para ello, crea una cadena de texto muy largo.
     const lector = new FileReader();
     lector.onload = function(evento) {
         if (esPrincipal) {
@@ -166,7 +160,7 @@ function guardarProducto(evento) {
     evento.preventDefault();
     console.log('🔍 Validando datos del producto...');
     
-    // Obtener los valores que escribió el usuario usando IDs específicos
+    // Obtener los valores que escribió el administrados usando IDs específicos
     const selectCategoria = document.getElementById('categoria-select');
     const nombreInput = document.getElementById('nombre-input');
     const marcaInput = document.getElementById('marca-input');
