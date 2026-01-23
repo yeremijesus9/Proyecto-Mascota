@@ -48,7 +48,7 @@ function mostrarProductos() {
         div.className = 'producto-item';
         div.innerHTML = `
             <span>${item.nombre} x ${item.cantidad}</span>
-            <span>eur ${(item.precio * item.cantidad).toFixed(2)}</span>
+            <span>${(item.precio * item.cantidad).toFixed(2)}€</span>
         `;
         lista.appendChild(div);
     });
@@ -64,9 +64,9 @@ function calcularTotales() {
     const envio = subtotal > 100 ? 0 : ENVIO;
     const total = subtotal + envio;
 
-    document.getElementById('subtotal').textContent = 'eur ' + subtotal.toFixed(2);
-    document.getElementById('envio').textContent = envio === 0 ? 'gratis' : 'eur ' + envio.toFixed(2);
-    document.getElementById('total').textContent = 'eur ' + total.toFixed(2);
+    document.getElementById('subtotal').textContent = subtotal.toFixed(2) + '€';
+    document.getElementById('envio').textContent = envio === 0 ? 'gratis' : envio.toFixed(2) + '€';
+    document.getElementById('total').textContent = total.toFixed(2) + '€';
 }
 
 // guarda el pedido y vacia el carrito

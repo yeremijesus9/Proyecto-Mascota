@@ -238,7 +238,7 @@ if (window.CARRITO_INICIALIZADO) {
                         <img src="${p.imagen}" alt="${p.nombre}">
                         <div>
                             <div class="nombre">${p.nombre}</div>
-                            <div class="precio">€${(p.precio * p.cantidad).toFixed(2)}</div>
+                            <div class="precio">${(p.precio * p.cantidad).toFixed(2)}€</div>
                             <div class="controles">
                                 <button class="btn-cantidad" data-id="${p.id}" data-cambio="-1">-</button>
                                 <span>${p.cantidad}</span>
@@ -250,7 +250,7 @@ if (window.CARRITO_INICIALIZADO) {
                 `;
             });
         }
-        if (precioTotalEl) precioTotalEl.textContent = `€${totalPrecio.toFixed(2)}`;
+        if (precioTotalEl) precioTotalEl.textContent = `${totalPrecio.toFixed(2)}€`;
     }
 
     // crear panel html
@@ -267,7 +267,7 @@ if (window.CARRITO_INICIALIZADO) {
             <div class="carrito-footer">
                 <div class="carrito-total">
                     <span>Total:</span>
-                    <span id="carrito-total-precio">€0.00</span>
+                    <span id="carrito-total-precio">0.00€</span>
                 </div>
                 <button id="btn-checkout" class="btn-checkout">Finalizar Compra</button>
                 <button id="btn-vaciar" class="btn-vaciar">Vaciar Carrito</button>

@@ -17,7 +17,7 @@ window.todosLosProductos = [];
     }
 
     function formatPrice(p) {
-        return typeof p === 'number' ? p.toFixed(2) + ' €' : p;
+        return typeof p === 'number' ? p.toFixed(2) + '€' : p;
     }
 
     function crearEstrellas(puntuacion) {

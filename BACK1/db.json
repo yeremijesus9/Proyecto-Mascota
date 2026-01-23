@@ -1269,6 +1269,35 @@
       "rol": "cliente"
     }
   ],
-  "carrito": [],
+  "carrito": [
+    {
+      "id": "CAT2",
+      "nombre": "Purina Felix Snack Crispies de Salmón y Trucha para Gatos",
+      "precio": 1.34,
+      "imagen": "./assets/img/gato/CAT02_0.png",
+      "cantidad": 3
+    },
+    {
+      "id": "ROE2",
+      "nombre": "TIAKI Tug & Find juguete de inteligencia para roedores",
+      "precio": 38.49,
+      "imagen": "./assets/img/roedores/juguete.png",
+      "cantidad": 1
+    },
+    {
+      "id": "ROE3",
+      "nombre": "Villa TIAKI Jaula para animales pequeños",
+      "precio": 146.99,
+      "imagen": "/assets/img/roedores/jaula.png",
+      "cantidad": 1
+    },
+    {
+      "id": "ROE5",
+      "nombre": "Pet Teezer De-shedding cepillo para mascotas",
+      "precio": 13.99,
+      "imagen": "./assets/img/roedores/cepillo.png",
+      "cantidad": 1
+    }
+  ],
   "datos_envio": []
-}             
+}

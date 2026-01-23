@@ -61,19 +61,19 @@ function getCategoria() {
     // Si la URL es category=dog, usamos 'dog'.
     // Pero si es category=perro, y estamos en EN, deberíamos buscar su equivalente EN?
     // O simplemente usar el valor que toca según el idioma actual para filtrar.
-    
+
     // Lo más sencillo: obtener el valor de la URL
     const paramCategoria = new URLSearchParams(location.search).get('categoria')?.toLowerCase() || 'gato';
-    
+
     // Si paramCategoria es 'perro' y estamos en 'en', necesitamos 'dog' para buscar en el JSON si el JSON tiene categorias en EN.
     // El JSON tiene:
     // "categoria": { "es": "gato", "en": "cat" }
-    
+
     // Entonces para filtrar, comparamos con el valor del objeto categoria[idiomaActual].
-    
+
     // PERO el titulo de la pagina debe mostrarse traducido.
     // Usamos el mapa para traducir el parametro de URL (que puede estar en ES o EN si el usuario navega) al idioma actual.
-    
+
     // Intentamos encontrar la clave independientemente del idioma de entrada
     let key = null;
     for (const k in categoriasMap.es) {
@@ -82,7 +82,7 @@ function getCategoria() {
             break;
         }
     }
-    
+
     if (key) {
         return categoriasMap[window.idiomaActual][key];
     }
@@ -95,7 +95,7 @@ async function cargarProductos() {
     if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
     const data = await resp.json();
     const productosExistentes = Array.isArray(data) ? data : [];
-    
+
     // También cargar productos nuevos desde el endpoint de nuevo_producto
     try {
         const respNuevos = await fetch(`${API_URL}/nuevo_producto`, { cache: 'no-cache' });
@@ -107,7 +107,7 @@ async function cargarProductos() {
     } catch (error) {
         console.log('Info: No se pudieron cargar productos nuevos');
     }
-    
+
     return productosExistentes;
 }
 
@@ -115,9 +115,9 @@ async function cargarProductos() {
 async function mostrarProductos() {
     const contenedor = document.getElementById('productos-contenedor');
     const tituloCategoria = document.getElementById('nombre-categoria');
-    
+
     // Obtenemos la categoría traducida al idioma actual
-    const categoriaTarget = getCategoria(); 
+    const categoriaTarget = getCategoria();
 
     if (tituloCategoria) {
         tituloCategoria.textContent = categoriaTarget.charAt(0).toUpperCase() + categoriaTarget.slice(1);
