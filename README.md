@@ -34,6 +34,18 @@ Miwuff es una Single Page Application (SPA) simulada construida con tecnologías
     *   Sistema de Login y Registro con validaciones visuales.
     *   Interfaz de autenticación con transiciones suaves.
 
+*   **Sistema de Administración (Admin Panel):**
+    *   Dashboard con estadísticas en tiempo real (pedidos, productos, ingresos).
+    *   **CRUD Completo de Productos:**
+        *   **Create:** Alta de nuevos productos con carga de imágenes (Drag & Drop) y conversión a Base64.
+        *   **Read:** Listado visual de inventario.
+        *   **Update:** Edición en caliente de precios, descripciones (multi-idioma) y categorías.
+        *   **Delete:** Eliminación de productos.
+    *   **Gestión de Pedidos:**
+        *   Visualización de historial de pedidos.
+        *   Edición de datos de envío y contacto.
+        *   Búsqueda y filtrado de registros.
+
 *   **Proceso de Checkout:**
     *   Formulario de pago y envío validado.
     *   Resumen de pedido antes de la confirmación.
@@ -55,39 +67,54 @@ Este proyecto ha sido desarrollado utilizando las siguientes tecnologías:
 *   **JavaScript (ES6+):** Lógica del lado del cliente, manipulación del DOM, gestión de eventos y almacenamiento local.
 *   **JSON:** Almacenamiento y estructura de datos para el catálogo de productos.
 *   **Iconify:** Iconos vectoriales para una interfaz limpia.
+*   **Backend Simulado (JSON Server):** API REST completa para gestión de datos persistentes.
 
 ## Estructura del Proyecto
 
 ```text
 Proyecto-Mascota/
+├── BACK1/                # Backend Simulado
+│   ├── db.json           # Base de datos (usuarios, productos, pedidos)
+│   ├── server.js         # Script de inicio
+│   └── package.json      # Dependencias del servidor (json-server)
 ├── assets/
-│   ├── css/              # Hojas de estilo para cada sección (login, carrito, etc.)
-│   ├── img/              # Imágenes de productos, banners e iconos
-│   ├── javascript/       # Lógica de negocio (carrito.js, login.js, etc.)
-│   └── JSON/             # Base de datos simulada de productos
-├── index.html            # Página principal
-├── productos.html        # Catálogo de productos
-├── detalle_producto.html # Vista individual de producto
-├── carrito.html          # Vista del carrito de compras
-├── checkout.html         # Página de finalización de compra
-├── login.html            # Páginas de autenticación
-├── nav.html              # Fragmento de navegación (cargado dinámicamente)
-└── footer.html           # Fragmento de pie de página (cargado dinámicamente)
+│   ├── css/              # Estilos (panel_del_admin.css, style.css, etc.)
+│   ├── img/              # Recursos gráficos
+│   └── javascript/       # Lógica (panel_del_admin.js, nuevo.js, login.js)
+├── index.html            # Home
+├── panel_del_admin.html  # Dashboard de Administración
+├── nuevo.html            # Formulario de creación de productos
+├── productos.html        # Catálogo
+├── detalle_producto.html # Vista detalle
+├── carrito.html          # Carrito
+├── checkout.html         # Pago
+└── login.html            # Autenticación
 ```
 
 ## Instalación y Uso
 
-Este proyecto no requiere un servidor backend complejo para funcionar en modo desarrollo, ya que utiliza archivos estáticos y `localStorage`.
+Este proyecto requiere iniciar el servidor de backend (JSON Server) y servir los archivos del frontend.
 
-1.  **Clonar el repositorio** (o descargar los archivos):
+1.  **Clonar el repositorio:**
     ```bash
-    git clone <url-del-repositorio>
+    git clone https://github.com/yeremijesus9/Proyecto-Mascota.git
     ```
 
-2.  **Abrir el proyecto:**
-    Navega a la carpeta del proyecto y abre el archivo `index.html` en tu navegador web favorito (Chrome, Firefox, Edge).
+2.  **Iniciar el Backend (API REST):**
+    Es necesario tener Node.js instalado.
+    ```bash
+    cd BACK1
+    npm install         # Instalar dependencias
+    npm run dev         # Iniciar servidor en puerto 3000
+    ```
 
-    > **Nota:** Para una mejor experiencia y evitar problemas con las políticas de CORS al cargar módulos o archivos JSON, se recomienda usar una extensión como "Live Server" en VS Code.
+3.  **Iniciar el Frontend:**
+    Abre el archivo `index.html` en tu navegador.
+    > **Recomendación:** Usa la extensión "Live Server" de VS Code para evitar bloqueos por CORS al conectar con la API local.
+
+4.  **Acceso Admin:**
+    *   Para acceder al panel, inicia sesión con un usuario con rol `admin`.
+    *   El sistema habilitará automáticamente el botón de acceso al **Dashboard** en el menú de usuario.
 
 ## Contribución
 
