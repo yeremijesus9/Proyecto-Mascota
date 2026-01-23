@@ -1255,7 +1255,7 @@
   ],
   "usuarios": [
     {
-      "id": 1,
+      "id": "1",
       "username": "admin",
       "email": "admin@miwuff.com",
       "clave": "admin123",
@@ -1265,7 +1265,7 @@
       "username": "juan",
       "email": "juan@gmail.com",
       "clave": "123",
-      "id": 2,
+      "id": "2",
       "rol": "cliente"
     }
   ],
